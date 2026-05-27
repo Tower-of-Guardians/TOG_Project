@@ -100,3 +100,16 @@ InitTestScene*.unity*
 
 
 
+# --- Wwise Ignore ---
+*.wsettings
+*.akd
+/.extreg
+/GeneratedSoundBanks/
+/ActiveSoundBanks.txt
+*.prof
+/SoundBankInfoCache.dat
+
+# --- IDE and Editor Files ---
+.idea/
+.vscode/
+
