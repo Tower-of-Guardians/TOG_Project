@@ -1,0 +1,5 @@
+﻿rowID,characterID,portraitKey,portraitTexture,isEnable
+eccliss_default,eccliss,default,"Portraits/Player Default Portrait.png",TRUE
+xylbia_default,xylbia,default,"Portraits/Priest Default Portrait.png",TRUE
+heka_default,heka,default,"Portraits/Craftman Portrait.png",TRUE
+krabian_default,krabian,default,"Portraits/Merchant Portrait.png",TRUE

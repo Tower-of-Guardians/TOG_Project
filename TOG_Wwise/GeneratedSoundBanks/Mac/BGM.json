@@ -1,0 +1,45 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Mac",
+  "BasePlatform": "Mac",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "SoundBanks": [
+   {
+    "Id": "412724365",
+    "Type": "User",
+    "GUID": "{F79007F3-54EF-4FAA-B34A-21D94BE5A11A}",
+    "Language": "SFX",
+    "Hash": "{594F003A-C979-AA83-9C8F-D1DF15B185CE}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\BGM",
+    "ShortName": "BGM",
+    "Path": "BGM.bnk",
+    "Media": [
+     {
+      "Id": "964746046",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "DMC nico's Theme.wav",
+      "CachePath": "8D/{8D0C7899-8AB4-CD21-F301-6AF3E4817372}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "3569852853",
+      "Name": "Play_BGM_Loop",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_BGM_Loop",
+      "GUID": "{D7F58FAB-0640-46D0-B2D8-FEB81C796C1D}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "964746046"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{B589F898-CBBA-4A7B-1AE6-D1391A52DA65}"
+ }
+}

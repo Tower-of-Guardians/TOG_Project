@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6114578740250760541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cda94aaf9243baa8665bfc3d2290cf, type: 3}
+  m_Name: demo_simple_n3_1
+  m_EditorClassIdentifier: Assembly-CSharp::JxDialogueBox.DialogueChoiceDataTableRow
+  rowID: demo_simple_n3_1
+  isEnable: 1
+  NodeID: demo_simple_n3
+  OptionIndex: 1
+  Text: Sure, let's go.
+  NextID: demo_simple_n4
+--- !u!114 &-2325685922366017173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cda94aaf9243baa8665bfc3d2290cf, type: 3}
+  m_Name: demo_simple_n3_2
+  m_EditorClassIdentifier: Assembly-CSharp::JxDialogueBox.DialogueChoiceDataTableRow
+  rowID: demo_simple_n3_2
+  isEnable: 1
+  NodeID: demo_simple_n3
+  OptionIndex: 2
+  Text: Not now.
+  NextID: demo_simple_n5
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
+  m_Name: DT_DialogueChoice
+  m_EditorClassIdentifier: Assembly-CSharp::JxModule.DataTable.DataTable
+  dataTableCsv: {fileID: 4900000, guid: ef8adfa3f05c8d5449a0f3050e671e6e, type: 3}
+  dataTableRowName: JxDialogueBox.DialogueChoiceDataTableRow, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  dataTableRows:
+  - {fileID: -6114578740250760541}
+  - {fileID: -2325685922366017173}
+  dataTableRowScript: {fileID: 11500000, guid: c1cda94aaf9243baa8665bfc3d2290cf, type: 3}

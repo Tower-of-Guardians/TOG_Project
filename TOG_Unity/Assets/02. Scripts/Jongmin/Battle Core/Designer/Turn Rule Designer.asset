@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29f1f861c4b1464babb924e1a768032, type: 3}
+  m_Name: Turn Rule Designer
+  m_EditorClassIdentifier: 
+  _turnRuleArray:
+  - _mininumCount: 0
+    _maximumCount: 9
+    _handCount: 5
+    _actionCount: 3
+  - _mininumCount: 10
+    _maximumCount: 19
+    _handCount: 6
+    _actionCount: 4
+  - _mininumCount: 20
+    _maximumCount: 1000
+    _handCount: 7
+    _actionCount: 5

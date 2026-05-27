@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" SchemaVersion="133">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_BGM_Loop" ID="{D7F58FAB-0640-46D0-B2D8-FEB81C796C1D}">
+					<ChildrenList>
+						<Action Name="" ID="{A9E702E4-D496-49EF-A66B-7E7596CCFF7E}" ShortID="730026614">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="DMC nico's Theme" ID="{88F07260-4155-487B-A583-5B4BD6BE5D00}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

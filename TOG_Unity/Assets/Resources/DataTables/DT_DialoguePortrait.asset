@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5230983348501520527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: heka_default
+  m_EditorClassIdentifier: 
+  rowID: heka_default
+  isEnable: 1
+  characterID: heka
+  portraitKey: default
+  portraitTexture: {fileID: 0}
+--- !u!114 &-1593576206352921345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: xylbia_default
+  m_EditorClassIdentifier: 
+  rowID: xylbia_default
+  isEnable: 1
+  characterID: xylbia
+  portraitKey: default
+  portraitTexture: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
+  m_Name: DT_DialoguePortrait
+  m_EditorClassIdentifier: 
+  dataTableCsv: {fileID: 4900000, guid: c46aec1260ea83440b621e0b56791401, type: 3}
+  dataTableRowName: JxDialogueBox.DialoguePortraitDataTableRow, Assembly-CSharp,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  dataTableRows:
+  - {fileID: 579632381371946538}
+  - {fileID: -1593576206352921345}
+  - {fileID: -5230983348501520527}
+  - {fileID: 8452096738138694359}
+  dataTableRowScript: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+--- !u!114 &579632381371946538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: eccliss_default
+  m_EditorClassIdentifier: 
+  rowID: eccliss_default
+  isEnable: 1
+  characterID: eccliss
+  portraitKey: default
+  portraitTexture: {fileID: 0}
+--- !u!114 &8452096738138694359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: krabian_default
+  m_EditorClassIdentifier: 
+  rowID: krabian_default
+  isEnable: 1
+  characterID: krabian
+  portraitKey: default
+  portraitTexture: {fileID: 0}

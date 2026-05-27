@@ -1,0 +1,1082 @@
+fileFormatVersion: 2
+guid: 2cddf0350e751e745b23af903b8177e5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5068607888594416882
+    second: Synergy Gauge_0
+  - first:
+      213: 25306827576278241
+    second: Synergy Gauge_1
+  - first:
+      213: 7836916082567593525
+    second: Synergy Gauge_2
+  - first:
+      213: 6322377518802402776
+    second: Synergy Gauge_3
+  - first:
+      213: 5418663772817810118
+    second: Synergy Gauge_4
+  - first:
+      213: 1306598600565669847
+    second: Synergy Gauge_5
+  - first:
+      213: 3365514272679907847
+    second: Synergy Gauge_6
+  - first:
+      213: -5973719408632870996
+    second: Synergy Gauge_7
+  - first:
+      213: 8965922701622580604
+    second: Synergy Gauge_8
+  - first:
+      213: -4788367860144985926
+    second: Synergy Gauge_9
+  - first:
+      213: 6546846617637216857
+    second: Synergy Gauge_10
+  - first:
+      213: 323532149542028510
+    second: Synergy Gauge_11
+  - first:
+      213: -5344407946230429945
+    second: Synergy Gauge_12
+  - first:
+      213: -4987109374241895332
+    second: Synergy Gauge_13
+  - first:
+      213: -4612882921248179979
+    second: Synergy Gauge_14
+  - first:
+      213: 871568882161981281
+    second: Synergy Gauge_15
+  - first:
+      213: 2113921890360973793
+    second: Synergy Gauge_16
+  - first:
+      213: 6930558637426193472
+    second: Synergy Gauge_17
+  - first:
+      213: 3055371975647629608
+    second: Synergy Gauge_18
+  - first:
+      213: 5924514006253917193
+    second: Synergy Gauge_19
+  - first:
+      213: 8135014310420586847
+    second: Synergy Gauge_20
+  - first:
+      213: -7224302079080548202
+    second: Synergy Gauge_21
+  - first:
+      213: -2221718243433848479
+    second: Synergy Gauge_22
+  - first:
+      213: 3758360030774000391
+    second: Synergy Gauge_23
+  - first:
+      213: 5132180017538803824
+    second: Synergy Gauge_24
+  - first:
+      213: 1080790192112370304
+    second: Synergy Gauge_25
+  - first:
+      213: 8472445690235079722
+    second: Synergy Gauge_26
+  - first:
+      213: 5735938364578417103
+    second: Synergy Gauge_27
+  - first:
+      213: 6138698779049239947
+    second: Synergy Gauge_28
+  - first:
+      213: 8725821599176768460
+    second: Synergy Gauge_29
+  - first:
+      213: 8626118355193768436
+    second: Synergy Gauge_30
+  - first:
+      213: -8507705402295911069
+    second: Synergy Gauge_31
+  - first:
+      213: 2072727022242138383
+    second: Synergy Gauge_32
+  - first:
+      213: -7254693563777523757
+    second: Synergy Gauge_33
+  - first:
+      213: 532018587706342124
+    second: Synergy Gauge_34
+  - first:
+      213: -3663544549815777765
+    second: Synergy Gauge_35
+  - first:
+      213: -2828233439923813010
+    second: Synergy Gauge_36
+  - first:
+      213: 7666655722841868964
+    second: Synergy Gauge_37
+  - first:
+      213: -1033407781966137244
+    second: Synergy Gauge_38
+  - first:
+      213: 884396865164504539
+    second: Synergy Gauge_39
+  - first:
+      213: -6205495700971048866
+    second: Synergy Gauge_40
+  - first:
+      213: 4537335279504401545
+    second: Synergy Gauge_41
+  - first:
+      213: -2158634094479285274
+    second: Synergy Gauge_42
+  - first:
+      213: 7413396321718307525
+    second: Synergy Gauge_43
+  - first:
+      213: -6272764704235525161
+    second: Synergy Gauge_44
+  - first:
+      213: 7235183191438109080
+    second: Synergy Gauge_45
+  - first:
+      213: -3511288266953995739
+    second: Synergy Gauge_46
+  - first:
+      213: 1130276677998787796
+    second: Synergy Gauge_47
+  - first:
+      213: 3615950633276538769
+    second: Synergy Gauge_48
+  - first:
+      213: -5415736121168505143
+    second: Synergy Gauge_49
+  - first:
+      213: -7130879666844585622
+    second: Synergy Gauge_50
+  - first:
+      213: -3811189166262137693
+    second: Synergy Gauge_51
+  - first:
+      213: -3851085805387776199
+    second: Synergy Gauge_52
+  - first:
+      213: -7519746898453556785
+    second: Synergy Gauge_53
+  - first:
+      213: 1845225411077570613
+    second: Synergy Gauge_54
+  - first:
+      213: 3962651909665059652
+    second: Synergy Gauge_55
+  - first:
+      213: 7605995067383223473
+    second: Synergy Gauge_56
+  - first:
+      213: -2215898731777469385
+    second: Synergy Gauge_57
+  - first:
+      213: -4566991040837040021
+    second: Synergy Gauge_58
+  - first:
+      213: 2684411404799022423
+    second: Synergy Gauge_59
+  - first:
+      213: 5018087755139151087
+    second: Synergy Gauge_60
+  - first:
+      213: 6333583445482934739
+    second: Synergy Gauge_61
+  - first:
+      213: -8780927679744555850
+    second: Synergy Gauge_62
+  - first:
+      213: -1475760640083922357
+    second: Synergy Gauge_63
+  - first:
+      213: 9132633483653202443
+    second: Synergy Gauge_64
+  - first:
+      213: 7137219586162404268
+    second: Synergy Gauge_65
+  - first:
+      213: -5712792535091410772
+    second: Synergy Gauge_66
+  - first:
+      213: 4004719300370960945
+    second: Synergy Gauge_67
+  - first:
+      213: 5582880190005083831
+    second: Synergy Gauge_68
+  - first:
+      213: -3357915193127875122
+    second: Synergy Gauge_69
+  - first:
+      213: -4634870891023245530
+    second: Synergy Gauge_70
+  - first:
+      213: -4255434825330548301
+    second: Synergy Gauge_71
+  - first:
+      213: -2413049101369184926
+    second: Synergy Gauge_72
+  - first:
+      213: -7479008899153110326
+    second: Synergy Gauge_73
+  - first:
+      213: -6604384197634526122
+    second: Synergy Gauge_74
+  - first:
+      213: -8806310851831031275
+    second: Synergy Gauge_75
+  - first:
+      213: 4222688325533803944
+    second: Synergy Gauge_76
+  - first:
+      213: -4042514500204565712
+    second: Synergy Gauge_77
+  - first:
+      213: 7091017550572742947
+    second: Synergy Gauge_78
+  - first:
+      213: 6022849559148497436
+    second: Synergy Gauge_79
+  - first:
+      213: 5756836376345236354
+    second: Synergy Gauge_80
+  - first:
+      213: -3594092232102509286
+    second: Synergy Gauge_81
+  - first:
+      213: 7131512568249958343
+    second: Synergy Gauge_82
+  - first:
+      213: -404000299440622391
+    second: Synergy Gauge_83
+  - first:
+      213: -8499224722676990339
+    second: Synergy Gauge_84
+  - first:
+      213: -5850972541875461128
+    second: Synergy Gauge_85
+  - first:
+      213: 2243846953408902679
+    second: Synergy Gauge_86
+  - first:
+      213: -875766175889013634
+    second: Synergy Gauge_87
+  - first:
+      213: 66271816180228022
+    second: Synergy Gauge_88
+  - first:
+      213: -2416578285538412312
+    second: Synergy Gauge_89
+  - first:
+      213: 3716201967598866712
+    second: Synergy Gauge_90
+  - first:
+      213: -8736875868294026755
+    second: Synergy Gauge_91
+  - first:
+      213: -7627808071819285620
+    second: Synergy Gauge_92
+  - first:
+      213: -6919001757154590267
+    second: Synergy Gauge_93
+  - first:
+      213: 8541757592814268854
+    second: Synergy Gauge_94
+  - first:
+      213: -8291412446379258121
+    second: Synergy Gauge_95
+  - first:
+      213: -6817202326129046750
+    second: Synergy Gauge_96
+  - first:
+      213: 8599126385744962134
+    second: Synergy Gauge_97
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Synergy Gauge Basic_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 750
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f4b9612500575640800000000000000
+      internalID: 5068607888594416882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Basic_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 700
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53ebcf3c7a152cc60800000000000000
+      internalID: 7836916082567593525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Plunder_1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 700
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ddf1202bd89db750800000000000000
+      internalID: 6322377518802402776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge BloodSucking_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 650
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c26518fdf5f23b40800000000000000
+      internalID: 5418663772817810118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Plunder_0
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 750
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 702d7955665b4be20800000000000000
+      internalID: 3365514272679907847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge BloodSucking_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 550
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7513d1913b5d6c70800000000000000
+      internalID: 8965922701622580604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge ShieldAttack_0
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 550
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab829221dcc4c8db0800000000000000
+      internalID: -4788367860144985926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge BloodSucking_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 500
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 952eb33ef421bda50800000000000000
+      internalID: 6546846617637216857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge ShieldAttack_2
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 450
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5c8a4c627a3acab0800000000000000
+      internalID: -4987109374241895332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Mystery_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f839885c6fbbffb0800000000000000
+      internalID: -4612882921248179979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Mystery_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 350
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e953ed52c8265d10800000000000000
+      internalID: 2113921890360973793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Honesty_0
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 350
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 044bdce6c5a4e2060800000000000000
+      internalID: 6930558637426193472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Mystery_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8211921bf9cd66a20800000000000000
+      internalID: 3055371975647629608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Plunder_2
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 650
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f51a6570a6065e070800000000000000
+      internalID: 8135014310420586847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge BloodSucking_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 698b94af88f1ebb90800000000000000
+      internalID: -7224302079080548202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Plunder_3
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 600
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 161ee1d570fda21e0800000000000000
+      internalID: -2221718243433848479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Overwhelming_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07822c4d88a293740800000000000000
+      internalID: 5132180017538803824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Honesty_4
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 150
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 082859514fcbffe00800000000000000
+      internalID: 1080790192112370304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Overwhelming_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2c4041677c249570800000000000000
+      internalID: 8472445690235079722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Overwhelming_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 50
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b85aa5ce30a013550800000000000000
+      internalID: 6138698779049239947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Overwhelming_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f92dcfd0f026b770800000000000000
+      internalID: 8626118355193768436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge ShieldAttack_1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 500
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca6abfd3eee128a4184a1584a6d8dae5
+      internalID: 323532149542028510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge ShieldAttack_3
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 400
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f15030fec110cb8428d1fffd13dc3c0d
+      internalID: 871568882161981281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Honesty_1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 300
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b406fff720cd9e479ef15ba9cda8c1b
+      internalID: 5924514006253917193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Honesty_3
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 200
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35edeb99152a12449a2ad6fac6ae0141
+      internalID: 3758360030774000391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Mystery_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 450
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a08dbc411a6c64080ea66fe066b18d
+      internalID: -5344407946230429945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Mystery_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 250
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7267358aa780c3140b68a51b61d80a42
+      internalID: -948106609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Honesty_2
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 250
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07c1940ca6a0f964a888f5c54b223e75
+      internalID: -1788372468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy Gauge Overwhelming_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff51f34be7d26d74c8c58adb967b2c02
+      internalID: 878043016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d7311a1354fe4dc40a1c6c613091cbfc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Synergy Gauge  Attack_0: 5068607888594416882
+      Synergy Gauge Basic_0: 5068607888594416882
+      Synergy Gauge Basic_1: 7836916082567593525
+      Synergy Gauge BloodSucking_0: 5418663772817810118
+      Synergy Gauge BloodSucking_1: -7224302079080548202
+      Synergy Gauge BloodSucking_2: 8965922701622580604
+      Synergy Gauge BloodSucking_3: 6546846617637216857
+      Synergy Gauge Honesty_0: 6930558637426193472
+      Synergy Gauge Honesty_1: 5924514006253917193
+      Synergy Gauge Honesty_2: -1788372468
+      Synergy Gauge Honesty_3: 3758360030774000391
+      Synergy Gauge Honesty_4: 1080790192112370304
+      Synergy Gauge Mystery_0: -5344407946230429945
+      Synergy Gauge Mystery_1: -4612882921248179979
+      Synergy Gauge Mystery_2: 2113921890360973793
+      Synergy Gauge Mystery_3: 3055371975647629608
+      Synergy Gauge Mystery_4: -948106609
+      Synergy Gauge Overwhelming_0: 878043016
+      Synergy Gauge Overwhelming_1: 5132180017538803824
+      Synergy Gauge Overwhelming_2: 8472445690235079722
+      Synergy Gauge Overwhelming_3: 6138698779049239947
+      Synergy Gauge Overwhelming_4: 8626118355193768436
+      Synergy Gauge Plunder_0: 3365514272679907847
+      Synergy Gauge Plunder_1: 6322377518802402776
+      Synergy Gauge Plunder_2: 8135014310420586847
+      Synergy Gauge Plunder_3: -2221718243433848479
+      Synergy Gauge ShieldAttack_0: -4788367860144985926
+      Synergy Gauge ShieldAttack_1: 323532149542028510
+      Synergy Gauge ShieldAttack_2: -4987109374241895332
+      Synergy Gauge ShieldAttack_3: 871568882161981281
+      Synergy Gauge_27: 5735938364578417103
+      Synergy Gauge_29: 8725821599176768460
+      Synergy Gauge_31: -8507705402295911069
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

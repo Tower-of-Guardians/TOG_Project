@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SynergyData
+  m_EditorClassIdentifier: 
+  m_GroupName: SynergyData
+  m_GUID: f06af727f98991a4bab7cd61d52cc5b8
+  m_SerializeEntries:
+  - m_GUID: 20d20d0e2854183408c06065021eae14
+    m_Address: Assets/Datas/SynergyData/210007.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2318ad793a5104145acb2badf820a9dd
+    m_Address: Assets/Datas/SynergyData/210001.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3228494a5d446484ba5865e983208d95
+    m_Address: Assets/Datas/SynergyData/210004.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3754cc8b2f5fb7f4b97b82b0b2071ef8
+    m_Address: Assets/Datas/SynergyData/210012.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c4faf9c36446924886676f01db4f815
+    m_Address: Assets/Datas/SynergyData/210002.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5026830a281dcf147be9fc5134042aa4
+    m_Address: Assets/Datas/SynergyData/210005.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b379b2549c884b439fb31609c5047f3
+    m_Address: Assets/Datas/SynergyData/210010.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d1a0cef0c596874ca3c8a2fde6f8e11
+    m_Address: Assets/Datas/SynergyData/210011.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88607e408c4d0384580a19ecf347efbc
+    m_Address: Assets/Datas/SynergyData/210008.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0fe88d9438ec8046a174b56aa732358
+    m_Address: Assets/Datas/SynergyData/210009.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eaa297fb37596c74dbff8ad746be966e
+    m_Address: Assets/Datas/SynergyData/210013.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: efd545c78f249484ca348a77c9f93ba5
+    m_Address: Assets/Datas/SynergyData/210003.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb5d3bb79075c714d99d3ea622cb8356
+    m_Address: Assets/Datas/SynergyData/210006.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 11547d97efbd680438c8d420c6672236, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: dfce78094d3ac8f4a8aee76931be2f9b, type: 2}
+    - {fileID: 11400000, guid: e98f50bc5a54b32489cb8a2738740856, type: 2}

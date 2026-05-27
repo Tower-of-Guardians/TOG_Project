@@ -1,0 +1,456 @@
+fileFormatVersion: 2
+guid: 9fe8859a05bc9d44db79491c3c4b1900
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4238762649066405001
+    second: Group 50_0
+  - first:
+      213: 4858867644956348116
+    second: Group 50_1
+  - first:
+      213: 670780376081818634
+    second: Group 50_2
+  - first:
+      213: 7159248052640824520
+    second: Group 50_3
+  - first:
+      213: -1640713887234623365
+    second: Group 50_4
+  - first:
+      213: 6818544249897657950
+    second: Group 50_5
+  - first:
+      213: -7741811486949130332
+    second: Group 50_6
+  - first:
+      213: 7042404619664934232
+    second: Group 50_7
+  - first:
+      213: 7259794790700297071
+    second: Group 50_8
+  - first:
+      213: 2522438833399336075
+    second: Group 50_9
+  - first:
+      213: 8818355819295388068
+    second: Group 50_10
+  - first:
+      213: -396270957925619124
+    second: Group 50_11
+  - first:
+      213: -8204791299500236629
+    second: Group 50_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Card_WoodShield
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 344
+        width: 165
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 773043f14d3ec25c0800000000000000
+      internalID: -4238762649066405001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_Thorn
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 348
+        width: 201
+        height: 201
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4de0344316a2e6340800000000000000
+      internalID: 4858867644956348116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_MetalShield
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 356
+        width: 169
+        height: 177
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a04e8a6b2371f4900800000000000000
+      internalID: 670780376081818634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_ApprenticeSword
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 328
+        width: 221
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cc309c2c22ca5360800000000000000
+      internalID: 7159248052640824520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_Gladius
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 324
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b78745599630b39e0800000000000000
+      internalID: -1640713887234623365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_Dagger
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 356
+        width: 165
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e56ae6c7ed550ae50800000000000000
+      internalID: 6818544249897657950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Card_Hunter\u2019sbow"
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 328
+        width: 201
+        height: 237
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4afbb52787f8f8490800000000000000
+      internalID: -7741811486949130332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_BoxingGlove
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 360
+        width: 165
+        height: 177
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 855c2b770b5abb160800000000000000
+      internalID: 7042404619664934232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_SoulReaper
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 58
+        width: 201
+        height: 243
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6b2ce9e5e8ffb460800000000000000
+      internalID: 7259794790700297071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_Gaizeron
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 60
+        width: 258
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8c0b6821c0810320800000000000000
+      internalID: 2522438833399336075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_Janzones
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 80
+        width: 189
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a1b91065e7116a70800000000000000
+      internalID: 8818355819295388068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Card_ElementalArrow
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 84
+        width: 209
+        height: 213
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4a2a0ec9a9208af0800000000000000
+      internalID: -396270957925619124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Card_Hukan\u2019sAxe"
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 58
+        width: 184
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba0a211b8c9b22e80800000000000000
+      internalID: -8204791299500236629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2ee6731fbf1196644ab58986ef24bb14
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Card_ApprenticeSword: 7159248052640824520
+      Card_BoxingGlove: 7042404619664934232
+      Card_Dagger: 6818544249897657950
+      Card_ElementalArrow: -396270957925619124
+      Card_Gaizeron: 2522438833399336075
+      Card_Gladius: -1640713887234623365
+      "Card_Hukan\u2019sAxe": -8204791299500236629
+      "Card_Hunter\u2019sbow": -7741811486949130332
+      Card_Janzones: 8818355819295388068
+      Card_MetalShield: 670780376081818634
+      Card_Soul: 7259794790700297071
+      Card_SoulReaper: 7259794790700297071
+      Card_Thorn: 4858867644956348116
+      Card_WoodShield: -4238762649066405001
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3569852853	Play_BGM_Loop			\Default Work Unit\Play_BGM_Loop	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	964746046	DMC nico's Theme	.cache\8D\{8D0C7899-8AB4-CD21-F301-6AF3E4817372}.wem		\Containers\Default Work Unit\DMC nico's Theme		49983072
+

@@ -1,0 +1,2 @@
+public interface IHandUI : IOpenableUI 
+{}

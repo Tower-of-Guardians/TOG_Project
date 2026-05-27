@@ -1,0 +1,3 @@
+[submodule "Assets/JxModule"]
+	path = Assets/JxModule
+	url = https://github.com/jxng-min/JxModule.git

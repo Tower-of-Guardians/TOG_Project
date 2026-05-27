@@ -1,0 +1,7 @@
+﻿rowID,NodeType,Speaker,CharacterID,Text,PortraitKey,NextID,Prompt,TargetID,isEnable
+demo_simple_n1,LINE,NPC,xylbia,"Hey there. This is a simple demo dialogue.",default,demo_simple_n2,,,true
+demo_simple_n2,LINE,NPC,heka,"We’ll just show a choice and then finish.",default,demo_simple_n3,,,true
+demo_simple_n3,CHOICE,,,,,,"What do you want to say?",,true
+demo_simple_n4,LINE,PLAYER,eccliss,"Alright. Let’s begin.",default,demo_simple_n6,,,true
+demo_simple_n5,LINE,PLAYER,eccliss,"Maybe another time.",default,demo_simple_n6,,,true
+demo_simple_n6,END,,,,,,,,true

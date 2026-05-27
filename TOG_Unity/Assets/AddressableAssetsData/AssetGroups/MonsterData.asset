@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: MonsterData
+  m_EditorClassIdentifier: 
+  m_GroupName: MonsterData
+  m_GUID: 66d956d3fd7b5b04dac21fac0056a54e
+  m_SerializeEntries:
+  - m_GUID: 18e16a3a98771b742a957c065304cf04
+    m_Address: Assets/Datas/MonsterData/41001002.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c1e9c7f4ad4c254488cc4f6f53197897
+    m_Address: Assets/Datas/MonsterData/41001000.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d49306f71e1fbed4c9d508d8d649a4a5
+    m_Address: Assets/Datas/MonsterData/41002000.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc26a2636004d96449f2da1f7f8a1cbb
+    m_Address: Assets/Datas/MonsterData/41001001.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterData
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 11547d97efbd680438c8d420c6672236, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5a8a7f58fa071e24cbc911b19aa99370, type: 2}
+    - {fileID: 11400000, guid: bf428104724d3684e9873dd340f2a9be, type: 2}

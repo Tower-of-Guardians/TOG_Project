@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2c35cf3af831e46afbe33c0c233135, type: 3}
+  m_Name: 11030029
+  m_EditorClassIdentifier: 
+  id: 11030029
+  itemName: "\uBD80\uBA54\uB791"
+  iconimage: {fileID: 0}
+  synergyFrameImage: {fileID: 21300000, guid: f8015f11f7dae24468919133953254d1, type: 3}
+  grade: 3
+  star: 0
+  price: 30
+  cardimage: {fileID: 21300000, guid: 527d7453094746b4c90574c8b45bc896, type: 3}
+  synergy1Icon: {fileID: 0}
+  synergy2Icon: {fileID: 0}
+  synergy3Icon: {fileID: 0}
+  synergy1ID: 210011
+  synergy2ID: 
+  synergy3ID: 
+  effectDescription: "\uACF5\uACA9 \uBC30\uCE58 \uC2DC\\n\uD134 \uC885\uB8CC \uD6C4
+    \uBC84\uB824\uC9C0\uC9C0 \uC54A\uACE0 \uB0B4 \uD328\uB85C \uB3CC\uC544\uC635\uB2C8\uB2E4."
+  ATK: 8
+  DEF: 1
+  when: 1
+  trigger: 2
+  effect1ID: 1110015
+  effect2ID: 
+  effect1Value: 1
+  effect2Value: 

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21041498d7f18d94c9f0dca8360d0460, type: 3}
+  m_Name: 1110005
+  m_EditorClassIdentifier: 
+  Id: 1110005
+  Name: "\uACF5\uACA9\uB825 \uC0C1\uC2B9:\uAD8C\uBC95\uC7A5\uAC11"
+  Effect: "\"\uC774\uBC88 \uC804\uD22C\uB3D9\uC548 \"\"\uAD8C\uBC95\uC7A5\uAC11\"\"\uC774\uB984\uC744
+    \uAC00\uC9C4 \uBAA8\uB4E0 \uCE74\uB4DC\uC758 \uACF5\uACA9\uB825\uC774 {0} \uC99D\uAC00\uD569\uB2C8\uB2E4.\""
+  Target: 13
+  Choice: 0
+  CreateMagic: 
+  StatusEffect: 0
+  NumType: Integer

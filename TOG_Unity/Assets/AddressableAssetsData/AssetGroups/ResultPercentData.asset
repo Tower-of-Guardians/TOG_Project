@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ResultPercentData
+  m_EditorClassIdentifier: 
+  m_GroupName: ResultPercentData
+  m_GUID: ac0075bb549bdf149957598df61cb819
+  m_SerializeEntries:
+  - m_GUID: 396c4662a1bee8f4f89c492c0fcd7c32
+    m_Address: Assets/Datas/ResultPercentData/ResultPercentData7.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ResultPercentData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45579a5484edea34da4d3049f14c728d
+    m_Address: Assets/Datas/ResultPercentData/ResultPercentData5.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ResultPercentData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bd289ac93a47d541826ff6f50418daa
+    m_Address: Assets/Datas/ResultPercentData/ResultPercentData8.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ResultPercentData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d4f357d731ca9d40917ac31dfc1c96f
+    m_Address: Assets/Datas/ResultPercentData/ResultPercentData2.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ResultPercentData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a6f0724e26db7047a3904c7b7455e60
+    m_Address: Assets/Datas/ResultPercentData/ResultPercentData10.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ResultPercentData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ed9bcd910169234eba14a4a6685f596
+    m_Address: Assets/Datas/ResultPercentData/ResultPercentData1.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ResultPercentData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9163133bd44bbac48925a169e72b35c7
+    m_Address: Assets/Datas/ResultPercentData/ResultPercentData3.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ResultPercentData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a60a47e6d7136b542bcf4c003580bf00
+    m_Address: Assets/Datas/ResultPercentData/ResultPercentData6.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ResultPercentData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e10be32f18daf95499a119b197595961
+    m_Address: Assets/Datas/ResultPercentData/ResultPercentData9.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ResultPercentData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed2503fe270f4d140b8ddb0364ebb6d8
+    m_Address: Assets/Datas/ResultPercentData/ResultPercentData4.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ResultPercentData
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 11547d97efbd680438c8d420c6672236, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: af9785351b7d859489de2f26eb121a5e, type: 2}
+    - {fileID: 11400000, guid: 7a9f6bdc88ac2f64285131e0d846874e, type: 2}

@@ -1,0 +1,752 @@
+fileFormatVersion: 2
+guid: 4c4b184b7a29e9843943447e54291569
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8449944869432733764
+    second: Attack Button_0
+  - first:
+      213: -5934598678658366500
+    second: Attack Button_1
+  - first:
+      213: 6827010513858653783
+    second: Attack Button_2
+  - first:
+      213: 2773401560064084538
+    second: Attack Button_3
+  - first:
+      213: -7821689927299375192
+    second: Attack Button_4
+  - first:
+      213: 1784152599538776797
+    second: Attack Button_5
+  - first:
+      213: 2905800286015181399
+    second: Attack Button_6
+  - first:
+      213: -8377882313409677745
+    second: Attack Button_7
+  - first:
+      213: -3858360630498910793
+    second: Attack Button_8
+  - first:
+      213: -5188046428047771285
+    second: Attack Button_9
+  - first:
+      213: -4421811155914275007
+    second: Attack Button_10
+  - first:
+      213: -4574788962965949657
+    second: Attack Button_11
+  - first:
+      213: 8952719200744871991
+    second: Attack Button_12
+  - first:
+      213: 5265378617087436125
+    second: Attack Button_13
+  - first:
+      213: 6190743998112693124
+    second: Attack Button_14
+  - first:
+      213: 8543546541355797861
+    second: Attack Button_15
+  - first:
+      213: 121659729879574230
+    second: Attack Button_16
+  - first:
+      213: 5627993228297289380
+    second: Attack Button_17
+  - first:
+      213: 6357982528797745205
+    second: Attack Button_18
+  - first:
+      213: -3584890935080351836
+    second: Attack Button_19
+  - first:
+      213: 7010193533707982669
+    second: Attack Button_20
+  - first:
+      213: -4828280392303293405
+    second: Attack Button_21
+  - first:
+      213: -230267430039047498
+    second: Attack Button_22
+  - first:
+      213: -427271200042444111
+    second: Attack Button_23
+  - first:
+      213: 5847635741212225414
+    second: Attack Button_24
+  - first:
+      213: 1498806097149668264
+    second: Attack Button_25
+  - first:
+      213: 6093038792737562348
+    second: Attack Button_26
+  - first:
+      213: -6601929012354984576
+    second: Attack Button_27
+  - first:
+      213: -5862986490345266813
+    second: Attack Button_28
+  - first:
+      213: 7340215353494570148
+    second: Attack Button_29
+  - first:
+      213: -3781257346140964847
+    second: Attack Button_30
+  - first:
+      213: 3696439505511861605
+    second: Attack Button_31
+  - first:
+      213: -5515830984996002860
+    second: Attack Button_32
+  - first:
+      213: -4159466107291366116
+    second: Attack Button_33
+  - first:
+      213: 3202754312297167015
+    second: Attack Button_34
+  - first:
+      213: -2656835601246284533
+    second: Attack Button_35
+  - first:
+      213: -1168512862679719348
+    second: Attack Button_36
+  - first:
+      213: -834601414871485192
+    second: Attack Button_37
+  - first:
+      213: 618690776827803805
+    second: Attack Button_38
+  - first:
+      213: 528330660238136089
+    second: Attack Button_39
+  - first:
+      213: -8228824348468569320
+    second: Attack Button_40
+  - first:
+      213: -5077152917222289696
+    second: Attack Button_41
+  - first:
+      213: -2783054467820568066
+    second: Attack Button_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Attack Button_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1680
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4403c2ac61c344570800000000000000
+      internalID: 8449944869432733764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_1
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 1680
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd3c012d1f114ada0800000000000000
+      internalID: -5934598678658366500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_2
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 1680
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75ee66c24e96ebe50800000000000000
+      internalID: 6827010513858653783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_3
+      rect:
+        serializedVersion: 2
+        x: 1620
+        y: 1680
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a4227560a1d7620800000000000000
+      internalID: 2773401560064084538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_4
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 1680
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8afd114c376c37390800000000000000
+      internalID: -7821689927299375192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1440
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dda3990265592c810800000000000000
+      internalID: 1784152599538776797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_6
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 1440
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 752d92ce6f9735820800000000000000
+      internalID: 2905800286015181399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_7
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 1440
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4630338c68cbbb80800000000000000
+      internalID: -8377882313409677745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_8
+      rect:
+        serializedVersion: 2
+        x: 1620
+        y: 1440
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bd92c3f279547ac0800000000000000
+      internalID: -3858360630498910793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_9
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 1440
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b697af9d24b5008b0800000000000000
+      internalID: -5188046428047771285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1200
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 147ced37e2292a2c0800000000000000
+      internalID: -4421811155914275007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 720
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 723790c2da51380c0800000000000000
+      internalID: -4574788962965949657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_12
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 720
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7389736fda27e3c70800000000000000
+      internalID: 8952719200744871991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_13
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 720
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d552f6f74f1621940800000000000000
+      internalID: 5265378617087436125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_14
+      rect:
+        serializedVersion: 2
+        x: 1620
+        y: 720
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48b73e6cdd0f9e550800000000000000
+      internalID: 6190743998112693124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_15
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 720
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56d878f4056c09670800000000000000
+      internalID: 8543546541355797861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 482
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d621f631e830b100800000000000000
+      internalID: 121659729879574230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_17
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 480
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aeb6f2d506aa1e40800000000000000
+      internalID: 5627993228297289380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_18
+      rect:
+        serializedVersion: 2
+        x: 1620
+        y: 480
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53021258c671c3850800000000000000
+      internalID: 6357982528797745205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a7840820b8ef3ec0800000000000000
+      internalID: -3584890935080351836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_20
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 0
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d47976790e5394160800000000000000
+      internalID: 7010193533707982669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Button_21
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 480
+        width: 540
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a594d6866135b443a3aa6de0ef59e74
+      internalID: 285251921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a009d1d6780710c4c9f3b19564b19ad7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Attack Button_0: 8449944869432733764
+      Attack Button_1: -5934598678658366500
+      Attack Button_10: -4421811155914275007
+      Attack Button_11: -4574788962965949657
+      Attack Button_12: 8952719200744871991
+      Attack Button_13: 5265378617087436125
+      Attack Button_14: 6190743998112693124
+      Attack Button_15: 8543546541355797861
+      Attack Button_16: 121659729879574230
+      Attack Button_17: 5627993228297289380
+      Attack Button_18: 6357982528797745205
+      Attack Button_19: -3584890935080351836
+      Attack Button_2: 6827010513858653783
+      Attack Button_20: 7010193533707982669
+      Attack Button_21: 285251921
+      Attack Button_3: 2773401560064084538
+      Attack Button_4: -7821689927299375192
+      Attack Button_5: 1784152599538776797
+      Attack Button_6: 2905800286015181399
+      Attack Button_7: -8377882313409677745
+      Attack Button_8: -3858360630498910793
+      Attack Button_9: -5188046428047771285
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

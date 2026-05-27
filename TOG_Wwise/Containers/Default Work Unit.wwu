@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}" SchemaVersion="133">
+	<Containers>
+		<WorkUnit Name="Default Work Unit" ID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="DMC nico's Theme" ID="{88F07260-4155-487B-A583-5B4BD6BE5D00}" ShortID="279084713">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="DMC nico's Theme" ID="{7567608E-93BD-4711-B17C-7B0EBB89DB4B}">
+							<Language>SFX</Language>
+							<AudioFile>DMC nico's Theme.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="964746046"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="DMC nico's Theme" ID="{7567608E-93BD-4711-B17C-7B0EBB89DB4B}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</Containers>
+</WwiseDocument>

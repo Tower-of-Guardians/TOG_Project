@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2c35cf3af831e46afbe33c0c233135, type: 3}
+  m_Name: 11000002
+  m_EditorClassIdentifier: 
+  id: 11000002
+  itemName: "\uB098\uBB34 \uBC29\uD328"
+  iconimage: {fileID: -4238762649066405001, guid: 9fe8859a05bc9d44db79491c3c4b1900, type: 3}
+  synergyFrameImage: {fileID: 21300000, guid: 0191da422762a3e46b322094d4ceffd0, type: 3}
+  grade: 0
+  star: 0
+  price: 0
+  cardimage: {fileID: 21300000, guid: 818860523c6f5394090c731d36bf9a20, type: 3}
+  synergy1Icon: {fileID: 0}
+  synergy2Icon: {fileID: 0}
+  synergy3Icon: {fileID: 0}
+  synergy1ID: 
+  synergy2ID: 
+  synergy3ID: 
+  effectDescription: 
+  ATK: 1
+  DEF: 4
+  when: 0
+  trigger: 0
+  effect1ID: 
+  effect2ID: 
+  effect1Value: 
+  effect2Value: 
