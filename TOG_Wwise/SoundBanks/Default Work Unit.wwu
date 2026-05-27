@@ -10,6 +10,22 @@
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
+				<SoundBank Name="UI" ID="{67A5F405-14BE-457D-A094-20B9AC5AE0F6}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_TOG_UI_Battle_Deck_AttackButton_Hover" ID="{D518F66A-CEF6-409C-A44A-2EFEC27788AA}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Click_Hover" ID="{2D95A427-442B-4302-A625-0C84A57B08A7}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Deck_AttackButton_Disappear" ID="{BFBD85DF-C569-4591-9D3E-FADB52B02677}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Card_Discard" ID="{43043094-9067-4908-B066-D31F6594A27D}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Card_Draw" ID="{C2B25CC7-866E-493C-BB7B-C8F122FF30EC}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Click_Default" ID="{2E698493-5326-4969-8116-A409FE7A46CA}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Click_Button" ID="{A586050F-7838-4C15-84C1-2CBEF584FA3B}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Deck_AttackButton_Click" ID="{B8B38427-C255-4D9F-9BE8-EDDE6A3C63D2}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Card_Place" ID="{F54B9198-7CE6-4DB9-BF2B-1309B0702306}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Card_Hold" ID="{BEB6EEC2-9B36-4DE3-8718-9288F3DFC87E}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
 			</ChildrenList>
 		</WorkUnit>
 	</SoundBanks>

@@ -28,7 +28,7 @@
 						<ActiveSource Name="DMC nico's Theme" ID="{7567608E-93BD-4711-B17C-7B0EBB89DB4B}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
-				<Sound Name="TOG_UI_Click_Button" ID="{AF862C9C-D542-4187-B252-CCF008FA47B4}" ShortID="905230595">
+				<PropertyContainer Name="UI_Click" ID="{A17FD007-78D2-4061-8E99-0EFF971D77EF}" ShortID="495380932">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
@@ -38,19 +38,75 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="TOG_UI_Click_Button" ID="{3CF832C7-F516-4B53-A8CE-DD977D4F0647}">
-							<Language>SFX</Language>
-							<AudioFile>TOG_UI_Click_Button.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="64798764"/>
-							</MediaIDList>
-						</AudioFileSource>
+						<Sound Name="TOG_UI_Click_Button" ID="{AF862C9C-D542-4187-B252-CCF008FA47B4}" ShortID="905230595">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TOG_UI_Click_Button" ID="{3CF832C7-F516-4B53-A8CE-DD977D4F0647}">
+									<Language>SFX</Language>
+									<AudioFile>TOG_UI_Click_Button.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="64798764"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TOG_UI_Click_Button" ID="{3CF832C7-F516-4B53-A8CE-DD977D4F0647}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="TOG_UI_Click_Default" ID="{9CB582D4-D1DD-4D38-A88B-99B22784E4CC}" ShortID="624977409">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TOG_UI_Click_Default" ID="{EEFCC253-F396-419D-8FE4-3AC0D69B8748}">
+									<Language>SFX</Language>
+									<AudioFile>TOG_UI_Click_Default.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="424089299"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TOG_UI_Click_Default" ID="{EEFCC253-F396-419D-8FE4-3AC0D69B8748}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="TOG_UI_Click_Hover" ID="{1C824148-A1A3-45A5-BC53-736396AD3235}" ShortID="491910294">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TOG_UI_Click_Hover" ID="{2E2A1ED3-C10B-4785-8850-206B3AF9DA38}">
+									<Language>SFX</Language>
+									<AudioFile>TOG_UI_Click_Hover.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="811359964"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TOG_UI_Click_Hover" ID="{2E2A1ED3-C10B-4785-8850-206B3AF9DA38}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
-					<ActiveSourceList>
-						<ActiveSource Name="TOG_UI_Click_Button" ID="{3CF832C7-F516-4B53-A8CE-DD977D4F0647}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="TOG_UI_Click_Default" ID="{9CB582D4-D1DD-4D38-A88B-99B22784E4CC}" ShortID="624977409">
+				</PropertyContainer>
+				<PropertyContainer Name="UI_Battle" ID="{40DEE3E0-5091-424E-9E17-42609915CBC9}" ShortID="217113732">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
@@ -60,40 +116,162 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="TOG_UI_Click_Default" ID="{EEFCC253-F396-419D-8FE4-3AC0D69B8748}">
-							<Language>SFX</Language>
-							<AudioFile>TOG_UI_Click_Default.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="424089299"/>
-							</MediaIDList>
-						</AudioFileSource>
+						<Sound Name="TOG_UI_Battle_Card_Discard" ID="{A9EBF3FC-50A1-4F26-85B4-6CC8DAC5A09D}" ShortID="88720423">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TOG_UI_Battle_Card_Discard" ID="{89D0413B-9CF9-4417-AE58-2219C41CFBAD}">
+									<Language>SFX</Language>
+									<AudioFile>TOG_UI_Battle_Card_Discard.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="34176858"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TOG_UI_Battle_Card_Discard" ID="{89D0413B-9CF9-4417-AE58-2219C41CFBAD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="TOG_UI_Battle_Card_Draw" ID="{84E112D4-CD77-40F2-A907-2C6D482DC9EB}" ShortID="481061635">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TOG_UI_Battle_Card_Draw" ID="{B246BA3A-8B9A-46D4-AB5C-38D182B4064D}">
+									<Language>SFX</Language>
+									<AudioFile>TOG_UI_Battle_Card_Draw.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="827444271"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TOG_UI_Battle_Card_Draw" ID="{B246BA3A-8B9A-46D4-AB5C-38D182B4064D}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="TOG_UI_Battle_Card_Hold" ID="{2FE245B9-65E8-4E21-8D91-D55612142F88}" ShortID="630859614">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TOG_UI_Battle_Card_Hold" ID="{461FC962-A4BA-4B0F-B572-4443B794A7DE}">
+									<Language>SFX</Language>
+									<AudioFile>TOG_UI_Battle_Card_Hold.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="934677610"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TOG_UI_Battle_Card_Hold" ID="{461FC962-A4BA-4B0F-B572-4443B794A7DE}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="TOG_UI_Battle_Card_Place" ID="{DAD98C3C-F32D-40B2-851F-899B195C1777}" ShortID="968738531">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TOG_UI_Battle_Card_Place" ID="{B518FC28-28FC-4232-8105-3FC6CBB4EFE3}">
+									<Language>SFX</Language>
+									<AudioFile>TOG_UI_Battle_Card_Place.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="13667484"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TOG_UI_Battle_Card_Place" ID="{B518FC28-28FC-4232-8105-3FC6CBB4EFE3}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="TOG_UI_Battle_Deck_AttackButton_Click" ID="{8F03399B-9702-4659-8E3E-C5B22BFED722}" ShortID="591785767">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TOG_UI_Battle_Deck_AttackButton_Click" ID="{E81B703F-797A-4C02-A328-6610B8F8194E}">
+									<Language>SFX</Language>
+									<AudioFile>TOG_UI_Battle_Deck_AttackButton_Click.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="95021281"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TOG_UI_Battle_Deck_AttackButton_Click" ID="{E81B703F-797A-4C02-A328-6610B8F8194E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="TOG_UI_Battle_Deck_AttackButton_Disappear" ID="{E4BB71DB-13F1-4036-B507-F3D001CB0EA4}" ShortID="1021400474">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TOG_UI_Battle_Deck_AttackButton_Disappear" ID="{B8EFE46D-4668-48EC-B172-EE567B97F0D2}">
+									<Language>SFX</Language>
+									<AudioFile>TOG_UI_Battle_Deck_AttackButton_Disappear.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="779673220"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TOG_UI_Battle_Deck_AttackButton_Disappear" ID="{B8EFE46D-4668-48EC-B172-EE567B97F0D2}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="TOG_UI_Battle_Deck_AttackButton_Hover" ID="{68E8C3B2-0E63-4F79-BC57-301ED627DB26}" ShortID="166629191">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TOG_UI_Battle_Deck_AttackButton_Hover" ID="{28CE7BE4-EA35-4E95-8E0D-5DB19AD698DD}">
+									<Language>SFX</Language>
+									<AudioFile>TOG_UI_Battle_Deck_AttackButton_Hover.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="867049778"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TOG_UI_Battle_Deck_AttackButton_Hover" ID="{28CE7BE4-EA35-4E95-8E0D-5DB19AD698DD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
-					<ActiveSourceList>
-						<ActiveSource Name="TOG_UI_Click_Default" ID="{EEFCC253-F396-419D-8FE4-3AC0D69B8748}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="TOG_UI_Click_Hover" ID="{1C824148-A1A3-45A5-BC53-736396AD3235}" ShortID="491910294">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{7200F5B2-2C59-4950-99B4-E72E0B63CDC5}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{095476B2-FAC1-4BFE-BCF2-FAA2FEFAA0CC}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="TOG_UI_Click_Hover" ID="{2E2A1ED3-C10B-4785-8850-206B3AF9DA38}">
-							<Language>SFX</Language>
-							<AudioFile>TOG_UI_Click_Hover.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="811359964"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ActiveSourceList>
-						<ActiveSource Name="TOG_UI_Click_Hover" ID="{2E2A1ED3-C10B-4785-8850-206B3AF9DA38}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
+				</PropertyContainer>
 			</ChildrenList>
 		</WorkUnit>
 	</Containers>

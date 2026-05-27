@@ -1,0 +1,24 @@
+Event	ID	Name			Wwise Object Path	Notes
+	153578335	Play_TOG_UI_Battle_Card_Place			\Default Work Unit\Play_TOG_UI_Battle_Card_Place	
+	203955354	Play_TOG_UI_Click_Default			\Default Work Unit\Play_TOG_UI_Click_Default	
+	621582148	Play_TOG_UI_Battle_Card_Draw			\Default Work Unit\Play_TOG_UI_Battle_Card_Draw	
+	1155813750	Play_TOG_UI_Battle_Deck_AttackButton_Hover			\Default Work Unit\Play_TOG_UI_Battle_Deck_AttackButton_Hover	
+	2614728027	Play_TOG_UI_Click_Button			\Default Work Unit\Play_TOG_UI_Click_Button	
+	3141384431	Play_TOG_UI_Click_Hover			\Default Work Unit\Play_TOG_UI_Click_Hover	
+	3290775020	Play_TOG_UI_Battle_Card_Discard			\Default Work Unit\Play_TOG_UI_Battle_Card_Discard	
+	3941666393	Play_TOG_UI_Battle_Card_Hold			\Default Work Unit\Play_TOG_UI_Battle_Card_Hold	
+	4098112184	Play_TOG_UI_Battle_Deck_AttackButton_Click			\Default Work Unit\Play_TOG_UI_Battle_Deck_AttackButton_Click	
+	4112871447	Play_TOG_UI_Battle_Deck_AttackButton_Disappear			\Default Work Unit\Play_TOG_UI_Battle_Deck_AttackButton_Disappear	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	13667484	TOG_UI_Battle_Card_Place	.cache\F7\{F7CCCBC8-14E0-65C0-5AF5-F507954A751F}.wem		\Containers\Default Work Unit\UI_Battle\TOG_UI_Battle_Card_Place		152508
+	34176858	TOG_UI_Battle_Card_Discard	.cache\34\{3475AC9A-3B36-6F57-BB93-D9A7338DFA49}.wem		\Containers\Default Work Unit\UI_Battle\TOG_UI_Battle_Card_Discard		93236
+	64798764	TOG_UI_Click_Button	.cache\D2\{D27E169B-41E0-4EE9-BF64-931779C11755}.wem		\Containers\Default Work Unit\UI_Click\TOG_UI_Click_Button		114404
+	95021281	TOG_UI_Battle_Deck_AttackButton_Click	.cache\91\{9182F067-D18C-DF90-7845-CEE54ED963CE}.wem		\Containers\Default Work Unit\UI_Battle\TOG_UI_Battle_Deck_AttackButton_Click		190608
+	424089299	TOG_UI_Click_Default	.cache\5D\{5DCD54F2-EC4B-D4C2-8D9F-0D3EA84BDA7D}.wem		\Containers\Default Work Unit\UI_Click\TOG_UI_Click_Default		42432
+	779673220	TOG_UI_Battle_Deck_AttackButton_Disappear	.cache\C2\{C29EE04F-F879-B429-44E8-50349B70A1CE}.wem		\Containers\Default Work Unit\UI_Battle\TOG_UI_Battle_Deck_AttackButton_Disappear		207540
+	811359964	TOG_UI_Click_Hover	.cache\AE\{AE5E4040-481A-9FAD-D5A8-DD318CA040EF}.wem		\Containers\Default Work Unit\UI_Click\TOG_UI_Click_Hover		59364
+	827444271	TOG_UI_Battle_Card_Draw	.cache\F9\{F9516CE4-73AB-8FD8-B54F-D0BEF1549BA4}.wem		\Containers\Default Work Unit\UI_Battle\TOG_UI_Battle_Card_Draw		118640
+	867049778	TOG_UI_Battle_Deck_AttackButton_Hover	.cache\4B\{4BC149E3-6A9B-3B83-0CE0-A6C59303485C}.wem		\Containers\Default Work Unit\UI_Battle\TOG_UI_Battle_Deck_AttackButton_Hover		97472
+	934677610	TOG_UI_Battle_Card_Hold	.cache\B2\{B2D52D6C-E783-68E6-A594-09D7A81CE5B3}.wem		\Containers\Default Work Unit\UI_Battle\TOG_UI_Battle_Card_Hold		29732
+
