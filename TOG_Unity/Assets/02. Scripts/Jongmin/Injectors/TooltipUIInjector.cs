@@ -73,17 +73,39 @@ public class TooltipUIInjector : MonoBehaviour, IInjector
     {
         var tooltip_presenter = DIContainer.Resolve<TooltipPresenter>();
 
-        foreach(var descriptable in m_descriptables)
+        foreach (var descriptable in m_descriptables)
+        {
+            if (descriptable == null)
+            {
+                continue;
+            }
+
             descriptable.Inject(tooltip_presenter);
+        }
 
         TempInject(tooltip_presenter);
     }
 
     private void TempInject(TooltipPresenter tooltip_presenter)
     {
-        m_player_descriptor.Inject(tooltip_presenter);
-        foreach(var descriptor in m_monster_descriptors)
+        if (m_player_descriptor != null)
         {
+            m_player_descriptor.Inject(tooltip_presenter);
+        }
+
+        if (m_monster_descriptors == null)
+        {
+            return;
+        }
+
+        foreach (var descriptor in m_monster_descriptors)
+        {
+            if (descriptor == null)
+            {
+                Debug.LogWarning("TooltipUIInjector: Monster Descriptors에 비어 있는 항목이 있습니다. 씬에 배치한 몬스터의 MonsterDescriptor를 연결해 주세요.", this);
+                continue;
+            }
+
             descriptor.Inject(tooltip_presenter);
         }
     }

@@ -246,6 +246,9 @@ public class Monster : BaseUnit, IPointerClickHandler
             case MonsterActionType.ApplyStatus:
                 monsterAnimation.PlayCurseAnimation();
                 break;
+            case MonsterActionType.Summon:
+                monsterAnimation.PlaySummonAnimation();
+                break;
             default:
                 monsterAnimation.PlayAttackAnimation();
                 break;

@@ -42,6 +42,7 @@ public class SynergyUI : MonoBehaviour
     [SerializeField] private GameObject _overflowRoot;
 
     private Dictionary<string, SynergyVisualBinding> _visualById;
+    private bool _isVisible = true;
 
     private void Awake()
     {
@@ -88,7 +89,7 @@ public class SynergyUI : MonoBehaviour
 
     private void OnSynergyChange(Dictionary<string, SynergyTotalData> synergyMap)
     {
-        if (_slots == null || _slots.Length == 0 || synergyMap == null)
+        if (!_isVisible || _slots == null || _slots.Length == 0 || synergyMap == null)
         {
             return;
         }
@@ -141,6 +142,8 @@ public class SynergyUI : MonoBehaviour
 
     public void SetVisible(bool isVisible)
     {
+        _isVisible = isVisible;
+
         if (!isVisible)
         {
             HideAllSlots();

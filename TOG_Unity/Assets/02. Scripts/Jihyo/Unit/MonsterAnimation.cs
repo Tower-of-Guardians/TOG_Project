@@ -12,6 +12,7 @@ public class MonsterAnimation : MonoBehaviour
     private static readonly int DeadHash = Animator.StringToHash("Dead");
     private static readonly int CurseHash = Animator.StringToHash("Curse");
     private static readonly int DefenseHash = Animator.StringToHash("Defense");
+    private static readonly int SummonHash = Animator.StringToHash("Summon");
 
     private void Awake()
     {
@@ -66,6 +67,14 @@ public class MonsterAnimation : MonoBehaviour
         }
     }
 
+    public void PlaySummonAnimation()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger(SummonHash);
+        }
+    }
+
     public void ResetAnimationState()
     {
         if (animator != null)
@@ -75,6 +84,7 @@ public class MonsterAnimation : MonoBehaviour
             animator.ResetTrigger(DeadHash);
             animator.ResetTrigger(CurseHash);
             animator.ResetTrigger(DefenseHash);
+            animator.ResetTrigger(SummonHash);
         }
     }
 
@@ -83,7 +93,7 @@ public class MonsterAnimation : MonoBehaviour
     /// </summary>
     public IEnumerator WaitForAttackAnimationComplete()
     {
-        yield return WaitForAnimationComplete(new[] { "Attack", "WhiteDog_Attack" });
+        yield return WaitForAnimationComplete(new[] { "Attack", "WhiteDog_Attack", "Clonier_Attack" });
     }
 
     public IEnumerator WaitForActionAnimationComplete(MonsterActionType actionType)
@@ -102,11 +112,13 @@ public class MonsterAnimation : MonoBehaviour
         switch (actionType)
         {
             case MonsterActionType.Attack:
-                return new[] { "Attack", "WhiteDog_Attack" };
+                return new[] { "Attack", "WhiteDog_Attack", "Clonier_Attack" };
             case MonsterActionType.Guard:
                 return new[] { "Defense", "WhiteDog_Defense" };
             case MonsterActionType.ApplyStatus:
                 return new[] { "Curse", "WhiteDog_Curse" };
+            case MonsterActionType.Summon:
+                return new[] { "Summon", "Clonier_Summon" };
             default:
                 return null;
         }
