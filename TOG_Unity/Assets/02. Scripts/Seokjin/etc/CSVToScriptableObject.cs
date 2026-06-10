@@ -15,7 +15,8 @@ enum CSVData
     MonsterEncounterData,
     StatusEffectData,
     SynergyData,
-    EffectData
+    EffectData,
+    AreaEventData
 }
 
 #if UNITY_EDITOR
@@ -88,6 +89,14 @@ public class CSVToScriptableObject
         soFolderPath = "Assets/Datas/" + csv_name;
         GenerateItemSOs();
     }
+    [MenuItem("Tools/Generate Data/AreaEventData")]
+    public static void AreaEventDataCreate()
+    {
+        csv_data = CSVData.AreaEventData;
+        csv_name = "AreaEventData";
+        soFolderPath = "Assets/Datas/" + csv_name;
+        GenerateItemSOs();
+    }
 #endif
 
 #if UNITY_EDITOR
@@ -141,6 +150,9 @@ public class CSVToScriptableObject
                 break;
             case CSVData.EffectData:
                 EffectDataCreate(allLines);
+                break;
+            case CSVData.AreaEventData:
+                AreaEventDataCreate(allLines);
                 break;
         }
 
@@ -404,7 +416,6 @@ public class CSVToScriptableObject
 
         return string.Empty;
     }
-
     private static int GetCsvInt(Dictionary<string, int> columnMap, string[] values, params string[] keys)
     {
         string raw = GetCsvString(columnMap, values, keys);
@@ -555,7 +566,35 @@ public class CSVToScriptableObject
             AssetDatabase.CreateAsset(newItem, soFolderPath + "/" + fileName);
         }
     }
+    private static void AreaEventDataCreate(string[] allLines)
+    {
+        foreach (string line in allLines.Skip(1))
+        {
+            if (string.IsNullOrWhiteSpace(line)) continue;
 
+            string[] values = line.Split(',');
+
+            AreaEventData newItem = ScriptableObject.CreateInstance<AreaEventData>();
+            int n = 0;
+
+            newItem.Id = values[n++].Trim();
+            newItem.Name = values[n++].Trim();
+
+            if (int.TryParse(values[n++].Trim(), out int stage)) newItem.Stage = stage;
+            if (int.TryParse(values[n++].Trim(), out int area)) newItem.Area = area;
+            if (int.TryParse(values[n++].Trim(), out int section)) newItem.Section = section;
+            if (int.TryParse(values[n++].Trim(), out int choice)) newItem.BossEvent = choice;
+            if (int.TryParse(values[n++].Trim(), out int merchant)) newItem.MerchantEvent = merchant;
+            if (int.TryParse(values[n++].Trim(), out int smithy)) newItem.SmithyEvent = smithy;
+            if (int.TryParse(values[n++].Trim(), out int blessing)) newItem.BlessingEvent = blessing;
+            if (int.TryParse(values[n++].Trim(), out int battle)) newItem.BattleEvent = battle;
+            if (int.TryParse(values[n++].Trim(), out int random)) newItem.RandomEvent = random;
+
+            string fileName = newItem.Id + ".asset";
+
+            AssetDatabase.CreateAsset(newItem, soFolderPath + "/" + fileName);
+        }
+    }
     private static Sprite FindSprite(string spriteNameInSheet, string address, string spritename)
     {
         if (!string.IsNullOrEmpty(spriteNameInSheet))

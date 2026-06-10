@@ -69,6 +69,15 @@ public class DataCenter : Singleton<DataCenter>
 
     public static bool IsEffectDataLoaded { get; private set; } = false;
     //////////////////////////
+    
+
+    ////// 에리어 이벤트 관련 ///////
+    public static Dictionary<string, AreaEventData> areaevent_datas = new Dictionary<string, AreaEventData>(); // 이팩트 데이터
+    private static AsyncOperationHandle<IList<AreaEventData>> areaevent_datas_loadHandle; // 메모리 관리를 위한 핸들
+
+    public static bool IsAreaEventLoaded { get; private set; } = false;
+    //////////////////////////
+    /// </summary>
 
     protected override void Awake()
     {
@@ -89,6 +98,7 @@ public class DataCenter : Singleton<DataCenter>
         await AllStatusEffectData();
         await AllSynergyData();
         await AllEffectData();
+        await AllAreaEventData();
     }
 
     public void LoadPlayerData()
@@ -310,6 +320,31 @@ public class DataCenter : Singleton<DataCenter>
         else
         {
             UnityEngine.Debug.LogError($"EffectData 로드 실패: {effect_datas_loadHandle.OperationException}");
+        }
+    }
+    public async Task AllAreaEventData()
+    {
+        areaevent_datas_loadHandle = Addressables.LoadAssetsAsync<AreaEventData>(
+            "AreaEventData",
+            (item) =>
+            {
+                if (item != null)
+                {
+                    areaevent_datas[item.Id] = item;
+                }
+            }
+        );
+
+        await areaevent_datas_loadHandle.Task;
+
+        if (areaevent_datas_loadHandle.Status == AsyncOperationStatus.Succeeded)
+        {
+            IsAreaEventLoaded = true;
+            UnityEngine.Debug.Log($"AreaEventData 로드 완료: {areaevent_datas.Count}");
+        }
+        else
+        {
+            UnityEngine.Debug.LogError($"AreaEventData 로드 실패: {areaevent_datas_loadHandle.OperationException}");
         }
     }
     public void ReleaseDataHandle()

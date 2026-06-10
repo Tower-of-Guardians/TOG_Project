@@ -66,6 +66,13 @@ public class AddressableAutoConfigurator : Editor
         class_name = typeof(EffectData);
         ConfigureItemSOsAsAddressable();
     }
+    [MenuItem("Tools/Addressables/AreaEventData for Addressables")]
+    public static void AreaEventData()
+    {
+        GROUP_NAME = "AreaEventData";
+        class_name = typeof(AreaEventData);
+        ConfigureItemSOsAsAddressable();
+    }
 
     public static void ConfigureItemSOsAsAddressable()
     {
