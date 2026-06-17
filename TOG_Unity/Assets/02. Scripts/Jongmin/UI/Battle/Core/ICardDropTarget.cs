@@ -1,7 +1,8 @@
-public interface ICardDropTarget<T> where T : ICardUI
+namespace Jongmin
 {
-    void CreateCard(BattleCardData battleCardData);
-    void RemoveCard(T cardUI, bool isUpdateLayout = true);
-
-    bool TryGetBattleCardData(T cardUI, out BattleCardData battleCardData);
+    public interface ICardDropTarget<T>
+    {
+        void CreateCard(BattleCardData battleCardData);
+        void RemoveCard(Card card, bool isUpdateLayout = true);
+    }
 }

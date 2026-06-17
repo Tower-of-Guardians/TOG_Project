@@ -1,8 +1,9 @@
 using UnityEngine;
 using System;
+using Jongmin;
 using VContainer;
 
-public class TurnManager : MonoBehaviour, ITurnHandLimitPort
+public class TurnManager : MonoBehaviour
 {
     [Header("Test Option")]
     [SerializeField] private int _cardCount;
@@ -10,8 +11,8 @@ public class TurnManager : MonoBehaviour, ITurnHandLimitPort
     private ITurnRuleService _turnRuleService;
     private bool _isCanThrow;
 
-    public event Action<ActionData> OnUpdatedActionCount;
-    public event Action<ActionData> OnUpdatedThrowCount;
+    public event Action<ActionData, bool> OnUpdatedActionCount;
+    public event Action<ActionData, bool> OnUpdatedThrowCount;
     public event Action<bool> OnUpdatedThrowActionState;
     public event Action OnStartNewTurn;
     public event Action OnEndCurrentTurn;
@@ -91,8 +92,8 @@ public class TurnManager : MonoBehaviour, ITurnHandLimitPort
         => CurrentTurnNumber = 0;
 
     private void AlertToUpdateActionCount()
-        => OnUpdatedActionCount?.Invoke(new ActionData(CurrentActionCount, MaxActionCount));
+        => OnUpdatedActionCount?.Invoke(new ActionData(CurrentActionCount, MaxActionCount), CanAction);
 
     private void AlertToUpdateThrowCount()
-        => OnUpdatedThrowCount?.Invoke(new ActionData(CurrentThrowCount, MaxThrowCount));
+        => OnUpdatedThrowCount?.Invoke(new ActionData(CurrentThrowCount, MaxThrowCount), CanThrow);
 }

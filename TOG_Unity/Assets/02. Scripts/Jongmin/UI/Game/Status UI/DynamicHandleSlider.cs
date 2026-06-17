@@ -1,41 +1,44 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class DynamicHandleSlider : MonoBehaviour
+namespace Jongmin
 {
-    [Header("UI References")]
-    [SerializeField] private Slider slider;
-    [SerializeField] private Image handleImage;
-    
-    [Header("Sprite References")]
-    [SerializeField] private Sprite leftSprite;
-    [SerializeField] private Sprite middleSprite;
-    [SerializeField] private Sprite rightSprite;
-
-    [Header("Offset References")]
-    [SerializeField] private float leftLimitOffset = 0.05f;
-    [SerializeField] private float rightLimitOffset = 0.95f;
-    
-    private void Awake()
+    public class DynamicHandleSlider : MonoBehaviour
     {
-        slider ??= GetComponent<Slider>();
-    }
+        [Header("UI References")]
+        [SerializeField] private Slider slider;
+        [SerializeField] private Image handleImage;
+    
+        [Header("Sprite References")]
+        [SerializeField] private Sprite leftSprite;
+        [SerializeField] private Sprite middleSprite;
+        [SerializeField] private Sprite rightSprite;
 
-    public void SetValue(float amount)
-    {
-        if (amount <= leftLimitOffset)
+        [Header("Offset References")]
+        [SerializeField] private float leftLimitOffset = 0.05f;
+        [SerializeField] private float rightLimitOffset = 0.95f;
+    
+        private void Awake()
         {
-            handleImage.sprite = leftSprite;
+            slider ??= GetComponent<Slider>();
         }
-        else if (amount >= rightLimitOffset)
+
+        public void SetValue(float amount)
         {
-            handleImage.sprite = rightSprite;
-        }
-        else
-        {
-            handleImage.sprite = middleSprite;
-        }
+            if (amount <= leftLimitOffset)
+            {
+                handleImage.sprite = leftSprite;
+            }
+            else if (amount >= rightLimitOffset)
+            {
+                handleImage.sprite = rightSprite;
+            }
+            else
+            {
+                handleImage.sprite = middleSprite;
+            }
         
-        slider.value = amount;
-    }
+            slider.value = amount;
+        }
+    } 
 }

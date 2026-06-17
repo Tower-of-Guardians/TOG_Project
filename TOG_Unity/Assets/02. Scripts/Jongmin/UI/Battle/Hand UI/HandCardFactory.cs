@@ -1,42 +1,40 @@
-using System;
+using JxModule;
 using UnityEngine;
 
-public class HandCardFactory : MonoBehaviour, ICardFactory<IHandCardUI>
+namespace Jongmin
 {
-    [Header("Object References")]
-    [SerializeField] private Transform _slotRoot;
-    [SerializeField] private GameObject _cardPrefab;
-
-    private HandCardEventController _handCardEvent;
-
-    public void Construct(HandCardEventController handCardEvent)
-        => _handCardEvent = handCardEvent;
-
-    /// <summary>
-    /// 핸드 카드를 오브젝트 풀로부터 꺼내어 초기화합니다.
-    /// 이벤트 리스너에 자동으로 등록됩니다.
-    /// </summary>
-    public IHandCardUI Create()
+    public class HandCardFactory
     {
-        GameObject cardObject = ObjectPoolManager.Instance.Get(_cardPrefab);
-        cardObject.transform.SetParent(_slotRoot, false);
-        cardObject.transform.localScale = Vector3.one;
+        private readonly HandView _view;
+        private readonly HandEventSystem _eventSystem;
+        private readonly Card _prefab;
+    
+        public HandCardFactory(HandView view, HandEventSystem eventSystem)
+        {
+            _view = view;
+            _eventSystem = eventSystem;
+            _prefab = PrefabManager.CachePrefab<Card>();
+        }
 
-        IHandCardUI cardUI = cardObject.GetComponent<IHandCardUI>();
-        _handCardEvent.Subscribe(cardUI);
+        public Card Create()
+        {
+            var cardObject = ObjectPoolManager.Instance.Get(_prefab.gameObject);
+            cardObject.transform.SetParent(_view.CardRoot, false);
+        
+            var card = cardObject.GetComponent<Card>();
+            card.RectTransform.anchoredPosition = Vector2.zero;
+            card.RectTransform.rotation = Quaternion.identity;
+            card.RectTransform.localScale = Vector3.one;
+            
+            _eventSystem.Subscribe(card);
 
-        return cardUI;
-    }
+            return card;
+        }
 
-    /// <summary>
-    /// 핸드 카드를 오브젝트 풀에 반환합니다.
-    /// 이벤트 리스너로부터 자동으로 해제됩니다.
-    /// </summary>
-    public void Release(IHandCardUI cardUI)
-    {
-        _handCardEvent.Unsubscribe(cardUI);
-
-        GameObject cardObject = (cardUI as HandCardUI).gameObject;
-        ObjectPoolManager.Instance.Return(cardObject);
+        public void Release(Card card)
+        {
+            _eventSystem.Unsubscribe(card);
+            ObjectPoolManager.Instance.Return(card.gameObject);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Jongmin;
 using UnityEngine;
 
 public class BattleTurnEndController : MonoBehaviour, IBattleController
@@ -8,8 +9,7 @@ public class BattleTurnEndController : MonoBehaviour, IBattleController
 
     public bool IsInitialized => isInitialized;
 
-    [Header("드로우 버튼 → 핸드 이펙터")]
-    [SerializeField] private DrawCardEffector m_draw_card_effector;
+    [SerializeField] private EffectDomain effectDomain; 
 
     public void Initialize(BattleManager manager)
     {
@@ -101,33 +101,12 @@ public class BattleTurnEndController : MonoBehaviour, IBattleController
 
     public void DrawCards(int count = -1)
     {
-        if (!DIContainer.IsRegistered<HandPresenter>() || !DIContainer.IsRegistered<TurnManager>())
+        if (!DIContainer.IsRegistered<TurnManager>())
         {
             return;
         }
 
-        // var handPresenter = DIContainer.Resolve<HandPresenter>();
-        // var turnManager = DIContainer.Resolve<TurnManager>();
-
-        // // count가 -1이면 기본값(MaxHandCount) 사용, 그 외에는 지정된 개수만큼 드로우
-        // int drawCount = count >= 0 ? count : turnManager.MaxHandCount;
-        if(count >= 0)
-            m_draw_card_effector.Execute(count);
-        else
-            m_draw_card_effector.Execute();
-        
-        // List<BattleCardData> card_data_list = new(); 
-        // for (int i = 0; i < drawCount; i++)
-        // {
-        //     var cardData = GameData.Instance.NextDeckSet(1);
-        //     if (cardData.Count <= 0 || cardData == null)
-        //     {
-        //         Debug.LogWarning($"BattleTurnEndController: 카드를 뽑을 수 없습니다. (뽑은 횟수: {i}/{drawCount})");
-        //         break;
-        //     }
-        //     card_data_list = cardData;
-        //     //handPresenter.InstantiateCard(cardData);
-        // }
+        StartCoroutine(effectDomain.DrawHandCards(count));
     }
 
     private void DiscardAllHandCards()

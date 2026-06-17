@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Jongmin;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,12 +13,12 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private BattleCombatController combatController;
 
     [Space(30f), Header("Effectors")]
-    [SerializeField] private HandCardToThrowEffector m_hand_to_throw_effector;
-    [SerializeField] private AttackCardToThrowEffector m_attack_to_throw_effector;
+    [SerializeField] private EffectDomain effectDomain;
     [SerializeField] private SynergyUI synergyUI;
 
     private bool isInitialized;
     private bool isProcessingAttack;
+    private MonsterEncounterData currentEncounterData;
 
     private void Awake()
     {
@@ -72,6 +73,15 @@ public class BattleManager : MonoBehaviour
 
     public void Initialize(Player playerUnit, IEnumerable<Monster> monsters, Button attackBtn)
     {
+        Initialize(playerUnit, monsters, attackBtn, null);
+    }
+
+    public void Initialize(
+        Player playerUnit,
+        IEnumerable<Monster> monsters,
+        Button attackBtn,
+        MonsterEncounterData encounterData)
+    {
         if (isInitialized)
         {
             Debug.LogWarning("BattleManager has already been initialized.");
@@ -84,6 +94,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        currentEncounterData = encounterData;
         setupController.SetupBattle(playerUnit, monsters, attackBtn);
         isInitialized = true;
 
@@ -132,10 +143,10 @@ public class BattleManager : MonoBehaviour
             tooltipPresenter?.CloseUI();
         }
 
-        if (DIContainer.IsRegistered<IAttributeView>())
+        if (DIContainer.IsRegistered<CardInfoDomain>())
         {
-            IAttributeView attributeView = DIContainer.Resolve<IAttributeView>();
-            attributeView?.CloseUI();
+            var cardInfoDomain = DIContainer.Resolve<CardInfoDomain>();
+            cardInfoDomain.System.CloseView();
         }
     }
 
@@ -160,11 +171,9 @@ public class BattleManager : MonoBehaviour
             isProcessingAttack = false;
             yield break;
         }
-
+        
         // 카드 버리기 및 전투 UI 비활성화
-        yield return new WaitForSeconds(0.5f);
-        m_hand_to_throw_effector.Execute(); 
-        yield return new WaitForSeconds(1.0f);
+        yield return effectDomain.DiscardHandCards();
 
         // 전투 초기화 및 타겟 선택
         var initResult = combatController.InitializeCombat(setupController);
@@ -235,8 +244,9 @@ public class BattleManager : MonoBehaviour
 
         // 필드 카드 버리기
         yield return new WaitForSeconds(0.5f);
-        m_attack_to_throw_effector.Execute();
-        yield return new WaitForSeconds(1.5f);
+        yield return effectDomain.DiscardFieldCards(FieldType.Attack);
+        yield return effectDomain.DiscardFieldCards(FieldType.Defense);
+        yield return new WaitForSeconds(1f);
 
         // 최종 승리 체크
         if (combatController.CheckVictory(setupController))
@@ -335,70 +345,67 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator HandleVictory()
     {
-        // 보상 계산
         int totalGold = CalculateTotalGold();
         int totalExp = CalculateTotalExp();
+        bool isLevelUp = WillLevelUp(totalExp);
 
-        // ResultPresenter가 등록될 때까지 대기
-        yield return new WaitUntil(() => DIContainer.IsRegistered<ResultPresenter>());
+        ApplyEncounterRewards(totalGold, totalExp);
 
-        // Result 창 열기
-        var resultPresenter = DIContainer.Resolve<ResultPresenter>();
-        var resultData = new ResultData(totalGold, totalExp);
-        resultPresenter.OpenUI(resultData);
+        yield return new WaitUntil(() => DIContainer.IsRegistered<ResultDomain>());
+
+        var resultDomain = DIContainer.Resolve<ResultDomain>();
+        var resultData = new ResultData(totalGold, totalExp, isLevelUp);
+        resultDomain.Show(resultData);
     }
 
     public IEnumerator HandleDefeat()
     {
         // ResultPresenter가 등록될 때까지 대기
-        yield return new WaitUntil(() => DIContainer.IsRegistered<ResultPresenter>());
+        yield return new WaitUntil(() => DIContainer.IsRegistered<ResultDomain>());
 
         // Result 창 열기
-        var resultPresenter = DIContainer.Resolve<ResultPresenter>();
+        var resultDomain = DIContainer.Resolve<ResultDomain>();
         var resultData = new ResultData(0, 0);
-        resultPresenter.OpenUI(resultData);
+        resultDomain.Show(resultData);
     }
 
     private int CalculateTotalGold()
     {
-        // TODO: 몬스터 데이터에서 골드 정보 가져오기
-        if (setupController == null)
-        {
-            return 0;
-        }
-
-        var monsters = setupController.GetPrimaryMonsters();
-        int totalGold = 0;
-        foreach (Monster monster in monsters)
-        {
-            if (monster != null)
-            {
-                // 몬스터당 기본 골드 (나중에 몬스터 데이터에서 가져오도록 수정)
-                totalGold += 100;
-            }
-        }
-        return totalGold;
+        return currentEncounterData != null ? currentEncounterData.Gold : 0;
     }
 
     private int CalculateTotalExp()
     {
-        // TODO: 몬스터 데이터에서 경험치 정보 가져오기
-        if (setupController == null)
+        return currentEncounterData != null ? currentEncounterData.Exp : 0;
+    }
+
+    private void ApplyEncounterRewards(int gold, int exp)
+    {
+        if (DataCenter.Instance == null)
         {
-            return 0;
+            return;
         }
 
-        var monsters = setupController.GetPrimaryMonsters();
-        int totalExp = 0;
-        foreach (Monster monster in monsters)
+        if (gold > 0)
         {
-            if (monster != null)
-            {
-                // 몬스터당 기본 경험치 (나중에 몬스터 데이터에서 가져오도록 수정)
-                totalExp += 50;
-            }
+            DataCenter.Instance.SetMoney(gold);
         }
-        return totalExp;
+
+        if (exp > 0)
+        {
+            DataCenter.Instance.SetPlayerLevel(exp);
+        }
+    }
+
+    private static bool WillLevelUp(int exp)
+    {
+        if (DataCenter.Instance == null || exp <= 0)
+        {
+            return false;
+        }
+
+        PlayerState playerState = DataCenter.Instance.playerstate;
+        return playerState.level < 9 && playerState.experience + exp >= playerState.maxexperience;
     }
 
     public void RegisterMonster(Monster monster)

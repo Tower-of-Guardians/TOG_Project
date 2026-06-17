@@ -1,5 +1,8 @@
-public interface IDEFCardDropTarget : ICardDropTarget<IFieldCardUI>
+namespace Jongmin
 {
-    bool CanInteraction { get; }
-    bool IsExist(IFieldCardUI cardUI);
+    public interface IDEFCardDropTarget : ICardDropTarget<FieldDomain>
+    {
+        bool CanInteraction { get; }
+        bool IsExist(Card card);
+    }
 }

@@ -14,6 +14,21 @@ public class MonsterAnimation : MonoBehaviour
     private static readonly int DefenseHash = Animator.StringToHash("Defense");
     private static readonly int SummonHash = Animator.StringToHash("Summon");
 
+    private static readonly string[] AttackStateNames =
+    {
+        "Attack", "WhiteDog_Attack", "Clonier_Attack", "ClonierClone_Attack"
+    };
+
+    private static readonly string[] HitStateNames =
+    {
+        "Hit", "WhiteDog_Hit", "Clonier_Hit", "ClonierClone_Hit"
+    };
+
+    private static readonly string[] DeadStateNames =
+    {
+        "Dead", "WhiteDog_Dead", "Clonier_Dead", "ClonierClone_Dead"
+    };
+
     private void Awake()
     {
         InitializeAnimator();
@@ -93,7 +108,17 @@ public class MonsterAnimation : MonoBehaviour
     /// </summary>
     public IEnumerator WaitForAttackAnimationComplete()
     {
-        yield return WaitForAnimationComplete(new[] { "Attack", "WhiteDog_Attack", "Clonier_Attack" });
+        yield return WaitForAnimationComplete(AttackStateNames);
+    }
+
+    public IEnumerator WaitForHitAnimationComplete()
+    {
+        yield return WaitForAnimationComplete(HitStateNames);
+    }
+
+    public IEnumerator WaitForDeadAnimationComplete()
+    {
+        yield return WaitForAnimationComplete(DeadStateNames);
     }
 
     public IEnumerator WaitForActionAnimationComplete(MonsterActionType actionType)
@@ -112,7 +137,7 @@ public class MonsterAnimation : MonoBehaviour
         switch (actionType)
         {
             case MonsterActionType.Attack:
-                return new[] { "Attack", "WhiteDog_Attack", "Clonier_Attack" };
+                return AttackStateNames;
             case MonsterActionType.Guard:
                 return new[] { "Defense", "WhiteDog_Defense" };
             case MonsterActionType.ApplyStatus:

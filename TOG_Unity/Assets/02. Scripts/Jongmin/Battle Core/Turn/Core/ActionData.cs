@@ -1,18 +1,18 @@
 using System;
 
-[System.Serializable]
-public readonly struct ActionData
+namespace Jongmin
 {
-    private readonly int _currentActionCount;
-    public int Current => _currentActionCount;
-
-    private readonly int _maxActionCount;
-    public int Max => _maxActionCount;
-
-    public ActionData(int currentActionCount,
-                      int maxActionCount)
+    [Serializable]
+    public readonly struct ActionData
     {
-        _currentActionCount = currentActionCount;
-        _maxActionCount = maxActionCount;
+        public int Current { get; }
+        
+        public int Max { get; }
+
+        public ActionData(int currentActionCount, int maxActionCount)
+        {
+            Current = currentActionCount;
+            Max = maxActionCount;
+        }
     }
 }
