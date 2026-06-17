@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JxModule
 {
-    public class ObjectPoolManager : Singleton<ObjectPoolManager>
+    public class ObjectPoolManager : GlobalSingleton<ObjectPoolManager>
     {
         [BigHeader("Pool configurations")] 
         [SerializeField] private List<JxObjectPoolConfig> poolConfigs = new();

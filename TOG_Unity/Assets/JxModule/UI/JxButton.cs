@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using DG.Tweening;
 using System.Collections;
 
 namespace JxModule
@@ -10,39 +8,16 @@ namespace JxModule
     public delegate IEnumerator OnClickButtonRoutine();
 
     [RequireComponent(typeof(JxEmptyGraphic))]
-    public class JxButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
+    public class JxButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
     {
-        [SerializeField] private Image buttonImage;
-        [SerializeField] private Color hoverColor;
-        
-        private Color _originColor;
-        private Vector3 _originScale;
+        [SerializeField] private JxPrimitiveAnimator animator;
         
         private event OnClickButtonRoutine OnClickRoutine;
         private event Action OnClick;
 
-        private Tween _hoverTween;
-        private Tween _clickTween;
-
         private void Awake()
         {
-            buttonImage ??= GetComponentInChildren<Image>();
-            if (buttonImage == null)
-            {
-                enabled = false;
-                return;
-            }
-            
-            _originColor = buttonImage.color;
-            _originScale = transform.localScale;
-
-            SetTween(GetDefaultHoverTween(), GetDefaultClickTween());
-        }
-
-        private void OnDestroy()
-        {
-            _hoverTween?.Kill();
-            _clickTween?.Kill();
+            animator ??= GetComponent<JxPrimitiveAnimator>();
         }
         
 #region Events
@@ -73,41 +48,36 @@ namespace JxModule
         }
 #endregion Events
 
-        public void SetTween(Tween hoverTween = null, Tween clickTween = null)
-        {
-            _hoverTween = hoverTween;
-            _hoverTween?.SetAutoKill(false);
-            _hoverTween?.Pause();
-            
-            _clickTween = clickTween;
-            _clickTween?.SetAutoKill(false);
-            _clickTween?.Pause();
-        }
-
-
         public void OnPointerEnter(PointerEventData eventData)
         {
-            _hoverTween?.Restart();
+            animator?.OnPointerEnter();
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            _clickTween?.Restart();
-
             StartCoroutine(ClickRoutine(eventData));
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            buttonImage.DOColor(_originColor, 0f);
+            animator?.OnPointerExit();
+        }
+        
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            animator?.OnPointerDown();
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            animator?.OnPointerUp();
         }
 
         private IEnumerator ClickRoutine(PointerEventData eventData)
         {
-            if (_clickTween != null)
+            if (animator != null)
             {
-                _clickTween.Restart();
-                yield return _clickTween.WaitForCompletion();
+                yield return animator.OnPointerClick();
             }
             
             OnClick?.Invoke();
@@ -142,21 +112,6 @@ namespace JxModule
             }
 
             waitAction?.Invoke();
-        }
-
-        private Tween GetDefaultHoverTween()
-        {
-            var hoverSequence = DOTween.Sequence();
-
-            hoverSequence.Join(buttonImage.DOColor(hoverColor, 0f));
-            hoverSequence.Join(buttonImage.transform.DOPunchScale(new Vector3(0.05f, 0.05f, 0f), 1));
-            
-            return hoverSequence;
-        }
-
-        private Tween GetDefaultClickTween()
-        {
-            return buttonImage.transform.DORotate(new Vector3(360f, 0f, 0f), 0.5f, RotateMode.FastBeyond360);
         }
     }
 }

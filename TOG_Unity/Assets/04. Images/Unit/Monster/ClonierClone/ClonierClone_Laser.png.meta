@@ -1,0 +1,449 @@
+fileFormatVersion: 2
+guid: 67ee4aa721f584b49b311392d1435813
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3961961990165560457
+    second: Clonier_Laser_0
+  - first:
+      213: -3666630137358557054
+    second: Clonier_Laser_1
+  - first:
+      213: -5951628801607574210
+    second: Clonier_Laser_2
+  - first:
+      213: 476451812281218323
+    second: Clonier_Laser_3
+  - first:
+      213: 2658769074812941500
+    second: Clonier_Laser_4
+  - first:
+      213: -8012889802329843667
+    second: Clonier_Laser_5
+  - first:
+      213: -8351551661184082893
+    second: Clonier_Laser_6
+  - first:
+      213: 7382070931938087614
+    second: Clonier_Laser_7
+  - first:
+      213: 8893896253006218546
+    second: Clonier_Laser_8
+  - first:
+      213: 3599390759006233781
+    second: Clonier_Laser_9
+  - first:
+      213: 6059441923077531481
+    second: Clonier_Laser_10
+  - first:
+      213: -6492237612381609187
+    second: Clonier_Laser_11
+  - first:
+      213: -6231928313955819807
+    second: Clonier_Laser_12
+  - first:
+      213: 2851847981213498985
+    second: Clonier_Laser_13
+  - first:
+      213: -4773290812025802797
+    second: Clonier_Laser_14
+  - first:
+      213: 1172249216569135868
+    second: Clonier_Laser_15
+  - first:
+      213: 3150148212823812029
+    second: Clonier_Laser_16
+  - first:
+      213: -3226462345944516051
+    second: Clonier_Laser_17
+  - first:
+      213: 3408068163897532893
+    second: Clonier_Laser_18
+  - first:
+      213: -1622398882270896403
+    second: Clonier_Laser_19
+  - first:
+      213: 1671637500171672939
+    second: Clonier_Laser_20
+  - first:
+      213: -5592863070889037590
+    second: Clonier_Laser_21
+  - first:
+      213: -6930501343780669392
+    second: Clonier_Laser_22
+  - first:
+      213: -5832178932847411307
+    second: Clonier_Laser_23
+  - first:
+      213: -4748610117290924973
+    second: Clonier_Laser_24
+  - first:
+      213: -722416383802745640
+    second: Clonier_Laser_25
+  - first:
+      213: -738834159880714726
+    second: Clonier_Laser_26
+  - first:
+      213: -28537636168108468
+    second: Clonier_Laser_27
+  - first:
+      213: -1122092376539896969
+    second: Clonier_Laser_28
+  - first:
+      213: 7124526155591472987
+    second: Clonier_Laser_29
+  - first:
+      213: 539785609429547948
+    second: Clonier_Laser_30
+  - first:
+      213: -1072208030681381781
+    second: Clonier_Laser_31
+  - first:
+      213: 322132419987412137
+    second: Clonier_Laser_32
+  - first:
+      213: 4177282572116095764
+    second: Clonier_Laser_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ClonierClone_Laser_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 660
+        width: 870
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7730592bf884409c0800000000000000
+      internalID: -3961961990165560457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClonierClone_Laser_1
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 660
+        width: 870
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 280600411538d1dc0800000000000000
+      internalID: -3666630137358557054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClonierClone_Laser_2
+      rect:
+        serializedVersion: 2
+        x: 2610
+        y: 660
+        width: 870
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3d52355321976da0800000000000000
+      internalID: -5951628801607574210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClonierClone_Laser_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 330
+        width: 870
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 315fc9f1662bc9600800000000000000
+      internalID: 476451812281218323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClonierClone_Laser_4
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 330
+        width: 870
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb4f4040368d5e420800000000000000
+      internalID: 2658769074812941500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClonierClone_Laser_5
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 330
+        width: 870
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2897cbcd2f7cc090800000000000000
+      internalID: -8012889802329843667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClonierClone_Laser_6
+      rect:
+        serializedVersion: 2
+        x: 2610
+        y: 330
+        width: 870
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33c9cc73304591c80800000000000000
+      internalID: -8351551661184082893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClonierClone_Laser_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 870
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb218e49662627660800000000000000
+      internalID: 7382070931938087614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClonierClone_Laser_8
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 0
+        width: 870
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2350d9d25877d6b70800000000000000
+      internalID: 8893896253006218546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClonierClone_Laser_9
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 0
+        width: 870
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b4e36e23da93f130800000000000000
+      internalID: 3599390759006233781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c88b52c059497284bafc93c89d85b1ea
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ClonierClone_Laser_0: -3961961990165560457
+      ClonierClone_Laser_1: -3666630137358557054
+      ClonierClone_Laser_2: -5951628801607574210
+      ClonierClone_Laser_3: 476451812281218323
+      ClonierClone_Laser_4: 2658769074812941500
+      ClonierClone_Laser_5: -8012889802329843667
+      ClonierClone_Laser_6: -8351551661184082893
+      ClonierClone_Laser_7: 7382070931938087614
+      ClonierClone_Laser_8: 8893896253006218546
+      ClonierClone_Laser_9: 3599390759006233781
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
