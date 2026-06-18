@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d90cb0c02dab246aa95230ebd244cc, type: 3}
   m_Name: Discard UI Designer
   m_EditorClassIdentifier: 
-  _space: 200
-  _animationDuration: 0.25
+  space: 200
+  animationDuration: 0.1

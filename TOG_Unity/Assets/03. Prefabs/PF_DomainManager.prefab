@@ -1,0 +1,254 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6674045155352673939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4845195218983685671}
+  - component: {fileID: 6701790673512379593}
+  - component: {fileID: 761716918605844035}
+  - component: {fileID: 2404977354259646384}
+  - component: {fileID: 5063378217590472500}
+  - component: {fileID: 6250920118010043162}
+  - component: {fileID: 7110798342157645204}
+  - component: {fileID: 5692314581588031293}
+  - component: {fileID: 6570547396185592494}
+  - component: {fileID: 7890823130175476279}
+  - component: {fileID: 3522280902697144016}
+  - component: {fileID: 836590661421698260}
+  - component: {fileID: 7353947813304814526}
+  m_Layer: 0
+  m_Name: PF_DomainManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4845195218983685671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6701790673512379593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8fb8ca71584279b50a544c5673dabb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionView: {fileID: 0}
+  discardView: {fileID: 0}
+  actionSystem: {fileID: 0}
+  discardSystem: {fileID: 0}
+  turnManager: {fileID: 0}
+--- !u!114 &761716918605844035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfcadc2a775c4d8e9b22b7ff9f7dc6d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusView: {fileID: 0}
+  statusSystem: {fileID: 0}
+--- !u!114 &2404977354259646384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83baa9d890ed45e194afdc2b0716c412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atkView: {fileID: 0}
+  defView: {fileID: 0}
+  atkFieldSystem: {fileID: 0}
+  defFieldSystem: {fileID: 0}
+  atkFieldEventSystem: {fileID: 0}
+  defFieldEventSystem: {fileID: 0}
+  atkPreviewCard: {fileID: 0}
+  defPreviewCard: {fileID: 0}
+  designer: {fileID: 11400000, guid: 7a8defbc05ee00c4c85ce669782984c1, type: 2}
+  rootCanvas: {fileID: 0}
+  turnManager: {fileID: 0}
+  discardSystem: {fileID: 0}
+  handDomain: {fileID: 5692314581588031293}
+--- !u!114 &5063378217590472500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934fead468d745649d3521a210da4ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardRoot: {fileID: 0}
+  effectSystem: {fileID: 0}
+  turnManager: {fileID: 0}
+  handDomain: {fileID: 5692314581588031293}
+  fieldDomain: {fileID: 2404977354259646384}
+  drawButton: {fileID: 0}
+  discardButton: {fileID: 0}
+--- !u!114 &6250920118010043162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a3dcfa4be847ab9647e66b3793c6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deckView: {fileID: 0}
+  deckSystem: {fileID: 0}
+--- !u!114 &7110798342157645204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8970fdc5a67425d9c64e198a72cf997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  discardDesigner: {fileID: 11400000, guid: 2d2e1ce2b7175714a88d2412d679da6e, type: 2}
+  discardView: {fileID: 0}
+  discardSystem: {fileID: 0}
+  discardEventSystem: {fileID: 0}
+  previewCard: {fileID: 0}
+  handDomain: {fileID: 5692314581588031293}
+  turnManager: {fileID: 0}
+  rootCanvas: {fileID: 0}
+  effectDomain: {fileID: 5063378217590472500}
+--- !u!114 &5692314581588031293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c547665e10904d2a928ee317bc73d518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handDesigner: {fileID: 11400000, guid: a02e5bbe621707f4d8edc4d12a9d4faf, type: 2}
+  handView: {fileID: 0}
+  handSystem: {fileID: 0}
+  handEventSystem: {fileID: 0}
+  cardInfoSystem: {fileID: 0}
+  turnManager: {fileID: 0}
+--- !u!114 &6570547396185592494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c0b8649a9c4cfd8b15a57203d5a028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7890823130175476279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444da3c23e584080a8b1c0fab62b37ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardInfoView: {fileID: 0}
+  attributeView: {fileID: 0}
+  seriesView: {fileID: 0}
+  cardInfoSystem: {fileID: 0}
+  attributeSystem: {fileID: 0}
+  seriesSystem: {fileID: 0}
+--- !u!114 &3522280902697144016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8ffabd7e4f43118898d7566a033f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryView: {fileID: 0}
+  cardSortView: {fileID: 0}
+  invenTabView: {fileID: 0}
+  inventorySystem: {fileID: 0}
+  cardSortSystem: {fileID: 0}
+  cardInfoDomain: {fileID: 0}
+  cardInvenDomain: {fileID: 0}
+--- !u!114 &836590661421698260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1129c2c51e7c46b8bec8d41f76ab5f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardInvenView: {fileID: 0}
+  cardInvenSystem: {fileID: 0}
+  cardInvenEventSystem: {fileID: 0}
+  cardInfoDomain: {fileID: 0}
+--- !u!114 &7353947813304814526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b408bdead89a43639a65a45e9f09a586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resultView: {fileID: 0}
+  rewardView: {fileID: 0}
+  gachaView: {fileID: 0}
+  gachaSystem: {fileID: 0}

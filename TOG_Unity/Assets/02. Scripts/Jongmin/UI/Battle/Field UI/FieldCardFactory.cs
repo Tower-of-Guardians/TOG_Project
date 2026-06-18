@@ -1,42 +1,38 @@
-using System;
+using JxModule;
 using UnityEngine;
 
-public class FieldCardFactory : MonoBehaviour, ICardFactory<IFieldCardUI>
+namespace Jongmin
 {
-    [Header("Object References")]
-    [SerializeField] private Transform _cardRoot;
-    [SerializeField] private GameObject _fieldCardPrefab;
-
-    private FieldCardEventController _fieldCardEvent;
-
-    public void Construct(FieldCardEventController fieldCardEvent)
-        => _fieldCardEvent = fieldCardEvent;
-
-    /// <summary>
-    /// 핸드 카드를 오브젝트 풀로부터 꺼내어 초기화합니다.
-    /// 이벤트 리스너에 자동으로 등록됩니다.
-    /// </summary>
-    public IFieldCardUI Create()
+    public class FieldCardFactory
     {
-        var cardObject = ObjectPoolManager.Instance.Get(_fieldCardPrefab);
-        cardObject.transform.SetParent(_cardRoot, false);
-        cardObject.transform.localScale = Vector3.one;
+        private readonly FieldView _view;
+        private readonly FieldEventSystem _eventSystem;
+        private readonly Card _prefab;
 
-        var cardUI = cardObject.GetComponent<IFieldCardUI>();
-        _fieldCardEvent.Subscribe(cardUI);
+        public FieldCardFactory(FieldView view, FieldEventSystem eventSystem)
+        {
+            _view = view;
+            _eventSystem = eventSystem;
+            _prefab = PrefabManager.CachePrefab<Card>("PF_Card");
+        }
 
-        return cardUI;
-    }
+        public Card Create()
+        {
+            var cardObject = ObjectPoolManager.Instance.Get(_prefab.gameObject);
+            cardObject.transform.SetParent(_view.CardRoot, false);
+            cardObject.transform.localScale = 0.75f * Vector3.one;
 
-    /// <summary>
-    /// 핸드 카드를 오브젝트 풀에 반환합니다.
-    /// 이벤트 리스너로부터 자동으로 해제됩니다.
-    /// </summary>
-    public void Release(IFieldCardUI cardUI)
-    {
-        _fieldCardEvent.Unsubscribe(cardUI);
+            var card = cardObject.GetComponent<Card>();
+            _eventSystem.Subscribe(card);
 
-        GameObject cardObject = (cardUI as FieldCardUI).gameObject;
-        ObjectPoolManager.Instance.Return(cardObject);
+            return card;
+        }
+
+        public void Release(Card card)
+        {
+            _eventSystem.Unsubscribe(card);
+            ObjectPoolManager.Instance.Return(card.gameObject);
+        }
     }
 }
+

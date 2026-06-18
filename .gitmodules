@@ -1,0 +1,3 @@
+[submodule "TOG_Unity/Assets/JxModule"]
+	path = TOG_Unity/Assets/JxModule
+	url = https://github.com/jxng-min/JxModule.git

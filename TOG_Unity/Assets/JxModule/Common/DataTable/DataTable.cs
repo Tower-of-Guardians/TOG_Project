@@ -347,14 +347,14 @@ namespace JxModule.DataTable
                 
                 result = targetList;
             }
-            else if (typeof(System.Object).IsAssignableFrom(elementType))
+            else if (typeof(UnityEngine.Object).IsAssignableFrom(elementType))
             {
                 var targetListType = typeof(List<>).MakeGenericType(elementType);
                 var targetList = Activator.CreateInstance(targetListType);
                 var addMethod = targetListType.GetMethod("Add");
                 foreach (string item in list)
                 {
-                    await AddressableExtension.LoadAsset<System.Object>(item,
+                    await AddressableExtension.LoadAsset<UnityEngine.Object>(item,
                         x => { addMethod.Invoke(targetList, new object[] { x }); });
                 }
 

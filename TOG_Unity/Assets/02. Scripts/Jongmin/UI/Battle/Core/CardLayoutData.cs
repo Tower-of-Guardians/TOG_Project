@@ -1,16 +1,19 @@
 using UnityEngine;
 
-[System.Serializable]
-public class CardLayoutData
+namespace Jongmin
 {
-    public Vector3 Position;
-    public Vector3 Rotation;
-    public Vector3 Scale;
-
-    public CardLayoutData(Vector3 position, Vector3 rotation, Vector3 scale)
+    [System.Serializable]
+    public class CardLayoutData
     {
-        Position = position;
-        Rotation = rotation;
-        Scale = scale;
+        public Vector3 position;
+        public Vector3 rotation;
+        public Vector3 scale;
+
+        public CardLayoutData(Vector3 position, Vector3 rotation, Vector3 scale)
+        {
+            this.position = position;
+            this.rotation = rotation;
+            this.scale = scale;
+        }
     }
 }

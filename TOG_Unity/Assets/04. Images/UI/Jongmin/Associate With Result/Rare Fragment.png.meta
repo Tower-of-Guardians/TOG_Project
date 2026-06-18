@@ -1,0 +1,303 @@
+fileFormatVersion: 2
+guid: 7cdd3ed98d2bd2d4c8b644abfe2d360c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7375975091637988377
+    second: Rare Fragment_0
+  - first:
+      213: 2072376597143325253
+    second: Rare Fragment_1
+  - first:
+      213: -6932408640767353535
+    second: Rare Fragment_2
+  - first:
+      213: -1343972442432447758
+    second: Rare Fragment_3
+  - first:
+      213: -378563167827591288
+    second: Rare Fragment_4
+  - first:
+      213: -1167739041177691516
+    second: Rare Fragment_5
+  - first:
+      213: -1574175263937586432
+    second: Rare Fragment_6
+  - first:
+      213: 2949225854874140496
+    second: Rare Fragment_7
+  - first:
+      213: 154464584652011233
+    second: Rare Fragment_8
+  - first:
+      213: -3578903628711672868
+    second: Rare Fragment_9
+  - first:
+      213: -5405102822293564785
+    second: Rare Fragment_10
+  - first:
+      213: 2685007484547054898
+    second: Rare Fragment_11
+  - first:
+      213: -6693927945940181972
+    second: Rare Fragment_12
+  - first:
+      213: -1883864531670715899
+    second: Rare Fragment_13
+  - first:
+      213: -1424512796952547455
+    second: Rare Fragment_14
+  - first:
+      213: -2461804464047351157
+    second: Rare Fragment_15
+  - first:
+      213: -1521228917121465425
+    second: Rare Fragment_16
+  - first:
+      213: 2577348248080053455
+    second: Rare Fragment_17
+  - first:
+      213: 2241257803793191242
+    second: Rare Fragment_18
+  - first:
+      213: -3866183088589781145
+    second: Rare Fragment_19
+  - first:
+      213: 302269926597863554
+    second: Rare Fragment_20
+  - first:
+      213: 3085689566314522095
+    second: Rare Fragment_21
+  - first:
+      213: -7159187060658415225
+    second: Rare Fragment_22
+  - first:
+      213: -3635395701037154555
+    second: Rare Fragment_23
+  - first:
+      213: 3639114615565845388
+    second: Rare Fragment_24
+  - first:
+      213: 6281784884131827373
+    second: Rare Fragment_25
+  - first:
+      213: -1887222759075601424
+    second: Rare Fragment_26
+  - first:
+      213: -3639522270089783045
+    second: Rare Fragment_27
+  - first:
+      213: 7822173710346163136
+    second: Rare Fragment_28
+  - first:
+      213: -7229825278140683551
+    second: Rare Fragment_29
+  - first:
+      213: -5259505023326807095
+    second: Rare Fragment_30
+  - first:
+      213: 6518910722895846168
+    second: Rare Fragment_31
+  - first:
+      213: 5747524096034208314
+    second: Rare Fragment_32
+  - first:
+      213: -6497927372609082912
+    second: Rare Fragment_33
+  - first:
+      213: 2147049663426122804
+    second: Rare Fragment_34
+  - first:
+      213: -991298125999561809
+    second: Rare Fragment_35
+  - first:
+      213: 5767939215611082993
+    second: Rare Fragment_36
+  - first:
+      213: -7879022151494947539
+    second: Rare Fragment_37
+  - first:
+      213: -3516049574942609712
+    second: Rare Fragment_38
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rare Fragment_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 280
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91c2639244abc5660800000000000000
+      internalID: 7375975091637988377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rare Fragment_1
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 280
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54a8f81098f82cc10800000000000000
+      internalID: 2072376597143325253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rare Fragment_2
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 280
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14d963912132bcf90800000000000000
+      internalID: -6932408640767353535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Rare Fragment_0: 7375975091637988377
+      Rare Fragment_1: 2072376597143325253
+      Rare Fragment_2: -6932408640767353535
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

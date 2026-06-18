@@ -11,14 +11,16 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
-/[Tt]og_[Uu]nity/[Ll]ibrary/
-/[Tt]og_[Uu]nity/[Temp/
-/[Tt]og_[Uu]nity/[Obj/
-/[Tt]og_[Uu]nity/[Logs/
-/[Tt]og_[Uu]nity/[UserSettings/
-/[Tt]og_[Uu]nity/*.csproj
+/[Tt][Oo][Gg]_[Uu]nity/[Ll]ibrary/
+/[Tt][Oo][Gg]_[Uu]nity/[Tt]emp/
+/[Tt][Oo][Gg]_[Uu]nity/[Oo]bj/
+/[Tt][Oo][Gg]_[Uu]nity/[Bb]uild/
+/[Tt][Oo][Gg]_[Uu]nity/[Bb]uilds/
+/[Tt][Oo][Gg]_[Uu]nity/[Ll]ogs/
+/[Tt][Oo][Gg]_[Uu]nity/[Uu]ser[Ss]ettings/
 /[Tt]og_[Uu]nity/*.sln
 *.log
+*.AssemblyReference.cache
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
 *.blend1

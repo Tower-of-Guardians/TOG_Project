@@ -1,4 +1,3 @@
-
 using System;
 #if UNITY_EDITOR
 using System.IO;
@@ -12,6 +11,19 @@ namespace JxModule
     [InitializeOnLoad]
     public static class ProjectColorizer
     {
+        private static readonly Color JxModuleRootColor = new Color32(245, 11, 148, 127);
+
+        private static readonly Color[] RainbowColors =
+        {
+            new Color(1.00f, 0.20f, 0.20f, 0.45f),
+            new Color(0.90f, 0.50f, 0.10f, 0.45f),
+            new Color(1.00f, 0.85f, 0.10f, 0.45f),
+            new Color(0.20f, 0.90f, 0.30f, 0.45f),
+            new Color(0.20f, 0.55f, 1.00f, 0.45f),
+            new Color(0.25f, 0.25f, 1.00f, 0.45f),
+            new Color(0.65f, 0.25f, 1.00f, 0.45f)
+        };
+
         static ProjectColorizer()
         {
             EditorApplication.projectWindowItemOnGUI += OnProjectWindowItemGUI;
@@ -28,6 +40,21 @@ namespace JxModule
 
             if (!AssetDatabase.IsValidFolder(path))
             {
+                return;
+            }
+
+            bool isJxModuleRoot = path.Equals("Assets/JxModule", StringComparison.OrdinalIgnoreCase);
+            bool isJxModuleChild = path.StartsWith("Assets/JxModule/", StringComparison.OrdinalIgnoreCase);
+
+            if (isJxModuleRoot)
+            {
+                EditorGUI.DrawRect(selectionRect, JxModuleRootColor);
+                return;
+            }
+
+            if (isJxModuleChild)
+            {
+                EditorGUI.DrawRect(selectionRect, GetJxModuleRainbowColor(path));
                 return;
             }
 
@@ -55,7 +82,32 @@ namespace JxModule
             Color color = GetColorFromText(directoryName);
             color.a = 0.25f;
 
-            EditorGUI.DrawRect(selectionRect, color);    
+            EditorGUI.DrawRect(selectionRect, color);
+        }
+
+        private static Color GetJxModuleRainbowColor(string path)
+        {
+            var relativePath = path.Substring("Assets/JxModule/".Length);
+            var split = relativePath.Split('/');
+
+            if (split.Length == 0 || string.IsNullOrEmpty(split[0]))
+            {
+                return JxModuleRootColor;
+            }
+
+            var firstFolderName = split[0];
+
+            return firstFolderName.ToLowerInvariant() switch
+            {
+                "common" => RainbowColors[0],
+                "editor" => RainbowColors[1],
+                "extensions" => RainbowColors[2],
+                "prefabs" => RainbowColors[3],
+                "ui" => RainbowColors[4],
+                "utilities" => RainbowColors[5],
+                "vfx" => RainbowColors[6],
+                _ => RainbowColors[Mathf.Abs(firstFolderName.GetHashCode()) % RainbowColors.Length]
+            };
         }
 
         private static Color32 GetColorFromText(string text)

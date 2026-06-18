@@ -15,4 +15,4 @@ MonoBehaviour:
   m_attack_field_limit: 4
   m_defend_field_limit: 4
   m_space: 140
-  m_anime_duration: 0.3
+  m_anime_duration: 0.15

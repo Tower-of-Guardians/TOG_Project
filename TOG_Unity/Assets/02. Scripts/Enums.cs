@@ -18,10 +18,8 @@ public enum DeckType
 
 public enum FieldType
 {
-    Hand = 0,
     Attack = 1,
     Defense = 2,
-    Garbage = 3
 }
 
 public enum SortType

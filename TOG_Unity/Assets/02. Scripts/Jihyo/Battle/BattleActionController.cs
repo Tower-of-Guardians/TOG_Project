@@ -1,4 +1,5 @@
 using System.Collections;
+using Jongmin;
 using UnityEngine;
 
 public class BattleActionController : MonoBehaviour, IBattleController
@@ -71,7 +72,7 @@ public class BattleActionController : MonoBehaviour, IBattleController
         }
     }
 
-    private void OnThrowCountChanged(ActionData actionData)
+    private void OnThrowCountChanged(ActionData actionData, bool canDiscard)
     {
         // Throw 카운트가 증가할 때 저장
         if (actionData.Current > throwCountBeforeAction)

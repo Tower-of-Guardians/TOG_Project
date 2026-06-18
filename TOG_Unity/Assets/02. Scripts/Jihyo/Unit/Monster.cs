@@ -255,12 +255,17 @@ public class Monster : BaseUnit, IPointerClickHandler
         }
     }
 
-    public void PrepareActionForTurn()
+    public virtual void PrepareActionForTurn()
     {
-        preparedAction = SelectNextAction();
+        preparedAction = AdjustPreparedAction(SelectNextAction());
         preparedActionValue = preparedAction != null ? ResolveActionValue(preparedAction.MinValue, preparedAction.MaxValue) : defaultAttack;
         hasPreparedAction = true;
         RefreshUI();
+    }
+
+    protected virtual MonsterActionDefinition AdjustPreparedAction(MonsterActionDefinition action)
+    {
+        return action;
     }
 
     private void ApplyMonsterDataIfConfigured()
@@ -353,6 +358,14 @@ public class Monster : BaseUnit, IPointerClickHandler
                 definition.StatusEffectId = StatusEffectController.WeaknessExposureStatusId;
                 definition.StatusStack = Mathf.Max(1, min);
                 break;
+            case "2410004":
+                definition.ActionType = MonsterActionType.Summon;
+                definition.TargetType = MonsterActionTargetType.None;
+                break;
+            case "2410005":
+                definition.ActionType = MonsterActionType.Heal;
+                definition.TargetType = MonsterActionTargetType.Self;
+                break;
             default:
                 // 기본값은 유저 대상 공격으로 해석
                 definition.ActionType = MonsterActionType.Attack;
@@ -407,7 +420,7 @@ public class Monster : BaseUnit, IPointerClickHandler
                 SetCurrentHealth(CurrentHealth + actionValue);
                 break;
             case MonsterActionType.Summon:
-                Debug.Log($"{name}: 소환 행동은 아직 구현 전입니다.");
+                ExecuteSummonAction(actionValue);
                 break;
             case MonsterActionType.Ready:
                 // 준비 행동은 의도적으로 아무것도 하지 않습니다.
@@ -533,7 +546,9 @@ public class Monster : BaseUnit, IPointerClickHandler
         return resolvedTargets;
     }
 
-    private List<Monster> GetAliveAllies()
+    protected virtual void ExecuteSummonAction(int actionValue) { }
+
+    protected List<Monster> GetAliveAllies()
     {
         var allies = new List<Monster>();
         if (battleManager == null)

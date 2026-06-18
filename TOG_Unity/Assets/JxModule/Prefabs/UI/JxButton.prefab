@@ -34,8 +34,8 @@ RectTransform:
   - {fileID: 8052366470039147351}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 310, y: 82}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae31a7f3be4f8740b022c8684d9f40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PNTDF.DynamicButton
-  hoverColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+  animator: {fileID: 0}
 --- !u!1 &5820322929861219361
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,51 +1,53 @@
 using UnityEngine;
 
-public static class CardLayoutCalculator
+namespace Jongmin
+{
+    public static class CardLayoutCalculator
 {
     public static CardLayoutData CalculatedHandCardTransform(int index, 
-                                                             int card_count,
-                                                             float target_radius,
-                                                             float arc_angle,
-                                                             float depth_multiplier)
+                                                             int cardCount,
+                                                             float targetRadius,
+                                                             float arcAngle,
+                                                             float depthMultiplier)
     {
-        var step_count  =   card_count > 1 ? card_count - 1 : 1f;
-        var start_angle =   card_count > 1 ? -arc_angle / 2f : 0f;
-        var angle_step  =   card_count > 1 ? arc_angle / step_count : 0f;
-        var radius      =   card_count * target_radius;  
+        var stepCount  =   cardCount > 1 ? cardCount - 1 : 1f;
+        var startAngle =   cardCount > 1 ? -arcAngle / 2f : 0f;
+        var angleStep  =   cardCount > 1 ? arcAngle / stepCount : 0f;
+        var radius     =   cardCount * targetRadius;  
 
-        var angle = start_angle + index * angle_step;
+        var angle = startAngle + index * angleStep;
         var rad = angle * Mathf.Deg2Rad;      
 
-        var target_position = new Vector3(Mathf.Sin(rad) * radius,
-                                            Mathf.Cos(rad) * radius - radius,
-                                            -Mathf.Abs(angle) * depth_multiplier);
-        var target_rotation = new Vector3(0f, 0f, -angle);
-        var target_scale = Vector3.one;
+        var targetPosition = new Vector3(Mathf.Sin(rad) * radius,
+                                         Mathf.Cos(rad) * radius - radius,
+                                         -Mathf.Abs(angle) * depthMultiplier);
+        var targetRotation = new Vector3(0f, 0f, -angle);
+        var targetScale = Vector3.one;
 
-        return new CardLayoutData(target_position,
-                                  target_rotation,
-                                  target_scale);
+        return new CardLayoutData(targetPosition, targetRotation, targetScale);
     }
 
     public static Vector2 CalculatedThrowCardPosition(int index,
-                                                      int card_count,
+                                                      int cardCount,
                                                       float space)
     {
-        var total_width = (card_count - 1) * space;
-        var start_x = -total_width * 0.5f;
+        var totalWidth = (cardCount - 1) * space;
+        var startX = -totalWidth * 0.5f;
 
-        var target_x = start_x + (space * index);
+        var targetX = startX + (space * index);
 
-        return new Vector2(target_x, 0f);
+        return new Vector2(targetX, 0f);
     }
 
     public static Vector2 CalculatedFieldCardPosition(int index,
-                                                      int max_card_count,
+                                                      int maxCardCount,
                                                       float space)
     {
-        var start_x = -(max_card_count - 1) * space * 0.5f;
-        var target_x = start_x + index * space;
+        var startX = -(maxCardCount - 1) * space * 0.5f;
+        var targetX = startX + index * space;
 
-        return new Vector2(target_x, 0f);
+        return new Vector2(targetX, 0f);
     }
+}
+
 }

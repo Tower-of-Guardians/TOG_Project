@@ -1,36 +1,32 @@
-﻿
+﻿using JxModule;
 using UnityEngine;
 
-public class DeckCardFactory : MonoBehaviour, ICardFactory<IDeckCardUI>
+namespace Jongmin
 {
-    [Header("Object References")]
-    [SerializeField] private Transform cardRoot;
-    [SerializeField] private GameObject cardPrefab;
+    public class DeckCardFactory
+    {
+        private readonly DeckView _view;
+        private readonly Card _prefab;
     
-    /// <summary>
-    /// 덱 카드를 오브젝트 풀로부터 꺼내어 초기화합니다.
-    /// </summary>
-    public IDeckCardUI Create()
-    {
-        GameObject cardObject = ObjectPoolManager.Instance.Get(cardPrefab);
-        cardObject.transform.SetParent(cardRoot, false);
-        cardObject.transform.localScale = Vector3.one;
-        
-        IDeckCardUI cardUI = cardObject.GetComponent<IDeckCardUI>();   
-        return cardUI;
-    }
-
-    /// <summary>
-    /// 덱 카드를 오브젝트 풀에 반환합니다.
-    /// </summary>    
-    public void Release(IDeckCardUI cardUI)
-    {
-        GameObject cardObject = (cardUI as DeckCardUI).gameObject;
-        if (cardUI == null)
+        public DeckCardFactory(DeckView view)
         {
-            return;
+            _view = view;
+            _prefab = PrefabManager.CachePrefab<Card>("PF_Card");
         }
-        
-        ObjectPoolManager.Instance.Return(cardObject);
+
+        public Card Create()
+        {
+            var cardObject = ObjectPoolManager.Instance.Get(_prefab.gameObject);
+            cardObject.transform.SetParent(_view.CardRoot, false);
+            cardObject.transform.localScale = Vector3.one;
+            
+            var card = cardObject.GetComponent<Card>();
+            return card;
+        }
+
+        public void Release(Card card)
+        {
+            ObjectPoolManager.Instance.Return(card.gameObject);
+        }
     }
 }
