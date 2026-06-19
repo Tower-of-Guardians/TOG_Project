@@ -10,11 +10,19 @@
     "Type": "User",
     "GUID": "{F79007F3-54EF-4FAA-B34A-21D94BE5A11A}",
     "Language": "SFX",
-    "Hash": "{594F003A-C979-AA83-9C8F-D1DF15B185CE}",
+    "Hash": "{97EDE9EF-65D8-19AA-B087-E333668CBFD1}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\BGM",
     "ShortName": "BGM",
     "Path": "BGM.bnk",
     "Media": [
+     {
+      "Id": "770967486",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_Battle_Floor_1.wav",
+      "CachePath": "B6/{B64062A0-6883-04D8-F0E3-4C31D1B5C5ED}.wem"
+     },
      {
       "Id": "964746046",
       "Language": "SFX",
@@ -36,10 +44,24 @@
         "Id": "964746046"
        }
       ]
+     },
+     {
+      "Id": "2867510060",
+      "Name": "Play_TOG_BGM_Floor_1",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_BGM_Floor_1",
+      "GUID": "{8BF14F7E-C6BC-472D-BA2A-7BCD8E7C6B33}",
+      "DurationType": "OneShot",
+      "DurationMin": "162",
+      "DurationMax": "162",
+      "MediaRefs": [
+       {
+        "Id": "770967486"
+       }
+      ]
      }
     ]
    }
   ],
-  "FileHash": "{B589F898-CBBA-4A7B-1AE6-D1391A52DA65}"
+  "FileHash": "{DCA31EC2-FC8C-5AFB-B646-9FF7C21E3B96}"
  }
 }

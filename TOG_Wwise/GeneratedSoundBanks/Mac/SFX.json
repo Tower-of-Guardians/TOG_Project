@@ -1,0 +1,69 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Mac",
+  "BasePlatform": "Mac",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "SoundBanks": [
+   {
+    "Id": "393239870",
+    "Type": "User",
+    "GUID": "{18DD3A77-CE91-4567-9C03-BB63C374B0EA}",
+    "Language": "SFX",
+    "Hash": "{96E6D823-5C46-0A69-DBD8-425992325399}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\SFX",
+    "ShortName": "SFX",
+    "Path": "SFX.bnk",
+    "Media": [
+     {
+      "Id": "211535807",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_Player_Shield.wav",
+      "CachePath": "11/{11E79072-A1F6-30FB-2392-F1BC8DBF670C}.wem"
+     },
+     {
+      "Id": "478764484",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_Player_Sword_Enforce.wav",
+      "CachePath": "BC/{BC56012D-38E9-E566-2FF4-D3FA518E1EBA}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "452958948",
+      "Name": "Play_TOG_Player_Shield",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_Player_Shield",
+      "GUID": "{11352710-D04B-4815-8A7A-A098ABB07756}",
+      "DurationType": "OneShot",
+      "DurationMin": "1.3078125",
+      "DurationMax": "1.3078125",
+      "MediaRefs": [
+       {
+        "Id": "211535807"
+       }
+      ]
+     },
+     {
+      "Id": "720529777",
+      "Name": "Play_TOG_Player_Sword_Enforce",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_Player_Sword_Enforce",
+      "GUID": "{A176243E-F6B4-4F57-9A6F-644C47E55B14}",
+      "DurationType": "OneShot",
+      "DurationMin": "1.3135417",
+      "DurationMax": "1.3135417",
+      "MediaRefs": [
+       {
+        "Id": "478764484"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{71AE9139-E308-274E-7641-46141F37588F}"
+ }
+}

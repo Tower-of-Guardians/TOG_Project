@@ -6,22 +6,35 @@
 				<SoundBank Name="BGM" ID="{F79007F3-54EF-4FAA-B34A-21D94BE5A11A}">
 					<ObjectInclusionList>
 						<ObjectRef Name="Play_BGM_Loop" ID="{D7F58FAB-0640-46D0-B2D8-FEB81C796C1D}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_BGM_Floor_1" ID="{8BF14F7E-C6BC-472D-BA2A-7BCD8E7C6B33}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
 				<SoundBank Name="UI" ID="{67A5F405-14BE-457D-A094-20B9AC5AE0F6}">
 					<ObjectInclusionList>
-						<ObjectRef Name="Play_TOG_UI_Battle_Deck_AttackButton_Hover" ID="{D518F66A-CEF6-409C-A44A-2EFEC27788AA}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_TOG_UI_Click_Hover" ID="{2D95A427-442B-4302-A625-0C84A57B08A7}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_TOG_UI_Battle_Deck_AttackButton_Disappear" ID="{BFBD85DF-C569-4591-9D3E-FADB52B02677}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_TOG_UI_Battle_Card_Discard" ID="{43043094-9067-4908-B066-D31F6594A27D}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_TOG_UI_Battle_Card_Draw" ID="{C2B25CC7-866E-493C-BB7B-C8F122FF30EC}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_TOG_UI_Click_Default" ID="{2E698493-5326-4969-8116-A409FE7A46CA}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_TOG_UI_Click_Button" ID="{A586050F-7838-4C15-84C1-2CBEF584FA3B}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_TOG_UI_Battle_Deck_AttackButton_Click" ID="{B8B38427-C255-4D9F-9BE8-EDDE6A3C63D2}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_TOG_UI_Battle_Card_Place" ID="{F54B9198-7CE6-4DB9-BF2B-1309B0702306}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_TOG_UI_Battle_Card_Hold" ID="{BEB6EEC2-9B36-4DE3-8718-9288F3DFC87E}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Card_Draw" ID="{3EDDB9FF-6C0B-4004-891A-2ED187D59434}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Deck_AttBtt_Click" ID="{45795F0D-74C2-416B-81BA-5E6A65FD6CC3}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Card_Hold" ID="{B2878343-8E8D-417C-9846-E1B62DE10AC4}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Card_Place" ID="{DFE55DF6-C4C3-420D-A5DA-2B55EAFD73EC}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Deck_AttBtt_Create" ID="{AED8B347-E126-4379-ABDC-2FB6080A04C0}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Deck_Hover" ID="{0445A269-B362-4478-81C4-D70CF3BA2B2F}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Deck_AttBtt_Disappear" ID="{3ED53819-4E28-448E-96CF-DE901EE55C0C}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Card_Discard" ID="{4E21B8A4-26EC-47F7-B960-BE6D72DC5B63}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Card_Drop" ID="{2A7C809F-8C1F-499C-B24E-FE140502396D}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Click_Default" ID="{12D44B3C-EB31-49B6-8BEA-3CE829E74DAD}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Click_Hover" ID="{433AB805-E932-4BC2-AF0C-3DF37BA9B5DA}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Deck_Click" ID="{ACF579BB-6EE2-4F19-904B-4A0934146C9E}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Click_Btt" ID="{702AECA6-F9D6-4F61-924D-A4E3770CA954}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_UI_Battle_Deck_AttBtt_Hover" ID="{A237105E-9308-4FEE-9A5E-F0856298D5DB}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="SFX" ID="{18DD3A77-CE91-4567-9C03-BB63C374B0EA}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_TOG_Player_Shield" ID="{11352710-D04B-4815-8A7A-A098ABB07756}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_TOG_Player_Sword_Enforce" ID="{A176243E-F6B4-4F57-9A6F-644C47E55B14}" WorkUnitID="{B6D216DF-8258-4896-A46C-2EF4333110FE}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
