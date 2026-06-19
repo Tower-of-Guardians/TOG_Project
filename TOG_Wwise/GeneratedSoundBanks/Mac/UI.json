@@ -10,90 +10,122 @@
     "Type": "User",
     "GUID": "{67A5F405-14BE-457D-A094-20B9AC5AE0F6}",
     "Language": "SFX",
-    "Hash": "{68FBD34A-D261-2C04-3256-CD6AF3D29DA2}",
+    "Hash": "{44EEE877-E273-948F-E97B-9E347A814D3E}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
     "Media": [
      {
-      "Id": "13667484",
+      "Id": "77020113",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_UI_Battle_Deck_AttBtt_Disappear.wav",
+      "CachePath": "08/{0804AC76-D84B-F44C-EC06-E7135B5B56E8}.wem"
+     },
+     {
+      "Id": "121683552",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_UI_Battle_Deck_AttBtt_Create.wav",
+      "CachePath": "50/{50E2C29E-19B3-7EF1-5F3A-0EA1B11989C6}.wem"
+     },
+     {
+      "Id": "177318619",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "TOG_UI_Battle_Card_Place.wav",
-      "CachePath": "F7/{F7CCCBC8-14E0-65C0-5AF5-F507954A751F}.wem"
+      "CachePath": "E4/{E4B2F41E-B32F-19BD-4188-8F7E97EF90EE}.wem"
      },
      {
-      "Id": "34176858",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "TOG_UI_Battle_Card_Discard.wav",
-      "CachePath": "34/{3475AC9A-3B36-6F57-BB93-D9A7338DFA49}.wem"
-     },
-     {
-      "Id": "64798764",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "TOG_UI_Click_Button.wav",
-      "CachePath": "D2/{D27E169B-41E0-4EE9-BF64-931779C11755}.wem"
-     },
-     {
-      "Id": "95021281",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "TOG_UI_Battle_Deck_AttackButton_Click.wav",
-      "CachePath": "91/{9182F067-D18C-DF90-7845-CEE54ED963CE}.wem"
-     },
-     {
-      "Id": "424089299",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "TOG_UI_Click_Default.wav",
-      "CachePath": "5D/{5DCD54F2-EC4B-D4C2-8D9F-0D3EA84BDA7D}.wem"
-     },
-     {
-      "Id": "779673220",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "TOG_UI_Battle_Deck_AttackButton_Disappear.wav",
-      "CachePath": "C2/{C29EE04F-F879-B429-44E8-50349B70A1CE}.wem"
-     },
-     {
-      "Id": "811359964",
+      "Id": "247408448",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "TOG_UI_Click_Hover.wav",
-      "CachePath": "AE/{AE5E4040-481A-9FAD-D5A8-DD318CA040EF}.wem"
+      "CachePath": "12/{1203F871-7004-9131-E33D-38405024176D}.wem"
      },
      {
-      "Id": "827444271",
+      "Id": "249640776",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
-      "ShortName": "TOG_UI_Battle_Card_Draw.wav",
-      "CachePath": "F9/{F9516CE4-73AB-8FD8-B54F-D0BEF1549BA4}.wem"
+      "ShortName": "TOG_UI_Click_Btt.wav",
+      "CachePath": "D9/{D99FD555-6394-DF18-DEB0-509A6968F304}.wem"
      },
      {
-      "Id": "867049778",
+      "Id": "289341066",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
-      "ShortName": "TOG_UI_Battle_Deck_AttackButton_Hover.wav",
-      "CachePath": "4B/{4BC149E3-6A9B-3B83-0CE0-A6C59303485C}.wem"
+      "ShortName": "TOG_UI_Click_Default.wav",
+      "CachePath": "D8/{D80318BA-67AF-1B21-3076-5AC3AFC52A4E}.wem"
      },
      {
-      "Id": "934677610",
+      "Id": "335823597",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "TOG_UI_Battle_Card_Hold.wav",
-      "CachePath": "B2/{B2D52D6C-E783-68E6-A594-09D7A81CE5B3}.wem"
+      "CachePath": "96/{96CF5025-0D17-D5FA-70C6-6D2AE2A4165C}.wem"
+     },
+     {
+      "Id": "441640869",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_UI_Battle_Card_Discard.wav",
+      "CachePath": "60/{60D9BA51-8B9F-911B-D41F-0413A9DE9CCD}.wem"
+     },
+     {
+      "Id": "505968899",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_UI_Battle_Deck_AttBtt_Click.wav",
+      "CachePath": "7F/{7F6D8399-A8F3-D080-B4C0-269641CCAEC1}.wem"
+     },
+     {
+      "Id": "662546924",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_UI_Battle_Card_Draw.wav",
+      "CachePath": "C5/{C5E52817-DCD4-2058-80A4-C8EBCD19D989}.wem"
+     },
+     {
+      "Id": "726236347",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_UI_Battle_Card_Drop.wav",
+      "CachePath": "79/{79B3DD6F-22FD-729D-1090-5254C4191770}.wem"
+     },
+     {
+      "Id": "837614999",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_UI_Battle_Deck_Hover.wav",
+      "CachePath": "72/{720FB14B-7368-97C3-6071-E16D74726C5C}.wem"
+     },
+     {
+      "Id": "841016627",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_UI_Battle_Deck_AttBtt_Hover.wav",
+      "CachePath": "1D/{1DD03060-74E3-F3E5-56B3-B2B50A45B2BD}.wem"
+     },
+     {
+      "Id": "848827707",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TOG_UI_Battle_Deck_Click.wav",
+      "CachePath": "9E/{9E3DD38C-E1FE-CF35-CDED-463E1E06B8B9}.wem"
      }
     ],
     "Events": [
@@ -101,13 +133,13 @@
       "Id": "3290775020",
       "Name": "Play_TOG_UI_Battle_Card_Discard",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Card_Discard",
-      "GUID": "{43043094-9067-4908-B066-D31F6594A27D}",
+      "GUID": "{4E21B8A4-26EC-47F7-B960-BE6D72DC5B63}",
       "DurationType": "OneShot",
-      "DurationMin": "0.5280045",
-      "DurationMax": "0.5280045",
+      "DurationMin": "1.0177083",
+      "DurationMax": "1.0177083",
       "MediaRefs": [
        {
-        "Id": "34176858"
+        "Id": "441640869"
        }
       ]
      },
@@ -115,13 +147,27 @@
       "Id": "621582148",
       "Name": "Play_TOG_UI_Battle_Card_Draw",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Card_Draw",
-      "GUID": "{C2B25CC7-866E-493C-BB7B-C8F122FF30EC}",
+      "GUID": "{3EDDB9FF-6C0B-4004-891A-2ED187D59434}",
       "DurationType": "OneShot",
-      "DurationMin": "0.6720182",
-      "DurationMax": "0.6720182",
+      "DurationMin": "1.25",
+      "DurationMax": "1.25",
       "MediaRefs": [
        {
-        "Id": "827444271"
+        "Id": "662546924"
+       }
+      ]
+     },
+     {
+      "Id": "856468813",
+      "Name": "Play_TOG_UI_Battle_Card_Drop",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Card_Drop",
+      "GUID": "{2A7C809F-8C1F-499C-B24E-FE140502396D}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.32916668",
+      "DurationMax": "0.32916668",
+      "MediaRefs": [
+       {
+        "Id": "726236347"
        }
       ]
      },
@@ -129,13 +175,13 @@
       "Id": "3941666393",
       "Name": "Play_TOG_UI_Battle_Card_Hold",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Card_Hold",
-      "GUID": "{BEB6EEC2-9B36-4DE3-8718-9288F3DFC87E}",
+      "GUID": "{B2878343-8E8D-417C-9846-E1B62DE10AC4}",
       "DurationType": "OneShot",
-      "DurationMin": "0.16800454",
-      "DurationMax": "0.16800454",
+      "DurationMin": "0.13958333",
+      "DurationMax": "0.13958333",
       "MediaRefs": [
        {
-        "Id": "934677610"
+        "Id": "335823597"
        }
       ]
      },
@@ -143,69 +189,111 @@
       "Id": "153578335",
       "Name": "Play_TOG_UI_Battle_Card_Place",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Card_Place",
-      "GUID": "{F54B9198-7CE6-4DB9-BF2B-1309B0702306}",
+      "GUID": "{DFE55DF6-C4C3-420D-A5DA-2B55EAFD73EC}",
       "DurationType": "OneShot",
-      "DurationMin": "0.8640136",
-      "DurationMax": "0.8640136",
+      "DurationMin": "0.4203125",
+      "DurationMax": "0.4203125",
       "MediaRefs": [
        {
-        "Id": "13667484"
+        "Id": "177318619"
        }
       ]
      },
      {
-      "Id": "4098112184",
-      "Name": "Play_TOG_UI_Battle_Deck_AttackButton_Click",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Deck_AttackButton_Click",
-      "GUID": "{B8B38427-C255-4D9F-9BE8-EDDE6A3C63D2}",
+      "Id": "2022421749",
+      "Name": "Play_TOG_UI_Battle_Deck_AttBtt_Click",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Deck_AttBtt_Click",
+      "GUID": "{45795F0D-74C2-416B-81BA-5E6A65FD6CC3}",
       "DurationType": "OneShot",
-      "DurationMin": "1.08",
-      "DurationMax": "1.08",
+      "DurationMin": "1.5625",
+      "DurationMax": "1.5625",
       "MediaRefs": [
        {
-        "Id": "95021281"
+        "Id": "505968899"
        }
       ]
      },
      {
-      "Id": "4112871447",
-      "Name": "Play_TOG_UI_Battle_Deck_AttackButton_Disappear",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Deck_AttackButton_Disappear",
-      "GUID": "{BFBD85DF-C569-4591-9D3E-FADB52B02677}",
+      "Id": "846406927",
+      "Name": "Play_TOG_UI_Battle_Deck_AttBtt_Create",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Deck_AttBtt_Create",
+      "GUID": "{AED8B347-E126-4379-ABDC-2FB6080A04C0}",
       "DurationType": "OneShot",
-      "DurationMin": "1.1759864",
-      "DurationMax": "1.1759864",
+      "DurationMin": "1.6078125",
+      "DurationMax": "1.6078125",
       "MediaRefs": [
        {
-        "Id": "779673220"
+        "Id": "121683552"
        }
       ]
      },
      {
-      "Id": "1155813750",
-      "Name": "Play_TOG_UI_Battle_Deck_AttackButton_Hover",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Deck_AttackButton_Hover",
-      "GUID": "{D518F66A-CEF6-409C-A44A-2EFEC27788AA}",
+      "Id": "29285150",
+      "Name": "Play_TOG_UI_Battle_Deck_AttBtt_Disappear",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Deck_AttBtt_Disappear",
+      "GUID": "{3ED53819-4E28-448E-96CF-DE901EE55C0C}",
       "DurationType": "OneShot",
-      "DurationMin": "0.55201817",
-      "DurationMax": "0.55201817",
+      "DurationMin": "1.5625",
+      "DurationMax": "1.5625",
       "MediaRefs": [
        {
-        "Id": "867049778"
+        "Id": "77020113"
        }
       ]
      },
      {
-      "Id": "2614728027",
-      "Name": "Play_TOG_UI_Click_Button",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Click_Button",
-      "GUID": "{A586050F-7838-4C15-84C1-2CBEF584FA3B}",
+      "Id": "125921535",
+      "Name": "Play_TOG_UI_Battle_Deck_AttBtt_Hover",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Deck_AttBtt_Hover",
+      "GUID": "{A237105E-9308-4FEE-9A5E-F0856298D5DB}",
       "DurationType": "OneShot",
-      "DurationMin": "0.64800453",
-      "DurationMax": "0.64800453",
+      "DurationMin": "0.2203125",
+      "DurationMax": "0.2203125",
       "MediaRefs": [
        {
-        "Id": "64798764"
+        "Id": "841016627"
+       }
+      ]
+     },
+     {
+      "Id": "465822755",
+      "Name": "Play_TOG_UI_Battle_Deck_Click",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Deck_Click",
+      "GUID": "{ACF579BB-6EE2-4F19-904B-4A0934146C9E}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.7921875",
+      "DurationMax": "0.7921875",
+      "MediaRefs": [
+       {
+        "Id": "848827707"
+       }
+      ]
+     },
+     {
+      "Id": "2993004989",
+      "Name": "Play_TOG_UI_Battle_Deck_Hover",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Battle_Deck_Hover",
+      "GUID": "{0445A269-B362-4478-81C4-D70CF3BA2B2F}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.315625",
+      "DurationMax": "0.315625",
+      "MediaRefs": [
+       {
+        "Id": "837614999"
+       }
+      ]
+     },
+     {
+      "Id": "1454891431",
+      "Name": "Play_TOG_UI_Click_Btt",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Click_Btt",
+      "GUID": "{702AECA6-F9D6-4F61-924D-A4E3770CA954}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.59010416",
+      "DurationMax": "0.59010416",
+      "MediaRefs": [
+       {
+        "Id": "249640776"
        }
       ]
      },
@@ -213,13 +301,13 @@
       "Id": "203955354",
       "Name": "Play_TOG_UI_Click_Default",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Click_Default",
-      "GUID": "{2E698493-5326-4969-8116-A409FE7A46CA}",
+      "GUID": "{12D44B3C-EB31-49B6-8BEA-3CE829E74DAD}",
       "DurationType": "OneShot",
-      "DurationMin": "0.24",
-      "DurationMax": "0.24",
+      "DurationMin": "0.143375",
+      "DurationMax": "0.143375",
       "MediaRefs": [
        {
-        "Id": "424089299"
+        "Id": "289341066"
        }
       ]
      },
@@ -227,19 +315,19 @@
       "Id": "3141384431",
       "Name": "Play_TOG_UI_Click_Hover",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_TOG_UI_Click_Hover",
-      "GUID": "{2D95A427-442B-4302-A625-0C84A57B08A7}",
+      "GUID": "{433AB805-E932-4BC2-AF0C-3DF37BA9B5DA}",
       "DurationType": "OneShot",
-      "DurationMin": "0.3359864",
-      "DurationMax": "0.3359864",
+      "DurationMin": "0.284375",
+      "DurationMax": "0.284375",
       "MediaRefs": [
        {
-        "Id": "811359964"
+        "Id": "247408448"
        }
       ]
      }
     ]
    }
   ],
-  "FileHash": "{B67EA01C-9B93-071D-96C5-477AB056EB13}"
+  "FileHash": "{62E14E79-5AD6-3491-E35C-0692BBFF7700}"
  }
 }

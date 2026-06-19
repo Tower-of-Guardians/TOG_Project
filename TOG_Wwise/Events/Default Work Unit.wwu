@@ -14,111 +14,188 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_TOG_UI_Click_Button" ID="{A586050F-7838-4C15-84C1-2CBEF584FA3B}">
+				<Event Name="Play_TOG_UI_Battle_Card_Discard" ID="{4E21B8A4-26EC-47F7-B960-BE6D72DC5B63}">
 					<ChildrenList>
-						<Action Name="" ID="{E75201EC-412E-4004-AA2C-16E54902E8A8}" ShortID="1020976694">
+						<Action Name="" ID="{C32FEC86-97A3-4CB0-8D8A-2041862A80A8}" ShortID="559635404">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TOG_UI_Click_Button" ID="{AF862C9C-D542-4187-B252-CCF008FA47B4}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+									<ObjectRef Name="TOG_UI_Battle_Card_Discard" ID="{7B155DE8-0D1D-4B2A-B953-B00DD8D66389}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_TOG_UI_Click_Default" ID="{2E698493-5326-4969-8116-A409FE7A46CA}">
+				<Event Name="Play_TOG_UI_Battle_Card_Draw" ID="{3EDDB9FF-6C0B-4004-891A-2ED187D59434}">
 					<ChildrenList>
-						<Action Name="" ID="{5021A4D4-F6C0-432B-97B3-735E528B807E}" ShortID="202216662">
+						<Action Name="" ID="{FE5EB611-1FE0-4D67-9439-1414FDB03FE8}" ShortID="133264026">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TOG_UI_Click_Default" ID="{9CB582D4-D1DD-4D38-A88B-99B22784E4CC}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+									<ObjectRef Name="TOG_UI_Battle_Card_Draw" ID="{F8360D6B-2B87-4A17-8972-257924F3A2CE}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_TOG_UI_Click_Hover" ID="{2D95A427-442B-4302-A625-0C84A57B08A7}">
+				<Event Name="Play_TOG_UI_Battle_Card_Drop" ID="{2A7C809F-8C1F-499C-B24E-FE140502396D}">
 					<ChildrenList>
-						<Action Name="" ID="{E187B845-0A16-45D5-95E8-1600FA179094}" ShortID="399413658">
+						<Action Name="" ID="{EABABA9A-DEE9-4231-B21F-C88CBE4CD7BA}" ShortID="260930416">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TOG_UI_Click_Hover" ID="{1C824148-A1A3-45A5-BC53-736396AD3235}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+									<ObjectRef Name="TOG_UI_Battle_Card_Drop" ID="{6598E3DF-CB39-4BDD-89B3-78365C042C8A}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_TOG_UI_Battle_Card_Discard" ID="{43043094-9067-4908-B066-D31F6594A27D}">
+				<Event Name="Play_TOG_UI_Battle_Card_Hold" ID="{B2878343-8E8D-417C-9846-E1B62DE10AC4}">
 					<ChildrenList>
-						<Action Name="" ID="{F7564CB4-736E-49B1-990E-CF0F25F1DD71}" ShortID="185424501">
+						<Action Name="" ID="{A8762E02-F73F-46BE-A47C-85B12BC93ACC}" ShortID="749634579">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TOG_UI_Battle_Card_Discard" ID="{A9EBF3FC-50A1-4F26-85B4-6CC8DAC5A09D}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+									<ObjectRef Name="TOG_UI_Battle_Card_Hold" ID="{B1C4CB3D-EB0D-46CD-A588-333F541A0D54}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_TOG_UI_Battle_Card_Draw" ID="{C2B25CC7-866E-493C-BB7B-C8F122FF30EC}">
+				<Event Name="Play_TOG_UI_Battle_Card_Place" ID="{DFE55DF6-C4C3-420D-A5DA-2B55EAFD73EC}">
 					<ChildrenList>
-						<Action Name="" ID="{A8249C9E-CDEE-4710-8947-1E6288626CBF}" ShortID="7700143">
+						<Action Name="" ID="{1EE6AC7F-342E-47A1-902C-69538C86DE34}" ShortID="256023666">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TOG_UI_Battle_Card_Draw" ID="{84E112D4-CD77-40F2-A907-2C6D482DC9EB}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+									<ObjectRef Name="TOG_UI_Battle_Card_Place" ID="{6ED1EC91-900B-4AF1-92F1-CA1882796566}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_TOG_UI_Battle_Card_Hold" ID="{BEB6EEC2-9B36-4DE3-8718-9288F3DFC87E}">
+				<Event Name="Play_TOG_UI_Battle_Deck_AttBtt_Click" ID="{45795F0D-74C2-416B-81BA-5E6A65FD6CC3}">
 					<ChildrenList>
-						<Action Name="" ID="{1AD34734-ABB2-47E4-9768-1DD03BCA9DC3}" ShortID="213595832">
+						<Action Name="" ID="{E21DA610-06B6-47F7-BBED-9699B46D3B30}" ShortID="1046047557">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TOG_UI_Battle_Card_Hold" ID="{2FE245B9-65E8-4E21-8D91-D55612142F88}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+									<ObjectRef Name="TOG_UI_Battle_Deck_AttBtt_Click" ID="{BA621BD4-8D56-4EEF-8AD3-05CE9A6438A5}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_TOG_UI_Battle_Card_Place" ID="{F54B9198-7CE6-4DB9-BF2B-1309B0702306}">
+				<Event Name="Play_TOG_UI_Battle_Deck_AttBtt_Create" ID="{AED8B347-E126-4379-ABDC-2FB6080A04C0}">
 					<ChildrenList>
-						<Action Name="" ID="{A003C8C0-B01B-47C2-B64E-FB41080CB845}" ShortID="1072363157">
+						<Action Name="" ID="{D572BB67-3332-452C-B7EC-6BBDCEA5720D}" ShortID="571906021">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TOG_UI_Battle_Card_Place" ID="{DAD98C3C-F32D-40B2-851F-899B195C1777}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+									<ObjectRef Name="TOG_UI_Battle_Deck_AttBtt_Create" ID="{A9D6778E-8432-48E1-936B-5A4BEBDCAC50}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_TOG_UI_Battle_Deck_AttackButton_Click" ID="{B8B38427-C255-4D9F-9BE8-EDDE6A3C63D2}">
+				<Event Name="Play_TOG_UI_Battle_Deck_AttBtt_Disappear" ID="{3ED53819-4E28-448E-96CF-DE901EE55C0C}">
 					<ChildrenList>
-						<Action Name="" ID="{42D609F9-91C4-4D23-A6A8-18E1BF057261}" ShortID="243071922">
+						<Action Name="" ID="{277ECE94-01A2-45FC-B1BC-3E8A61FA6190}" ShortID="749350981">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TOG_UI_Battle_Deck_AttackButton_Click" ID="{8F03399B-9702-4659-8E3E-C5B22BFED722}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+									<ObjectRef Name="TOG_UI_Battle_Deck_AttBtt_Disappear" ID="{14F59DE1-2725-4AB3-ABD3-DE8BE3EF1E18}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_TOG_UI_Battle_Deck_AttackButton_Disappear" ID="{BFBD85DF-C569-4591-9D3E-FADB52B02677}">
+				<Event Name="Play_TOG_UI_Battle_Deck_AttBtt_Hover" ID="{A237105E-9308-4FEE-9A5E-F0856298D5DB}">
 					<ChildrenList>
-						<Action Name="" ID="{738677D8-892F-4820-B2CB-286DABC3E8FA}" ShortID="708237523">
+						<Action Name="" ID="{31D682A5-9155-4D7B-8ACB-AABFF399E0E8}" ShortID="650935270">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TOG_UI_Battle_Deck_AttackButton_Disappear" ID="{E4BB71DB-13F1-4036-B507-F3D001CB0EA4}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+									<ObjectRef Name="TOG_UI_Battle_Deck_AttBtt_Hover" ID="{CFCAA788-B4EC-43CD-9A17-DC0965BFE39E}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Play_TOG_UI_Battle_Deck_AttackButton_Hover" ID="{D518F66A-CEF6-409C-A44A-2EFEC27788AA}">
+				<Event Name="Play_TOG_UI_Battle_Deck_Click" ID="{ACF579BB-6EE2-4F19-904B-4A0934146C9E}">
 					<ChildrenList>
-						<Action Name="" ID="{E23B692B-7AFE-4D06-AD38-13AE9C6EC440}" ShortID="178900951">
+						<Action Name="" ID="{475C85E4-5774-48F3-B6B3-5C3B2D6CC65F}" ShortID="845932050">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="TOG_UI_Battle_Deck_AttackButton_Hover" ID="{68E8C3B2-0E63-4F79-BC57-301ED627DB26}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+									<ObjectRef Name="TOG_UI_Battle_Deck_Click" ID="{F77AAE43-B3BC-4CBB-809C-E96DBEC546AE}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TOG_UI_Battle_Deck_Hover" ID="{0445A269-B362-4478-81C4-D70CF3BA2B2F}">
+					<ChildrenList>
+						<Action Name="" ID="{0774C34E-B792-4559-B196-1CC31E14F1F8}" ShortID="469061081">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TOG_UI_Battle_Deck_Hover" ID="{9285BBBE-3C48-446B-B4D2-87B135EB98A3}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TOG_UI_Click_Btt" ID="{702AECA6-F9D6-4F61-924D-A4E3770CA954}">
+					<ChildrenList>
+						<Action Name="" ID="{314F92C6-2888-44E5-9116-5F0D19D3C43A}" ShortID="363989528">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TOG_UI_Click_Btt" ID="{976A337C-EB20-4F24-A99F-2DD310997945}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TOG_UI_Click_Default" ID="{12D44B3C-EB31-49B6-8BEA-3CE829E74DAD}">
+					<ChildrenList>
+						<Action Name="" ID="{3B02E41B-8EB6-4B43-88EE-3466C5AE57A3}" ShortID="207815577">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TOG_UI_Click_Default" ID="{E87B17C4-CCB5-4D78-A477-F79780BD9445}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TOG_UI_Click_Hover" ID="{433AB805-E932-4BC2-AF0C-3DF37BA9B5DA}">
+					<ChildrenList>
+						<Action Name="" ID="{CF879BE5-45D6-41AC-84EE-50D6C9A4245E}" ShortID="412738948">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TOG_UI_Click_Hover" ID="{91B24CD7-FF30-4B7F-80DE-51B48D8ECCB3}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TOG_BGM_Floor_1" ID="{8BF14F7E-C6BC-472D-BA2A-7BCD8E7C6B33}">
+					<ChildrenList>
+						<Action Name="" ID="{D6112B8D-D248-4613-8FD5-7C572377AA31}" ShortID="100769651">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TOG_BGM_Floor_1" ID="{190DEC2E-743A-40DE-8A4D-7F98AF9CB777}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TOG_Player_Shield" ID="{11352710-D04B-4815-8A7A-A098ABB07756}">
+					<ChildrenList>
+						<Action Name="" ID="{19266987-D4B5-46AC-A371-15CF85E39A81}" ShortID="289266432">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TOG_Player_Shield" ID="{8C318E1F-3DDC-4EB4-9BFB-53BE384339E4}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_TOG_Player_Sword_Enforce" ID="{A176243E-F6B4-4F57-9A6F-644C47E55B14}">
+					<ChildrenList>
+						<Action Name="" ID="{1E499928-A789-4027-8F7D-143A8D005953}" ShortID="484173716">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TOG_Player_Sword_Enforce" ID="{8FDD8AF6-C73C-450E-B090-37A1DA9F8E99}" WorkUnitID="{B1FF76B7-972C-4C6E-B465-1B51A5A0A571}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

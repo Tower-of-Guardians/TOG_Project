@@ -1,0 +1,8 @@
+Event	ID	Name			Wwise Object Path	Notes
+	452958948	Play_TOG_Player_Shield			\Default Work Unit\Play_TOG_Player_Shield	
+	720529777	Play_TOG_Player_Sword_Enforce			\Default Work Unit\Play_TOG_Player_Sword_Enforce	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	211535807	TOG_Player_Shield	.cache\11\{11E79072-A1F6-30FB-2392-F1BC8DBF670C}.wem		\Containers\Default Work Unit\SFX\Player\TOG_Player_Shield		251244
+	478764484	TOG_Player_Sword_Enforce	.cache\BC\{BC56012D-38E9-E566-2FF4-D3FA518E1EBA}.wem		\Containers\Default Work Unit\SFX\Player\TOG_Player_Sword_Enforce		252360
+
