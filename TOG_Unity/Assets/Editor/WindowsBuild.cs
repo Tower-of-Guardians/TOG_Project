@@ -12,7 +12,7 @@ public class WindowsBuild
         BuildPlayerOptions options = new BuildPlayerOptions
         {
             scenes = scenes,
-            locationPathName = "Builds/Windows/MyGame.exe",
+            locationPathName = "Builds/Windows/TOG.exe",
             target = BuildTarget.StandaloneWindows64,
             options = BuildOptions.None
         };
