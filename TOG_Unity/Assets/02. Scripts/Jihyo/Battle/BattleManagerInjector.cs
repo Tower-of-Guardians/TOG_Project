@@ -64,6 +64,16 @@ public class BattleManagerInjector : MonoBehaviour, IInjector
 
         MonsterEncounterData encounterData = null;
         DataCenter.Instance.GetMonsterEncounterData(selectedEncounterId, data => encounterData = data);
+        yield return new WaitUntil(() =>
+        {
+            if (encounterData != null)
+            {
+                return true;
+            }
+
+            DataCenter.Instance.GetMonsterEncounterData(selectedEncounterId, data => encounterData = data);
+            return encounterData != null;
+        });
 
         if (encounterData == null)
         {
@@ -92,12 +102,23 @@ public class BattleManagerInjector : MonoBehaviour, IInjector
 
     private string SelectRandomEncounterId()
     {
-        if (randomEncounterIds == null || randomEncounterIds.Length == 0)
+        if (DataCenter.monster_encounter_datas == null || DataCenter.monster_encounter_datas.Count == 0)
         {
             return null;
         }
 
-        int index = Random.Range(0, randomEncounterIds.Length);
-        return randomEncounterIds[index];
+        int index = Random.Range(0, DataCenter.monster_encounter_datas.Count);
+        int current = 0;
+        foreach (KeyValuePair<string, MonsterEncounterData> pair in DataCenter.monster_encounter_datas)
+        {
+            if (current == index)
+            {
+                return pair.Key;
+            }
+
+            current++;
+        }
+
+        return null;
     }
 }
