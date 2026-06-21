@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: MonsterEncounterData
+  m_EditorClassIdentifier: 
+  m_GroupName: MonsterEncounterData
+  m_GUID: 0e0bf6c4dae0f1645987fcc705ce4c50
+  m_SerializeEntries:
+  - m_GUID: a8c3f1e24b5d6a9471c2d8e3f4a5b6c7
+    m_Address: 1410001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterEncounterData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dfb3d5a417aacd84991bed9efdf8b7e2
+    m_Address: 1410000
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterEncounterData
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 11547d97efbd680438c8d420c6672236, type: 2}
+  m_SchemaSet:
+    m_Schemas: []

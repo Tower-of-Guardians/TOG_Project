@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b25da2a0fffb5e48a9fc83870d962cc, type: 3}
+  m_Name: 310109
+  m_EditorClassIdentifier: 
+  Id: 310109
+  Name: Area1-9
+  Stage: 1
+  Area: 9
+  Section: 11
+  BossEvent: 0
+  MerchantEvent: 50
+  SmithyEvent: 10
+  BlessingEvent: 0
+  BattleEvent: 50
+  RandomEvent: 50

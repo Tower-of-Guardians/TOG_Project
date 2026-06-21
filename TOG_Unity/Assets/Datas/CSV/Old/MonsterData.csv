@@ -1,5 +1,0 @@
-﻿ID,Name,Image,HP,Kind,PatternType,Passive1ID,Passive1Value,Passive2ID,Passive2Value,Passive3ID,Passive3Value,Action1ID,Action1Min,Action1Max,Action2ID,Action2Min,Action2Max,Action3ID,Action3Min,Action3Max,Action4ID,Action4Min,Action4Max,Action5ID,Action5Min,Action5Max,Action6ID,Action6Min,Action6Max,Action7ID,Action7Min,Action7Max
-41001000,성직자,,999,1,2,,,,,,,2410001,10,11,2410002,10,11,,,,,,,,,,,,,,,
-41002000,크라비안,,150,2,2,,,,,,,,,,,,,,,,,,,,,,,,,,,
-41001001,플라잇메어,,15,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,
-41001002,헥터,,26,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,

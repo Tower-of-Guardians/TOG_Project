@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936f215bc48e1d847890abb0eebd22a6, type: 3}
+  m_Name: 210007
+  m_EditorClassIdentifier: 
+  ID: 210007
+  Name: "\uAE30\uBCF8\uAE30"
+  Description: "\uC774\uBC88\uD134\uC5D0 \uACF5\uACA9\uD560 \uB54C 5+(\uD604\uC7AC
+    \uC804\uD22C\uC5D0 \uD3EC\uD568\uB41C \uBAA8\uB4E0 \uCE74\uB4DC\uB4E4\uC758 \u2606\uC758
+    \uC218)*5\uC758 \uCD94\uAC00\uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
+  Tier: 10
+  Effect1ID: 1110029
+  Effect1Synergys: 0000000000000000010000000000000000000000
+  Effect2ID: 
+  Effect2Synergys: 0000000000000000000000000000000000000000
+  Effect3ID: 
+  Effect3Synergys: 0000000000000000000000000000000000000000

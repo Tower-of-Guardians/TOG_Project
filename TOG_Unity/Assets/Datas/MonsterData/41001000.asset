@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739d0c35b56d1b5419805acd0d39377a, type: 3}
+  m_Name: 41001000
+  m_EditorClassIdentifier: 
+  Id: 41001000
+  Name: "\uD770\uB465\uC774"
+  Image: {fileID: 0}
+  HP: 30
+  Kind: 1
+  PatternType: 2
+  Passive1ID: 
+  Passive1Value: 0
+  Passive2ID: 
+  Passive2Value: 0
+  Passive3ID: 
+  Passive3Value: 0
+  Action1ID: 2410001
+  Action1Min: 7
+  Action1Max: 8
+  Action2ID: 2410002
+  Action2Min: 10
+  Action2Max: 11
+  Action3ID: 2410003
+  Action3Min: 5
+  Action3Max: 5
+  Action4ID: 
+  Action4Min: 0
+  Action4Max: 0
+  Action5ID: 
+  Action5Min: 0
+  Action5Max: 0
+  Action6ID: 
+  Action6Min: 0
+  Action6Max: 0
+  Action7ID: 
+  Action7Min: 0
+  Action7Max: 0
