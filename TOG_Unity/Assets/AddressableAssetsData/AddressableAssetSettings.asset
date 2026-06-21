@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: be8d433982aa4104eacba211387dcb05
+  m_DefaultGroup: 0e0bf6c4dae0f1645987fcc705ce4c50
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 7bac06bf1cb5b309aebeb3f8324cd998
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -115,6 +115,7 @@ MonoBehaviour:
     - MonsterData
     - EffectData
     - CardData
+    - AreaEventData
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: b4a5d90361bfce648b913dc4d3c9c1d5, type: 2}
