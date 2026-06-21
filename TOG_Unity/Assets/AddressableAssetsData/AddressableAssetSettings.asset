@@ -116,6 +116,7 @@ MonoBehaviour:
     - MonsterEncounterData
     - StatusEffectData
     - SynergyData
+    - AreaEventData
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: b4a5d90361bfce648b913dc4d3c9c1d5, type: 2}
