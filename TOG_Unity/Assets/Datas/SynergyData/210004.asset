@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 210004
   m_EditorClassIdentifier: 
   ID: 210004
-  Name: Synergy_BloodSucking
+  Name: "\uD761\uD608"
   Description: "\uC774\uBC88 \uACF5\uACA9\uC73C\uB85C \uC785\uD788\uB294 \uD53C\uD574\uC758
     {0}%\uB9CC\uD07C \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
   Tier: 6
