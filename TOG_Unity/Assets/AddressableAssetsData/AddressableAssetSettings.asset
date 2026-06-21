@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: 07af1f52157e3b64fa47e0c8b98b4fe2
+  m_DefaultGroup: be8d433982aa4104eacba211387dcb05
   m_currentHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -24,11 +24,11 @@ MonoBehaviour:
   m_InternalBundleIdMode: 1
   m_AssetLoadMode: 0
   m_BundledAssetProviderType:
-    m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider
+    m_AssemblyName: 
+    m_ClassName: 
   m_AssetBundleProviderType:
-    m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider
+    m_AssemblyName: 
+    m_ClassName: 
   m_IgnoreUnsupportedFilesInBuild: 0
   m_UniqueBundleIds: 0
   m_EnableJsonCatalog: 0
@@ -52,71 +52,55 @@ MonoBehaviour:
   m_BuildAndReleaseBinFileOption: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
-    m_Id: d81dbd4376082814c96a392d773b4539
+    m_Id: 
   m_RemoteCatalogLoadPath:
-    m_Id: 8d212c86f4d816f43a241aa11d8e2a47
-  m_ContentStateBuildPathProfileVariableName: <default settings path>
+    m_Id: 
+  m_ContentStateBuildPathProfileVariableName: 
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
-  - {fileID: 11400000, guid: e772a53034513ef4c892dbc64bc0b601, type: 2}
-  - {fileID: 11400000, guid: 215780cee48b6034e8bfdad16a15fa81, type: 2}
-  - {fileID: 11400000, guid: a7c19fe12d39eb1449dd2ba658ee4076, type: 2}
-  - {fileID: 11400000, guid: 8a8eb70ce03f0b0459f45acf06631db4, type: 2}
-  - {fileID: 11400000, guid: 1699430173f80bc49b4a066adb22a4dc, type: 2}
-  - {fileID: 11400000, guid: 2b7bad8695cd9d44a9761e824bfd5dd8, type: 2}
-  - {fileID: 11400000, guid: d86fa56c9a8a5f74a825824ec966da7c, type: 2}
-  - {fileID: 11400000, guid: 7e707880fa449fc458cb79badae94d59, type: 2}
-  - {fileID: 11400000, guid: a2d8eb99e69829949b51dd1473603698, type: 2}
+  - {fileID: 11400000, guid: b96b34af98bb10f459b4208f07a7b154, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
     m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
   m_ProfileSettings:
     m_Profiles:
     - m_InheritedParent: 
-      m_Id: 36c9cf49466bb644381e40f112003b5a
+      m_Id: 7b21290ec92280747856dd3760c775a6
       m_ProfileName: Default
       m_Values:
-      - m_Id: 6e07b48bf74f96243a95a5d99dbd0d66
+      - m_Id: 80cdc46f57a4fc9458dc860aa3eadb40
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 8d212c86f4d816f43a241aa11d8e2a47
+      - m_Id: b48d575f9a0e66a439e8357cf2d64795
         m_Value: <undefined>
-      - m_Id: d07f8e3139177b347a4522c06672edea
+      - m_Id: d49801268fffe65418f4cbf57595cbed
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: d81dbd4376082814c96a392d773b4539
+      - m_Id: ecf0f110ae5ad1e4480965908b392439
         m_Value: 'ServerData/[BuildTarget]'
-      - m_Id: dbc28d7ea2918e64283f8929f073278a
+      - m_Id: eef4a968d850e214797331678c04769c
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
     m_ProfileEntryNames:
-    - m_Id: 6e07b48bf74f96243a95a5d99dbd0d66
+    - m_Id: 80cdc46f57a4fc9458dc860aa3eadb40
       m_Name: Local.LoadPath
       m_InlineUsage: 0
-    - m_Id: 8d212c86f4d816f43a241aa11d8e2a47
+    - m_Id: b48d575f9a0e66a439e8357cf2d64795
       m_Name: Remote.LoadPath
       m_InlineUsage: 0
-    - m_Id: d07f8e3139177b347a4522c06672edea
+    - m_Id: d49801268fffe65418f4cbf57595cbed
       m_Name: Local.BuildPath
       m_InlineUsage: 0
-    - m_Id: d81dbd4376082814c96a392d773b4539
+    - m_Id: ecf0f110ae5ad1e4480965908b392439
       m_Name: Remote.BuildPath
       m_InlineUsage: 0
-    - m_Id: dbc28d7ea2918e64283f8929f073278a
+    - m_Id: eef4a968d850e214797331678c04769c
       m_Name: BuildTarget
       m_InlineUsage: 0
     m_ProfileVersion: 1
   m_LabelTable:
     m_LabelNames:
     - default
-    - CardData
-    - ResultPercentData
-    - EffectData
-    - MonsterData
-    - MonsterEncounterData
-    - StatusEffectData
-    - SynergyData
-    - AreaEventData
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: b4a5d90361bfce648b913dc4d3c9c1d5, type: 2}
@@ -129,7 +113,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 529f373898bc9fd41b3eeac1c9399846, type: 2}
   - {fileID: 11400000, guid: 0160a85590fc20e4d97fd0a8e96f65d2, type: 2}
   - {fileID: 11400000, guid: 87392a0449e41d5448c96e04937edadc, type: 2}
-  m_ActiveProfileId: 36c9cf49466bb644381e40f112003b5a
+  m_ActiveProfileId: 7b21290ec92280747856dd3760c775a6
   m_CcdManagedData:
     EnvironmentId: 
     EnvironmentName: 

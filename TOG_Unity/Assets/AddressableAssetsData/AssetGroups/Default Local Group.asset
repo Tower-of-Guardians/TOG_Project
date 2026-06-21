@@ -10,19 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Packed Assets
+  m_Name: Default Local Group
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
-  m_GUID: 0c844cc57e6905e4184b814c66e3129f
-  m_SerializeEntries:
-  - m_GUID: f12e72e0843e49e4fa28086ee9c1704b
-    m_Address: Portraits
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_GroupName: Default Local Group
+  m_GUID: be8d433982aa4104eacba211387dcb05
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 11547d97efbd680438c8d420c6672236, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 4fe09b7ffc246d04a9e1c54cdd859e55, type: 2}
-    - {fileID: 11400000, guid: 8418f9aab931ad142bd8c56deda9ea9a, type: 2}
+    - {fileID: 11400000, guid: e18d7da5b356dc44a8aadd19f38dbf28, type: 2}
+    - {fileID: 11400000, guid: a5039e808e14a1e40a77fe43b60319bb, type: 2}

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5d17a21594effb4e9591490b009e7aa, type: 3}
-  m_Name: MonsterEncounterData_BundledAssetGroupSchema
+  m_Name: Default Local Group_BundledAssetGroupSchema
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: a2d8eb99e69829949b51dd1473603698, type: 2}
+  m_Group: {fileID: 11400000, guid: b96b34af98bb10f459b4208f07a7b154, type: 2}
   m_InternalBundleIdMode: 1
   m_Compression: 1
   m_IncludeAddressInCatalog: 1
@@ -35,9 +35,9 @@ MonoBehaviour:
   m_RedirectLimit: -1
   m_RetryCount: 0
   m_BuildPath:
-    m_Id: d07f8e3139177b347a4522c06672edea
+    m_Id: d49801268fffe65418f4cbf57595cbed
   m_LoadPath:
-    m_Id: 6e07b48bf74f96243a95a5d99dbd0d66
+    m_Id: 80cdc46f57a4fc9458dc860aa3eadb40
   m_BundleMode: 0
   m_AssetBundleProviderType:
     m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
