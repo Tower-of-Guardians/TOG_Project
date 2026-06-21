@@ -16,31 +16,43 @@ MonoBehaviour:
   m_GUID: 66d956d3fd7b5b04dac21fac0056a54e
   m_SerializeEntries:
   - m_GUID: 18e16a3a98771b742a957c065304cf04
-    m_Address: Assets/Datas/MonsterData/41001002.asset
+    m_Address: 41001002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7e5174b97f9d434f99c689912dfd20f
+    m_Address: 41001003
     m_ReadOnly: 0
     m_SerializedLabels:
     - MonsterData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c1e9c7f4ad4c254488cc4f6f53197897
-    m_Address: Assets/Datas/MonsterData/41001000.asset
+    m_Address: 41001000
     m_ReadOnly: 0
     m_SerializedLabels:
     - MonsterData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d49306f71e1fbed4c9d508d8d649a4a5
-    m_Address: Assets/Datas/MonsterData/41002000.asset
+    m_Address: 41002000
     m_ReadOnly: 0
     m_SerializedLabels:
     - MonsterData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc26a2636004d96449f2da1f7f8a1cbb
-    m_Address: Assets/Datas/MonsterData/41001001.asset
+    m_Address: 41001001
     m_ReadOnly: 0
     m_SerializedLabels:
     - MonsterData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ed5e18f4b648b4048b8169a9934a986b
-    m_Address: Assets/Datas/MonsterData/41002004.asset
+    m_Address: 41002004
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8a3b2c1d4e5472890abcdef12345678
+    m_Address: 41001005
     m_ReadOnly: 0
     m_SerializedLabels:
     - MonsterData

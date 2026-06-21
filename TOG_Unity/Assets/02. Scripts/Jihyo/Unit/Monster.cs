@@ -276,6 +276,27 @@ public class Monster : BaseUnit, IPointerClickHandler
         }
 
         DataCenter.Instance.GetMonsterData(monsterDataId, data => loadedMonsterData = data);
+        ApplyLoadedMonsterDataStats();
+    }
+
+    /// <summary>
+    /// MonsterData 기준 스탯·액션을 다시 적용합니다. 런타임 소환 몬스터 보정용.
+    /// </summary>
+    public void RefreshMonsterDataStats()
+    {
+        if (string.IsNullOrEmpty(monsterDataId) || DataCenter.Instance == null)
+        {
+            return;
+        }
+
+        DataCenter.Instance.GetMonsterData(monsterDataId, data => loadedMonsterData = data);
+        ApplyLoadedMonsterDataStats();
+        BuildActionsFromMonsterDataIfNeeded();
+        RefreshUI();
+    }
+
+    private void ApplyLoadedMonsterDataStats()
+    {
         if (loadedMonsterData == null)
         {
             return;

@@ -449,10 +449,15 @@ public class CSVToScriptableObject
             newItem.Mon3ID = values[n++].Trim();
             newItem.Mon4ID = values[n++].Trim();
 
-            if (float.TryParse(values[n++].Trim(), out float pos1)) newItem.Mon1Position = pos1;
-            if (float.TryParse(values[n++].Trim(), out float pos2)) newItem.Mon2Position = pos2;
-            if (float.TryParse(values[n++].Trim(), out float pos3)) newItem.Mon3Position = pos3;
-            if (float.TryParse(values[n++].Trim(), out float pos4)) newItem.Mon4Position = pos4;
+            if (float.TryParse(values[n++].Trim(), out float x1)) newItem.Mon1XPosition = x1;
+            if (float.TryParse(values[n++].Trim(), out float x2)) newItem.Mon2XPosition = x2;
+            if (float.TryParse(values[n++].Trim(), out float x3)) newItem.Mon3XPosition = x3;
+            if (float.TryParse(values[n++].Trim(), out float x4)) newItem.Mon4XPosition = x4;
+
+            if (float.TryParse(values[n++].Trim(), out float y1)) newItem.Mon1YPosition = y1;
+            if (float.TryParse(values[n++].Trim(), out float y2)) newItem.Mon2YPosition = y2;
+            if (float.TryParse(values[n++].Trim(), out float y3)) newItem.Mon3YPosition = y3;
+            if (float.TryParse(values[n++].Trim(), out float y4)) newItem.Mon4YPosition = y4;
 
             if (float.TryParse(values[n++].Trim(), out float bar1)) newItem.Mon1BarLength = bar1;
             if (float.TryParse(values[n++].Trim(), out float bar2)) newItem.Mon2BarLength = bar2;

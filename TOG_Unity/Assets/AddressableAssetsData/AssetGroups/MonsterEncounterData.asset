@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: MonsterEncounterData
   m_GUID: f7e196d57cdb41944929e51f15aa0041
   m_SerializeEntries:
+  - m_GUID: a8c3f1e24b5d6a9471c2d8e3f4a5b6c7
+    m_Address: 1410001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterEncounterData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dfb3d5a417aacd84991bed9efdf8b7e2
     m_Address: 1410000
     m_ReadOnly: 0

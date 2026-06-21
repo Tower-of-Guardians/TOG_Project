@@ -83,6 +83,8 @@ public class Monster_Clonier : Monster
         spawnPosition.x = slotX;
         clone.transform.position = spawnPosition;
         clone.BindSummonSlot(slotX);
+        clone.RefreshMonsterDataStats();
+        clone.PrepareActionForTurn();
     }
 
     private bool CanSummonClone()

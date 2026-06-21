@@ -1,2 +1,3 @@
-﻿ID,Name,Section,Gold,Exp,Mon1ID,Mon2ID,Mon3ID,Mon4ID,Mon1Position,Mon2Position,Mon3Position,Mon4Position,Mon1BarLength,Mon2BarLength,Mon3BarLength,Mon4BarLength
-1410000,흰둥이 둘,11,50,43,41001000,41001000,,,,,,,,,,
+﻿ID,Name,Section,Gold,Exp,Mon1ID,Mon2ID,Mon3ID,Mon4ID,Mon1XPosition,Mon2XPosition,Mon3XPosition,Mon4XPosition,Mon1YPosition,Mon2YPosition,Mon3YPosition,Mon4YPosition,Mon1BarLength,Mon2BarLength,Mon3BarLength,Mon4BarLength
+1410000,흰둥이 둘,11,50,43,41001000,41001000,,,2,5.5,,,,,,,,,,
+1410001,클로니어,14,150,60,41002004,,,,5,,,,,,,,,,,

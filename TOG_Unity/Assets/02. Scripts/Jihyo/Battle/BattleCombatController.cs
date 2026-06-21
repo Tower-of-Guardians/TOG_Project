@@ -22,6 +22,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     private int battlePermanentAttackBonus;
     private int pendingOverwhelmingDamage;
     private int pendingBloodSuckingPercent;
+    private int preparedAttackValue;
 
     public float GetStatAnimationWaitTime() => statAnimationWaitTime;
     public bool GetPlayerAttackHitsAll() => playerAttackHitsAll;
@@ -58,7 +59,38 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         battleManager = null;
         isInitialized = false;
         battlePermanentAttackBonus = 0;
+        preparedAttackValue = 0;
         ResetTurnScopedSynergyState();
+    }
+
+    public int GetPreparedAttackValue()
+    {
+        return preparedAttackValue;
+    }
+
+    /// <summary>
+    /// 공격 시작 전 시너지 연출 및 선행 효과를 모두 처리합니다.
+    /// </summary>
+    public IEnumerator ExecutePreAttackSynergyPhase(Player player, SynergyUI synergyUI)
+    {
+        if (player == null)
+        {
+            preparedAttackValue = 0;
+            yield break;
+        }
+
+        if (GameData.Instance != null)
+        {
+            GameData.Instance.GetSynergyData();
+        }
+
+        if (synergyUI != null)
+        {
+            yield return synergyUI.PlaySynergyActivationSequence();
+        }
+
+        preparedAttackValue = CalculatePlayerAttack(player);
+        ApplyPreHitSynergies();
     }
 
     /// <summary>
@@ -203,8 +235,6 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         // 공격 애니메이션 대기 후 데미지 적용
         float waitTime = currentAttack < 10 ? 1.0f : 0.8f;
         yield return new WaitForSeconds(waitTime);
-
-        ApplyPreHitSynergies();
 
         // 데미지 적용
         int totalDealtDamage = 0;

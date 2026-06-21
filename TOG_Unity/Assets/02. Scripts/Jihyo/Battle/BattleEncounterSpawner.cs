@@ -32,10 +32,10 @@ public static class BattleEncounterSpawner
 
         ClearEncounterMonsters(globalRoot);
 
-        TrySpawnMonster(encounterData.Mon1ID, encounterData.Mon1Position, globalRoot, prefabRegistry, spawnedMonsters);
-        TrySpawnMonster(encounterData.Mon2ID, encounterData.Mon2Position, globalRoot, prefabRegistry, spawnedMonsters);
-        TrySpawnMonster(encounterData.Mon3ID, encounterData.Mon3Position, globalRoot, prefabRegistry, spawnedMonsters);
-        TrySpawnMonster(encounterData.Mon4ID, encounterData.Mon4Position, globalRoot, prefabRegistry, spawnedMonsters);
+        TrySpawnMonster(encounterData.Mon1ID, encounterData.Mon1XPosition, encounterData.Mon1YPosition, globalRoot, prefabRegistry, spawnedMonsters);
+        TrySpawnMonster(encounterData.Mon2ID, encounterData.Mon2XPosition, encounterData.Mon2YPosition, globalRoot, prefabRegistry, spawnedMonsters);
+        TrySpawnMonster(encounterData.Mon3ID, encounterData.Mon3XPosition, encounterData.Mon3YPosition, globalRoot, prefabRegistry, spawnedMonsters);
+        TrySpawnMonster(encounterData.Mon4ID, encounterData.Mon4XPosition, encounterData.Mon4YPosition, globalRoot, prefabRegistry, spawnedMonsters);
 
         return spawnedMonsters;
     }
@@ -43,6 +43,7 @@ public static class BattleEncounterSpawner
     private static void TrySpawnMonster(
         string monsterDataId,
         float positionX,
+        float positionY,
         Transform globalRoot,
         MonsterPrefabRegistry prefabRegistry,
         List<Monster> spawnedMonsters)
@@ -61,7 +62,8 @@ public static class BattleEncounterSpawner
         Monster monster = Object.Instantiate(prefab, globalRoot);
         monster.name = prefab.name;
 
-        monster.transform.localPosition = new Vector3(positionX, DefaultSpawnY, 0f);
+        float spawnY = positionY != 0f ? positionY : DefaultSpawnY;
+        monster.transform.localPosition = new Vector3(positionX, spawnY, 0f);
         spawnedMonsters.Add(monster);
     }
 

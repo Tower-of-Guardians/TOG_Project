@@ -120,8 +120,6 @@ public class BattleManager : MonoBehaviour
     {
         if (isProcessingAttack) return;
 
-        CloseSynergyOverlayUI();
-
         // 턴 시작 처리
         if (actionController != null)
         {
@@ -132,11 +130,19 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(ProcessAttackSequence());
     }
 
-    private void CloseSynergyOverlayUI()
+    private IEnumerator CloseSynergyOverlayUI()
     {
         ResolveSynergyUIIfNeeded();
-        synergyUI?.SetVisible(false);
+        if (synergyUI != null)
+        {
+            yield return synergyUI.HideWithFade();
+        }
 
+        CloseSynergyOverlayExtras();
+    }
+
+    private void CloseSynergyOverlayExtras()
+    {
         if (DIContainer.IsRegistered<TooltipPresenter>())
         {
             TooltipPresenter tooltipPresenter = DIContainer.Resolve<TooltipPresenter>();
@@ -153,7 +159,20 @@ public class BattleManager : MonoBehaviour
     private void ShowSynergyUIForTurnStart()
     {
         ResolveSynergyUIIfNeeded();
+        RefreshFieldSynergyState();
         synergyUI?.SetVisible(true);
+    }
+
+    private static void RefreshFieldSynergyState()
+    {
+        if (GameData.Instance == null)
+        {
+            return;
+        }
+
+        GameData.Instance.attackField.Clear();
+        GameData.Instance.defenseField.Clear();
+        GameData.Instance.GetSynergyData();
     }
 
     private void ResolveSynergyUIIfNeeded()
@@ -183,6 +202,10 @@ public class BattleManager : MonoBehaviour
             yield break;
         }
 
+        ResolveSynergyUIIfNeeded();
+        yield return combatController.ExecutePreAttackSynergyPhase(initResult.player, synergyUI);
+        yield return CloseSynergyOverlayUI();
+
         // 공격력 애니메이션 대기
         float statAnimationWaitTime = combatController.GetStatAnimationWaitTime();
         if (statAnimationWaitTime > 0f)
@@ -190,8 +213,7 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(statAnimationWaitTime);
         }
 
-        // 플레이어 공격력 계산 및 적용
-        int currentAttack = combatController.CalculatePlayerAttack(initResult.player);
+        int currentAttack = combatController.GetPreparedAttackValue();
 
         // 플레이어 강화 애니메이션 재생
         if (initResult.playerAnimation != null)
@@ -246,6 +268,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         yield return effectDomain.DiscardFieldCards(FieldType.Attack);
         yield return effectDomain.DiscardFieldCards(FieldType.Defense);
+        RefreshFieldSynergyState();
         yield return new WaitForSeconds(1f);
 
         // 최종 승리 체크
