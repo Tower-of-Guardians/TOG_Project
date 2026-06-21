@@ -99,7 +99,7 @@ namespace Jongmin
 
                 var battleCardData = discardCard.BattleCardData;
 
-                var startAnchoredPosition = discardCard.RectTransform.anchoredPosition;
+                var startPosition = discardCard.transform.position;
                 var startRotation = discardCard.RectTransform.rotation;
                 var startScale = 0.66f * Vector3.one;
 
@@ -107,7 +107,7 @@ namespace Jongmin
 
                 var effectCard = CreateCard(battleCardData);
 
-                effectCard.RectTransform.anchoredPosition = startAnchoredPosition;
+                effectCard.transform.position = startPosition;
                 effectCard.RectTransform.rotation = startRotation;
                 effectCard.RectTransform.localScale = startScale;
 
@@ -128,7 +128,7 @@ namespace Jongmin
                 
                 var battleCardData = discardCard.BattleCardData;
 
-                var startAnchoredPosition = discardCard.RectTransform.anchoredPosition;
+                var startPosition = discardCard.transform.position;
                 var startRotation = discardCard.RectTransform.rotation;
                 var startScale = 0.44f * Vector3.one;
 
@@ -136,7 +136,7 @@ namespace Jongmin
 
                 var effectCard = CreateCard(battleCardData);
 
-                effectCard.RectTransform.anchoredPosition = startAnchoredPosition;
+                effectCard.transform.position = startPosition;
                 effectCard.RectTransform.rotation = startRotation;
                 effectCard.RectTransform.localScale = startScale;
 
