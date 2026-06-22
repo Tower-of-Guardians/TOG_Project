@@ -226,6 +226,8 @@ namespace Jongmin
             
             yield return sequence.WaitForCompletion();
             GameData.Instance.UseCard(card.CardData.id);
+            GameData.Instance.handDeck.Remove(card.CardData.id);
+            GameData.Instance.InvokeDeckCountChange(DeckType.Throw);
             RemoveCard(card);
         }
 
@@ -269,6 +271,7 @@ namespace Jongmin
             
             yield return sequence.WaitForCompletion();
             GameData.Instance.UseCard(card.CardData.id);
+            GameData.Instance.InvokeDeckCountChange(DeckType.Throw);
             RemoveCard(card);
         }
     }

@@ -5,12 +5,13 @@ namespace Jongmin
 {
     public abstract class FieldSystem : MonoBehaviour
     {
-        private FieldView _view;
+        protected FieldView View;
         protected CardContainer Container;
         protected FieldCardLayout Layout;
         protected FieldCardFactory Factory;
 
         private const int MaxCardCount = 4;
+        protected float CurrentStatus;
 
         public event Action<int> RequestUpdateActionCount;
         
@@ -21,7 +22,7 @@ namespace Jongmin
 
         public void Construct(FieldView view, CardContainer container, FieldCardLayout layout, FieldCardFactory factory)
         {
-            _view = view;
+            View = view;
             Container = container;
             Layout = layout;
             Factory = factory;
@@ -33,13 +34,14 @@ namespace Jongmin
         }
 
         public abstract void CreateCard(BattleCardData battleCardData);
+        public abstract void UpdateFieldStatus();
 
         public void RequestUpdateActionCountEvent(int count)
         {
             RequestUpdateActionCount?.Invoke(count);
         }
 
-        public void RemoveCard(Card card, bool unused = true)
+        public virtual void RemoveCard(Card card, bool unused = true)
         {
             Container.Remove(card);
             Factory.Release(card);
@@ -56,12 +58,12 @@ namespace Jongmin
             switch (isActive)
             {
                 case true when CanAdd:
-                    _view.TogglePreview(true);
+                    View.TogglePreview(true);
                     Layout.UpdateLayout(FieldPreviewMode.Insert);
                     break;
                 
                 case false:
-                    _view.TogglePreview(false);
+                    View.TogglePreview(false);
                     Layout.UpdateLayout(FieldPreviewMode.None);
                     break;
             }

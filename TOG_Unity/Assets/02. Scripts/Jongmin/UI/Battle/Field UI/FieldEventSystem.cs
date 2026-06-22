@@ -123,6 +123,7 @@ namespace Jongmin
                 return false;
 
             RequestMoveHoverCardToOpposite?.Invoke(_fieldSystem.FieldType);
+            _fieldSystem.UpdateFieldStatus();
             return true;
         }
 
