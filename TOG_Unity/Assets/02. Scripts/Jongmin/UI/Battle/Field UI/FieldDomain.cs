@@ -186,6 +186,8 @@ namespace Jongmin
 
             SyncAtkDataWithContainer();
             SyncDefDataWithContainer();
+            AtkSystem.UpdateFieldStatus();
+            DefSystem.UpdateFieldStatus();
         }
         
         private void HandleMoveHoverCardToOpposite(FieldType sourceFieldType)

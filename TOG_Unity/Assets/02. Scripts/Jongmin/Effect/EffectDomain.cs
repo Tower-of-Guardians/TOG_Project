@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using JxModule;
 using UnityEngine;
 
 namespace Jongmin
@@ -11,6 +12,7 @@ namespace Jongmin
         [Header("References")]
         [SerializeField] private TurnManager turnManager;
         [SerializeField] private HandDomain handDomain;
+        [SerializeField] private ImageView battleView;
         [SerializeField] private FieldDomain fieldDomain;
         [SerializeField] private Transform drawButton;
         [SerializeField] private Transform discardButton;
@@ -38,6 +40,7 @@ namespace Jongmin
         {
             yield return effectSystem.DiscardHandCards(handDomain.Container.Cards, 
                                                        handDomain.System, 
+                                                       battleView,
                                                        discardButton.transform.position);
         }
 
@@ -66,6 +69,11 @@ namespace Jongmin
                                                         fieldSystem, 
                                                         fieldView, 
                                                         discardButton.transform.position);
+        }
+
+        public void EnableBattleView()
+        {
+            effectSystem.EnableBattleView(battleView, fieldDomain.AtkView, fieldDomain.DefView);
         }
     }
 }
