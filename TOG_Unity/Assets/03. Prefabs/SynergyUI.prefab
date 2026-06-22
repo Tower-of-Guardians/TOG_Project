@@ -724,13 +724,13 @@ MonoBehaviour:
     icon: {fileID: 6243808661161471300}
     gauge: {fileID: 7119217595720420377}
   _synergyVisuals:
-  - synergyId: Basic
+  - synergyId: 210007
     icon: {fileID: 21300000, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
     miniRequiredCount: 3
     gaugeSprites:
     - {fileID: 5068607888594416882, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: 7836916082567593525, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-  - synergyId: BloodSucking
+  - synergyId: 210004
     icon: {fileID: 21300000, guid: a3ef0c3615707a543b75136effca5178, type: 3}
     miniRequiredCount: 2
     gaugeSprites:
@@ -738,7 +738,7 @@ MonoBehaviour:
     - {fileID: -7224302079080548202, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: 8965922701622580604, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: 6546846617637216857, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-  - synergyId: Honesty
+  - synergyId: 210001
     icon: {fileID: 21300000, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
     miniRequiredCount: 2
     gaugeSprites:
@@ -747,7 +747,7 @@ MonoBehaviour:
     - {fileID: -1788372468, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: 3758360030774000391, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: 1080790192112370304, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-  - synergyId: Mystery
+  - synergyId: 210006
     icon: {fileID: 21300000, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
     miniRequiredCount: 2
     gaugeSprites:
@@ -756,7 +756,7 @@ MonoBehaviour:
     - {fileID: 2113921890360973793, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: 3055371975647629608, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: -948106609, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-  - synergyId: Overwhelming
+  - synergyId: 210003
     icon: {fileID: 21300000, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
     miniRequiredCount: 1
     gaugeSprites:
@@ -765,7 +765,7 @@ MonoBehaviour:
     - {fileID: 8472445690235079722, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: 6138698779049239947, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: 8626118355193768436, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-  - synergyId: Plunder
+  - synergyId: 210005
     icon: {fileID: 21300000, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
     miniRequiredCount: 2
     gaugeSprites:
@@ -773,7 +773,7 @@ MonoBehaviour:
     - {fileID: 6322377518802402776, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: 8135014310420586847, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
     - {fileID: -2221718243433848479, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-  - synergyId: Synergy_ShieldAttack
+  - synergyId: 210002
     icon: {fileID: 21300000, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
     miniRequiredCount: 2
     gaugeSprites:

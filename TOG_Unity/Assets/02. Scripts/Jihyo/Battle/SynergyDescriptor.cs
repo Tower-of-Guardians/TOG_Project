@@ -86,7 +86,7 @@ public class SynergyDescriptor : MonoBehaviour, IDescriptableUI
             return string.Empty;
         }
 
-        string name = GetDisplaySynergyName(synergyData.Name);
+        string name = synergyData.Name ?? string.Empty;
 
         // TODO:: 현재 exqt SDF 폰트에 '☆'(U+2606) 글리프가 없어 임시로 별로 치환
         string description = (synergyData.Description ?? string.Empty).Replace("☆", "별");
@@ -150,7 +150,7 @@ public class SynergyDescriptor : MonoBehaviour, IDescriptableUI
                 sb.Append("\n");
             }
 
-            string name = GetDisplaySynergyName(entry.synergyData.Name);
+            string name = entry.synergyData.Name ?? string.Empty;
             int activatedCount = GetActivatedCount(entry);
             sb.Append($"{name}({activatedCount})");
             appendedAny = true;
@@ -199,19 +199,6 @@ public class SynergyDescriptor : MonoBehaviour, IDescriptableUI
         }
 
         return activeIndex;
-    }
-
-    private string GetDisplaySynergyName(string rawName)
-    {
-        if (string.IsNullOrEmpty(rawName))
-        {
-            return string.Empty;
-        }
-
-        const string prefix = "Synergy_";
-        return rawName.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)
-            ? rawName.Substring(prefix.Length)
-            : rawName;
     }
 
     private string GetGradeName(int tierIndex)

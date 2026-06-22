@@ -36,7 +36,7 @@ public class SynergyUI : MonoBehaviour
 
     [SerializeField] private SynergySlot[] _slots = new SynergySlot[3];
 
-    [Header("시너지별 스프라이트 (synergyId = SynergyData.ID 또는 Name, 또는 Synergy_ 접두 제거한 뒤 이름)")]
+    [Header("시너지별 스프라이트 (synergyId = SynergyData.ID)")]
     [SerializeField] private SynergyVisualBinding[] _synergyVisuals;
 
     [Header("3개 초과 시")]
@@ -509,36 +509,12 @@ public class SynergyUI : MonoBehaviour
     private bool TryGetBinding(SynergyData sd, out SynergyVisualBinding binding)
     {
         binding = null;
-        if (sd == null || _visualById == null)
+        if (sd == null || _visualById == null || string.IsNullOrEmpty(sd.ID))
         {
             return false;
         }
 
-        if (!string.IsNullOrEmpty(sd.ID) && _visualById.TryGetValue(sd.ID.Trim(), out binding))
-        {
-            return true;
-        }
-
-        string name = sd.Name != null ? sd.Name.Trim() : string.Empty;
-        if (name.Length > 0)
-        {
-            if (_visualById.TryGetValue(name, out binding))
-            {
-                return true;
-            }
-
-            const string prefix = "Synergy_";
-            if (name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-            {
-                string shortName = name.Substring(prefix.Length);
-                if (shortName.Length > 0 && _visualById.TryGetValue(shortName, out binding))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        return _visualById.TryGetValue(sd.ID.Trim(), out binding);
     }
 
     private bool IsSynergyActivated(SynergyTotalData entry)

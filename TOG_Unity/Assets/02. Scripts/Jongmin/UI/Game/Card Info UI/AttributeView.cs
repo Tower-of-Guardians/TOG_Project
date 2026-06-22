@@ -50,21 +50,8 @@ namespace Jongmin
                 
                 var synergyDescView = _synergyDescViews[i]; 
                 synergyDescView.gameObject.SetActive(true);
-                synergyDescView.Label.text = $"{GetDisplayName(synergyDatas[i].Name)}\n{GetDisplayDesc(synergyDatas[i].Description)}";
+                synergyDescView.Label.text = $"{synergyDatas[i].Name}\n{GetDisplayDesc(synergyDatas[i].Description)}";
             }
-        }
-
-        private static string GetDisplayName(string synergyName)
-        {
-            if (string.IsNullOrEmpty(synergyName))
-            {
-                return string.Empty;
-            }
-
-            const string prefix = "Synergy_";
-            return synergyName.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)
-                ? synergyName.Substring(prefix.Length)
-                : synergyName;
         }
 
         private static string GetDisplayDesc(string description)
