@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 3522280902697144016}
   - component: {fileID: 836590661421698260}
   - component: {fileID: 7353947813304814526}
+  - component: {fileID: 1207552728969784614}
   m_Layer: 0
   m_Name: PF_DomainManager
   m_TagString: Untagged
@@ -115,6 +116,7 @@ MonoBehaviour:
   effectSystem: {fileID: 0}
   turnManager: {fileID: 0}
   handDomain: {fileID: 5692314581588031293}
+  battleView: {fileID: 0}
   fieldDomain: {fileID: 2404977354259646384}
   drawButton: {fileID: 0}
   discardButton: {fileID: 0}
@@ -252,3 +254,19 @@ MonoBehaviour:
   rewardView: {fileID: 0}
   gachaView: {fileID: 0}
   gachaSystem: {fileID: 0}
+  gachaEventSystem: {fileID: 0}
+  cardInfoDomain: {fileID: 0}
+--- !u!114 &1207552728969784614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d95a97630d4a97a7df4a66989a30ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invenView: {fileID: 0}
+  resultInvenSystem: {fileID: 0}

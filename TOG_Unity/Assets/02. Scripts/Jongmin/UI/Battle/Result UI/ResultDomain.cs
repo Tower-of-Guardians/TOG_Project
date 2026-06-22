@@ -13,6 +13,7 @@ namespace Jongmin
         [SerializeField] private GachaSystem gachaSystem;
         [SerializeField] private GachaEventSystem gachaEventSystem;
         [SerializeField] private CardInfoDomain cardInfoDomain;
+        [SerializeField] private CompactInvenDomain compactInvenDomain;
 
         private GachaSlotFactory _slotFactory;
         
@@ -60,6 +61,7 @@ namespace Jongmin
             rewardView.Hide();
             gachaSystem.CloseView();
             resultView.Hide();
+            compactInvenDomain.CloseView();
         }
 
         private void HandleRequestShowCardInfo(CardData cardData)
@@ -74,6 +76,7 @@ namespace Jongmin
             yield return rewardView.Show(resultData.Gold, resultData.Exp, resultData.IsLevelUp);
             yield return new WaitForSeconds(1f);
             yield return gachaSystem.OpenView();
+            compactInvenDomain.OpenView(CompactInvenType.Result);
             resultView.ShowCloseButton();
         }
         
