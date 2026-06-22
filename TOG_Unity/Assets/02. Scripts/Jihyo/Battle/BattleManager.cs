@@ -280,6 +280,7 @@ public class BattleManager : MonoBehaviour
         }
 
         // 턴 종료 요청
+        effectDomain.EnableBattleView();
         RequestTurnEnd();
         isProcessingAttack = false;
     }

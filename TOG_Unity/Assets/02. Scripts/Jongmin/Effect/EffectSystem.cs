@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using JxModule;
 using UnityEngine;
 
 namespace Jongmin
@@ -55,8 +56,14 @@ namespace Jongmin
             yield return new WaitUntil(() => currentCount >= completeCount);
         }
 
-        public IEnumerator DiscardHandCards(IReadOnlyList<Card> handCards, HandSystem handSystem, Vector3 destination)
+        public IEnumerator DiscardHandCards(IReadOnlyList<Card> handCards, HandSystem handSystem, ImageView battleView, Vector3 destination)
         {
+            yield return battleView.CanvasGroup.DOFade(0.7f, 0.3f).OnComplete(() =>
+            {
+                battleView.CanvasGroup.interactable = true;
+                battleView.CanvasGroup.blocksRaycasts = true;
+            }).WaitForCompletion();
+            
             var currentCount = 0;
             var completeCount = handCards.Count;
             
@@ -181,6 +188,18 @@ namespace Jongmin
             yield return new WaitUntil(() => currentCount >= completeCount);
         }
 
+        public void EnableBattleView(ImageView battleView, FieldView atkFieldView, FieldView defFieldView)
+        {
+            battleView.CanvasGroup.DOFade(0f, 0.3f).OnComplete(() =>
+            {
+                battleView.CanvasGroup.interactable = false;
+                battleView.CanvasGroup.blocksRaycasts = false;
+            });
+            
+            atkFieldView.ToggleViewActive(true);
+            defFieldView.ToggleViewActive(true);
+        }
+
         private IEnumerator DrawHandSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
         {
             card.transform.DOKill();
@@ -206,6 +225,7 @@ namespace Jongmin
             sequence.OnComplete(() => completeAction());
             
             yield return sequence.WaitForCompletion();
+            GameData.Instance.UseCard(card.CardData.id);
             RemoveCard(card);
         }
 
@@ -248,6 +268,7 @@ namespace Jongmin
             sequence.OnComplete(() => completeAction());
             
             yield return sequence.WaitForCompletion();
+            GameData.Instance.UseCard(card.CardData.id);
             RemoveCard(card);
         }
     }
