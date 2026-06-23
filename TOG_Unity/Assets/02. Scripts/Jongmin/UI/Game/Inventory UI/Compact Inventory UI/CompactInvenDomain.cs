@@ -6,6 +6,7 @@ namespace Jongmin
     {
         [SerializeField] private CompactInvenView invenView;
         [SerializeField] private ResultInvenSystem resultInvenSystem;
+        [SerializeField] private CraftmanInvenSystem craftmanInvenSystem;
         
         private CompactInvenSlotFactory _slotFactory;
         
@@ -16,6 +17,7 @@ namespace Jongmin
             _slotFactory = new CompactInvenSlotFactory(invenView);
             
             resultInvenSystem.Construct(invenView, _slotFactory);
+            craftmanInvenSystem.Construct(invenView, _slotFactory);
 
             BindEvents();
         }
@@ -36,10 +38,14 @@ namespace Jongmin
             System?.OpenView();
         }
 
-        public void CloseView()
+        public void CloseView(bool systemClear = true)
         {
             System?.CloseView();
-            System = null;
+
+            if (systemClear)
+            {
+                System = null;
+            }
         }
 
         private void ChangeSystem(CompactInvenType inventoryType)
@@ -57,6 +63,7 @@ namespace Jongmin
             return inventoryType switch
             {
                 CompactInvenType.Result => resultInvenSystem,
+                CompactInvenType.Craftman => craftmanInvenSystem,
                 _ => null
             };
         }

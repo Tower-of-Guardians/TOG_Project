@@ -1062,6 +1062,7 @@ GameObject:
   - component: {fileID: 974642844025147827}
   - component: {fileID: 6306244946896292318}
   - component: {fileID: 4494921413958829571}
+  - component: {fileID: 4865733954301770786}
   m_Layer: 0
   m_Name: Compact Inventory UI
   m_TagString: Untagged
@@ -1162,6 +1163,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e119e3ba8de7491e814018983d7d5824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4865733954301770786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157936844201405683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63edea54ca624b929ab8f6c3d764a2f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1212271978495464857
@@ -6816,7 +6829,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &4144698197388006882
 MonoBehaviour:

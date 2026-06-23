@@ -260,6 +260,8 @@ GameObject:
   - component: {fileID: 2682457022986598911}
   - component: {fileID: 2754705416024269232}
   - component: {fileID: 7148341275281346268}
+  - component: {fileID: 1024227198744663418}
+  - component: {fileID: 2827870772323945299}
   m_Layer: 5
   m_Name: ATK Text
   m_TagString: Untagged
@@ -385,6 +387,30 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &1024227198744663418
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229902585459464934}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &2827870772323945299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229902585459464934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58533a16371249428298061ef6d90f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2954224161497096619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,6 +1419,8 @@ GameObject:
   - component: {fileID: 5551715462988500511}
   - component: {fileID: 1100456367107591167}
   - component: {fileID: 6117631555654833161}
+  - component: {fileID: 4781180148847382518}
+  - component: {fileID: 2210890610673046153}
   m_Layer: 5
   m_Name: DEF Text
   m_TagString: Untagged
@@ -1518,6 +1546,30 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &4781180148847382518
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6723429626743927975}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &2210890610673046153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6723429626743927975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58533a16371249428298061ef6d90f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6751751133566188452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,8 +1996,8 @@ MonoBehaviour:
   cardItemImage: {fileID: 5484058266579166851}
   cardNameLabel: {fileID: 201557578153903353}
   cardDescriptionLabel: {fileID: 6227679665176057963}
-  cardAtkLabel: {fileID: 7148341275281346268}
-  cardDefLabel: {fileID: 6117631555654833161}
+  cardAtkLabel: {fileID: 2827870772323945299}
+  cardDefLabel: {fileID: 2210890610673046153}
   starObjectArray:
   - {fileID: 6169226969664589375}
   - {fileID: 2477181553216406547}

@@ -17,6 +17,7 @@ namespace Jongmin
         [SerializeField] private CardInvenDomain cardInvenDomain;
         [SerializeField] private ResultDomain resultDomain;
         [SerializeField] private CompactInvenDomain compactInvenDomain;
+        [SerializeField] private CraftmanDomain craftmanDomain;
         
         public void Inject()
         {
@@ -42,6 +43,7 @@ namespace Jongmin
             inventoryDomain.Construct();
             resultDomain.Construct();
             compactInvenDomain.Construct();
+            craftmanDomain.Construct();
             
             DIContainer.Register<CardDropSystem>(dropSystem);
             DIContainer.Register<HandDomain>(handDomain);
@@ -56,6 +58,7 @@ namespace Jongmin
             DIContainer.Register<CardInvenDomain>(cardInvenDomain);
             DIContainer.Register<ResultDomain>(resultDomain);
             DIContainer.Register<CompactInvenDomain>(compactInvenDomain);
+            DIContainer.Register<CraftmanDomain>(craftmanDomain);
         }
     }
 }

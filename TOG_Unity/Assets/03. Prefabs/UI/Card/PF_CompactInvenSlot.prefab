@@ -112,8 +112,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5730351885461671329}
+  - component: {fileID: 5740003245630905583}
   - component: {fileID: 2326604311924640279}
   - component: {fileID: 3423131887579578617}
+  - component: {fileID: 7508907783225994658}
   m_Layer: 0
   m_Name: PF_CompactInvenSlot
   m_TagString: Untagged
@@ -142,6 +144,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 180, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5740003245630905583
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518817153604599041}
+  m_CullTransparentMesh: 1
 --- !u!225 &2326604311924640279
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -168,6 +178,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card: {fileID: 261443997692862141}
   selectedImage: {fileID: 529053032848569530}
+--- !u!114 &7508907783225994658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518817153604599041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abbe992515c44ccf809860f94011986a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6338998066791817314
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +448,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7408947368717962099, guid: 43e7a84b0da9c4e48a6d27fa5801438d, type: 3}
       propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350766468293023951, guid: 43e7a84b0da9c4e48a6d27fa5801438d, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350766468293023951, guid: 43e7a84b0da9c4e48a6d27fa5801438d, type: 3}
+      propertyPath: m_BlocksRaycasts
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
