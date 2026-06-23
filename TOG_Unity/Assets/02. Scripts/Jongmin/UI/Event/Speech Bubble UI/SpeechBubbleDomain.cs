@@ -25,9 +25,9 @@ namespace Jongmin
             speechBubbleSystem.SetView(View);
         }
 
-        public void SetBubbleText(BubbleTriggerType triggerType, int optIndex = 0)
+        public void SetBubbleText(BubbleTriggerType triggerType, bool isRandom = true, int optIndex = 0)
         {
-            speechBubbleSystem.ShowLine(triggerType, optIndex);
+            speechBubbleSystem.ShowLine(triggerType, isRandom, optIndex);
         }
 
         private SpeechBubbleView GetTargetView(SpeechBubbleType bubbleType)

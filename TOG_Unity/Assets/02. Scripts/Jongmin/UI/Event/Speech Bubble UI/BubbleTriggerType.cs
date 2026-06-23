@@ -11,8 +11,9 @@
         OpenMerchantView = 20,          // 상점 UI를 열었을때 + 카드 판매를 취소했을 때
         PurchasedCard = 21,             // 카드를 구매했을 때
         PurchasedHpPotion = 22,         // 포션을 구매했을 때
-        ClickedSellCard = 23,           // 카드 판매 버튼을 클릭했을 때
-        SelectedMerchantSlot = 24,      // 판매할 카드를 선택할 때(기본 카드(판매 가격이 없는 경우 포함))
-        CompletedSellCards = 25,        // 카드 판매를 마쳤을 때
+        InsufficientGold = 23,          // 재화가 부족할 때
+        ClickedSellCard = 24,           // 카드 판매 버튼을 클릭했을 때
+        SelectedMerchantSlot = 25,      // 판매할 카드를 선택할 때(기본 카드(판매 가격이 없는 경우 포함))
+        CompletedSellCards = 26,        // 카드 판매를 마쳤을 때
     }
 }

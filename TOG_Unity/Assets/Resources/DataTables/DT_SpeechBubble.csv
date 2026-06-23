@@ -1,11 +1,12 @@
 ﻿rowID,triggerType,lines,isEnable
-Craftman_0,OpenCraftmanView,"어떤 카드를 강화해줄까?",TRUE
-Craftman_1,SelectedCraftmanSlot,"이 카드로 괜찮겠어?",TRUE
-Craftman_2,CompletedUpgradeCard,"좀 더 강력해졌을거야.\n열심히해.",TRUE
+Craftman_0,OpenCraftmanView,"어떤 걸 강화해줄까?",TRUE
+Craftman_1,SelectedCraftmanSlot,"그래, 이 카드를 어떻게 할까?",TRUE
+Craftman_2,CompletedUpgradeCard,"좀 더 강력해졌을 거야\n열심히 해.|어때, 좀 마음에 드나? 하핫.",TRUE
 
-Merchant_0,OpenMerchantView,"OpenMerchantView",TRUE
-Merchant_1,PurchasedCard,"PurchasedCard",TRUE
-Merchant_2,PurchasedHpPotion,"PurchasedHpPotion",TRUE
-Merchant_3,ClickedSellCard,"ClickedSellCard",TRUE
-Merchant_4,SelectedMerchantSlot,"SelectedMerchantSlot1|SelectedMerchantSlot2",TRUE
-Merchant_5,CompletedSellCards,"CompletedSellCards",TRUE
+Merchant_0,OpenMerchantView,"반갑다, 인간.",TRUE
+Merchant_1,PurchasedCard,"더 사라, 인간!|그 옆에 있는 것도 사라.|키히히!",TRUE
+Merchant_2,PurchasedHpPotion,"마셔라!",TRUE
+Merchant_3,InsufficientGold,"공짜는 안 된다.",TRUE
+Merchant_4,ClickedSellCard,"3개까지 구매하겠다.",TRUE
+Merchant_5,SelectedMerchantSlot,"전부 합해서 {0}골드에 산다.|그걸로는 돈을 줄 수 없다.",TRUE
+Merchant_6,CompletedSellCards,"또 보자, 인간.",TRUE

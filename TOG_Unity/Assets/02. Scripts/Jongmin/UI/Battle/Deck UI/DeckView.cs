@@ -20,8 +20,6 @@ namespace Jongmin
         [SerializeField] private Button discardDeckButton;
         [SerializeField] private Button closeButton;
         
-        private Tween _toggleTween;
-        
         public Transform CardRoot => cardRoot;
 
         public void Bind(DeckSystem deckSystem)
@@ -34,27 +32,12 @@ namespace Jongmin
         public void Show(string titleString)
         {
             titleNameLabel.text = titleString;
-
-            deckGroup.Hide();
-
-            _toggleTween?.Kill();
-            var sequence = DOTween.Sequence();
-            
-            sequence.Join(deckGroup.DOFade(1f, 0.25f));
-            sequence.AppendCallback(() => deckGroup.Show());
-
-            _toggleTween = sequence;
+            deckGroup.Show();
         }
 
         public void Hide()
         {
-            _toggleTween?.Kill();
-            var sequence = DOTween.Sequence();
-            
-            sequence.Join(deckGroup.DOFade(0f, 0.25f));
-            sequence.AppendCallback(() => deckGroup.Hide());
-
-            _toggleTween = sequence;
+            deckGroup.Hide();
         }
 
         public void UpdateDrawCardCount(int amount)

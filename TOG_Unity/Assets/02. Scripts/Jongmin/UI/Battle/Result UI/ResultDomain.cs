@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using JxModule;
 using UnityEngine;
 
@@ -16,6 +17,21 @@ namespace Jongmin
         [SerializeField] private CompactInvenDomain compactInvenDomain;
 
         private GachaSlotFactory _slotFactory;
+
+        public void OnGUI()
+        {
+            if (GUI.Button(new Rect(new Vector2(1800, 150), new Vector2(100, 50)), "Result"))
+            {
+                TempShow();
+            }
+        }
+
+        [Button("Test")]
+        public void TempShow()
+        {
+            var resultData = new ResultData(46, 82, true);
+            StartCoroutine(ShowRoutine(resultData));
+        }
         
         public void Construct()
         {
@@ -42,13 +58,6 @@ namespace Jongmin
             DataCenter.Instance.playerMoneyEvent -= gachaSystem.UpdateRefreshState;
             
             gachaEventSystem.RequestShowCardInfo -= HandleRequestShowCardInfo;
-        }
-
-        [Button("Test")]
-        public void TempShow()
-        {
-            var resultData = new ResultData(46, 82, true);
-            StartCoroutine(ShowRoutine(resultData));
         }
 
         public void Show(ResultData resultData)
