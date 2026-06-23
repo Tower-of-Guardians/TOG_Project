@@ -11,6 +11,7 @@ namespace Jongmin
         [SerializeField] private CraftmanSystem craftmanSystem;
         [SerializeField] private ForgeSystem forgeSystem;
         [SerializeField] private CompactInvenDomain compactInvenDomain;
+        [SerializeField] private SpeechBubbleDomain speechBubbleDomain;
 
         private DataTable _forgeDataTable;
 
@@ -46,6 +47,9 @@ namespace Jongmin
 
         private void HandleRequestOpenView()
         {
+            speechBubbleDomain.OpenView(SpeechBubbleType.Craftman);
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.OpenCraftmanView);
+            
             forgeSystem.CloseView();
             compactInvenDomain.OpenView(CompactInvenType.Craftman);
 
@@ -69,22 +73,26 @@ namespace Jongmin
         public void HandleOnClickedAtkUpgrade()
         {
             forgeSystem.UpgradeAtkRate();
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.CompletedUpgradeCard);
         }
 
         public void HandleOnClickedBothUpgrade()
         {
             forgeSystem.UpgradeBothRate();
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.CompletedUpgradeCard);
         }
 
         public void HandleOnClickedDefUpgrade()
         {
             forgeSystem.UpgradeDefRate();
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.CompletedUpgradeCard);
         }
 
         public void HandleOnCanceledUpgrade()
         {
             forgeSystem.CloseView();
             compactInvenDomain.OpenView(CompactInvenType.Craftman);
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.OpenCraftmanView);
         }
 
         public void HandleOnRequestClose()
@@ -96,6 +104,7 @@ namespace Jongmin
         {
             compactInvenDomain.CloseView(false);
             forgeSystem.OpenView(cardData);
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.SelectedCraftmanSlot);
         }
         
         private void OnDestroy()

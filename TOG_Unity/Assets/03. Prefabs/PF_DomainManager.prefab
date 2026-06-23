@@ -20,8 +20,9 @@ GameObject:
   - component: {fileID: 7890823130175476279}
   - component: {fileID: 3522280902697144016}
   - component: {fileID: 836590661421698260}
-  - component: {fileID: 7353947813304814526}
+  - component: {fileID: 4880444273205225551}
   - component: {fileID: 1207552728969784614}
+  - component: {fileID: 7353947813304814526}
   - component: {fileID: 1695937485330053346}
   m_Layer: 0
   m_Name: PF_DomainManager
@@ -239,6 +240,35 @@ MonoBehaviour:
   cardInvenSystem: {fileID: 0}
   cardInvenEventSystem: {fileID: 0}
   cardInfoDomain: {fileID: 0}
+--- !u!114 &4880444273205225551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18aaf76c8ee4be8a248e837969a29a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftmanBubbleView: {fileID: 0}
+  speechBubbleSystem: {fileID: 0}
+--- !u!114 &1207552728969784614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d95a97630d4a97a7df4a66989a30ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invenView: {fileID: 0}
+  resultInvenSystem: {fileID: 0}
+  craftmanInvenSystem: {fileID: 0}
 --- !u!114 &7353947813304814526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,20 +288,6 @@ MonoBehaviour:
   gachaEventSystem: {fileID: 0}
   cardInfoDomain: {fileID: 0}
   compactInvenDomain: {fileID: 0}
---- !u!114 &1207552728969784614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6674045155352673939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d95a97630d4a97a7df4a66989a30ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invenView: {fileID: 0}
-  resultInvenSystem: {fileID: 0}
 --- !u!114 &1695937485330053346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,3 +305,4 @@ MonoBehaviour:
   craftmanSystem: {fileID: 0}
   forgeSystem: {fileID: 0}
   compactInvenDomain: {fileID: 0}
+  speechBubbleDomain: {fileID: 0}

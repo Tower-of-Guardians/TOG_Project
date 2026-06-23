@@ -1,0 +1,11 @@
+﻿rowID,triggerType,lines,isEnable
+Craftman_0,OpenCraftmanView,"어떤 카드를 강화해줄까?",TRUE
+Craftman_1,SelectedCraftmanSlot,"이 카드로 괜찮겠어?",TRUE
+Craftman_2,CompletedUpgradeCard,"좀 더 강력해졌을거야.\n열심히해.",TRUE
+
+Merchant_0,OpenMerchantView,"OpenMerchantView",TRUE
+Merchant_1,PurchasedCard,"PurchasedCard",TRUE
+Merchant_2,PurchasedHpPotion,"PurchasedHpPotion",TRUE
+Merchant_3,ClickedSellCard,"ClickedSellCard",TRUE
+Merchant_4,SelectedMerchantSlot,"SelectedMerchantSlot1|SelectedMerchantSlot2",TRUE
+Merchant_5,CompletedSellCards,"CompletedSellCards",TRUE

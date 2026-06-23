@@ -18,6 +18,7 @@ namespace Jongmin
         [SerializeField] private ResultDomain resultDomain;
         [SerializeField] private CompactInvenDomain compactInvenDomain;
         [SerializeField] private CraftmanDomain craftmanDomain;
+        [SerializeField] private SpeechBubbleDomain speechBubbleDomain;
         
         public void Inject()
         {
@@ -44,6 +45,7 @@ namespace Jongmin
             resultDomain.Construct();
             compactInvenDomain.Construct();
             craftmanDomain.Construct();
+            speechBubbleDomain.Construct();
             
             DIContainer.Register<CardDropSystem>(dropSystem);
             DIContainer.Register<HandDomain>(handDomain);
@@ -59,6 +61,7 @@ namespace Jongmin
             DIContainer.Register<ResultDomain>(resultDomain);
             DIContainer.Register<CompactInvenDomain>(compactInvenDomain);
             DIContainer.Register<CraftmanDomain>(craftmanDomain);
+            DIContainer.Register<SpeechBubbleDomain>(speechBubbleDomain);
         }
     }
 }
