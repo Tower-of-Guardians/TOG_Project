@@ -16,7 +16,7 @@ MonoBehaviour:
   isEnable: 1
   triggerType: 23
   lines:
-  - ClickedSellCard
+  - "\uACF5\uC9DC\uB294 \uC548 \uB41C\uB2E4."
 --- !u!114 &-5076515097198068777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,8 +33,7 @@ MonoBehaviour:
   isEnable: 1
   triggerType: 24
   lines:
-  - SelectedMerchantSlot1
-  - SelectedMerchantSlot2
+  - "3\uAC1C\uAE4C\uC9C0 \uAD6C\uB9E4\uD558\uACA0\uB2E4."
 --- !u!114 &-4257126202849453027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,7 +50,7 @@ MonoBehaviour:
   isEnable: 1
   triggerType: 20
   lines:
-  - OpenMerchantView
+  - "\uBC18\uAC11\uB2E4, \uC778\uAC04."
 --- !u!114 &-3056814125730427070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +67,8 @@ MonoBehaviour:
   isEnable: 1
   triggerType: 25
   lines:
-  - CompletedSellCards
+  - "\uC804\uBD80 \uD569\uD574\uC11C {0}\uACE8\uB4DC\uC5D0 \uC0B0\uB2E4."
+  - "\uADF8\uAC78\uB85C\uB294 \uB3C8\uC744 \uC904 \uC218 \uC5C6\uB2E4."
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +94,7 @@ MonoBehaviour:
   - {fileID: -6242820065603484254}
   - {fileID: -5076515097198068777}
   - {fileID: -3056814125730427070}
+  - {fileID: 2477454367228055850}
   dataTableRowScript: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
 --- !u!114 &1700297609950673736
 MonoBehaviour:
@@ -111,7 +112,24 @@ MonoBehaviour:
   isEnable: 1
   triggerType: 11
   lines:
-  - "\uC774 \uCE74\uB4DC\uB85C \uAD1C\uCC2E\uACA0\uC5B4?"
+  - "\uADF8\uB798, \uC774 \uCE74\uB4DC\uB97C \uC5B4\uB5BB\uAC8C \uD560\uAE4C?"
+--- !u!114 &2477454367228055850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+  m_Name: Merchant_6
+  m_EditorClassIdentifier: 
+  rowID: Merchant_6
+  isEnable: 1
+  triggerType: 26
+  lines:
+  - "\uB610 \uBCF4\uC790, \uC778\uAC04."
 --- !u!114 &6055389997542188717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +146,7 @@ MonoBehaviour:
   isEnable: 1
   triggerType: 22
   lines:
-  - PurchasedHpPotion
+  - "\uB9C8\uC154\uB77C!"
 --- !u!114 &6104663588209639075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +163,9 @@ MonoBehaviour:
   isEnable: 1
   triggerType: 12
   lines:
-  - "\uC880 \uB354 \uAC15\uB825\uD574\uC84C\uC744\uAC70\uC57C.\n\uC5F4\uC2EC\uD788\uD574."
+  - "\uC880 \uB354 \uAC15\uB825\uD574\uC84C\uC744 \uAC70\uC57C\n\uC5F4\uC2EC\uD788
+    \uD574."
+  - "\uC5B4\uB54C, \uC880 \uB9C8\uC74C\uC5D0 \uB4DC\uB098? \uD558\uD56B."
 --- !u!114 &7172099535178826784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +182,9 @@ MonoBehaviour:
   isEnable: 1
   triggerType: 21
   lines:
-  - PurchasedCard
+  - "\uB354 \uC0AC\uB77C, \uC778\uAC04!"
+  - "\uADF8 \uC606\uC5D0 \uC788\uB294 \uAC83\uB3C4 \uC0AC\uB77C."
+  - "\uD0A4\uD788\uD788!"
 --- !u!114 &7885802541309988204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,4 +201,4 @@ MonoBehaviour:
   isEnable: 1
   triggerType: 10
   lines:
-  - "\uC5B4\uB5A4 \uCE74\uB4DC\uB97C \uAC15\uD654\uD574\uC904\uAE4C?"
+  - "\uC5B4\uB5A4 \uAC78 \uAC15\uD654\uD574\uC904\uAE4C?"
