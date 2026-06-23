@@ -14,7 +14,7 @@ public static class EventNPCFactory
         EventNpc npc = eventID switch
         {
             "event_shop" => PrefabManager.CachePrefab<EventMerchantNpc>(),
-            "event_reinforcement" => PrefabManager.CachePrefab<EventCraftmanNpc>(),
+            //"event_reinforcement" => PrefabManager.CachePrefab<EventCraftmanNpc>(),
             _ => null,
         };
         

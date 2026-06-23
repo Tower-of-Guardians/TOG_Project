@@ -1,0 +1,5 @@
+﻿rowID,stage,growthAtk,growthBoth,growthDef,isEnable
+stage_01,1,4,2|3,6,TRUE
+stage_02,2,6,3|4,8,TRUE
+stage_03,3,8,4|5,10,TRUE
+stage_04,4,10,5|6,12,TRUE

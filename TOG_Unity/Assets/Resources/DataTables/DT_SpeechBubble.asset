@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6242820065603484254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+  m_Name: Merchant_3
+  m_EditorClassIdentifier: 
+  rowID: Merchant_3
+  isEnable: 1
+  triggerType: 23
+  lines:
+  - ClickedSellCard
+--- !u!114 &-5076515097198068777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+  m_Name: Merchant_4
+  m_EditorClassIdentifier: 
+  rowID: Merchant_4
+  isEnable: 1
+  triggerType: 24
+  lines:
+  - SelectedMerchantSlot1
+  - SelectedMerchantSlot2
+--- !u!114 &-4257126202849453027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+  m_Name: Merchant_0
+  m_EditorClassIdentifier: 
+  rowID: Merchant_0
+  isEnable: 1
+  triggerType: 20
+  lines:
+  - OpenMerchantView
+--- !u!114 &-3056814125730427070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+  m_Name: Merchant_5
+  m_EditorClassIdentifier: 
+  rowID: Merchant_5
+  isEnable: 1
+  triggerType: 25
+  lines:
+  - CompletedSellCards
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
+  m_Name: DT_SpeechBubble
+  m_EditorClassIdentifier: 
+  dataTableCsv: {fileID: 4900000, guid: 302e3781a1b28404ab95f17f59a8acf5, type: 3}
+  dataTableRowName: Jongmin.SpeechBubbleDataTableRow, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  dataTableRows:
+  - {fileID: 7885802541309988204}
+  - {fileID: 1700297609950673736}
+  - {fileID: 6104663588209639075}
+  - {fileID: -4257126202849453027}
+  - {fileID: 7172099535178826784}
+  - {fileID: 6055389997542188717}
+  - {fileID: -6242820065603484254}
+  - {fileID: -5076515097198068777}
+  - {fileID: -3056814125730427070}
+  dataTableRowScript: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+--- !u!114 &1700297609950673736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+  m_Name: Craftman_1
+  m_EditorClassIdentifier: 
+  rowID: Craftman_1
+  isEnable: 1
+  triggerType: 11
+  lines:
+  - "\uC774 \uCE74\uB4DC\uB85C \uAD1C\uCC2E\uACA0\uC5B4?"
+--- !u!114 &6055389997542188717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+  m_Name: Merchant_2
+  m_EditorClassIdentifier: 
+  rowID: Merchant_2
+  isEnable: 1
+  triggerType: 22
+  lines:
+  - PurchasedHpPotion
+--- !u!114 &6104663588209639075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+  m_Name: Craftman_2
+  m_EditorClassIdentifier: 
+  rowID: Craftman_2
+  isEnable: 1
+  triggerType: 12
+  lines:
+  - "\uC880 \uB354 \uAC15\uB825\uD574\uC84C\uC744\uAC70\uC57C.\n\uC5F4\uC2EC\uD788\uD574."
+--- !u!114 &7172099535178826784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+  m_Name: Merchant_1
+  m_EditorClassIdentifier: 
+  rowID: Merchant_1
+  isEnable: 1
+  triggerType: 21
+  lines:
+  - PurchasedCard
+--- !u!114 &7885802541309988204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869f9f829d8c42e8ada3e7a0e059ba98, type: 3}
+  m_Name: Craftman_0
+  m_EditorClassIdentifier: 
+  rowID: Craftman_0
+  isEnable: 1
+  triggerType: 10
+  lines:
+  - "\uC5B4\uB5A4 \uCE74\uB4DC\uB97C \uAC15\uD654\uD574\uC904\uAE4C?"

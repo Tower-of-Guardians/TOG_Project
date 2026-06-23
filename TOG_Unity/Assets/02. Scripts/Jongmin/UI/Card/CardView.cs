@@ -13,8 +13,8 @@ namespace Jongmin
         [SerializeField] private Image cardItemImage;
         [SerializeField] private TMP_Text cardNameLabel;
         [SerializeField] private TMP_Text cardDescriptionLabel;
-        [SerializeField] protected TMP_Text cardAtkLabel;
-        [SerializeField] protected TMP_Text cardDefLabel;
+        [SerializeField] protected LabelView cardAtkLabel;
+        [SerializeField] protected LabelView cardDefLabel;
         [SerializeField] private Image[] starObjectArray;
         [SerializeField] private Image[] synergyImageArray;
         [SerializeField] private GameObject selectImage;
@@ -25,6 +25,9 @@ namespace Jongmin
 
         public RectTransform RectTransform { get; private set; }
         public CanvasGroup CanvasGroup => canvasGroup;
+        
+        public LabelView AtkLabel => cardAtkLabel;
+        public LabelView DefLabel => cardDefLabel;
 
         private void Awake()
         {
@@ -83,8 +86,8 @@ namespace Jongmin
 
             cardNameLabel.text = cardData.itemName;
             cardDescriptionLabel.text = cardData.effectDescription;
-            cardAtkLabel.text = $"{cardData.ATK}";
-            cardDefLabel.text = $"{cardData.DEF}";
+            cardAtkLabel.Label.text = $"{cardData.ATK}";
+            cardDefLabel.Label.text = $"{cardData.DEF}";
         }
 
         private void InitCardStars(CardData cardData)
