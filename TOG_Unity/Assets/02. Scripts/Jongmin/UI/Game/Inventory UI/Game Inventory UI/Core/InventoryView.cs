@@ -10,8 +10,6 @@ namespace Jongmin
         [SerializeField] private ButtonView toggleButton;
         [SerializeField] private TMP_Text titleLabel;
 
-        private Tween _toggleTween;
-
         public void Bind(InventorySystem system)
         {
             toggleButton.AddListener(system.ToggleView);
@@ -24,14 +22,12 @@ namespace Jongmin
 
         public void Show()
         {
-            _toggleTween?.Kill();
-            _toggleTween = CanvasGroup.DOFade(1f, 0.25f).OnComplete(CanvasGroup.Show);
+            CanvasGroup.Show();
         }
 
         public void Hide()
         {
-            _toggleTween?.Kill();
-            _toggleTween = CanvasGroup.DOFade(0f, 0.25f).OnComplete(CanvasGroup.Hide);
+            CanvasGroup.Hide();
         }
     }
 }

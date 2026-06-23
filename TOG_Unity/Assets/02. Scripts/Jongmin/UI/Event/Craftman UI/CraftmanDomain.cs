@@ -1,4 +1,5 @@
-﻿using JxModule;
+﻿using System;
+using JxModule;
 using JxModule.DataTable;
 using UnityEngine;
 
@@ -14,6 +15,14 @@ namespace Jongmin
         [SerializeField] private SpeechBubbleDomain speechBubbleDomain;
 
         private DataTable _forgeDataTable;
+
+        public void OnGUI()
+        {
+            if (GUI.Button(new Rect(new Vector2(1800, 100), new Vector2(100, 50)), "Smithy"))
+            {
+                OpenView();
+            }
+        }
 
         [Button("Test")]
         public void OpenView()

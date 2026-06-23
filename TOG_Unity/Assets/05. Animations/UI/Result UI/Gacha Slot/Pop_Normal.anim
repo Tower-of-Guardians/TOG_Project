@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pop_Rare
+  m_Name: Pop_Normal
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -32,7 +32,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 0.25
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -392,11 +392,11 @@ AnimationClip:
     - time: 0
       value: {fileID: 5155579351787168402, guid: 2bc038a9134cdb04f9111f7c48d098db, type: 3}
     - time: 0.25
-      value: {fileID: 7375975091637988377, guid: 7cdd3ed98d2bd2d4c8b644abfe2d360c, type: 3}
+      value: {fileID: 5155579351787168402, guid: 2bc038a9134cdb04f9111f7c48d098db, type: 3}
     - time: 0.33333334
-      value: {fileID: 2072376597143325253, guid: 7cdd3ed98d2bd2d4c8b644abfe2d360c, type: 3}
+      value: {fileID: -1090048369180485114, guid: 2bc038a9134cdb04f9111f7c48d098db, type: 3}
     - time: 0.41666666
-      value: {fileID: -6932408640767353535, guid: 7cdd3ed98d2bd2d4c8b644abfe2d360c, type: 3}
+      value: {fileID: -7995965296527426805, guid: 2bc038a9134cdb04f9111f7c48d098db, type: 3}
     attribute: m_Sprite
     path: Begin Group/Fragment Image
     classID: 114
@@ -528,9 +528,9 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: 5155579351787168402, guid: 2bc038a9134cdb04f9111f7c48d098db, type: 3}
-    - {fileID: 7375975091637988377, guid: 7cdd3ed98d2bd2d4c8b644abfe2d360c, type: 3}
-    - {fileID: 2072376597143325253, guid: 7cdd3ed98d2bd2d4c8b644abfe2d360c, type: 3}
-    - {fileID: -6932408640767353535, guid: 7cdd3ed98d2bd2d4c8b644abfe2d360c, type: 3}
+    - {fileID: 5155579351787168402, guid: 2bc038a9134cdb04f9111f7c48d098db, type: 3}
+    - {fileID: -1090048369180485114, guid: 2bc038a9134cdb04f9111f7c48d098db, type: 3}
+    - {fileID: -7995965296527426805, guid: 2bc038a9134cdb04f9111f7c48d098db, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -567,7 +567,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 0.25
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103

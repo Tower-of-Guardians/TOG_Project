@@ -80,6 +80,7 @@ namespace Jongmin
             switch (Card.CardData.grade)
             {
                 case 1:
+                    animator.SetTrigger("Pop_Normal");
                     break;
                 
                 case 2:
