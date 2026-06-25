@@ -2714,6 +2714,15 @@ MonoBehaviour:
   - effectId: Effect_Hit3
     prefab: {fileID: 5974984341828265736, guid: e777d5c8b3a13904bab4fdc248f285b8, type: 3}
     effectType: 0
+  - effectId: Effect_Attack1
+    prefab: {fileID: 5974984341828265736, guid: ae5b2767d576a1e4ba2205b1a99d256e, type: 3}
+    effectType: 0
+  - effectId: Effect_Attack2
+    prefab: {fileID: 5974984341828265736, guid: f6c4ec038148f1d4eb68a19fb41a37cc, type: 3}
+    effectType: 0
+  - effectId: Effect_Attack3
+    prefab: {fileID: 5974984341828265736, guid: b558d1fbf002ec547be029380bd768fe, type: 3}
+    effectType: 0
   - effectId: Effect_LifeDrain
     prefab: {fileID: 6720001741172940176, guid: 5d6d4c1bfef70374d968b1bc4d675f9a, type: 3}
     effectType: 3

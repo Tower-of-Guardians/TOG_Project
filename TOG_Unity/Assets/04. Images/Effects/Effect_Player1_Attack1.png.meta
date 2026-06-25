@@ -1,13 +1,64 @@
 fileFormatVersion: 2
-guid: 3591d2afce6919b49bb71ac3e29d252d
+guid: 00db5335742b3ea4288051e0d1915563
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7784379807498999907
-    second: Player1_Attack3_0
+      213: -5543982892388745001
+    second: Effect_Player1_Attack1_0
   - first:
-      213: 353495586391190097
-    second: Player1_Attack3_1
+      213: 5979160812425322088
+    second: Effect_Player1_Attack1_1
+  - first:
+      213: -2077037811964342733
+    second: Effect_Player1_Attack1_2
+  - first:
+      213: -1708749143172476722
+    second: Effect_Player1_Attack1_3
+  - first:
+      213: 955622432536027479
+    second: Effect_Player1_Attack1_4
+  - first:
+      213: -4893283625820282608
+    second: Effect_Player1_Attack1_5
+  - first:
+      213: 6209517259834336512
+    second: Effect_Player1_Attack1_6
+  - first:
+      213: 3310518129428366462
+    second: Effect_Player1_Attack1_7
+  - first:
+      213: -7356971204716884489
+    second: Effect_Player1_Attack1_8
+  - first:
+      213: 5074005838084637079
+    second: Effect_Player1_Attack1_9
+  - first:
+      213: 155264454675846939
+    second: Effect_Player1_Attack1_10
+  - first:
+      213: 183713982548148655
+    second: Effect_Player1_Attack1_11
+  - first:
+      213: 4787512617414419894
+    second: Effect_Player1_Attack1_12
+  - first:
+      213: -6479301906583499685
+    second: Effect_Player1_Attack1_13
+  - first:
+      213: 7892243426513576363
+    second: Effect_Player1_Attack1_14
+  - first:
+      213: 433355284541255063
+    second: Effect_Player1_Attack1_15
+  - first:
+      213: -1046824103702704536
+    second: Effect_Player1_Attack1_16
+  - first:
+      213: -5029633364619986007
+    second: Effect_Player1_Attack1_17
+  - first:
+      213: 4857418853499778742
+    second: Effect_Player1_Attack1_18
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,45 +154,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player1_Attack3_0
+      name: Effect_Player1_Attack1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 792
+        width: 288
         height: 288
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d976c49fec358f390800000000000000
-      internalID: -7784379807498999907
+      spriteID: 7d08352cee0df03b0800000000000000
+      internalID: -5543982892388745001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player1_Attack3_1
+      name: Effect_Player1_Attack1_1
       rect:
         serializedVersion: 2
-        x: 792
+        x: 288
         y: 0
-        width: 792
+        width: 288
         height: 288
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 15ae388ec5ed7e400800000000000000
-      internalID: 353495586391190097
+      spriteID: 86e1c87741f3af250800000000000000
+      internalID: 5979160812425322088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Player1_Attack1_2
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 288
+        height: 288
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33e8fc85d11ec23e0800000000000000
+      internalID: -2077037811964342733
       vertices: []
       indices: 
       edges: []
@@ -150,7 +223,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e8a923590957b4a408dc5c9816aff0b0
+    spriteID: 423d051f225fe4e46a55e1b919e1b2fc
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +233,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Player1_Attack3_0: -7784379807498999907
-      Player1_Attack3_1: 353495586391190097
+      Effect_Player1_Attack1_0: -5543982892388745001
+      Effect_Player1_Attack1_1: 5979160812425322088
+      Effect_Player1_Attack1_2: -2077037811964342733
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

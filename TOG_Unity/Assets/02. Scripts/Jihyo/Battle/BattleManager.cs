@@ -215,21 +215,20 @@ public class BattleManager : MonoBehaviour
 
         int currentAttack = combatController.GetPreparedAttackValue();
 
-        // 플레이어 강화 애니메이션 재생
-        if (initResult.playerAnimation != null)
-        {
-            yield return combatController.PlayEnforceAnimation(initResult.playerAnimation, currentAttack);
-        }
-
-        // 플레이어 방어력 이펙트 적용
-        yield return combatController.ApplyDefenseEffect(initResult.player);
+        yield return combatController.PlayPreAttackSetupPhase(
+            initResult.player,
+            initResult.playerAnimation,
+            currentAttack
+        );
 
         // 플레이어를 공격 위치로 이동
         bool playerAttackHitsAll = combatController.GetPlayerAttackHitsAll();
         yield return combatController.MovePlayerToAttackPosition(
-            initResult.player, 
-            initResult.attackAnchorPosition, 
-            playerAttackHitsAll
+            initResult.player,
+            initResult.playerAnimation,
+            initResult.attackAnchorPosition,
+            playerAttackHitsAll,
+            currentAttack
         );
 
         // 플레이어 공격 트리거 및 데미지 적용

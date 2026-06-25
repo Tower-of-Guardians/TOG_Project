@@ -13,18 +13,23 @@ public class PlayerAnimation : MonoBehaviour
     private static readonly int Attack3Hash = Animator.StringToHash("Attack3");
     private static readonly int HitHash = Animator.StringToHash("Hit");
     private static readonly int DeadHash = Animator.StringToHash("Dead");
+    private static readonly int SetPositionHash = Animator.StringToHash("SetPosition");
 
     [Header("Animation State Names")]
     [SerializeField] private string attack1StateName = "Player1_Attack1";
     [SerializeField] private string attack2StateName = "Player1_Attack2";
     [SerializeField] private string attack3StateName = "Player1_Attack3";
+    [SerializeField] private string attack1EnforceStateName = "Player1_Attack1_Enforce";
     [SerializeField] private string attack2EnforceStateName = "Player1_Attack2_Enforce";
     [SerializeField] private string attack3EnforceStateName = "Player1_Attack3_Enforce";
-    [SerializeField] private string attack2IdleStateName = "Player1_Attack2_Idle";
-    [SerializeField] private string attack3IdleStateName = "Player1_Attack3_Idle";
+    [SerializeField] private string attack1MoveStateName = "Player1_Attack1_Move";
+    [SerializeField] private string attack2MoveStateName = "Player1_Attack2_Move";
+    [SerializeField] private string attack3MoveStateName = "Player1_Attack3_Move";
 
     [Header("Animation Settings")]
-    [SerializeField] private float attackMotionDuration = 0.3f;
+    [SerializeField] private float fallbackMotionDuration = 0.3f;
+    [SerializeField] private float attackEffectDelay = 0.08f;
+    [SerializeField] private float attackDamageDelay = 0.08f;
 
     [Header("Attack Thresholds")]
     [SerializeField] private int lightAttack = 10;
@@ -72,6 +77,14 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+    public void TriggerSetPosition()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger(SetPositionHash);
+        }
+    }
+
     public void PlayHitAnimation()
     {
         if (animator != null)
@@ -97,49 +110,85 @@ public class PlayerAnimation : MonoBehaviour
             animator.ResetTrigger(Attack2Hash);
             animator.ResetTrigger(Attack3Hash);
             animator.ResetTrigger(HitHash);
+            animator.ResetTrigger(SetPositionHash);
         }
     }
 
     public IEnumerator WaitForEnforceAnimationComplete(int attackValue)
     {
-        // 연출시간 1초 대기(하드코딩)
-        yield return new WaitForSeconds(1.0f);
+        yield return WaitForStateComplete(GetEnforceStateName(attackValue));
+    }
+
+    public IEnumerator WaitUntilMoveState(int attackValue)
+    {
+        yield return WaitUntilState(GetMoveStateName(attackValue));
+    }
+
+    public IEnumerator WaitUntilAttackState(int attackValue)
+    {
+        yield return WaitUntilState(GetAttackStateName(attackValue));
+    }
+
+    public float GetAttackEffectDelay()
+    {
+        return attackEffectDelay;
+    }
+
+    public float GetAttackDamageDelay()
+    {
+        return attackDamageDelay;
     }
 
     public IEnumerator WaitForAttackAnimationComplete(int attackValue)
     {
-        string stateName = GetAttackStateName(attackValue);
+        yield return WaitForCurrentStateFinish(GetAttackStateName(attackValue));
+    }
 
+    private IEnumerator WaitUntilState(string stateName)
+    {
         if (animator == null || string.IsNullOrEmpty(stateName))
         {
-            if (attackMotionDuration > 0f)
-            {
-                yield return new WaitForSeconds(attackMotionDuration);
-            }
             yield break;
         }
 
-        int attackStateHash = Animator.StringToHash(stateName);
+        int stateHash = Animator.StringToHash(stateName);
 
-        // Attack 상태로 전환될 때까지 대기
         while (true)
         {
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-            if (stateInfo.shortNameHash == attackStateHash)
+            if (stateInfo.shortNameHash == stateHash)
             {
                 break;
             }
 
             yield return null;
         }
+    }
 
-        // Attack 상태가 끝날 때까지 대기
+    private IEnumerator WaitForStateComplete(string stateName)
+    {
+        yield return WaitUntilState(stateName);
+        yield return WaitForCurrentStateFinish(stateName);
+    }
+
+    private IEnumerator WaitForCurrentStateFinish(string stateName)
+    {
+        if (animator == null || string.IsNullOrEmpty(stateName))
+        {
+            if (fallbackMotionDuration > 0f)
+            {
+                yield return new WaitForSeconds(fallbackMotionDuration);
+            }
+
+            yield break;
+        }
+
+        int stateHash = Animator.StringToHash(stateName);
+
         while (true)
         {
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-            if (stateInfo.shortNameHash != attackStateHash)
+            if (stateInfo.shortNameHash != stateHash)
             {
                 break;
             }
@@ -171,25 +220,31 @@ public class PlayerAnimation : MonoBehaviour
 
     private string GetEnforceStateName(int attackValue)
     {
+        if (attackValue < lightAttack)
+        {
+            return attack1EnforceStateName;
+        }
+
         if (attackValue < normalAttack)
         {
             return attack2EnforceStateName;
         }
-        else
-        {
-            return attack3EnforceStateName;
-        }
+
+        return attack3EnforceStateName;
     }
 
-    private string GetIdleStateName(int attackValue)
+    private string GetMoveStateName(int attackValue)
     {
+        if (attackValue < lightAttack)
+        {
+            return attack1MoveStateName;
+        }
+
         if (attackValue < normalAttack)
         {
-            return attack2IdleStateName;
+            return attack2MoveStateName;
         }
-        else
-        {
-            return attack3IdleStateName;
-        }
+
+        return attack3MoveStateName;
     }
 }

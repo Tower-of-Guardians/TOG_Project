@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 3591d2afce6919b49bb71ac3e29d252d
+guid: bda0d619e2c0e4841a51039438206ee4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7784379807498999907
-    second: Player1_Attack3_0
-  - first:
-      213: 353495586391190097
-    second: Player1_Attack3_1
+      213: -8232095827344801060
+    second: Player1_Move2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,45 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player1_Attack3_0
+      name: Player1_Move2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 792
+        width: 336
         height: 288
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d976c49fec358f390800000000000000
-      internalID: -7784379807498999907
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player1_Attack3_1
-      rect:
-        serializedVersion: 2
-        x: 792
-        y: 0
-        width: 792
-        height: 288
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 15ae388ec5ed7e400800000000000000
-      internalID: 353495586391190097
+      spriteID: cd24326e578b1cd80800000000000000
+      internalID: -8232095827344801060
       vertices: []
       indices: 
       edges: []
@@ -150,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e8a923590957b4a408dc5c9816aff0b0
+    spriteID: d003d63ddfbd68a4cb4a02c3f69c2eda
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Player1_Attack3_0: -7784379807498999907
-      Player1_Attack3_1: 353495586391190097
+      Player1_Move2_0: -8232095827344801060
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

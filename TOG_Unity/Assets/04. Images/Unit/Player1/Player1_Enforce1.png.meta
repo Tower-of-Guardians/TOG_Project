@@ -1,13 +1,25 @@
 fileFormatVersion: 2
-guid: 3591d2afce6919b49bb71ac3e29d252d
+guid: 26425d120dc4db1499f4273b949c0224
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7784379807498999907
-    second: Player1_Attack3_0
+      213: 3142523607493598276
+    second: Player1_Enhance1_0
   - first:
-      213: 353495586391190097
-    second: Player1_Attack3_1
+      213: -2126758950891422208
+    second: Player1_Enhance1_1
+  - first:
+      213: 8333325147948930857
+    second: Player1_Enhance1_2
+  - first:
+      213: -8646754533990834233
+    second: Player1_Enhance1_3
+  - first:
+      213: -6049975860608494163
+    second: Player1_Enhance1_4
+  - first:
+      213: -5339215697982588924
+    second: Player1_Enhance1_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,45 +115,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player1_Attack3_0
+      name: Player1_Enforce1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 792
+        y: 288
+        width: 336
         height: 288
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d976c49fec358f390800000000000000
-      internalID: -7784379807498999907
+      spriteID: 5a0d152dd7cc74840882294d2c0b6a33
+      internalID: -241735746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player1_Attack3_1
+      name: Player1_Enforce1_1
       rect:
         serializedVersion: 2
-        x: 792
-        y: 0
-        width: 792
+        x: 336
+        y: 288
+        width: 336
         height: 288
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 15ae388ec5ed7e400800000000000000
-      internalID: 353495586391190097
+      spriteID: a6c2b2d8d11c90d4f8ce61fefd7c1ed3
+      internalID: -1025147245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_Enforce1_2
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 288
+        width: 336
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7481365f38278944b8a315ac35a2bb33
+      internalID: 2127055428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_Enforce1_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 336
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9145fa9a5ae94ee458136911dfe90ab4
+      internalID: -1917464740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_Enforce1_4
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 336
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58991d34f4db25141ac4c483b2b24e7d
+      internalID: -1725090432
       vertices: []
       indices: 
       edges: []
@@ -150,7 +228,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e8a923590957b4a408dc5c9816aff0b0
+    spriteID: 438dcc3e3be77f34fa9f9d09c8d24c4e
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +238,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Player1_Attack3_0: -7784379807498999907
-      Player1_Attack3_1: 353495586391190097
+      Player1_Enforce1_0: -241735746
+      Player1_Enforce1_1: -1025147245
+      Player1_Enforce1_2: 2127055428
+      Player1_Enforce1_3: -1917464740
+      Player1_Enforce1_4: -1725090432
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

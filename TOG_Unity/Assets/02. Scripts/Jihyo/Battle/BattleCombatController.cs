@@ -190,6 +190,25 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     }
 
     /// <summary>
+    /// 방어 카드가 있으면 방어도 적용 및 방어 모션 후, Enforce 애니메이션을 재생합니다.
+    /// </summary>
+    public IEnumerator PlayPreAttackSetupPhase(
+        Player player,
+        PlayerAnimation playerAnimation,
+        int attackValue)
+    {
+        if (player != null && player.HasDefenseCardsOnField())
+        {
+            yield return player.ApplyDefenseStatsWithEffect();
+        }
+
+        if (playerAnimation != null)
+        {
+            yield return PlayEnforceAnimation(playerAnimation, attackValue);
+        }
+    }
+
+    /// <summary>
     /// 플레이어 강화 애니메이션 재생
     /// </summary>
     public IEnumerator PlayEnforceAnimation(PlayerAnimation playerAnimation, int attackValue)
@@ -210,33 +229,56 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     }
 
     /// <summary>
-    /// 플레이어를 공격 위치로 이동
+    /// Move 애니메이션 상태와 함께 공격 위치로 이동
     /// </summary>
-    public IEnumerator MovePlayerToAttackPosition(Player player, Vector3? attackAnchorPosition, bool isAreaAttack)
+    public IEnumerator MovePlayerToAttackPosition(
+        Player player,
+        PlayerAnimation playerAnimation,
+        Vector3? attackAnchorPosition,
+        bool isAreaAttack,
+        int attackValue)
     {
-        if (player == null) yield break;
+        if (player == null)
+        {
+            yield break;
+        }
+
+        if (playerAnimation != null)
+        {
+            yield return playerAnimation.WaitUntilMoveState(attackValue);
+        }
+
         yield return player.MoveToAttackPosition(attackAnchorPosition, isAreaAttack);
     }
 
     /// <summary>
-    /// 플레이어 공격 트리거 및 데미지 적용
+    /// 플레이어 Attack 애니메이션 재생 및 데미지 적용
     /// </summary>
     public IEnumerator ExecutePlayerAttack(Player player, PlayerAnimation playerAnimation, 
         int currentAttack, List<IDamageable> targets)
     {
         if (player == null || targets == null) yield break;
 
-        // Attack 트리거 발동
         if (playerAnimation != null)
         {
             playerAnimation.TriggerAttack();
+
+            float effectDelay = playerAnimation.GetAttackEffectDelay();
+            if (effectDelay > 0f)
+            {
+                yield return new WaitForSeconds(effectDelay);
+            }
+
+            AttackEffectSpawner.SpawnOnTargets(currentAttack, targets);
+
+            yield return playerAnimation.WaitUntilAttackState(currentAttack);
+            yield return new WaitForSeconds(playerAnimation.GetAttackDamageDelay());
+        }
+        else
+        {
+            AttackEffectSpawner.SpawnOnTargets(currentAttack, targets);
         }
 
-        // 공격 애니메이션 대기 후 데미지 적용
-        float waitTime = currentAttack < 10 ? 1.0f : 0.8f;
-        yield return new WaitForSeconds(waitTime);
-
-        // 데미지 적용
         int totalDealtDamage = 0;
         foreach (IDamageable target in targets)
         {
@@ -250,19 +292,16 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
         ApplyOnHitSynergies(player, totalDealtDamage);
 
-        // 공격 애니메이션 완료 대기
         if (playerAnimation != null)
         {
             yield return playerAnimation.WaitForAttackAnimationComplete(currentAttack);
         }
 
-        // 0.5초 대기 후 제자리로 복귀
-        yield return new WaitForSeconds(0.5f);
         yield return player.ReturnToOriginalPosition();
 
-        // 애니메이션 종료 후 트리거 취소하여 BaseLayer로 복귀
         if (playerAnimation != null)
         {
+            yield return null;
             playerAnimation.ResetAnimationState();
         }
     }

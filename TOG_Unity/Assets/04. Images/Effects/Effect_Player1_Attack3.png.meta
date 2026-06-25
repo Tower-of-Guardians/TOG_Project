@@ -1,0 +1,396 @@
+fileFormatVersion: 2
+guid: b9882fb03533b7a48bb50fe74c44f888
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4559271325356409662
+    second: Effect_PlayerAttack3_0
+  - first:
+      213: -5669855128101887163
+    second: Effect_PlayerAttack3_1
+  - first:
+      213: 5340313656413233320
+    second: Effect_PlayerAttack3_2
+  - first:
+      213: -8083281759361150042
+    second: Effect_PlayerAttack3_3
+  - first:
+      213: -2287608202570346729
+    second: Effect_PlayerAttack3_4
+  - first:
+      213: 8810939366735716768
+    second: Effect_PlayerAttack3_5
+  - first:
+      213: -8090246540976095392
+    second: Effect_PlayerAttack3_6
+  - first:
+      213: -6477888074756826259
+    second: Effect_PlayerAttack3_7
+  - first:
+      213: 5187221450453696908
+    second: Effect_PlayerAttack3_8
+  - first:
+      213: 3637519009921798672
+    second: Effect_PlayerAttack3_9
+  - first:
+      213: 6642472922155821277
+    second: Effect_PlayerAttack3_10
+  - first:
+      213: -2853445449997719167
+    second: Effect_PlayerAttack3_11
+  - first:
+      213: -5138331443340459242
+    second: Effect_PlayerAttack3_12
+  - first:
+      213: -9013604244166075794
+    second: Effect_PlayerAttack3_13
+  - first:
+      213: -413431556127300043
+    second: Effect_PlayerAttack3_14
+  - first:
+      213: -2438069184137860692
+    second: Effect_PlayerAttack3_15
+  - first:
+      213: -1725961971978069986
+    second: Effect_PlayerAttack3_16
+  - first:
+      213: 5275568113920366754
+    second: Effect_PlayerAttack3_17
+  - first:
+      213: 3978779423507822734
+    second: Effect_PlayerAttack3_18
+  - first:
+      213: -4805646663580245332
+    second: Effect_PlayerAttack3_19
+  - first:
+      213: 8216570437061264073
+    second: Effect_PlayerAttack3_20
+  - first:
+      213: 3457646622780701197
+    second: Effect_PlayerAttack3_21
+  - first:
+      213: 486960191589448681
+    second: Effect_PlayerAttack3_22
+  - first:
+      213: 8551837401283860683
+    second: Effect_PlayerAttack3_23
+  - first:
+      213: 9028183061607115694
+    second: Effect_PlayerAttack3_24
+  - first:
+      213: 6198577884549661000
+    second: Effect_PlayerAttack3_25
+  - first:
+      213: -6506375182114245277
+    second: Effect_PlayerAttack3_26
+  - first:
+      213: 4429243392286049235
+    second: Effect_PlayerAttack3_27
+  - first:
+      213: -7632193675853213162
+    second: Effect_PlayerAttack3_28
+  - first:
+      213: -7007346934621910218
+    second: Effect_PlayerAttack3_29
+  - first:
+      213: 5120071041539744399
+    second: Effect_PlayerAttack3_30
+  - first:
+      213: -8671968222432029627
+    second: Effect_PlayerAttack3_31
+  - first:
+      213: -571763059459164698
+    second: Effect_PlayerAttack3_32
+  - first:
+      213: -4971955134208042826
+    second: Effect_PlayerAttack3_33
+  - first:
+      213: 2310166266136358832
+    second: Effect_PlayerAttack3_34
+  - first:
+      213: 2016620059356438024
+    second: Effect_PlayerAttack3_35
+  - first:
+      213: 2371551766722076957
+    second: Effect_PlayerAttack3_36
+  - first:
+      213: 2811150636224757412
+    second: Effect_PlayerAttack3_37
+  - first:
+      213: -8601770939074007848
+    second: Effect_PlayerAttack3_38
+  - first:
+      213: -5404850196066657103
+    second: Effect_PlayerAttack3_39
+  - first:
+      213: -681650690135000584
+    second: Effect_PlayerAttack3_40
+  - first:
+      213: -3307428659670462121
+    second: Effect_PlayerAttack3_41
+  - first:
+      213: -7613896230364743725
+    second: Effect_PlayerAttack3_42
+  - first:
+      213: -7567746825099526593
+    second: Effect_PlayerAttack3_43
+  - first:
+      213: -6320104311857104736
+    second: Effect_PlayerAttack3_44
+  - first:
+      213: -7338910418961253929
+    second: Effect_PlayerAttack3_45
+  - first:
+      213: -1075464894973869946
+    second: Effect_PlayerAttack3_46
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_Player1_Attack3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 492
+        height: 288
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 403baeb2af46c54478556341d6283dd1
+      internalID: -590155568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Player1_Attack3_1
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 288
+        width: 492
+        height: 288
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 938943eeb7c11c542963331412d45958
+      internalID: 1961338405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Player1_Attack3_2
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 288
+        width: 492
+        height: 288
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ae381db2b1f58244bb6ccb22044b487
+      internalID: 178693029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Player1_Attack3_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 492
+        height: 288
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58d0a9d9973c14e459d3b2276c11e572
+      internalID: 1598751663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Player1_Attack3_4
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 0
+        width: 492
+        height: 288
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced9f6f29cd8a1245ba76807a3697534
+      internalID: -1530471026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Player1_Attack3_5
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 0
+        width: 492
+        height: 288
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daab2dd40f7323d4faab039cdf2d3cc8
+      internalID: -1180232385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 24a5e85499a82564093c893177786b3f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Effect_Player1_Attack3_0: -590155568
+      Effect_Player1_Attack3_1: 1961338405
+      Effect_Player1_Attack3_2: 178693029
+      Effect_Player1_Attack3_3: 1598751663
+      Effect_Player1_Attack3_4: -1530471026
+      Effect_Player1_Attack3_5: -1180232385
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

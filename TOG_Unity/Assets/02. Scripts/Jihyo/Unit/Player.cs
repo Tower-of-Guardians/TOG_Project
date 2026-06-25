@@ -152,12 +152,23 @@ public class Player : BaseUnit
 
     public IEnumerator PerformAttack(IEnumerable<IDamageable> targets, bool isAreaAttack = false, Vector3? primaryTargetWorldPosition = null)
     {
-        // 공격 전 카드 스탯 업데이트
         UpdateCardStats();
-        
         CacheSpriteOrigin();
 
-       
+        int currentAttack = AttackValue;
+
+        if (HasDefenseCardsOnField())
+        {
+            yield return ApplyDefenseStatsWithEffect();
+        }
+
+        if (playerAnimation != null)
+        {
+            playerAnimation.TriggerAttackByValue(currentAttack);
+            yield return playerAnimation.WaitForEnforceAnimationComplete(currentAttack);
+            yield return playerAnimation.WaitUntilMoveState(currentAttack);
+        }
+
         Vector3 attackPosition = initialSpriteLocalPosition;
 
         if (isAreaAttack)
@@ -178,22 +189,28 @@ public class Player : BaseUnit
             attackPosition.x = initialSpriteLocalPosition.x - Mathf.Abs(singleTargetAttackOffset);
         }
 
-        // 공격 위치로 이동
         yield return StartCoroutine(MoveSpriteToPosition(attackPosition, attackMoveDuration));
 
-        // 현재 공격력 계산
-        int currentAttack = AttackValue;
-
-        // 공격 애니메이션 재생
         if (playerAnimation != null)
         {
-            playerAnimation.TriggerAttackByValue(currentAttack);
+            playerAnimation.TriggerAttack();
+
+            float effectDelay = playerAnimation.GetAttackEffectDelay();
+            if (effectDelay > 0f)
+            {
+                yield return new WaitForSeconds(effectDelay);
+            }
+
+            AttackEffectSpawner.SpawnOnTargets(currentAttack, targets);
+
+            yield return playerAnimation.WaitUntilAttackState(currentAttack);
+            yield return new WaitForSeconds(playerAnimation.GetAttackDamageDelay());
+        }
+        else if (targets != null)
+        {
+            AttackEffectSpawner.SpawnOnTargets(currentAttack, targets);
         }
 
-        // TODO: 공격 애니메이션 후 0.5초 대기 후 데미지 적용(하드코딩)
-        yield return new WaitForSeconds(0.5f);
-
-        // 공격 실행
         if (targets != null)
         {
             foreach (IDamageable target in targets)
@@ -204,17 +221,15 @@ public class Player : BaseUnit
                     int finalDamage = ApplyOutgoingStatusEffects(currentAttack, targetUnit);
                     target.TakeDamage(finalDamage);
                 }
-
             }
         }
 
-        // 공격 애니메이션이 끝날 때까지 대기
         if (playerAnimation != null)
         {
-            yield return StartCoroutine(playerAnimation.WaitForAttackAnimationComplete(currentAttack));
+            yield return playerAnimation.WaitForAttackAnimationComplete(currentAttack);
         }
 
-        yield return StartCoroutine(MoveSpriteToPosition(initialSpriteLocalPosition, attackMoveDuration));
+        yield return ReturnToOriginalPosition();
     }
 
     private IEnumerator MoveSpriteToPosition(Vector3 targetPosition, float duration)
@@ -294,6 +309,11 @@ public class Player : BaseUnit
     public IEnumerator ReturnToOriginalPosition()
     {
         yield return StartCoroutine(MoveSpriteToPosition(initialSpriteLocalPosition, attackMoveDuration));
+
+        if (playerAnimation != null)
+        {
+            playerAnimation.TriggerSetPosition();
+        }
     }
 
     public override void TakeDamage(int amount)
@@ -387,18 +407,24 @@ public class Player : BaseUnit
 
     public IEnumerator ApplyDefenseStatsWithEffect()
     {
-        if (GameData.Instance != null)
+        if (GameData.Instance == null)
         {
-            float fieldDefensePower = GameData.Instance.DefenseField();
-            
-            // 보호력 카드가 있는 경우에만 연출 실행
-            if (fieldDefensePower > 0)
-            {
-                StartCoroutine(ShowDefenseEffect());
-                ApplyDefenseStats();
-                yield return new WaitForSeconds(1.0f);
-            }
+            yield break;
         }
+
+        float fieldDefensePower = GameData.Instance.DefenseField();
+        if (fieldDefensePower <= 0f)
+        {
+            yield break;
+        }
+
+        ApplyDefenseStats();
+        yield return ShowDefenseEffect();
+    }
+
+    public bool HasDefenseCardsOnField()
+    {
+        return GameData.Instance != null && GameData.Instance.DefenseField() > 0f;
     }
     
     private void AnimateAttackText(int fromValue, int toValue)
