@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16ed3cc209ad87f4888d170a4c7f111e, type: 3}
-  m_Name: 1410001
+  m_Name: 1410005
   m_EditorClassIdentifier: 
-  Id: 1410001
-  Name: "\uD074\uB85C\uB2C8\uC5B4"
-  Section: 14
-  Gold: 150
-  Exp: 60
-  Mon1ID: 41002005
-  Mon2ID: 
+  Id: 1410005
+  Name: "\uADF8\uD50C"
+  Section: 12
+  Gold: 60
+  Exp: 28
+  Mon1ID: 41001001
+  Mon2ID: 41001002
   Mon3ID: 
   Mon4ID: 
-  Mon1XPosition: 5
-  Mon2XPosition: 0
+  Mon1XPosition: 2
+  Mon2XPosition: 5.5
   Mon3XPosition: 0
   Mon4XPosition: 0
   Mon1YPosition: 0

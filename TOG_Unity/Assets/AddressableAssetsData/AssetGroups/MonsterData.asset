@@ -21,6 +21,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - MonsterData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36b0aef91675f4a4b95a3f8895090842
+    m_Address: 41001006
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7aa74c0d13d44de409d7113aa7280493
+    m_Address: 41001004
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e6b8d0f53ce1b54baea88cb34bd6c4e
+    m_Address: 41002005
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MonsterData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a7e5174b97f9d434f99c689912dfd20f
     m_Address: 41001003
     m_ReadOnly: 0
