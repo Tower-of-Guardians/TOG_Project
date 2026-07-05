@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: 6201698250997746309
     second: Synergy_Overwhelming_1
+  - first:
+      213: -2663650531983383219
+    second: Synergy_Overwhelming_2
+  - first:
+      213: -5372723296726930437
+    second: Synergy_Overwhelming_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -107,9 +113,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 7
-        width: 116
-        height: 89
+        y: 96
+        width: 128
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,10 +134,10 @@ TextureImporter:
       name: Synergy_Overwhelming_1
       rect:
         serializedVersion: 2
-        x: 116
-        y: 52
-        width: 12
-        height: 24
+        x: 128
+        y: 96
+        width: 128
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,11 +152,143 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Synergy_Overwhelming_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d45a95b24ffc80bd0800000000000000
+      internalID: -2663650531983383219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Overwhelming_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfb2026a0a04075b0800000000000000
+      internalID: -5372723296726930437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Overwhelming_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c416456085b1c94e8afd1c61950ef5b
+      internalID: -1898580062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Overwhelming_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d8f8b475b109d42b2b75dfaa2a05a3
+      internalID: 1150132048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Overwhelming_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceebae3a263c0ca49852623d5d0aca86
+      internalID: -250389226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Overwhelming_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a2764ee0d29b2344865f6e4067a826f
+      internalID: -1840437332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 09b5c8968b4504543b87ac46bb2b3295
     internalID: 0
     vertices: []
     indices: 
@@ -162,6 +300,12 @@ TextureImporter:
     nameFileIdTable:
       Synergy_Overwhelming_0: 6673027515592355978
       Synergy_Overwhelming_1: 6201698250997746309
+      Synergy_Overwhelming_2: -2663650531983383219
+      Synergy_Overwhelming_3: -5372723296726930437
+      Synergy_Overwhelming_4: -1898580062
+      Synergy_Overwhelming_5: 1150132048
+      Synergy_Overwhelming_6: -250389226
+      Synergy_Overwhelming_7: -1840437332
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

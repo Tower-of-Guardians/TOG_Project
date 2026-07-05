@@ -27,6 +27,11 @@ public class SynergyUI : MonoBehaviour
     {
         public string synergyId;
         public Sprite icon;
+        [Tooltip("8프레임 아이콘 애니메이션. 설정 시 icon 대신 사용됩니다.")]
+        public Sprite[] iconFrames;
+        [Tooltip("iconFrames 1사이클 재생 시간(초).")]
+        [Min(0.01f)]
+        public float iconPlayDuration = 1f;
         [Tooltip("이 시너지의 최소 발동 개수. 이 개수부터 1단계가 되고, 이후 1장 추가될 때마다 단계가 1씩 증가합니다.")]
         [Min(1)]
         [FormerlySerializedAs("countPerGaugeBlock")]
@@ -137,9 +142,6 @@ public class SynergyUI : MonoBehaviour
                 SynergyData sd = entry.synergyData;
 
                 TryGetBinding(sd, out SynergyVisualBinding visual);
-                ApplyIcon(slot.icon, visual);
-                ApplyGauge(slot.gauge, visual, entry);
-                ApplyTooltip(slot, entry);
 
                 if (!_slotWasActive[i])
                 {
@@ -151,9 +153,14 @@ public class SynergyUI : MonoBehaviour
                     slot.root.SetActive(true);
                     SetElementAlpha(slot.root, 1f);
                 }
+
+                ApplyIcon(slot.icon, visual);
+                ApplyGauge(slot.gauge, visual, entry);
+                ApplyTooltip(slot, entry);
             }
             else
             {
+                StopIconAnimation(slot.icon);
                 slot.root.SetActive(false);
                 _slotWasActive[i] = false;
             }
@@ -493,6 +500,7 @@ public class SynergyUI : MonoBehaviour
                 SynergySlot slot = _slots[i];
                 if (slot?.root != null)
                 {
+                    StopIconAnimation(slot.icon);
                     slot.root.SetActive(false);
                     SetElementAlpha(slot.root, 0f);
                 }
@@ -555,16 +563,46 @@ public class SynergyUI : MonoBehaviour
             return;
         }
 
+        UIImageFrameAnimator frameAnimator = iconImage.GetComponent<UIImageFrameAnimator>();
+        if (frameAnimator == null)
+        {
+            frameAnimator = iconImage.gameObject.AddComponent<UIImageFrameAnimator>();
+        }
+
+        if (visual != null && visual.iconFrames != null && visual.iconFrames.Length > 0)
+        {
+            frameAnimator.Configure(iconImage, visual.iconFrames, visual.iconPlayDuration);
+            iconImage.enabled = true;
+            iconImage.raycastTarget = true;
+            frameAnimator.Play();
+            return;
+        }
+
+        frameAnimator.Stop();
+
         if (visual != null && visual.icon != null)
         {
             iconImage.sprite = visual.icon;
             iconImage.enabled = true;
             iconImage.raycastTarget = true;
+            return;
         }
-        else
+
+        iconImage.sprite = null;
+        iconImage.enabled = false;
+    }
+
+    private static void StopIconAnimation(Image iconImage)
+    {
+        if (iconImage == null)
         {
-            iconImage.sprite = null;
-            iconImage.enabled = false;
+            return;
+        }
+
+        UIImageFrameAnimator frameAnimator = iconImage.GetComponent<UIImageFrameAnimator>();
+        if (frameAnimator != null)
+        {
+            frameAnimator.Stop();
         }
     }
 

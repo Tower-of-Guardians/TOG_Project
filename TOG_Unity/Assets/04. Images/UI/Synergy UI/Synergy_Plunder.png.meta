@@ -5,6 +5,27 @@ TextureImporter:
   - first:
       213: 8337071044827517199
     second: Synergy_Plunder_0
+  - first:
+      213: -6221421709072307082
+    second: Synergy_Plunder_1
+  - first:
+      213: 7427773425642006146
+    second: Synergy_Plunder_2
+  - first:
+      213: -508428632251540922
+    second: Synergy_Plunder_3
+  - first:
+      213: -593944949832670325
+    second: Synergy_Plunder_4
+  - first:
+      213: -4506955889660162271
+    second: Synergy_Plunder_5
+  - first:
+      213: -3074373227085988900
+    second: Synergy_Plunder_6
+  - first:
+      213: -6629330006657545187
+    second: Synergy_Plunder_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,10 +124,10 @@ TextureImporter:
       name: Synergy_Plunder_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 7
-        width: 120
-        height: 84
+        x: 0
+        y: 96
+        width: 128
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,11 +142,165 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Synergy_Plunder_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67c67d80be119a9a0800000000000000
+      internalID: -6221421709072307082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Plunder_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2866a7b9390c41760800000000000000
+      internalID: 7427773425642006146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Plunder_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64a520d4ad2b1f8f0800000000000000
+      internalID: -508428632251540922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Plunder_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8326190732e1c7f0800000000000000
+      internalID: -593944949832670325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Plunder_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12f837a4f731471c0800000000000000
+      internalID: -4506955889660162271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Plunder_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdb7194b6d1a555d0800000000000000
+      internalID: -3074373227085988900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Plunder_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1cc65e8b73eff3a0800000000000000
+      internalID: -6629330006657545187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: d6260c5dbdea1ec47aba5bd5998eb0e1
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +311,13 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Synergy_Plunder_0: 8337071044827517199
+      Synergy_Plunder_1: -6221421709072307082
+      Synergy_Plunder_2: 7427773425642006146
+      Synergy_Plunder_3: -508428632251540922
+      Synergy_Plunder_4: -593944949832670325
+      Synergy_Plunder_5: -4506955889660162271
+      Synergy_Plunder_6: -3074373227085988900
+      Synergy_Plunder_7: -6629330006657545187
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,6 +5,45 @@ TextureImporter:
   - first:
       213: 6065256781388032111
     second: Synergy_ShieldAttack_0
+  - first:
+      213: -3549706755718891033
+    second: Synergy_ShieldAttack_1
+  - first:
+      213: -806864864232771673
+    second: Synergy_ShieldAttack_2
+  - first:
+      213: -2865756675684637367
+    second: Synergy_ShieldAttack_3
+  - first:
+      213: 5881635175420212743
+    second: Synergy_ShieldAttack_4
+  - first:
+      213: -9044874324006202026
+    second: Synergy_ShieldAttack_5
+  - first:
+      213: -6677284014847935147
+    second: Synergy_ShieldAttack_6
+  - first:
+      213: -2010750470133476020
+    second: Synergy_ShieldAttack_7
+  - first:
+      213: -7835904641821835425
+    second: Synergy_ShieldAttack_8
+  - first:
+      213: -5543066719280611534
+    second: Synergy_ShieldAttack_9
+  - first:
+      213: 8964895913166347636
+    second: Synergy_ShieldAttack_10
+  - first:
+      213: -656533479177198192
+    second: Synergy_ShieldAttack_11
+  - first:
+      213: 4170625844870515043
+    second: Synergy_ShieldAttack_12
+  - first:
+      213: -5298654775277933923
+    second: Synergy_ShieldAttack_13
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +85,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -104,9 +143,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 6
+        y: 96
         width: 128
-        height: 86
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,11 +160,165 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Synergy_ShieldAttack_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e932984388ecbec0800000000000000
+      internalID: -3549706755718891033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_ShieldAttack_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7af69a15ea07dc4f0800000000000000
+      internalID: -806864864232771673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_ShieldAttack_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 945ec15ac79ca38d0800000000000000
+      internalID: -2865756675684637367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_ShieldAttack_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7063d51a704cf9150800000000000000
+      internalID: 5881635175420212743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_ShieldAttack_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6551f8f59b62a7280800000000000000
+      internalID: -9044874324006202026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_ShieldAttack_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55d3896f0958553a0800000000000000
+      internalID: -6677284014847935147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_ShieldAttack_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c459ebfc9116814e0800000000000000
+      internalID: -2010750470133476020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 84233ae73f89fa94fb3c97535251c94b
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +329,13 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Synergy_ShieldAttack_0: 6065256781388032111
+      Synergy_ShieldAttack_1: -3549706755718891033
+      Synergy_ShieldAttack_2: -806864864232771673
+      Synergy_ShieldAttack_3: -2865756675684637367
+      Synergy_ShieldAttack_4: 5881635175420212743
+      Synergy_ShieldAttack_5: -9044874324006202026
+      Synergy_ShieldAttack_6: -6677284014847935147
+      Synergy_ShieldAttack_7: -2010750470133476020
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

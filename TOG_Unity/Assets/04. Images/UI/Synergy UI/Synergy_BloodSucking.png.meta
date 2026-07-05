@@ -5,6 +5,15 @@ TextureImporter:
   - first:
       213: -6210480402900755327
     second: Synergy_BloodSucking_0
+  - first:
+      213: 6600545465214122009
+    second: Synergy_BloodSucking_1
+  - first:
+      213: -6849207110996556391
+    second: Synergy_BloodSucking_2
+  - first:
+      213: -6750721384545775934
+    second: Synergy_BloodSucking_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,10 +112,10 @@ TextureImporter:
       name: Synergy_BloodSucking_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 7
-        width: 124
-        height: 87
+        x: 0
+        y: 96
+        width: 128
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,11 +130,165 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Synergy_BloodSucking_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91837e12129d99b50800000000000000
+      internalID: 6600545465214122009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_BloodSucking_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99588f3db6ab2f0a0800000000000000
+      internalID: -6849207110996556391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_BloodSucking_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ce0488eaae9052a0800000000000000
+      internalID: -6750721384545775934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_BloodSucking_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60609c30995c6ba45825a736e00096bd
+      internalID: 1275630104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_BloodSucking_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25f80e4c885586a49b76e97d2251c5a3
+      internalID: 381947141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_BloodSucking_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 800c6376232bc594986c688982abb766
+      internalID: 397594359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_BloodSucking_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f97fd22de9ee2d54b9be0fe73aff2a2c
+      internalID: -534888535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 0785760572e03ad449f46fa45d8cf6a5
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +299,13 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Synergy_BloodSucking_0: -6210480402900755327
+      Synergy_BloodSucking_1: 6600545465214122009
+      Synergy_BloodSucking_2: -6849207110996556391
+      Synergy_BloodSucking_3: -6750721384545775934
+      Synergy_BloodSucking_4: 1275630104
+      Synergy_BloodSucking_5: 381947141
+      Synergy_BloodSucking_6: 397594359
+      Synergy_BloodSucking_7: -534888535
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

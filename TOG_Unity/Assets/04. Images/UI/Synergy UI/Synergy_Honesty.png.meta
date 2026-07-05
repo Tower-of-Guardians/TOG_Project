@@ -8,6 +8,33 @@ TextureImporter:
   - first:
       213: 4724939785549081452
     second: Synergy_Honesty_1
+  - first:
+      213: -7717174791710710230
+    second: Synergy_Honesty_2
+  - first:
+      213: 4438689220699893344
+    second: Synergy_Honesty_3
+  - first:
+      213: 3820746573064794030
+    second: Synergy_Honesty_4
+  - first:
+      213: -3423904741247577854
+    second: Synergy_Honesty_5
+  - first:
+      213: 1206183375967011406
+    second: Synergy_Honesty_6
+  - first:
+      213: -2425108372330365966
+    second: Synergy_Honesty_7
+  - first:
+      213: -9166371192743974470
+    second: Synergy_Honesty_8
+  - first:
+      213: 1679431809500366832
+    second: Synergy_Honesty_9
+  - first:
+      213: -7116757669862620625
+    second: Synergy_Honesty_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +76,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -107,9 +134,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 12
+        y: 96
         width: 128
-        height: 74
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,10 +155,10 @@ TextureImporter:
       name: Synergy_Honesty_1
       rect:
         serializedVersion: 2
-        x: 82
-        y: 84
-        width: 6
-        height: 6
+        x: 128
+        y: 96
+        width: 128
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,11 +173,143 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Synergy_Honesty_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a26eb7e0a6617e490800000000000000
+      internalID: -7717174791710710230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Honesty_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06e2c2c3454699d30800000000000000
+      internalID: 4438689220699893344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Honesty_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaf6158d3c4060530800000000000000
+      internalID: 3820746573064794030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Honesty_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 201992947c8db70d0800000000000000
+      internalID: -3423904741247577854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Honesty_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e42ce7ac3693db010800000000000000
+      internalID: 1206183375967011406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Honesty_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb3c6db8c8485ed0800000000000000
+      internalID: -2425108372330365966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 3b6a6e8328ad4d84aababa9507e5e9ee
     internalID: 0
     vertices: []
     indices: 
@@ -162,6 +321,12 @@ TextureImporter:
     nameFileIdTable:
       Synergy_Honesty_0: 2036708957785280023
       Synergy_Honesty_1: 4724939785549081452
+      Synergy_Honesty_2: -7717174791710710230
+      Synergy_Honesty_3: 4438689220699893344
+      Synergy_Honesty_4: 3820746573064794030
+      Synergy_Honesty_5: -3423904741247577854
+      Synergy_Honesty_6: 1206183375967011406
+      Synergy_Honesty_7: -2425108372330365966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

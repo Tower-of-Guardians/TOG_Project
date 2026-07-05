@@ -125,7 +125,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
+  m_Sprite: {fileID: -6210480402900755327, guid: a3ef0c3615707a543b75136effca5178, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 871568882161981281, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
+  m_Sprite: {fileID: -3709200626805416697, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5068607888594416882, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
+  m_Sprite: {fileID: 2698020258336607603, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1788372468, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
+  m_Sprite: {fileID: -9140759372250435105, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+  m_Sprite: {fileID: -656581584617342807, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8855517202109129246, guid: f4c7130eb73c22d4c86773392e49de2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d1d2ae229f39b14aad6ed650ecd9eb8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -649,7 +649,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+  m_Sprite: {fileID: 3112015269792413093, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -725,63 +725,137 @@ MonoBehaviour:
     gauge: {fileID: 7119217595720420377}
   _synergyVisuals:
   - synergyId: 210007
-    icon: {fileID: 21300000, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+    icon: {fileID: -656581584617342807, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+    iconFrames:
+    - {fileID: -656581584617342807, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+    - {fileID: -7041848047562590471, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+    - {fileID: -4193675898532318777, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+    - {fileID: -8131693360435252478, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+    - {fileID: -2502478694975180858, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+    - {fileID: 4420862392581996627, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+    - {fileID: 5495993556497877595, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+    - {fileID: -1270087189191017704, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
+    iconPlayDuration: 1
     miniRequiredCount: 3
     gaugeSprites:
-    - {fileID: 5068607888594416882, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 7836916082567593525, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-  - synergyId: 210004
-    icon: {fileID: 21300000, guid: a3ef0c3615707a543b75136effca5178, type: 3}
-    miniRequiredCount: 2
-    gaugeSprites:
-    - {fileID: 5418663772817810118, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: -7224302079080548202, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 8965922701622580604, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 6546846617637216857, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-  - synergyId: 210001
-    icon: {fileID: 21300000, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
-    miniRequiredCount: 2
-    gaugeSprites:
-    - {fileID: 6930558637426193472, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 5924514006253917193, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: -1788372468, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 3758360030774000391, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 1080790192112370304, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
+    - {fileID: -3709200626805416697, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: -5926314954331238616, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
   - synergyId: 210006
-    icon: {fileID: 21300000, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
+    icon: {fileID: 3112015269792413093, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
+    iconFrames:
+    - {fileID: 3112015269792413093, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
+    - {fileID: 6011043148058014931, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
+    - {fileID: -2393606115619148883, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
+    - {fileID: -4172889390154521097, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
+    - {fileID: -1777096445, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
+    - {fileID: -1079590633, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
+    - {fileID: -1953570438, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
+    - {fileID: 250865367, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
+    iconPlayDuration: 1
     miniRequiredCount: 2
     gaugeSprites:
-    - {fileID: -5344407946230429945, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: -4612882921248179979, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 2113921890360973793, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 3055371975647629608, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: -948106609, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
+    - {fileID: 2698020258336607603, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 6892294267449397696, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 5392582951325938493, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 4823319019956579241, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: -6283212112102315690, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+  - synergyId: 210005
+    icon: {fileID: 8337071044827517199, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
+    iconFrames:
+    - {fileID: 8337071044827517199, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
+    - {fileID: -6221421709072307082, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
+    - {fileID: 7427773425642006146, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
+    - {fileID: -508428632251540922, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
+    - {fileID: -593944949832670325, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
+    - {fileID: -4506955889660162271, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
+    - {fileID: -3074373227085988900, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
+    - {fileID: -6629330006657545187, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
+    iconPlayDuration: 1
+    miniRequiredCount: 2
+    gaugeSprites:
+    - {fileID: -1437114687, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 702061441085990469, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 918841534, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 8993040618395198030, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+  - synergyId: 210004
+    icon: {fileID: -6210480402900755327, guid: a3ef0c3615707a543b75136effca5178, type: 3}
+    iconFrames:
+    - {fileID: -6210480402900755327, guid: a3ef0c3615707a543b75136effca5178, type: 3}
+    - {fileID: 6600545465214122009, guid: a3ef0c3615707a543b75136effca5178, type: 3}
+    - {fileID: -6849207110996556391, guid: a3ef0c3615707a543b75136effca5178, type: 3}
+    - {fileID: -6750721384545775934, guid: a3ef0c3615707a543b75136effca5178, type: 3}
+    - {fileID: 1275630104, guid: a3ef0c3615707a543b75136effca5178, type: 3}
+    - {fileID: 381947141, guid: a3ef0c3615707a543b75136effca5178, type: 3}
+    - {fileID: 397594359, guid: a3ef0c3615707a543b75136effca5178, type: 3}
+    - {fileID: -534888535, guid: a3ef0c3615707a543b75136effca5178, type: 3}
+    iconPlayDuration: 1
+    miniRequiredCount: 2
+    gaugeSprites:
+    - {fileID: -7028528696303545036, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 4592922712774325829, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: -9140759372250435105, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: -4483289518670674507, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
   - synergyId: 210003
-    icon: {fileID: 21300000, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
+    icon: {fileID: 6673027515592355978, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
+    iconFrames:
+    - {fileID: 6673027515592355978, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
+    - {fileID: 6201698250997746309, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
+    - {fileID: -2663650531983383219, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
+    - {fileID: -5372723296726930437, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
+    - {fileID: -1898580062, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
+    - {fileID: 1150132048, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
+    - {fileID: -250389226, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
+    - {fileID: -1840437332, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
+    iconPlayDuration: 1
     miniRequiredCount: 1
     gaugeSprites:
-    - {fileID: 878043016, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 5132180017538803824, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 8472445690235079722, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 6138698779049239947, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 8626118355193768436, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-  - synergyId: 210005
-    icon: {fileID: 21300000, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
-    miniRequiredCount: 2
-    gaugeSprites:
-    - {fileID: 3365514272679907847, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 6322377518802402776, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 8135014310420586847, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: -2221718243433848479, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
+    - {fileID: -7505990783128124281, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: -6723992476585762262, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 1767517048266842855, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 4985962857601729590, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 2646837596771903875, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
   - synergyId: 210002
-    icon: {fileID: 21300000, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+    icon: {fileID: 6065256781388032111, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+    iconFrames:
+    - {fileID: 6065256781388032111, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+    - {fileID: -3549706755718891033, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+    - {fileID: -806864864232771673, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+    - {fileID: -2865756675684637367, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+    - {fileID: 5881635175420212743, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+    - {fileID: -9044874324006202026, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+    - {fileID: -6677284014847935147, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+    - {fileID: -2010750470133476020, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
+    iconPlayDuration: 1
     miniRequiredCount: 2
     gaugeSprites:
-    - {fileID: -4788367860144985926, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 323532149542028510, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: -4987109374241895332, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
-    - {fileID: 871568882161981281, guid: 2cddf0350e751e745b23af903b8177e5, type: 3}
+    - {fileID: -9166696622797639127, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 370825926, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 6199641292141098901, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: -1990259023061452045, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+  - synergyId: 210001
+    icon: {fileID: 2036708957785280023, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
+    iconFrames:
+    - {fileID: 2036708957785280023, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
+    - {fileID: 4724939785549081452, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
+    - {fileID: -7717174791710710230, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
+    - {fileID: 4438689220699893344, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
+    - {fileID: 3820746573064794030, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
+    - {fileID: -3423904741247577854, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
+    - {fileID: 1206183375967011406, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
+    - {fileID: -2425108372330365966, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
+    iconPlayDuration: 1
+    miniRequiredCount: 2
+    gaugeSprites:
+    - {fileID: 5023037166320791237, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: -1516028603, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: -5037970923630247017, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 5843267711492318805, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 8507761385895616997, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
   _overflowRoot: {fileID: 6835972385859792486}
+  _fadeDuration: 0.35
+  _synergyActivationInterval: 0.35
+  _highlightScale: 1.12
+  _highlightDuration: 0.2
 --- !u!222 &767683425183382818
 CanvasRenderer:
   m_ObjectHideFlags: 0

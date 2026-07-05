@@ -14,6 +14,30 @@ TextureImporter:
   - first:
       213: -8131693360435252478
     second: Synergy_Basic_3
+  - first:
+      213: -2502478694975180858
+    second: Synergy_Basic_4
+  - first:
+      213: 4420862392581996627
+    second: Synergy_Basic_5
+  - first:
+      213: 5495993556497877595
+    second: Synergy_Basic_6
+  - first:
+      213: -1270087189191017704
+    second: Synergy_Basic_7
+  - first:
+      213: 6701502220162674578
+    second: Synergy_Basic_8
+  - first:
+      213: -2877356072652599
+    second: Synergy_Basic_9
+  - first:
+      213: 415876456718085252
+    second: Synergy_Basic_10
+  - first:
+      213: 7852204198973897623
+    second: Synergy_Basic_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,7 +79,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -112,10 +136,10 @@ TextureImporter:
       name: Synergy_Basic_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 62
-        width: 8
-        height: 8
+        x: 0
+        y: 96
+        width: 128
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +158,10 @@ TextureImporter:
       name: Synergy_Basic_1
       rect:
         serializedVersion: 2
-        x: 12
-        y: 7
-        width: 104
-        height: 84
+        x: 128
+        y: 96
+        width: 128
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,10 +180,10 @@ TextureImporter:
       name: Synergy_Basic_2
       rect:
         serializedVersion: 2
-        x: 114
-        y: 46
-        width: 6
-        height: 6
+        x: 256
+        y: 96
+        width: 128
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +202,10 @@ TextureImporter:
       name: Synergy_Basic_3
       rect:
         serializedVersion: 2
-        x: 116
-        y: 24
-        width: 8
-        height: 8
+        x: 384
+        y: 96
+        width: 128
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,11 +220,99 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Synergy_Basic_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cf6508b2e8654dd0800000000000000
+      internalID: -2502478694975180858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Basic_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 350cbbe5cee0a5d30800000000000000
+      internalID: 4420862392581996627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Basic_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5a44e64501b54c40800000000000000
+      internalID: 5495993556497877595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Basic_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81bbe7e3e6ebf5ee0800000000000000
+      internalID: -1270087189191017704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: d2862b3b832f1ca4b8fe723eb50c665a
     internalID: 0
     vertices: []
     indices: 
@@ -214,6 +326,10 @@ TextureImporter:
       Synergy_Basic_1: -7041848047562590471
       Synergy_Basic_2: -4193675898532318777
       Synergy_Basic_3: -8131693360435252478
+      Synergy_Basic_4: -2502478694975180858
+      Synergy_Basic_5: 4420862392581996627
+      Synergy_Basic_6: 5495993556497877595
+      Synergy_Basic_7: -1270087189191017704
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
