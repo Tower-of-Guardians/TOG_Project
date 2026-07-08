@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 0e0bf6c4dae0f1645987fcc705ce4c50
   m_currentHash:
     serializedVersion: 2
-    Hash: b970c464e8b33153347da5c011bbdf21
+    Hash: c12be1b166ab4ebb227694362c97cb63
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -116,6 +116,7 @@ MonoBehaviour:
     - EffectData
     - CardData
     - AreaEventData
+    - Scene
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: b4a5d90361bfce648b913dc4d3c9c1d5, type: 2}

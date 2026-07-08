@@ -6,6 +6,7 @@ public class AreaEventUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _texTopLabel;
     [SerializeField] private AreaEventItemUI[] _items;
+    [SerializeField] private GameObject _obPanel;
 
 
 
@@ -20,6 +21,29 @@ public class AreaEventUI : MonoBehaviour
 
     private void OnClickAction(AreaEventType type)
     {
+        switch (type)
+        {
+            case AreaEventType.Boss:
+                break;
+            case AreaEventType.Shop:
+                LoadingManager.Instance.LoadScene("AreaEvent_Shop");
+                _obPanel.gameObject.SetActive(false);
+                break;
+            case AreaEventType.Battle:
+                break;
+            case AreaEventType.Blacksmith:
+                LoadingManager.Instance.LoadScene("AreaEvent_Blacksmith");
+                _obPanel.gameObject.SetActive(false);
+                break;
+            case AreaEventType.Blessing:
+                LoadingManager.Instance.LoadScene("AreaEvent_Blessing");
+                _obPanel.gameObject.SetActive(false);
+                break;
+            case AreaEventType.Random:
+                break;
+            default:
+                break;
+        }
         Debug.Log($"Clicked on {type}");
     }
 
