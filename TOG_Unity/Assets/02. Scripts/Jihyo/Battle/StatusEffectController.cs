@@ -149,12 +149,62 @@ public sealed class WeaknessExposureHandler : IStatusEffectHandler
 }
 
 /// <summary>
+/// 저주(51001005) 핸들러.
+/// 매 턴 시작 시 스택 수치만큼 피해를 입습니다.
+/// </summary>
+public sealed class CurseHandler : IStatusEffectHandler
+{
+    public string StatusEffectId => StatusEffectController.CurseStatusId;
+    public StatusEffectStackPolicy StackPolicy => StatusEffectStackPolicy.AddStack;
+
+    public int ResolveInitialStack(StatusEffectData data, int requestedStack)
+    {
+        return Mathf.Max(1, requestedStack);
+    }
+
+    public int ResolveInitialDuration(StatusEffectData data)
+    {
+        return data != null && data.DurationType > 0 ? data.DurationType : 3;
+    }
+
+    public int ResolveInitialValue(StatusEffectData data, int requestedValue)
+    {
+        return Mathf.Max(0, requestedValue);
+    }
+
+    public void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew) { }
+
+    public void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime)
+    {
+        if (runtime == null || runtime.Stack <= 0 || controller == null)
+        {
+            return;
+        }
+
+        BaseUnit owner = controller.GetComponent<BaseUnit>();
+        if (owner == null || !owner.IsAlive)
+        {
+            return;
+        }
+
+        owner.TakeDamage(runtime.Stack);
+        controller.NotifyStatusChanged(runtime);
+    }
+
+    public void OnTurnEnd(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnBeforeDealDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+    public void OnBeforeTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+    public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+}
+
+/// <summary>
 /// 상태효과의 부여/해제/훅 실행을 담당하는 컨트롤러입니다.
 /// 상태 정의는 DataCenter(StatusEffectData)에서 조회합니다.
 /// </summary>
 public class StatusEffectController : MonoBehaviour
 {
     public const string WeaknessExposureStatusId = "51001001";
+    public const string CurseStatusId = "51001005";
 
     [SerializeField] private bool enableDebugLog;
 
@@ -400,6 +450,7 @@ public class StatusEffectController : MonoBehaviour
         }
 
         RegisterHandler(new WeaknessExposureHandler());
+        RegisterHandler(new CurseHandler());
         isDefaultHandlerRegistered = true;
     }
 

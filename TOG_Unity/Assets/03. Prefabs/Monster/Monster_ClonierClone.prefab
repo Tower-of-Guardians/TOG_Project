@@ -413,7 +413,7 @@ MonoBehaviour:
   attackMoveOffset: 5
   attackMoveDuration: 0.3
   damageApplyDelay: 0.5
-  monsterId: 41001005
+  monsterId: 41001006
 --- !u!114 &4344606365010817277
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -807,6 +807,9 @@ MonoBehaviour:
   randomEncounterIds:
   - 1410000
   - 1410001
+  - 1410002
+  - 1410003
+  - 1410007
   monsterPrefabRegistry: {fileID: 11400000, guid: c7d8e9f0a1b24365897abc012def0206, type: 2}
   globalRoot: {fileID: 27623760}
 --- !u!1 &516897186

@@ -1,12 +1,13 @@
 using UnityEngine;
 
 /// <summary>
-/// 흰둥이 전용 행동 패턴: 공격 -> 보호 -> 상태부여(저주) 순환
+/// 헥터 전용 몬스터. 현재 WhiteDog 외형/애니메이션을 공유하며 MonsterData(41001004) 스탯·패턴만 적용합니다.
+/// 행동 패턴: 공격 -> 보호 -> 상태부여 순환
 /// </summary>
-public class Monster_WhiteDog : Monster
+public class Monster_Hector : Monster
 {
-    [Header("흰둥이 데이터 ID")]
-    [SerializeField] private string monsterId = "41001000";
+    [Header("헥터 데이터 ID")]
+    [SerializeField] private string monsterId = "41001004";
 
     protected override void Awake()
     {
@@ -52,13 +53,13 @@ public class Monster_WhiteDog : Monster
 
         OverrideBehavior(
             MonsterActionPatternType.Cycle,
-            CreateWhiteDogAction(action1Id, action1Min, action1Max),
-            CreateWhiteDogAction(action2Id, action2Min, action2Max),
-            CreateWhiteDogAction(action3Id, action3Min, action3Max)
+            CreateHectorAction(action1Id, action1Min, action1Max),
+            CreateHectorAction(action2Id, action2Min, action2Max),
+            CreateHectorAction(action3Id, action3Min, action3Max)
         );
     }
 
-    private static MonsterActionDefinition CreateWhiteDogAction(string actionId, int min, int max)
+    private static MonsterActionDefinition CreateHectorAction(string actionId, int min, int max)
     {
         MonsterActionDefinition definition = new MonsterActionDefinition
         {

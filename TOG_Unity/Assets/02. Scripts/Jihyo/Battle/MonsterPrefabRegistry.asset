@@ -15,7 +15,11 @@ MonoBehaviour:
   entries:
   - MonsterDataId: 41001000
     Prefab: {fileID: 3739762124255010228, guid: 2591bc9149ccef449b41734eb4ac4959, type: 3}
-  - MonsterDataId: 41001005
+  - MonsterDataId: 41001001
+    Prefab: {fileID: 3739762124255010228, guid: 4c4f9e356dac3c14997fe48f7e456fd7, type: 3}
+  - MonsterDataId: 41001004
+    Prefab: {fileID: 3739762124255010228, guid: 42e9b44723db90b4b81da7460e0d038b, type: 3}
+  - MonsterDataId: 41001006
     Prefab: {fileID: 3739762124255010228, guid: f03ad78cefdb31d43995fad758b433a3, type: 3}
-  - MonsterDataId: 41002004
+  - MonsterDataId: 41002005
     Prefab: {fileID: 3739762124255010228, guid: 180210bc7b2dee84b9a74c670f2ed148, type: 3}

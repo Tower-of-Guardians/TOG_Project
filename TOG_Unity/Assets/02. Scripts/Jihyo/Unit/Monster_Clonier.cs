@@ -15,7 +15,7 @@ public class Monster_Clonier : Monster
     private static readonly float[] CloneSummonSlotPositions = { 2.5f, 7.5f };
 
     [Header("클로니어 데이터 ID")]
-    [SerializeField] private string monsterId = "41002004";
+    [SerializeField] private string monsterId = "41002005";
 
     [Header("소환")]
     [SerializeField] private Monster_ClonierClone clonePrefab;

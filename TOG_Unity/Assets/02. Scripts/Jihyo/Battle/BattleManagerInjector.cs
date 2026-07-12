@@ -9,12 +9,10 @@ public class BattleManagerInjector : MonoBehaviour, IInjector
     [SerializeField] private Player player;
     [SerializeField] private Button attackButton;
 
-    // TODO: 현재는 테스트용 ID를 직접 나열합니다.
-    // 추후 현재 등장 구간(Section)에 맞는 조합만 MonsterEncounterData(몬스터 조합 테이블)에서
-    // 필터링해 randomEncounterIds를 구성한 뒤, 그 목록에서 랜덤 선택하도록 변경합니다.
+    // TODO: 추후 현재 등장 구간(Section)에 맞게 randomEncounterIds를 동적으로 구성합니다.
     // (MonsterEncounterData.Section, Mon1~4ID, Mon*Position, Gold, Exp 참조)
     [Header("Encounter Spawn")]
-    [SerializeField] private string[] randomEncounterIds = { "1410000", "1410001" };
+    [SerializeField] private string[] randomEncounterIds = { "1410000", "1410001", "1410002", "1410003", "1410007" };
     [SerializeField] private MonsterPrefabRegistry monsterPrefabRegistry;
     [SerializeField] private Transform globalRoot;
 
@@ -102,18 +100,37 @@ public class BattleManagerInjector : MonoBehaviour, IInjector
 
     private string SelectRandomEncounterId()
     {
-        if (DataCenter.monster_encounter_datas == null || DataCenter.monster_encounter_datas.Count == 0)
+        if (randomEncounterIds == null || randomEncounterIds.Length == 0)
         {
             return null;
         }
 
-        int index = Random.Range(0, DataCenter.monster_encounter_datas.Count);
-        int current = 0;
-        foreach (KeyValuePair<string, MonsterEncounterData> pair in DataCenter.monster_encounter_datas)
+        int validCount = 0;
+        for (int i = 0; i < randomEncounterIds.Length; i++)
         {
-            if (current == index)
+            if (!string.IsNullOrEmpty(randomEncounterIds[i]))
             {
-                return pair.Key;
+                validCount++;
+            }
+        }
+
+        if (validCount == 0)
+        {
+            return null;
+        }
+
+        int selectedIndex = Random.Range(0, validCount);
+        int current = 0;
+        for (int i = 0; i < randomEncounterIds.Length; i++)
+        {
+            if (string.IsNullOrEmpty(randomEncounterIds[i]))
+            {
+                continue;
+            }
+
+            if (current == selectedIndex)
+            {
+                return randomEncounterIds[i];
             }
 
             current++;

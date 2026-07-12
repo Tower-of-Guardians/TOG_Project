@@ -16,17 +16,17 @@ public class MonsterAnimation : MonoBehaviour
 
     private static readonly string[] AttackStateNames =
     {
-        "Attack", "WhiteDog_Attack", "Clonier_Attack", "ClonierClone_Attack"
+        "Attack", "WhiteDog_Attack", "Clonier_Attack", "ClonierClone_Attack", "Grounder_Attack"
     };
 
     private static readonly string[] HitStateNames =
     {
-        "Hit", "WhiteDog_Hit", "Clonier_Hit", "ClonierClone_Hit"
+        "Hit", "WhiteDog_Hit", "Clonier_Hit", "ClonierClone_Hit", "Grounder_Hit"
     };
 
     private static readonly string[] DeadStateNames =
     {
-        "Dead", "WhiteDog_Dead", "Clonier_Dead", "ClonierClone_Dead"
+        "Dead", "WhiteDog_Dead", "Clonier_Dead", "ClonierClone_Dead", "Grounder_Dead"
     };
 
     private void Awake()
@@ -141,7 +141,7 @@ public class MonsterAnimation : MonoBehaviour
             case MonsterActionType.Guard:
                 return new[] { "Defense", "WhiteDog_Defense" };
             case MonsterActionType.ApplyStatus:
-                return new[] { "Curse", "WhiteDog_Curse" };
+                return new[] { "Curse", "WhiteDog_Curse", "Grounder_Debuff" };
             case MonsterActionType.Summon:
                 return new[] { "Summon", "Clonier_Summon" };
             default:
