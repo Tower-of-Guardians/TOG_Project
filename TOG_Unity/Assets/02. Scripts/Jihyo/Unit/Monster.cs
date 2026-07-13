@@ -170,6 +170,8 @@ public class Monster : BaseUnit, IPointerClickHandler
         {
             actionDefinitions.AddRange(actions);
         }
+
+        SyncDefaultAttackFromActions();
     }
 
     public IEnumerator PerformAttack(IDamageable target)
@@ -342,6 +344,8 @@ public class Monster : BaseUnit, IPointerClickHandler
                 MaxValue = defaultAttack
             });
         }
+
+        SyncDefaultAttackFromActions();
     }
 
     private void AppendAction(string actionId, int min, int max)
@@ -415,6 +419,64 @@ public class Monster : BaseUnit, IPointerClickHandler
         return actionDefinitions[randomIndex];
     }
 
+    private MonsterActionDefinition PeekNextAction()
+    {
+        if (actionDefinitions == null || actionDefinitions.Count == 0)
+        {
+            return null;
+        }
+
+        if (actionPatternType == MonsterActionPatternType.Cycle)
+        {
+            return actionDefinitions[actionCursor];
+        }
+
+        return actionDefinitions[0];
+    }
+
+    private int ResolvePeekActionValue(MonsterActionDefinition action)
+    {
+        if (action == null)
+        {
+            return defaultAttack;
+        }
+
+        if (action.MinValue == action.MaxValue)
+        {
+            return action.MinValue;
+        }
+
+        return action.MinValue;
+    }
+
+    private int GetPrimaryAttackBaseValue()
+    {
+        if (actionDefinitions == null)
+        {
+            return defaultAttack;
+        }
+
+        for (int i = 0; i < actionDefinitions.Count; i++)
+        {
+            MonsterActionDefinition action = actionDefinitions[i];
+            if (action != null && action.ActionType == MonsterActionType.Attack)
+            {
+                return ResolvePeekActionValue(action);
+            }
+        }
+
+        return defaultAttack;
+    }
+
+    private void SyncDefaultAttackFromActions()
+    {
+        int primaryAttack = GetPrimaryAttackBaseValue();
+        if (primaryAttack > 0)
+        {
+            defaultAttack = primaryAttack;
+        }
+    }
+
     private void ExecuteSelectedAction(MonsterActionDefinition action, IDamageable defaultTarget, int actionValue)
     {
         if (action == null)
@@ -453,6 +515,15 @@ public class Monster : BaseUnit, IPointerClickHandler
                 ExecuteFallbackAttack(defaultTarget);
                 break;
         }
+
+        OnAfterExecuteSelectedAction(action, defaultTarget, actionValue);
+    }
+
+    protected virtual void OnAfterExecuteSelectedAction(
+        MonsterActionDefinition action,
+        IDamageable defaultTarget,
+        int actionValue)
+    {
     }
 
     private bool TryConsumePreparedAction(out MonsterActionDefinition action, out int actionValue)
@@ -895,14 +966,7 @@ public class Monster : BaseUnit, IPointerClickHandler
         bool showAttackStatus = true;
         if (attackText != null)
         {
-            int displayValue = defaultAttack;
-            if (hasPreparedAction && preparedAction != null)
-            {
-                bool isAttackAction = preparedAction.ActionType == MonsterActionType.Attack;
-                displayValue = isAttackAction ? preparedActionValue : 0;
-                showAttackStatus = isAttackAction;
-            }
-
+            int displayValue = ResolveAttackDisplayValue(out showAttackStatus);
             attackText.text = displayValue.ToString();
         }
 
@@ -912,6 +976,42 @@ public class Monster : BaseUnit, IPointerClickHandler
         }
 
         RefreshActionIndicator();
+    }
+
+    private int ResolveAttackDisplayValue(out bool showAttackStatus)
+    {
+        showAttackStatus = true;
+        MonsterActionDefinition action;
+        int actionValue;
+
+        if (hasPreparedAction && preparedAction != null)
+        {
+            action = preparedAction;
+            actionValue = preparedActionValue;
+        }
+        else
+        {
+            action = PeekNextAction();
+            actionValue = ResolvePeekActionValue(action);
+        }
+
+        if (action == null)
+        {
+            return GetPreparedAttackDisplayValue(defaultAttack);
+        }
+
+        if (action.ActionType != MonsterActionType.Attack)
+        {
+            showAttackStatus = false;
+            return 0;
+        }
+
+        return GetPreparedAttackDisplayValue(actionValue);
+    }
+
+    protected virtual int GetPreparedAttackDisplayValue(int baseValue)
+    {
+        return baseValue;
     }
 
     private void ResolveStatusUIReferences()

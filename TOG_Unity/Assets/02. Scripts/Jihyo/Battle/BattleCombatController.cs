@@ -262,17 +262,8 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         if (playerAnimation != null)
         {
             playerAnimation.TriggerAttack();
-
-            float effectDelay = playerAnimation.GetAttackEffectDelay();
-            if (effectDelay > 0f)
-            {
-                yield return new WaitForSeconds(effectDelay);
-            }
-
+            yield return playerAnimation.WaitUntilAttackHitFrame(currentAttack);
             AttackEffectSpawner.SpawnOnTargets(currentAttack, targets);
-
-            yield return playerAnimation.WaitUntilAttackState(currentAttack);
-            yield return new WaitForSeconds(playerAnimation.GetAttackDamageDelay());
         }
         else
         {

@@ -16,17 +16,17 @@ public class MonsterAnimation : MonoBehaviour
 
     private static readonly string[] AttackStateNames =
     {
-        "Attack", "WhiteDog_Attack", "Clonier_Attack", "ClonierClone_Attack", "Grounder_Attack"
+        "Attack", "WhiteDog_Attack", "Clonier_Attack", "ClonierClone_Attack", "Grounder_Attack", "Flightmare_Attack"
     };
 
     private static readonly string[] HitStateNames =
     {
-        "Hit", "WhiteDog_Hit", "Clonier_Hit", "ClonierClone_Hit", "Grounder_Hit"
+        "Hit", "WhiteDog_Hit", "Clonier_Hit", "ClonierClone_Hit", "Grounder_Hit", "Flightmare_Hit"
     };
 
     private static readonly string[] DeadStateNames =
     {
-        "Dead", "WhiteDog_Dead", "Clonier_Dead", "ClonierClone_Dead", "Grounder_Dead"
+        "Dead", "WhiteDog_Dead", "Clonier_Dead", "ClonierClone_Dead", "Grounder_Dead", "Flightmare_Dead"
     };
 
     private void Awake()

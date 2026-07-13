@@ -1,8 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    public const string AttackHitFunctionName = "OnAttackHit";
+
     [Header("Animation")]
     private Animator animator;
 
@@ -28,16 +31,27 @@ public class PlayerAnimation : MonoBehaviour
 
     [Header("Animation Settings")]
     [SerializeField] private float fallbackMotionDuration = 0.3f;
-    [SerializeField] private float attackEffectDelay = 0.08f;
-    [SerializeField] private float attackDamageDelay = 0.08f;
+    [SerializeField] private float fallbackHitNormalizedTime = 0.488f;
+    [SerializeField] private float fallbackHitDelaySeconds = 0.08f;
 
     [Header("Attack Thresholds")]
     [SerializeField] private int lightAttack = 10;
     [SerializeField] private int normalAttack = 20;
 
+    private readonly Dictionary<string, AttackClipHitTiming> attackClipTimingCache = new Dictionary<string, AttackClipHitTiming>();
+    private bool attackHitTriggered;
+
+    private struct AttackClipHitTiming
+    {
+        public float HitNormalizedTime;
+        public bool HasHitEvent;
+        public float ClipLength;
+    }
+
     private void Awake()
     {
         InitializeAnimator();
+        RebuildAttackClipTimingCache();
     }
 
     private void InitializeAnimator()
@@ -46,6 +60,14 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator = GetComponent<Animator>();
         }
+    }
+
+    /// <summary>
+    /// Attack 클립 Animation Event에서 호출됩니다.
+    /// </summary>
+    public void OnAttackHit()
+    {
+        attackHitTriggered = true;
     }
 
     public void TriggerAttack()
@@ -112,6 +134,8 @@ public class PlayerAnimation : MonoBehaviour
             animator.ResetTrigger(HitHash);
             animator.ResetTrigger(SetPositionHash);
         }
+
+        attackHitTriggered = false;
     }
 
     public IEnumerator WaitForEnforceAnimationComplete(int attackValue)
@@ -129,19 +153,163 @@ public class PlayerAnimation : MonoBehaviour
         yield return WaitUntilState(GetAttackStateName(attackValue));
     }
 
-    public float GetAttackEffectDelay()
+    /// <summary>
+    /// Attack 상태 진입 후, 클립의 OnAttackHit 이벤트(또는 이벤트 normalized time)까지 대기합니다.
+    /// </summary>
+    public IEnumerator WaitUntilAttackHitFrame(int attackValue)
     {
-        return attackEffectDelay;
+        attackHitTriggered = false;
+
+        string stateName = GetAttackStateName(attackValue);
+        if (animator == null || string.IsNullOrEmpty(stateName))
+        {
+            if (fallbackHitDelaySeconds > 0f)
+            {
+                yield return new WaitForSeconds(fallbackHitDelaySeconds);
+            }
+
+            yield break;
+        }
+
+        int stateHash = Animator.StringToHash(stateName);
+        AttackClipHitTiming timing = ResolveAttackClipHitTiming(attackValue);
+
+        yield return WaitUntilAttackState(attackValue);
+
+        if (HasReachedHitFrame(stateHash, timing.HitNormalizedTime))
+        {
+            yield break;
+        }
+
+        if (timing.HasHitEvent)
+        {
+            while (!attackHitTriggered)
+            {
+                AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+                if (stateInfo.shortNameHash != stateHash)
+                {
+                    break;
+                }
+
+                if (HasReachedHitFrame(stateHash, timing.HitNormalizedTime))
+                {
+                    break;
+                }
+
+                yield return null;
+            }
+        }
+        else
+        {
+            while (true)
+            {
+                AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+                if (stateInfo.shortNameHash != stateHash)
+                {
+                    break;
+                }
+
+                if (stateInfo.normalizedTime >= timing.HitNormalizedTime)
+                {
+                    break;
+                }
+
+                yield return null;
+            }
+        }
     }
 
-    public float GetAttackDamageDelay()
+    public float GetResolvedAttackHitDelaySeconds(int attackValue)
     {
-        return attackDamageDelay;
+        AttackClipHitTiming timing = ResolveAttackClipHitTiming(attackValue);
+        if (timing.ClipLength > 0f)
+        {
+            return timing.ClipLength * timing.HitNormalizedTime;
+        }
+
+        return fallbackHitDelaySeconds;
     }
 
     public IEnumerator WaitForAttackAnimationComplete(int attackValue)
     {
         yield return WaitForCurrentStateFinish(GetAttackStateName(attackValue));
+    }
+
+    private void RebuildAttackClipTimingCache()
+    {
+        attackClipTimingCache.Clear();
+
+        if (animator == null || animator.runtimeAnimatorController == null)
+        {
+            return;
+        }
+
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        for (int i = 0; i < clips.Length; i++)
+        {
+            AnimationClip clip = clips[i];
+            if (clip == null || attackClipTimingCache.ContainsKey(clip.name))
+            {
+                continue;
+            }
+
+            attackClipTimingCache[clip.name] = BuildClipHitTiming(clip);
+        }
+    }
+
+    private AttackClipHitTiming BuildClipHitTiming(AnimationClip clip)
+    {
+        AttackClipHitTiming timing = new AttackClipHitTiming
+        {
+            ClipLength = clip.length,
+            HitNormalizedTime = fallbackHitNormalizedTime,
+            HasHitEvent = false
+        };
+
+        AnimationEvent[] events = clip.events;
+        for (int i = 0; i < events.Length; i++)
+        {
+            if (events[i].functionName != AttackHitFunctionName)
+            {
+                continue;
+            }
+
+            timing.HasHitEvent = true;
+            timing.HitNormalizedTime = clip.length > 0f
+                ? Mathf.Clamp01(events[i].time / clip.length)
+                : 0.488f;
+            break;
+        }
+
+        return timing;
+    }
+
+    private AttackClipHitTiming ResolveAttackClipHitTiming(int attackValue)
+    {
+        string stateName = GetAttackStateName(attackValue);
+        if (!string.IsNullOrEmpty(stateName) && attackClipTimingCache.TryGetValue(stateName, out AttackClipHitTiming cachedTiming))
+        {
+            return cachedTiming;
+        }
+
+        RebuildAttackClipTimingCache();
+        if (!string.IsNullOrEmpty(stateName) && attackClipTimingCache.TryGetValue(stateName, out cachedTiming))
+        {
+            return cachedTiming;
+        }
+
+        return new AttackClipHitTiming
+        {
+            HitNormalizedTime = fallbackHitNormalizedTime,
+            HasHitEvent = false,
+            ClipLength = 0f
+        };
+    }
+
+    private bool HasReachedHitFrame(int stateHash, float hitNormalizedTime)
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.shortNameHash == stateHash && stateInfo.normalizedTime >= hitNormalizedTime;
     }
 
     private IEnumerator WaitUntilState(string stateName)

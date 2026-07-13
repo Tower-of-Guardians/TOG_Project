@@ -98,6 +98,30 @@ public interface IStatusEffectHandler
     void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context);
 }
 
+internal static class StatusEffectDurationUtility
+{
+    /// <summary>
+    /// DurationType 분류(1=1턴, 2=수치, 3=영구)에 따라 남은 턴 수를 반환합니다.
+    /// </summary>
+    public static int ResolveDurationFromData(StatusEffectData data, int defaultTurns)
+    {
+        if (data == null)
+        {
+            return defaultTurns;
+        }
+
+        switch (data.DurationType)
+        {
+            case 3:
+                return int.MaxValue;
+            case 1:
+                return 1;
+            default:
+                return defaultTurns;
+        }
+    }
+}
+
 /// <summary>
 /// 약점노출(51001001) 핸들러.
 /// 다음 피격 1회 피해를 50% 증가시키고 소모됩니다.
@@ -198,6 +222,48 @@ public sealed class CurseHandler : IStatusEffectHandler
 }
 
 /// <summary>
+/// 힘:적(51003029) 핸들러.
+/// 공격 행동 피해량을 스택 수치만큼 증가시킵니다. (영구, 스택 누적)
+/// </summary>
+public sealed class EnemyStrengthBuffHandler : IStatusEffectHandler
+{
+    public string StatusEffectId => StatusEffectController.EnemyStrengthStatusId;
+    public StatusEffectStackPolicy StackPolicy => StatusEffectStackPolicy.AddStack;
+
+    public int ResolveInitialStack(StatusEffectData data, int requestedStack)
+    {
+        return Mathf.Max(1, requestedStack);
+    }
+
+    public int ResolveInitialDuration(StatusEffectData data)
+    {
+        return StatusEffectDurationUtility.ResolveDurationFromData(data, defaultTurns: int.MaxValue);
+    }
+
+    public int ResolveInitialValue(StatusEffectData data, int requestedValue)
+    {
+        return Mathf.Max(0, requestedValue);
+    }
+
+    public void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew) { }
+    public void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnTurnEnd(StatusEffectController controller, StatusEffectRuntime runtime) { }
+
+    public void OnBeforeDealDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context)
+    {
+        if (runtime == null || context == null || runtime.Stack <= 0)
+        {
+            return;
+        }
+
+        context.AddFinalDamage(runtime.Stack);
+    }
+
+    public void OnBeforeTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+    public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+}
+
+/// <summary>
 /// 상태효과의 부여/해제/훅 실행을 담당하는 컨트롤러입니다.
 /// 상태 정의는 DataCenter(StatusEffectData)에서 조회합니다.
 /// </summary>
@@ -205,6 +271,7 @@ public class StatusEffectController : MonoBehaviour
 {
     public const string WeaknessExposureStatusId = "51001001";
     public const string CurseStatusId = "51001005";
+    public const string EnemyStrengthStatusId = "51003029";
 
     [SerializeField] private bool enableDebugLog;
 
@@ -286,6 +353,23 @@ public class StatusEffectController : MonoBehaviour
     public bool TryApplyFromStatusEffectId(string statusEffectId, int requestedStack = 1, int requestedValue = 0)
     {
         return TryApplyStatus(statusEffectId, requestedStack, requestedValue);
+    }
+
+    public bool TryGetStatusStack(string statusEffectId, out int stack)
+    {
+        stack = 0;
+        if (string.IsNullOrEmpty(statusEffectId))
+        {
+            return false;
+        }
+
+        if (!activeStatusMap.TryGetValue(statusEffectId, out StatusEffectRuntime runtime) || runtime == null || runtime.IsExpired)
+        {
+            return false;
+        }
+
+        stack = runtime.Stack;
+        return stack > 0;
     }
 
     public void RemoveStatus(string statusEffectId)
@@ -451,6 +535,7 @@ public class StatusEffectController : MonoBehaviour
 
         RegisterHandler(new WeaknessExposureHandler());
         RegisterHandler(new CurseHandler());
+        RegisterHandler(new EnemyStrengthBuffHandler());
         isDefaultHandlerRegistered = true;
     }
 
