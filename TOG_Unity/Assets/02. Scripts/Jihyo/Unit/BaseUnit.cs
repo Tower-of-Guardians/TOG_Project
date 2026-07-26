@@ -47,6 +47,21 @@ public abstract class BaseUnit : MonoBehaviour, IDamageable
         RefreshUI();
     }
 
+    public virtual void SetMaxHealth(int value, bool adjustCurrentToMax = false)
+    {
+        maxHealth = Mathf.Max(1, value);
+        if (adjustCurrentToMax)
+        {
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        }
+
+        RefreshUI();
+    }
+
     public virtual void TakeDamage(int amount)
     {
         int beforeHealth = currentHealth;
