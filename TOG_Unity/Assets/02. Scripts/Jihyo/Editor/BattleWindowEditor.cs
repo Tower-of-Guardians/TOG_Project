@@ -31,12 +31,6 @@ public class BattleWindowEditor : EditorWindow
         window.Show();
     }
 
-    [MenuItem("\u2764 IngameSetTools/Battle", true)]
-    private static bool ValidateOpenWindow()
-    {
-        return IsGameSceneActive();
-    }
-
     private static bool IsGameSceneActive()
     {
         Scene activeScene = EditorSceneManager.GetActiveScene();
@@ -77,22 +71,31 @@ public class BattleWindowEditor : EditorWindow
         }
     }
 
+    private static bool CanUseBattleTools()
+    {
+        return IsGameSceneActive() && Application.isPlaying;
+    }
+
     private void OnGUI()
     {
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
+        DrawHeader();
+
         if (!IsGameSceneActive())
         {
             EditorGUILayout.HelpBox(
-                "Game 씬(Assets/01. Scenes/Game.unity)에서만 사용할 수 있습니다.\nGame 씬을 연 뒤 다시 시도해주세요.",
-                MessageType.Warning);
-            EditorGUILayout.EndScrollView();
-            return;
+                "Encounter 미리보기는 어디서든 볼 수 있습니다.\n몬스터 세팅/체력 조절은 Game 씬(Assets/01. Scenes/Game.unity) 플레이 모드에서만 사용할 수 있습니다.",
+                MessageType.Info);
+            EditorGUILayout.Space(8f);
         }
 
-        DrawHeader();
-        DrawSceneStatusSection();
-        EditorGUILayout.Space(8f);
+        if (IsGameSceneActive())
+        {
+            DrawSceneStatusSection();
+            EditorGUILayout.Space(8f);
+        }
+
         DrawEncounterSection();
         EditorGUILayout.Space(8f);
         DrawPlayerHealthSection();
@@ -148,7 +151,7 @@ public class BattleWindowEditor : EditorWindow
                 ReloadEncounterDatas();
             }
 
-            EditorGUI.BeginDisabledGroup(!Application.isPlaying || !TryResolveSpawnReferences(out _, out _));
+            EditorGUI.BeginDisabledGroup(!CanUseBattleTools() || !TryResolveSpawnReferences(out _, out _));
             if (GUILayout.Button("Apply Encounter", GUILayout.Height(24f)))
             {
                 ApplySelectedEncounter();
@@ -211,9 +214,9 @@ public class BattleWindowEditor : EditorWindow
     {
         EditorGUILayout.LabelField("Player Health", EditorStyles.boldLabel);
 
-        if (!Application.isPlaying)
+        if (!CanUseBattleTools())
         {
-            EditorGUILayout.HelpBox("플레이 모드에서 체력을 조절할 수 있습니다.", MessageType.None);
+            EditorGUILayout.HelpBox("Game 씬 플레이 모드에서 체력을 조절할 수 있습니다.", MessageType.None);
             return;
         }
 
@@ -231,9 +234,9 @@ public class BattleWindowEditor : EditorWindow
     {
         EditorGUILayout.LabelField("Monster Health", EditorStyles.boldLabel);
 
-        if (!Application.isPlaying)
+        if (!CanUseBattleTools())
         {
-            EditorGUILayout.HelpBox("Encounter 적용 후 몬스터 체력을 조절할 수 있습니다.", MessageType.None);
+            EditorGUILayout.HelpBox("Game 씬 플레이 모드에서 Encounter 적용 후 몬스터 체력을 조절할 수 있습니다.", MessageType.None);
             return;
         }
 
