@@ -12,7 +12,7 @@ public class BattleManagerInjector : MonoBehaviour, IInjector
     // TODO: 추후 현재 등장 구간(Section)에 맞게 randomEncounterIds를 동적으로 구성합니다.
     // (MonsterEncounterData.Section, Mon1~4ID, Mon*Position, Gold, Exp 참조)
     [Header("Encounter Spawn")]
-    private string[] randomEncounterIds = {"1410000", "1410001", "1410002", "1410003", "1410004", "1410007"};
+    private string[] randomEncounterIds = {"1410000", "1410001", "1410002", "1410003", "1410004", "1410005", "1410007"};
     [SerializeField] private MonsterPrefabRegistry monsterPrefabRegistry;
     [SerializeField] private Transform globalRoot;
 
