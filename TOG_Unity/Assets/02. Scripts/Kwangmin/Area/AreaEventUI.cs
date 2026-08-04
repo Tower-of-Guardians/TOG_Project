@@ -89,6 +89,30 @@ public class AreaEventUI : ViewBase
 
     public IEnumerator ShowWithCurrentData()
     {
+        if (DataCenter.areaevent_datas != null && DataCenter.areaevent_datas.Count > 0)
+        {
+            AreaEventData data = null;
+            if (!string.IsNullOrEmpty(TestId) && DataCenter.areaevent_datas.ContainsKey(TestId))
+            {
+                data = DataCenter.areaevent_datas[TestId];
+            }
+            else
+            {
+                foreach (var kvp in DataCenter.areaevent_datas)
+                {
+                    data = kvp.Value;
+                    break;
+                }
+            }
+
+            if (data != null)
+            {
+                var status = new PlayerEventStatus(TestShopCountInStage, TestSmithyCountInStage, TestBlessingCooldownTurns);
+                var list = AreaEventSelectorUtil.GetNextRegionChoices(data, status);
+                RefreshData(data.Name, list);
+            }
+        }
+
         yield return Show();
     }
 

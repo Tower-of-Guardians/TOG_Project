@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaEventUI: {fileID: 1626786569}
-  currentAreaEventId: AreaEvent_01
+  currentAreaEventId: 310102
   playerStatus:
     ShopCountInStage: 0
     SmithyCountInStage: 0

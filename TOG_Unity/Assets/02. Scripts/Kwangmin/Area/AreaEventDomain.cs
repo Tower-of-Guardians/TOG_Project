@@ -54,7 +54,8 @@ namespace Kwangmin
 
         private List<AreaEventType> GetChoices()
         {
-            if (DataCenter.areaevent_datas != null && DataCenter.areaevent_datas.TryGetValue(currentAreaEventId, out var data))
+            AreaEventData data = GetCurrentOrFirstData();
+            if (data != null)
             {
                 return AreaEventSelectorUtil.GetNextRegionChoices(data, playerStatus);
             }
@@ -64,11 +65,32 @@ namespace Kwangmin
 
         private string GetAreaTitle()
         {
-            if (DataCenter.areaevent_datas != null && DataCenter.areaevent_datas.TryGetValue(currentAreaEventId, out var data))
+            AreaEventData data = GetCurrentOrFirstData();
+            if (data != null)
             {
                 return data.Name;
             }
             return "다음 탐험 지역";
+        }
+
+        private AreaEventData GetCurrentOrFirstData()
+        {
+            if (DataCenter.areaevent_datas == null || DataCenter.areaevent_datas.Count == 0)
+            {
+                return null;
+            }
+
+            if (!string.IsNullOrEmpty(currentAreaEventId) && DataCenter.areaevent_datas.TryGetValue(currentAreaEventId, out var data))
+            {
+                return data;
+            }
+
+            foreach (var kvp in DataCenter.areaevent_datas)
+            {
+                return kvp.Value;
+            }
+
+            return null;
         }
 
         private void HandleEventSelected(AreaEventType type)
