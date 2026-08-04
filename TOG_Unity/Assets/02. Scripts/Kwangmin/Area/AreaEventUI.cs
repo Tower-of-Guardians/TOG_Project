@@ -1,15 +1,17 @@
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using JxModule;
 using TMPro;
 using UnityEngine;
 
-public class AreaEventUI : MonoBehaviour
+public class AreaEventUI : ViewBase
 {
     [SerializeField] private TMP_Text _texTopLabel;
     [SerializeField] private AreaEventItemUI[] _items;
     [SerializeField] private GameObject _obPanel;
 
-
-
+    private Tween _toggleTween;
 
     public void Start()
     {
@@ -17,6 +19,50 @@ public class AreaEventUI : MonoBehaviour
         {
             item.Init(OnClickAction);
         }
+    }
+
+    public IEnumerator Show()
+    {
+        CanvasGroup.Hide();
+        
+        _toggleTween?.Kill();
+        _toggleTween = CanvasGroup.DOFade(1f, 0.5f).OnComplete(CanvasGroup.Show);
+        
+        yield return _toggleTween.WaitForCompletion();
+    }
+
+    public IEnumerator Show(string title, List<AreaEventType> typeList)
+    {
+        RefreshData(title, typeList);
+        yield return Show();
+    }
+
+    public IEnumerator ShowWithCurrentData()
+    {
+        if (!string.IsNullOrEmpty(TestId) && DataCenter.areaevent_datas.ContainsKey(TestId))
+        {
+            var data = DataCenter.areaevent_datas[TestId];
+            var list = AreaEventSelectorUtil.GetNextRegionChoices(data, new PlayerEventStatus(TestShopCountInStage, TestSmithyCountInStage, TestBlessingCooldownTurns));
+            RefreshData(data.Name, list);
+        }
+        else
+        {
+            foreach (var kvp in DataCenter.areaevent_datas)
+            {
+                var data = kvp.Value;
+                var list = AreaEventSelectorUtil.GetNextRegionChoices(data, new PlayerEventStatus(TestShopCountInStage, TestSmithyCountInStage, TestBlessingCooldownTurns));
+                RefreshData(data.Name, list);
+                break;
+            }
+        }
+
+        yield return Show();
+    }
+
+    public void Hide()
+    {
+        _toggleTween?.Kill();
+        _toggleTween = CanvasGroup.DOFade(0f, 0.5f).OnComplete(CanvasGroup.Hide);
     }
 
     private void OnClickAction(AreaEventType type)
@@ -27,17 +73,17 @@ public class AreaEventUI : MonoBehaviour
                 break;
             case AreaEventType.Shop:
                 LoadingManager.Instance.LoadScene("AreaEvent_Shop");
-                _obPanel.gameObject.SetActive(false);
+                Hide();
                 break;
             case AreaEventType.Battle:
                 break;
             case AreaEventType.Blacksmith:
                 LoadingManager.Instance.LoadScene("AreaEvent_Blacksmith");
-                _obPanel.gameObject.SetActive(false);
+                Hide();
                 break;
             case AreaEventType.Blessing:
                 LoadingManager.Instance.LoadScene("AreaEvent_Blessing");
-                _obPanel.gameObject.SetActive(false);
+                Hide();
                 break;
             case AreaEventType.Random:
                 break;

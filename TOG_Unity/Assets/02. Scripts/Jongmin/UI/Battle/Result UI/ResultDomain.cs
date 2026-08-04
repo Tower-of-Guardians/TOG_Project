@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using JxModule;
 using UnityEngine;
@@ -15,6 +15,7 @@ namespace Jongmin
         [SerializeField] private GachaEventSystem gachaEventSystem;
         [SerializeField] private CardInfoDomain cardInfoDomain;
         [SerializeField] private CompactInvenDomain compactInvenDomain;
+        [SerializeField] private AreaEventUI areaEventUI;
 
         private GachaSlotFactory _slotFactory;
 
@@ -71,6 +72,11 @@ namespace Jongmin
             gachaSystem.CloseView();
             resultView.Hide();
             compactInvenDomain.CloseView();
+
+            if (areaEventUI != null)
+            {
+                StartCoroutine(areaEventUI.ShowWithCurrentData());
+            }
         }
 
         private void HandleRequestShowCardInfo(CardData cardData)
