@@ -3,10 +3,7 @@ using UnityEngine;
 
 public class Area_Blacksmith : ClickableObject
 {
-
     [SerializeField] private AreaEventUI_Blacksmith _blacksmithUI;
-
-    bool m_dialogue_completed = false;
 
     protected override void OnEnable()
     {
@@ -22,6 +19,9 @@ public class Area_Blacksmith : ClickableObject
 
     private void TryShopUI()
     {
-        _blacksmithUI.Open();
+        if (_blacksmithUI != null)
+        {
+            _blacksmithUI.Open();
+        }
     }
 }

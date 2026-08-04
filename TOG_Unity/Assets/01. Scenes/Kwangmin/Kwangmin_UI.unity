@@ -326,6 +326,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &657701697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 657701699}
+  - component: {fileID: 657701698}
+  m_Layer: 0
+  m_Name: AreaEventDomain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &657701698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657701697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00a1130b50214448979432ec5f61887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaEventUI: {fileID: 1599009232}
+  currentAreaEventId: AreaEvent_01
+  playerStatus:
+    ShopCountInStage: 0
+    SmithyCountInStage: 0
+    BlessingCooldownTurns: 0
+--- !u!4 &657701699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657701697}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705408248
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +740,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dc28de1036e6414d943204d26933809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1599009232 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6684726933931359815, guid: e886434d7aa12c04c90154c6bb3f0022, type: 3}
+  m_PrefabInstance: {fileID: 1752604132}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd17c358482d4d4bbce3c85ef54dff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1746983019
@@ -1539,3 +1600,4 @@ SceneRoots:
   - {fileID: 453056156}
   - {fileID: 259357134}
   - {fileID: 1980914052}
+  - {fileID: 657701699}

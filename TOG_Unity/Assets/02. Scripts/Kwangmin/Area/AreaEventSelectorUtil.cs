@@ -1,37 +1,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaEventSelectorUtil
+public static class AreaEventSelectorUtil
 {
+    private const int MaxSafetyLoopCount = 100;
+    private const int TargetChoiceCount = 3;
+
     public static List<AreaEventType> GetNextRegionChoices(AreaEventData data, PlayerEventStatus status)
     {
         if (data == null)
         {
-            Debug.LogError("Null");
+            Debug.LogError("[AreaEventSelectorUtil] AreaEventData가 null입니다.");
             return new List<AreaEventType>();
         }
 
-        Dictionary<AreaEventType, int> runtimeWeights = CalculateRuntimeWeights(data, status);
-
-        List<AreaEventType> selectedEvents = new List<AreaEventType>();
+        var runtimeWeights = CalculateRuntimeWeights(data, status);
+        var selectedEvents = new List<AreaEventType>();
         int safetyNet = 0;
 
-        while (selectedEvents.Count < 3 && safetyNet < 100)
+        while (selectedEvents.Count < TargetChoiceCount && safetyNet < MaxSafetyLoopCount)
         {
             safetyNet++;
 
             AreaEventType picked = GetWeightedRandomEvent(runtimeWeights);
-
-            if (picked != (AreaEventType)( -1 ))
-            {
-                selectedEvents.Add(picked);
-
-                runtimeWeights[picked] = 0;
-            }
-            else
+            if (picked == (AreaEventType)(-1))
             {
                 break;
             }
+
+            selectedEvents.Add(picked);
+            runtimeWeights[picked] = 0;
         }
 
         return selectedEvents;
@@ -46,9 +44,11 @@ public class AreaEventSelectorUtil
         }
 
         if (totalWeight <= 0)
-            return (AreaEventType)( -1 );
+        {
+            return (AreaEventType)(-1);
+        }
 
-        int roll = UnityEngine.Random.Range(1, totalWeight + 1);
+        int roll = Random.Range(1, totalWeight + 1);
         int processedWeight = 0;
 
         foreach (var kvp in weights)
@@ -60,34 +60,23 @@ public class AreaEventSelectorUtil
             }
         }
 
-        return (AreaEventType)( -1 );
+        return (AreaEventType)(-1);
     }
 
     private static Dictionary<AreaEventType, int> CalculateRuntimeWeights(AreaEventData data, PlayerEventStatus status)
     {
-        Dictionary<AreaEventType, int> weightsDict = new Dictionary<AreaEventType, int>();
+        int shopWeight = status.ShopCountInStage >= 1 ? 0 : data.MerchantEvent;
+        int smithyWeight = status.SmithyCountInStage >= 2 ? 0 : data.SmithyEvent;
+        int blessingWeight = status.BlessingCooldownTurns > 0 ? 0 : data.BlessingEvent;
 
-        int boss = data.BossEvent;
-        int shop = data.MerchantEvent;
-        int battle = data.BattleEvent;
-        int smithy = data.SmithyEvent;
-        int blessing = data.BlessingEvent;
-        int random = data.RandomEvent;
-
-        if (status.ShopCountInStage >= 1)
-            shop = 0;
-        if (status.SmithyCountInStage >= 2)
-            smithy = 0;
-        if (status.BlessingCooldownTurns > 0)
-            blessing = 0;
-
-        weightsDict.Add(AreaEventType.Boss, boss);
-        weightsDict.Add(AreaEventType.Shop, shop);
-        weightsDict.Add(AreaEventType.Battle, battle);
-        weightsDict.Add(AreaEventType.Blacksmith, smithy);
-        weightsDict.Add(AreaEventType.Blessing, blessing);
-        weightsDict.Add(AreaEventType.Random, random);
-
-        return weightsDict;
+        return new Dictionary<AreaEventType, int>
+        {
+            { AreaEventType.Boss, data.BossEvent },
+            { AreaEventType.Shop, shopWeight },
+            { AreaEventType.Battle, data.BattleEvent },
+            { AreaEventType.Blacksmith, smithyWeight },
+            { AreaEventType.Blessing, blessingWeight },
+            { AreaEventType.Random, data.RandomEvent }
+        };
     }
 }

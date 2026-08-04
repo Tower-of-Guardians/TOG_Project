@@ -1,15 +1,31 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public struct PlayerEventStatus
 {
     public int ShopCountInStage;
     public int SmithyCountInStage;
     public int BlessingCooldownTurns;
 
-    public PlayerEventStatus(int shop, int smith, int blessing)
+    public PlayerEventStatus(int shopCountInStage, int smithyCountInStage, int blessingCooldownTurns)
     {
-        this.ShopCountInStage = shop;
-        this.SmithyCountInStage = smith;
-        this.BlessingCooldownTurns = blessing;
+        ShopCountInStage = shopCountInStage;
+        SmithyCountInStage = smithyCountInStage;
+        BlessingCooldownTurns = blessingCooldownTurns;
+    }
+
+    public void ResetStageCounts()
+    {
+        ShopCountInStage = 0;
+        SmithyCountInStage = 0;
+    }
+
+    public void DecreaseBlessingCooldown()
+    {
+        if (BlessingCooldownTurns > 0)
+        {
+            BlessingCooldownTurns--;
+        }
     }
 }

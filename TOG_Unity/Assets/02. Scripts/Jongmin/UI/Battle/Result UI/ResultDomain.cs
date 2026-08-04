@@ -15,7 +15,7 @@ namespace Jongmin
         [SerializeField] private GachaEventSystem gachaEventSystem;
         [SerializeField] private CardInfoDomain cardInfoDomain;
         [SerializeField] private CompactInvenDomain compactInvenDomain;
-        [SerializeField] private AreaEventUI areaEventUI;
+        [SerializeField] private Kwangmin.AreaEventDomain areaEventDomain;
 
         private GachaSlotFactory _slotFactory;
 
@@ -73,9 +73,9 @@ namespace Jongmin
             resultView.Hide();
             compactInvenDomain.CloseView();
 
-            if (areaEventUI != null)
+            if (areaEventDomain != null)
             {
-                StartCoroutine(areaEventUI.ShowWithCurrentData());
+                areaEventDomain.OpenView();
             }
         }
 

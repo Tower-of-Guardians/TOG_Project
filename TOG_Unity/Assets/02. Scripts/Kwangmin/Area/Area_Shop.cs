@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class Area_Shop : ClickableObject
 {
-
     [SerializeField] private AreaEventUI_Shop _shopUI;
-    bool m_dialogue_completed = false;
 
     protected override void OnEnable()
     {
@@ -21,6 +19,9 @@ public class Area_Shop : ClickableObject
 
     private void TryShopUI()
     {
-        _shopUI.Open();
+        if (_shopUI != null)
+        {
+            _shopUI.Open();
+        }
     }
 }

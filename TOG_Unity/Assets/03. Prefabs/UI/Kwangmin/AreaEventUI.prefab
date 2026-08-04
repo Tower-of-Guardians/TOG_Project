@@ -2416,6 +2416,7 @@ GameObject:
   - component: {fileID: 4144698197388006882}
   - component: {fileID: 6077122296344969428}
   - component: {fileID: 6684726933931359815}
+  - component: {fileID: 1853285948850852088}
   m_Layer: 0
   m_Name: AreaEventUI
   m_TagString: Untagged
@@ -2526,10 +2527,22 @@ MonoBehaviour:
   - {fileID: 8819803199786171554}
   - {fileID: 1941084096383595766}
   - {fileID: 5140055465494740946}
-  TestId: 
+  TestId: 310102
   TestShopCountInStage: 0
   TestSmithyCountInStage: 0
   TestBlessingCooldownTurns: 0
+--- !u!225 &1853285948850852088
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884651728867049072}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &9073165724979999387
 GameObject:
   m_ObjectHideFlags: 0

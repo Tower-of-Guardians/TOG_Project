@@ -1,21 +1,3 @@
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-
-public class AreaEventUI_Blessing : MonoBehaviour
+public class AreaEventUI_Blessing : AreaEventSubUI
 {
-    [SerializeField] private GameObject _obPanel;
-
-
-
-
-    public void Start()
-    {
-
-    }
-
-    public void Open()
-    {
-        _obPanel.SetActive(true);
-    }
 }

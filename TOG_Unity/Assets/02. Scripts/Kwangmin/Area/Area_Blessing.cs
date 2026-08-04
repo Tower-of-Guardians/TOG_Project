@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Area_Blessing : ClickableObject
 {
-
     [SerializeField] private AreaEventUI_Blessing _blessingUI;
 
     protected override void OnEnable()
@@ -20,6 +19,9 @@ public class Area_Blessing : ClickableObject
 
     private void TryShopUI()
     {
-        _blessingUI.Open();
+        if (_blessingUI != null)
+        {
+            _blessingUI.Open();
+        }
     }
 }
