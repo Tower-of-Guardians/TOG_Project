@@ -33,10 +33,17 @@ namespace Kwangmin
             StartCoroutine(OpenViewRoutine());
         }
 
-        public IEnumerator OpenViewRoutine()
+        public void ResetStageCounts()
+        {
+            playerStatus.ResetStageCounts();
+        }
+
+        private IEnumerator OpenViewRoutine()
         {
             List<AreaEventType> choices = GetChoices();
             string title = GetAreaTitle();
+
+            playerStatus.DecreaseBlessingCooldown();
 
             if (areaEventUI != null)
             {
