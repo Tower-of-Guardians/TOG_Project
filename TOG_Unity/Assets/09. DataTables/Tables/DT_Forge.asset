@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7281123080877191028
+--- !u!114 &-7954414678627816465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86550fa839384825a592132c2ffa0643, type: 3}
-  m_Name: stage_01
+  m_Name: stage_04
   m_EditorClassIdentifier: 
-  rowID: stage_01
+  rowID: stage_04
   isEnable: 1
-  stage: 1
-  growthAtk: 4
-  growthBoth: 0200000003000000
-  growthDef: 6
---- !u!114 &-2923227444662951614
+  stage: 4
+  growthAtk: 10
+  growthBoth: 0500000006000000
+  growthDef: 12
+--- !u!114 &-1221093652306418679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -36,7 +36,7 @@ MonoBehaviour:
   growthAtk: 8
   growthBoth: 0400000005000000
   growthDef: 10
---- !u!114 &-700751880071325236
+--- !u!114 &-403021219619233631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,16 +66,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
   m_Name: DT_Forge
   m_EditorClassIdentifier: 
-  dataTableCsv: {fileID: 4900000, guid: 8a1401f7d38c1a74faa16bca151c366f, type: 3}
+  dataTableCsv: {fileID: 4900000, guid: 40e6460aa0cd43846ad45384b45cc289, type: 3}
   dataTableRowName: Jongmin.ForgeDataTableRow, Assembly-CSharp, Version=0.0.0.0,
     Culture=neutral, PublicKeyToken=null
+  remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=1773711930
   dataTableRows:
-  - {fileID: -7281123080877191028}
-  - {fileID: -700751880071325236}
-  - {fileID: -2923227444662951614}
-  - {fileID: 2324234805140349084}
-  dataTableRowScript: {fileID: 11500000, guid: 86550fa839384825a592132c2ffa0643, type: 3}
---- !u!114 &2324234805140349084
+  - {fileID: 2333481351354864833}
+  - {fileID: -403021219619233631}
+  - {fileID: -1221093652306418679}
+  - {fileID: -7954414678627816465}
+  dataTableRowScript: {fileID: 0}
+--- !u!114 &2333481351354864833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,11 +86,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86550fa839384825a592132c2ffa0643, type: 3}
-  m_Name: stage_04
+  m_Name: stage_01
   m_EditorClassIdentifier: 
-  rowID: stage_04
+  rowID: stage_01
   isEnable: 1
-  stage: 4
-  growthAtk: 10
-  growthBoth: 0500000006000000
-  growthDef: 12
+  stage: 1
+  growthAtk: 4
+  growthBoth: 0200000003000000
+  growthDef: 6

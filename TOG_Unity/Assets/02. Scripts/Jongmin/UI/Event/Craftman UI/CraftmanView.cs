@@ -1,23 +1,21 @@
-﻿using DG.Tweening;
-using JxModule;
+﻿using JxModule;
 using UnityEngine;
 
 namespace Jongmin
 {
     public class CraftmanView : ViewBase
     {
-        private Tween _toggleTween;
+        [BigHeader("Effect")]
+        [SerializeField] private CraftmanVisualEffect craftmanVisualEffect;
         
         public void Show()
         {
-            _toggleTween?.Kill();
-            _toggleTween = CanvasGroup.DOFade(1f, 0.5f).OnComplete(CanvasGroup.Show);
+            craftmanVisualEffect.PlayShowEffect(CanvasGroup, CanvasGroup.Show);
         }
 
         public void Hide()
         {
-            _toggleTween?.Kill();
-            _toggleTween = CanvasGroup.DOFade(0f, 0.5f).OnComplete(CanvasGroup.Hide);
+            craftmanVisualEffect.PlayHideEffect(CanvasGroup, CanvasGroup.Hide);
         }
     }
 }
