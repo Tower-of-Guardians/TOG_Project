@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 8082198425838485281}
   - component: {fileID: 1359522550853423401}
   - component: {fileID: 3328471701312590448}
+  - component: {fileID: 845448240164496567}
   m_Layer: 5
   m_Name: Craftman UI
   m_TagString: Untagged
@@ -240,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520a137053454f08ac6c7aae23baf015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  craftmanVisualEffect: {fileID: 845448240164496567}
 --- !u!114 &3328471701312590448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +254,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04aca9d0828a4013b2d64ba6d8738217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &845448240164496567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100494939023103367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22e5efd05d44b2792181a1a5b8e6a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeFade: 1
+  deactiveFade: 0
+  fadeDuration: 1
 --- !u!1 &114510320314272073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3762,6 +3779,7 @@ GameObject:
   - component: {fileID: 877904274277038709}
   - component: {fileID: 744744632138865260}
   - component: {fileID: 8420331061845695808}
+  - component: {fileID: 913051914780064538}
   m_Layer: 5
   m_Name: Forge UI
   m_TagString: Untagged
@@ -3861,6 +3879,7 @@ MonoBehaviour:
   defUpgradeButton: {fileID: 1378232882102621026}
   cancelButton: {fileID: 4692915942601666786}
   closeButton: {fileID: 9069413763777631160}
+  forgeVisualEffect: {fileID: 913051914780064538}
 --- !u!114 &8420331061845695808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3873,6 +3892,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d64da789fa4e9eb1b542fa7db5c704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &913051914780064538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476099737127737247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c50e2cf1ef4c68a9ed04c0168f49ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showDuration: 0.5
+  showMoveOffsetX: 960
+  cancelButtonFadeInDuration: 0.5
+  hideButtonFadeOutDuration: 0.5
+  hideDuration: 0.5
+  upgradeCardStartOffsetY: 100
+  upgradeCardStartScale: 2.2
+  upgradeCardEndScale: 2
+  upgradeCardDuration: 0.5
+  upgradeLabelStartScale: 2
+  upgradeLabelEndScale: 1
+  upgradeLabelDuration: 0.5
+  upgradeLabelEase: 27
+  closeButtonFadeInDuration: 0.5
 --- !u!1 &5483979865590052404
 GameObject:
   m_ObjectHideFlags: 0
