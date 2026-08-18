@@ -98,6 +98,8 @@ namespace Jongmin
 
         private void HandleRequestOnBeginDrag(Card card, FieldType fieldType)
         {
+            handDomain.View.SetInteraction(false);
+            
             var system = GetSystem(fieldType);
             var view = GetView(fieldType);
             var container = GetContainer(fieldType);
@@ -188,6 +190,8 @@ namespace Jongmin
             SyncDefDataWithContainer();
             AtkSystem.UpdateFieldStatus();
             DefSystem.UpdateFieldStatus();
+            
+            handDomain.View.SetInteraction(true);
         }
         
         private void HandleMoveHoverCardToOpposite(FieldType sourceFieldType)

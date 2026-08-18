@@ -8,6 +8,7 @@ namespace Jongmin
     {
         [SerializeField] private Transform cardRoot;
         [SerializeField] private PreviewCard previewCard;
+        [SerializeField] private CanvasGroup interactionGroup;
 
         public Transform CardRoot => cardRoot; 
         
@@ -21,6 +22,12 @@ namespace Jongmin
             previewCard.RectTransform.anchoredPosition = layoutData.position;
             previewCard.RectTransform.rotation = Quaternion.Euler(layoutData.rotation);
             previewCard.RectTransform.localScale = layoutData.scale;
+        }
+
+        public void SetInteraction(bool isActive)
+        {
+            interactionGroup.blocksRaycasts = isActive;
+            interactionGroup.interactable = isActive;
         }
     }
 }
