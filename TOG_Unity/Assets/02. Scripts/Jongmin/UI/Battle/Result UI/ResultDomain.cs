@@ -50,6 +50,7 @@ namespace Jongmin
             DataCenter.Instance.playerMoneyEvent += gachaSystem.UpdateSlotsState;
             DataCenter.Instance.playerMoneyEvent += gachaSystem.UpdateRefreshState;
 
+            gachaSystem.RequestRefreshInventory += compactInvenDomain.RefreshCurrentView;
             gachaEventSystem.RequestShowCardInfo += HandleRequestShowCardInfo;
         }
 
@@ -58,6 +59,7 @@ namespace Jongmin
             DataCenter.Instance.playerMoneyEvent -= gachaSystem.UpdateSlotsState;
             DataCenter.Instance.playerMoneyEvent -= gachaSystem.UpdateRefreshState;
             
+            gachaSystem.RequestRefreshInventory -= compactInvenDomain.RefreshCurrentView;
             gachaEventSystem.RequestShowCardInfo -= HandleRequestShowCardInfo;
         }
 

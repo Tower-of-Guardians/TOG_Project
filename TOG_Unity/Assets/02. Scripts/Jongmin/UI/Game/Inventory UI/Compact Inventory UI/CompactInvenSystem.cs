@@ -17,15 +17,19 @@ namespace Jongmin
         
         public void OpenView()
         {
-            Container.Clear();
+            RefreshView();
+            View.Show();
+        }
+
+        public void RefreshView()
+        {
+            RemoveAllSlots();
             DataCenter.Instance.SortUserCards(SortType.Grade);
 
             foreach (var cardData in DataCenter.Instance.userDeck)
             {
                 CreateSlot(cardData);
             }
-            
-            View.Show();
         }
 
         public void CloseView()
