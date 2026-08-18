@@ -48,9 +48,15 @@ namespace Jongmin
                 return;
             }
 
+            if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
+            {
+                RequestOnEndDrag?.Invoke(false);
+                return;
+            }
+
             MoveHoverCardToMousePosition(eventData.position);
 
-            if (TryGetCard(out var targetCard))
+            if (TryGetCard(eventData.position, out var targetCard))
             {
                 RequestSwapInSameField?.Invoke(targetCard, eventData.position);
             }
@@ -62,8 +68,14 @@ namespace Jongmin
             {
                 return;
             }
-            
-            var success = TryInvokeDropHandler();
+
+            if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
+            {
+                RequestOnEndDrag?.Invoke(false);
+                return;
+            }
+             
+            var success = TryInvokeDropHandler(eventData.position);
             RequestOnEndDrag?.Invoke(success);
         }
 
@@ -92,35 +104,35 @@ namespace Jongmin
             _discardSystem.HoverCard.transform.position = position;
         }
 
-        private bool TryInvokeDropHandler()
+        private bool TryInvokeDropHandler(Vector2 position)
         {
-            var handHit  = CheckField(out var eventData);
+            var handHit  = CheckField(position, out var eventData);
             if (handHit == null)
             {
                 return false;
             }
             
-            var handEventSystem = handHit.Value.gameObject.GetComponent<HandEventSystem>();
+            var handEventSystem = CardDragRaycastResolver.GetComponentInParent<HandEventSystem>(handHit.Value);
             if (handEventSystem == null)
             {
                 return false;
             }
             
-            ExecuteEvents.Execute(handHit.Value.gameObject, eventData, ExecuteEvents.dropHandler);
+            ExecuteEvents.Execute(handEventSystem.gameObject, eventData, ExecuteEvents.dropHandler);
             return true;
         }
 
-        private bool TryGetCard(out Card card)
+        private bool TryGetCard(Vector2 position, out Card card)
         {
             card = null;
 
-            var cardHit = CheckField(out _);
+            var cardHit = CheckField(position, out _);
             if (cardHit == null)
             {
                 return false;
             }
             
-            card = cardHit.Value.gameObject.GetComponent<Card>();
+            card = CardDragRaycastResolver.GetCard(cardHit.Value);
             if (card == null)
             {
                 return false;
@@ -129,27 +141,24 @@ namespace Jongmin
             return true;
         }
 
-        private RaycastResult? CheckField(out PointerEventData eventData)
+        private RaycastResult? CheckField(Vector2 position, out PointerEventData eventData)
         {
-            eventData = new(EventSystem.current)
-            {
-                position = Input.mousePosition,
-                pointerDrag = _discardSystem.HoverCard.gameObject
-            };
-            
-            var rayHits = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventData, rayHits);
+            var rayHits = CardDragRaycastResolver.Raycast(
+                position,
+                _discardSystem.HoverCard.gameObject,
+                out eventData
+            );
 
             foreach (var hit in rayHits)
             {
-                var card = hit.gameObject.GetComponent<Card>();
+                var card = CardDragRaycastResolver.GetCard(hit);
                 if (card != null && _container.IsExist(card) && _discardSystem.HoverCard != card)
                 {
                     return hit;
                 }
                 
-                var dropHandler = hit.gameObject.GetComponent<IDropHandler>();
-                if (dropHandler != null)
+                var handHandler = CardDragRaycastResolver.GetComponentInParent<HandEventSystem>(hit);
+                if (handHandler != null)
                 {
                     return hit;
                 }

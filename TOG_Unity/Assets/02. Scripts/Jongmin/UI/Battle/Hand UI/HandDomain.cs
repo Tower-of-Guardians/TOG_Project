@@ -47,6 +47,7 @@ namespace Jongmin
             handEventSystem.RequestSwapInSameField += HandleRequestSwapInSameField;
             handEventSystem.RequestChangeDropState += HandleRequestChangeDropState;
             handEventSystem.RequestEndDrag += HandleRequestEndDrag;
+            handSystem.OnCardRemoved += HandleCardRemoved;
         }
 
         public void ReleaseEvents()
@@ -59,6 +60,7 @@ namespace Jongmin
             handEventSystem.RequestSwapInSameField -= HandleRequestSwapInSameField;
             handEventSystem.RequestChangeDropState -= HandleRequestChangeDropState;
             handEventSystem.RequestEndDrag -= HandleRequestEndDrag;
+            handSystem.OnCardRemoved -= HandleCardRemoved;
         }
 
         private void HandleOnPointerEnter(Card card)
@@ -81,6 +83,7 @@ namespace Jongmin
         private void HandleOnDragCanceled()
         {
             handSystem.ToggleFieldPreview(false);
+            handSystem.HoverCard = null;
             handView.TogglePreview(false);
             _cardLayout.UpdateLayout();
         }
@@ -116,6 +119,17 @@ namespace Jongmin
             handView.TogglePreview(false);
             _cardLayout.UpdateLayout();
             SyncWithGameData();
+        }
+
+        private void HandleCardRemoved(Card card)
+        {
+            if (handSystem.HoverCard == card)
+            {
+                handSystem.HoverCard = null;
+            }
+
+            handSystem.ToggleFieldPreview(false);
+            handView.TogglePreview(false);
         }
 
         private void UpdatePreviewCard()

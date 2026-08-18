@@ -75,7 +75,7 @@ namespace Jongmin
 
         private void HandleOnBeginDrag(Card card, PointerEventData eventData)
         {
-            if (_handSystem.HoverCard == null)
+            if (!EnsureHoverCard(card))
             {
                 OnDragCanceled?.Invoke();
                 return;
@@ -87,7 +87,13 @@ namespace Jongmin
 
         private void HandleOnDrag(Card card, PointerEventData eventData)
         {
-            if (_handSystem.HoverCard == null || !_container.IsExist(card))
+            if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
+            {
+                OnDragCanceled?.Invoke();
+                return;
+            }
+
+            if (!EnsureHoverCard(card))
             {
                 OnDragCanceled?.Invoke();
                 return;
@@ -95,14 +101,14 @@ namespace Jongmin
 
             _handSystem.HoverCard.transform.position = eventData.position;
 
-            var swapTargetCard = TryGetCard();
+            var swapTargetCard = TryGetCard(eventData.position);
             if (swapTargetCard != null)
             {
                 RequestSwapInSameField?.Invoke(swapTargetCard, eventData.position);
             }
             else
             {
-                var dropHandler = TryGetDropArea(out _);
+                var dropHandler = TryGetDropArea(eventData.position, out _, out _);
                 var canDrop = dropHandler != null;
 
                 RequestChangeDropState?.Invoke(canDrop);
@@ -111,17 +117,23 @@ namespace Jongmin
 
         private void HandleOnEndDrag(Card card, PointerEventData eventData)
         {
-            if (_handSystem.HoverCard == null || !_container.IsExist(card))
+            if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
             {
                 OnDragCanceled?.Invoke();
                 return;
             }
 
-            var hit = CheckField(out var pointerData);
-            var dropHandler = hit?.gameObject.GetComponent<IDropHandler>();
+            if (!EnsureHoverCard(card))
+            {
+                OnDragCanceled?.Invoke();
+                return;
+            }
+
+            var hit = CheckField(eventData.position, out var pointerData);
+            var dropHandler = TryGetDropArea(hit, out var dropHandlerObject);
             if (dropHandler != null)
             {
-                ExecuteEvents.Execute(hit?.gameObject, pointerData, ExecuteEvents.dropHandler);
+                ExecuteEvents.Execute(dropHandlerObject, pointerData, ExecuteEvents.dropHandler);
             }
             
             RequestEndDrag?.Invoke();
@@ -154,44 +166,83 @@ namespace Jongmin
             }
         }
 
-        private Card TryGetCard()
+        private bool EnsureHoverCard(Card card)
         {
-            var hit = CheckField(out _);
-            return hit?.gameObject.GetComponent<Card>();
-        }
-
-        private IDropHandler TryGetDropArea(out PointerEventData eventData)
-        {
-            var hit = CheckField(out eventData);
-            return hit?.gameObject.GetComponent<IDropHandler>();
-        }
-
-        private RaycastResult? CheckField(out PointerEventData eventData)
-        {
-            eventData = new PointerEventData(EventSystem.current)
+            if (card == null || !_container.IsExist(card))
             {
-                position = Input.mousePosition,
-                pointerDrag = _handSystem.HoverCard.gameObject
-            };
+                return false;
+            }
 
-            var rayHits = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventData, rayHits);
+            if (_handSystem.HoverCard == null)
+            {
+                _handSystem.HoverCard = card;
+            }
+            
+            return true;
+        }
+
+        private Card TryGetCard(Vector2 position)
+        {
+            var hit = CheckField(position, out _);
+            return hit == null ? null : CardDragRaycastResolver.GetCard(hit.Value);
+        }
+
+        private IDropHandler TryGetDropArea(Vector2 position,
+                                            out PointerEventData eventData,
+                                            out GameObject dropHandlerObject)
+        {
+            var hit = CheckField(position, out eventData);
+            return TryGetDropArea(hit, out dropHandlerObject);
+        }
+
+        private IDropHandler TryGetDropArea(RaycastResult? hit, out GameObject dropHandlerObject)
+        {
+            dropHandlerObject = null;
+            if (hit == null)
+            {
+                return null;
+            }
+
+            var fieldHandler = CardDragRaycastResolver.GetComponentInParent<FieldEventSystem>(hit.Value);
+            if (fieldHandler != null)
+            {
+                dropHandlerObject = fieldHandler.gameObject;
+                return fieldHandler;
+            }
+
+            var discardHandler = CardDragRaycastResolver.GetComponentInParent<DiscardEventSystem>(hit.Value);
+            if (discardHandler != null)
+            {
+                dropHandlerObject = discardHandler.gameObject;
+                return discardHandler;
+            }
+
+            return null;
+        }
+
+        private RaycastResult? CheckField(Vector2 position, out PointerEventData eventData)
+        {
+            var rayHits = CardDragRaycastResolver.Raycast(
+                position,
+                _handSystem.HoverCard.gameObject,
+                out eventData
+            );
 
             foreach (var hit in rayHits)
             {
-                var card = hit.gameObject.GetComponent<Card>();
+                var card = CardDragRaycastResolver.GetCard(hit);
                 if (card != null && _container.IsExist(card) && _handSystem.HoverCard != card)
                 {
                     return hit;
                 }
                 
-                var fieldHandler = hit.gameObject.GetComponent<FieldEventSystem>();
+                var fieldHandler = CardDragRaycastResolver.GetComponentInParent<FieldEventSystem>(hit);
                 if(fieldHandler != null)
                 {
                     return hit;
                 }
 
-                var discardEventSystem = hit.gameObject.GetComponent<DiscardEventSystem>();
+                var discardEventSystem = CardDragRaycastResolver.GetComponentInParent<DiscardEventSystem>(hit);
                 if (discardEventSystem != null)
                 {
                     return hit;
