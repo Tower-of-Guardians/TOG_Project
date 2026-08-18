@@ -11,6 +11,7 @@ namespace Jongmin
         private CardDropSystem _dropSystem;
         private CardContainer _container;
         private Vector2 _lastPointerPosition;
+        private bool _isDragCanceled;
         
         public event Action<Card, FieldType> RequestOnBeginDrag;
         public event Action<Card, FieldType, Vector2> RequestSwapInSameField;
@@ -40,6 +41,8 @@ namespace Jongmin
 
         public void HandleOnBeginDrag(Card card, PointerEventData eventData)
         {
+            _isDragCanceled = false;
+
             var fieldType = GetFieldType(card);
             
             RequestOnBeginDrag?.Invoke(card, fieldType);
@@ -49,6 +52,11 @@ namespace Jongmin
         {
             _lastPointerPosition = eventData.position;
 
+            if (_isDragCanceled)
+            {
+                return;
+            }
+
             if (_fieldSystem.HoverCard == null)
             {
                 return;
@@ -56,7 +64,7 @@ namespace Jongmin
 
             if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
             {
-                RequestOnEndDrag?.Invoke(false, GetFieldType(card));
+                CancelDrag(card);
                 return;
             }
             
@@ -77,6 +85,12 @@ namespace Jongmin
         {
             _lastPointerPosition = eventData.position;
 
+            if (_isDragCanceled)
+            {
+                _isDragCanceled = false;
+                return;
+            }
+
             if (_fieldSystem.HoverCard == null)
             {
                 return;
@@ -84,7 +98,8 @@ namespace Jongmin
 
             if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
             {
-                RequestOnEndDrag?.Invoke(false, GetFieldType(card));
+                CancelDrag(card);
+                _isDragCanceled = false;
                 return;
             }
 
@@ -92,6 +107,7 @@ namespace Jongmin
             
             var success = TryInvokeDropHandler(eventData.position);
             RequestOnEndDrag?.Invoke(success, fieldType);
+            _isDragCanceled = false;
         }
         
         public void OnDrop(PointerEventData eventData)
@@ -104,6 +120,11 @@ namespace Jongmin
             
             var card = droppedObject.GetComponent<Card>();
             if (card == null || card.CardType != CardType.Hand)
+            {
+                return;
+            }
+
+            if (card.Pointer.IsDragCanceled)
             {
                 return;
             }
@@ -156,6 +177,18 @@ namespace Jongmin
         private void MoveHoverCardToMousePosition(Vector2 position)
         {
             _fieldSystem.HoverCard.transform.position = position;
+        }
+
+        private void CancelDrag(Card card)
+        {
+            if (_isDragCanceled)
+            {
+                return;
+            }
+
+            _isDragCanceled = true;
+            _fieldSystem.HoverCard?.Pointer.CancelDrag();
+            RequestOnEndDrag?.Invoke(false, GetFieldType(card));
         }
 
         private RaycastResult? CheckField(Vector2 position, out PointerEventData eventData)

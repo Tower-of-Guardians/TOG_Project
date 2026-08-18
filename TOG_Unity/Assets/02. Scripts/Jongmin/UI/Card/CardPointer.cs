@@ -29,6 +29,8 @@ namespace Jongmin
         public event Action<Card, PointerEventData> OnDragged;
         public event Action<Card, PointerEventData> OnEndDragged;
 
+        public bool IsDragCanceled { get; private set; }
+
         public void SetOwner(Card owner)
         {
             _owner = owner;
@@ -61,6 +63,7 @@ namespace Jongmin
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            IsDragCanceled = false;
             OnBeginDragged?.Invoke(_owner, eventData);
         }
 
@@ -74,6 +77,11 @@ namespace Jongmin
             cardGroup.blocksRaycasts = false;
             OnEndDragged?.Invoke(_owner, eventData);
             cardGroup.blocksRaycasts = true;
+        }
+
+        public void CancelDrag()
+        {
+            IsDragCanceled = true;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Jongmin
         private DiscardSystem _discardSystem;
         private CardDropSystem _dropSystem;
         private CardContainer _container;
+        private bool _isDragCanceled;
         
         public event Action<Card> RequestOnBeginDrag;
         public event Action<Card, Vector2> RequestSwapInSameField;
@@ -38,11 +39,17 @@ namespace Jongmin
 
         private void HandleOnBeginDrag(Card card, PointerEventData eventData)
         {
+            _isDragCanceled = false;
             RequestOnBeginDrag?.Invoke(card);
         }
 
         private void HandleOnDrag(Card card, PointerEventData eventData)
         {
+            if (_isDragCanceled)
+            {
+                return;
+            }
+
             if (_discardSystem.HoverCard == null)
             {
                 return;
@@ -50,7 +57,7 @@ namespace Jongmin
 
             if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
             {
-                RequestOnEndDrag?.Invoke(false);
+                CancelDrag();
                 return;
             }
 
@@ -64,6 +71,12 @@ namespace Jongmin
 
         private void HandleOnEndDrag(Card card, PointerEventData eventData)
         {
+            if (_isDragCanceled)
+            {
+                _isDragCanceled = false;
+                return;
+            }
+
             if (_discardSystem.HoverCard == null)
             {
                 return;
@@ -71,12 +84,14 @@ namespace Jongmin
 
             if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
             {
-                RequestOnEndDrag?.Invoke(false);
+                CancelDrag();
+                _isDragCanceled = false;
                 return;
             }
              
             var success = TryInvokeDropHandler(eventData.position);
             RequestOnEndDrag?.Invoke(success);
+            _isDragCanceled = false;
         }
 
         public void OnDrop(PointerEventData eventData)
@@ -93,6 +108,11 @@ namespace Jongmin
                 return;
             }
 
+            if (card.Pointer.IsDragCanceled)
+            {
+                return;
+            }
+
             if (card.CardType == CardType.Hand)
             {
                 _dropSystem.OnDroppedHandToDiscard(card);    
@@ -102,6 +122,18 @@ namespace Jongmin
         private void MoveHoverCardToMousePosition(Vector2 position)
         {
             _discardSystem.HoverCard.transform.position = position;
+        }
+
+        private void CancelDrag()
+        {
+            if (_isDragCanceled)
+            {
+                return;
+            }
+
+            _isDragCanceled = true;
+            _discardSystem.HoverCard?.Pointer.CancelDrag();
+            RequestOnEndDrag?.Invoke(false);
         }
 
         private bool TryInvokeDropHandler(Vector2 position)
