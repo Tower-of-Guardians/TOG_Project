@@ -48,6 +48,11 @@ namespace Jongmin
             }
         }
 
+        public void RefreshCurrentView()
+        {
+            System?.RefreshView();
+        }
+
         private void ChangeSystem(CompactInvenType inventoryType)
         {
             if (System != null)

@@ -1,4 +1,5 @@
-﻿using JxModule;
+using System;
+using JxModule;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,13 +11,14 @@ namespace Jongmin
         [SerializeField] private Card card;
         [SerializeField] private ButtonView purchaseButton;
         [SerializeField] private Animator animator;
-        
+
         [Header("Disable Group")]
         [SerializeField] private Image soldOutImage;
-        
+
         private bool _isPurchased;
-        
+
         public Card Card => card;
+        public event Action<CardData> Purchased;
 
         private void Awake()
         {
@@ -55,10 +57,11 @@ namespace Jongmin
             {
                 return;
             }
-            
+
             _isPurchased = true;
             UpdatePurchaseState(true);
             DataCenter.Instance.SetMoney(-Card.CardData.price);
+            Purchased?.Invoke(Card.CardData);
         }
 
         private void UpdatePurchaseButton(bool canPurchase)
@@ -82,15 +85,15 @@ namespace Jongmin
                 case 1:
                     animator.SetTrigger("Pop_Normal");
                     break;
-                
+
                 case 2:
                     animator.SetTrigger("Pop_Rare");
                     break;
-                
+
                 case 3:
                     animator.SetTrigger("Pop_Unique");
                     break;
-                
+
                 case 4:
                     animator.SetTrigger("Pop_Epic");
                     break;

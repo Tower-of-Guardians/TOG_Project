@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Jongmin
     {
         private GachaView _view;
         private GachaSlotFactory _factory;
-        
+
         private const int MinRefreshCost = 5;
         private const int MaxRefreshCost = 20;
         private const int GrowthRefreshCost = 5;
@@ -18,6 +19,8 @@ namespace Jongmin
         private List<GachaSlot> _slots = new();
         private int _currentRefreshCost;
         private bool _isCreatingSlots;
+
+        public event Action RequestRefreshInventory;
 
         public void Construct(GachaView view, GachaSlotFactory factory)
         {
@@ -44,10 +47,11 @@ namespace Jongmin
         {
             _isCreatingSlots = true;
             UpdateRefreshState(DataCenter.Instance.playerstate.money);
-            
+
             foreach (var data in _datas)
             {
                 var slot = _factory.Create();
+                slot.Purchased += HandleSlotPurchased;
                 slot.Initialize(data.data, DataCenter.Instance.playerstate.money);
                 _slots.Add(slot);
 
@@ -61,9 +65,10 @@ namespace Jongmin
         public void RemoveSlots()
         {
             var tempSlots = new List<GachaSlot>(_slots);
-            
+
             foreach(var slot in tempSlots)
             {
+                slot.Purchased -= HandleSlotPurchased;
                 _slots.Remove(slot);
                 _factory.Release(slot);
             }
@@ -92,7 +97,7 @@ namespace Jongmin
 
             StartCoroutine(CreateSlots());
         }
-        
+
         public void UpdateSlotsState(int gold)
         {
             foreach (var slot in _slots)
@@ -118,6 +123,12 @@ namespace Jongmin
             _datas = GameData.Instance.GetResultItems();
         }
 
+        private void HandleSlotPurchased(CardData cardData)
+        {
+            DataCenter.Instance.userDeck.Add(Instantiate(cardData));
+            RequestRefreshInventory?.Invoke();
+        }
+
         private void SetRateFromData()
         {
             var colors = new List<string>{ "828282", "4AA8D8", "FEFD48", "F06464" };
@@ -129,7 +140,7 @@ namespace Jongmin
                 builder.Append(i < rates.Count - 1 ? $"<color=#{colors[i]}>{rates[i]}%</color>   "
                                                    : $"<color=#{colors[i]}>{rates[i]}%</color>");
             }
-            
+
             _view.SetRate(builder.ToString());
         }
     }
