@@ -13,7 +13,7 @@ namespace Jongmin
 
         public void Notify(string text)
         {
-            var notifyObject = ObjectPoolManager.Instance.Get(_prefab.gameObject);
+            var notifyObject = JxModule.ObjectPoolManager.Instance.Get(_prefab.gameObject);
             var notifyView = notifyObject.GetComponent<NotifyView>();
             if (notifyView == null)
             {

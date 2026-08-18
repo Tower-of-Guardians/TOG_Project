@@ -9,7 +9,7 @@ public class DeckInvenFactory : MonoBehaviour, ICardFactory<IDeckInvenCardUI>
     
     public IDeckInvenCardUI Create()
     {
-        GameObject cardObject = ObjectPoolManager.Instance.Get(deckInvenCardPrefab);
+        GameObject cardObject = JxModule.ObjectPoolManager.Instance.Get(deckInvenCardPrefab);
         cardObject.transform.SetParent(cardRoot, false);
         cardObject.transform.localScale = Vector3.one;
         
@@ -19,6 +19,6 @@ public class DeckInvenFactory : MonoBehaviour, ICardFactory<IDeckInvenCardUI>
     public void Release(IDeckInvenCardUI cardUI)
     {
         GameObject cardObject = (cardUI as DeckInvenCardUI).gameObject;
-        ObjectPoolManager.Instance.Return(cardObject);
+        JxModule.ObjectPoolManager.Instance.Return(cardObject);
     }
 }

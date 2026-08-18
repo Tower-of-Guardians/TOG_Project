@@ -16,7 +16,7 @@ namespace Jongmin
         
         public CompactInvenSlot Create(CompactInvenType invenType)
         {
-            var slotObject = ObjectPoolManager.Instance.Get(_prefab.gameObject);
+            var slotObject = JxModule.ObjectPoolManager.Instance.Get(_prefab.gameObject);
             slotObject.transform.SetParent(_view.CardRoot, false);
             slotObject.transform.localRotation = Quaternion.identity;
             slotObject.transform.localScale = Vector3.one;
@@ -27,7 +27,7 @@ namespace Jongmin
 
         public void Release(CompactInvenSlot slot)
         {
-            ObjectPoolManager.Instance.Return(slot.gameObject);
+            JxModule.ObjectPoolManager.Instance.Return(slot.gameObject);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Jongmin
 
         public Card Create()
         {
-            var cardObject = ObjectPoolManager.Instance.Get(_prefab.gameObject);
+            var cardObject = JxModule.ObjectPoolManager.Instance.Get(_prefab.gameObject);
             cardObject.transform.SetParent(_view.CardRoot, false);
             cardObject.transform.localScale = Vector3.one;
         
@@ -31,7 +31,7 @@ namespace Jongmin
         public void Release(Card card)
         {
             _eventSystem.Unsubscribe(card);
-            ObjectPoolManager.Instance.Return(card.gameObject);
+            JxModule.ObjectPoolManager.Instance.Return(card.gameObject);
         }
     }  
 }
