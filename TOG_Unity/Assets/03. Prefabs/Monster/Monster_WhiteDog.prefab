@@ -321,6 +321,7 @@ MonoBehaviour:
   actionShieldSprite: {fileID: -7572360096558737171, guid: cfe50b82cd96c8b458f6f5fe0e57d27e, type: 3}
   actionBuffSprite: {fileID: -589363397543447557, guid: bbaeb42226bf64c4d98766fbfbd2f6b5, type: 3}
   actionDebuffSprite: {fileID: 4216437783088810774, guid: 8d804c2f12fb1be418093cf84c2949d0, type: 3}
+  actionCurseSprite: {fileID: -3409644966883235842, guid: 62a349f432a25cb44bba532a28c90c78, type: 3}
   spriteRenderer: {fileID: 4842365065420270011}
   attackMoveOffset: 5
   attackMoveDuration: 0.3

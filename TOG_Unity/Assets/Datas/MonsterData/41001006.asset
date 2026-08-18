@@ -16,6 +16,10 @@ MonoBehaviour:
   Name: "\uD074\uB860"
   Image: {fileID: 0}
   HP: 20
+  ATKMin: 5
+  ATKMax: 7
+  DEFMin: 0
+  DEFMax: 0
   Kind: 1
   PatternType: 2
   Passive1ID: 

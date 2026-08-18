@@ -2,7 +2,7 @@ using UnityEngine;
 
 /// <summary>
 /// 헥터 전용 몬스터. 현재 WhiteDog 외형/애니메이션을 공유하며 MonsterData(41001004) 스탯·패턴만 적용합니다.
-/// 행동 패턴: 공격 -> 보호 -> 상태부여 순환
+/// 행동 패턴: 공격 -> 보호 -> 상태부여(저주) 순환
 /// </summary>
 public class Monster_Hector : Monster
 {
@@ -26,6 +26,7 @@ public class Monster_Hector : Monster
         string action3Id = "2410003";
         int action3Min = 5;
         int action3Max = 5;
+        string statusEffectId = StatusEffectController.CurseStatusId;
 
         if (TryGetLoadedMonsterData(out MonsterData data))
         {
@@ -49,17 +50,21 @@ public class Monster_Hector : Monster
                 action3Min = data.Action3Min;
                 action3Max = data.Action3Max;
             }
+
+            statusEffectId = ResolvePrimaryStatusEffectId(statusEffectId);
+            action3Min = ResolvePrimaryStatusValue(action3Min);
+            action3Max = ResolvePrimaryStatusValue(action3Max);
         }
 
         OverrideBehavior(
             MonsterActionPatternType.Cycle,
-            CreateHectorAction(action1Id, action1Min, action1Max),
-            CreateHectorAction(action2Id, action2Min, action2Max),
-            CreateHectorAction(action3Id, action3Min, action3Max)
+            CreateHectorAction(action1Id, action1Min, action1Max, statusEffectId),
+            CreateHectorAction(action2Id, action2Min, action2Max, statusEffectId),
+            CreateHectorAction(action3Id, action3Min, action3Max, statusEffectId)
         );
     }
 
-    private static MonsterActionDefinition CreateHectorAction(string actionId, int min, int max)
+    private MonsterActionDefinition CreateHectorAction(string actionId, int min, int max, string statusEffectId)
     {
         MonsterActionDefinition definition = new MonsterActionDefinition
         {
@@ -80,8 +85,8 @@ public class Monster_Hector : Monster
                 break;
             case "2410003":
                 definition.ActionType = MonsterActionType.ApplyStatus;
-                definition.TargetType = MonsterActionTargetType.Player;
-                definition.StatusEffectId = StatusEffectController.CurseStatusId;
+                definition.TargetType = ResolvePrimaryStatusTargetType();
+                definition.StatusEffectId = statusEffectId;
                 definition.StatusStack = Mathf.Max(1, min);
                 break;
             default:

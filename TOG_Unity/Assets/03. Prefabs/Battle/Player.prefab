@@ -183,6 +183,7 @@ MonoBehaviour:
   statAnimationDuration: 0.5
   statAnimationEase: 6
   weaknessStatusSprite: {fileID: 4035860371971368088, guid: 34bb51b54453114419ec29327fc29b9f, type: 3}
+  curseStatusSprite: {fileID: -3409644966883235842, guid: 62a349f432a25cb44bba532a28c90c78, type: 3}
   statusBottomRoot: {fileID: 7062197768075648575}
 --- !u!114 &8227538613326071428
 MonoBehaviour:

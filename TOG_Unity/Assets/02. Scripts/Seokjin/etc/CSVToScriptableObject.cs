@@ -299,6 +299,10 @@ public class CSVToScriptableObject
             item.Name = GetCsvString(columnMap, values, "Name");
 
             item.HP = GetCsvInt(columnMap, values, "HP");
+            item.ATKMin = GetCsvInt(columnMap, values, "ATKMin");
+            item.ATKMax = GetCsvInt(columnMap, values, "ATKMax");
+            item.DEFMin = GetCsvInt(columnMap, values, "DEFMin");
+            item.DEFMax = GetCsvInt(columnMap, values, "DEFMax");
             item.Kind = GetCsvInt(columnMap, values, "Kind");
             item.PatternType = GetCsvInt(columnMap, values, "PatternType");
 
@@ -331,41 +335,46 @@ public class CSVToScriptableObject
             item.Action7Min = GetCsvInt(columnMap, values, "Action7Min");
             item.Action7Max = GetCsvInt(columnMap, values, "Action7Max");
 
-            // 구버전 CSV(ID,Name,HP,ATKMin,ATKMax,DEFMin,DEFMax...) 호환
+            item.StatusEffect1ID = GetCsvString(columnMap, values, "StatusEffect1ID");
+            item.Target1 = GetCsvInt(columnMap, values, "Target1");
+            item.Value1 = GetCsvInt(columnMap, values, "Value1");
+            item.StatusEffect2ID = GetCsvString(columnMap, values, "StatusEffect2ID");
+            item.Target2 = GetCsvInt(columnMap, values, "Target2");
+            item.Value2 = GetCsvInt(columnMap, values, "Value2");
+            item.StatusEffect3ID = GetCsvString(columnMap, values, "StatusEffect3ID");
+            item.Target3 = GetCsvInt(columnMap, values, "Target3");
+            item.Value3 = GetCsvInt(columnMap, values, "Value3");
+
+            // CSV 공격/보호 컬럼을 행동 슬롯으로 변환
             if (string.IsNullOrEmpty(item.Action1ID))
             {
-                int atkMin = GetCsvInt(columnMap, values, "ATKMin");
-                int atkMax = GetCsvInt(columnMap, values, "ATKMax");
-                if (atkMin != 0 || atkMax != 0)
+                if (item.ATKMin != 0 || item.ATKMax != 0)
                 {
                     item.Action1ID = "2410001";
-                    item.Action1Min = atkMin;
-                    item.Action1Max = atkMax;
+                    item.Action1Min = item.ATKMin;
+                    item.Action1Max = item.ATKMax;
                 }
             }
 
             if (string.IsNullOrEmpty(item.Action2ID))
             {
-                int defMin = GetCsvInt(columnMap, values, "DEFMin");
-                int defMax = GetCsvInt(columnMap, values, "DEFMax");
-                if (defMin != 0 || defMax != 0)
+                if (item.DEFMin != 0 || item.DEFMax != 0)
                 {
                     item.Action2ID = "2410002";
-                    item.Action2Min = defMin;
-                    item.Action2Max = defMax;
+                    item.Action2Min = item.DEFMin;
+                    item.Action2Max = item.DEFMax;
                 }
             }
 
-            if (string.IsNullOrEmpty(item.Action3ID))
+            // 플레이어 대상(Target1=2) 상태부여만 Action3로 변환. 자가 버프(Target1=1)는 몬스터 전용 로직에서 처리.
+            if (string.IsNullOrEmpty(item.Action3ID)
+                && !string.IsNullOrEmpty(item.StatusEffect1ID)
+                && item.Value1 > 0
+                && item.Target1 == 2)
             {
-                string statusEffect1Id = GetCsvString(columnMap, values, "StatusEffect1ID");
-                int statusValue1 = GetCsvInt(columnMap, values, "Value1");
-                if (!string.IsNullOrEmpty(statusEffect1Id) && statusValue1 > 0)
-                {
-                    item.Action3ID = "2410003";
-                    item.Action3Min = statusValue1;
-                    item.Action3Max = statusValue1;
-                }
+                item.Action3ID = "2410003";
+                item.Action3Min = item.Value1;
+                item.Action3Max = item.Value1;
             }
 
             EditorUtility.SetDirty(item);

@@ -62,6 +62,7 @@ public class Monster : BaseUnit, IPointerClickHandler
     [SerializeField] private Sprite actionShieldSprite;
     [SerializeField] private Sprite actionBuffSprite;
     [SerializeField] private Sprite actionDebuffSprite;
+    [SerializeField] private Sprite actionCurseSprite;
 
     [Header("Animation")]
     private MonsterAnimation monsterAnimation;
@@ -159,6 +160,36 @@ public class Monster : BaseUnit, IPointerClickHandler
     {
         data = loadedMonsterData;
         return data != null;
+    }
+
+    protected string ResolvePrimaryStatusEffectId(string fallbackId)
+    {
+        if (loadedMonsterData != null && !string.IsNullOrEmpty(loadedMonsterData.StatusEffect1ID))
+        {
+            return loadedMonsterData.StatusEffect1ID;
+        }
+
+        return fallbackId;
+    }
+
+    protected int ResolvePrimaryStatusValue(int fallbackValue)
+    {
+        if (loadedMonsterData != null && loadedMonsterData.Value1 > 0)
+        {
+            return loadedMonsterData.Value1;
+        }
+
+        return fallbackValue;
+    }
+
+    protected MonsterActionTargetType ResolvePrimaryStatusTargetType()
+    {
+        if (loadedMonsterData != null && loadedMonsterData.Target1 == 1)
+        {
+            return MonsterActionTargetType.Self;
+        }
+
+        return MonsterActionTargetType.Player;
     }
 
     protected void OverrideBehavior(MonsterActionPatternType patternType, params MonsterActionDefinition[] actions)
@@ -379,8 +410,8 @@ public class Monster : BaseUnit, IPointerClickHandler
                 break;
             case "2410003":
                 definition.ActionType = MonsterActionType.ApplyStatus;
-                definition.TargetType = MonsterActionTargetType.Player;
-                definition.StatusEffectId = StatusEffectController.WeaknessExposureStatusId;
+                definition.TargetType = ResolvePrimaryStatusTargetType();
+                definition.StatusEffectId = ResolvePrimaryStatusEffectId(StatusEffectController.WeaknessExposureStatusId);
                 definition.StatusStack = Mathf.Max(1, min);
                 break;
             case "2410004":
@@ -1069,6 +1100,10 @@ public class Monster : BaseUnit, IPointerClickHandler
             case MonsterActionType.Guard:
                 return actionShieldSprite;
             case MonsterActionType.ApplyStatus:
+                if (action.StatusEffectId == StatusEffectController.CurseStatusId && actionCurseSprite != null)
+                {
+                    return actionCurseSprite;
+                }
                 return IsDebuffTarget(action.TargetType) ? actionDebuffSprite : actionBuffSprite;
             case MonsterActionType.Heal:
             case MonsterActionType.Summon:

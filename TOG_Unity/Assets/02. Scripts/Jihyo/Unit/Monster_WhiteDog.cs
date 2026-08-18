@@ -25,6 +25,7 @@ public class Monster_WhiteDog : Monster
         string action3Id = "2410003";
         int action3Min = 5;
         int action3Max = 5;
+        string statusEffectId = StatusEffectController.CurseStatusId;
 
         if (TryGetLoadedMonsterData(out MonsterData data))
         {
@@ -48,17 +49,21 @@ public class Monster_WhiteDog : Monster
                 action3Min = data.Action3Min;
                 action3Max = data.Action3Max;
             }
+
+            statusEffectId = ResolvePrimaryStatusEffectId(statusEffectId);
+            action3Min = ResolvePrimaryStatusValue(action3Min);
+            action3Max = ResolvePrimaryStatusValue(action3Max);
         }
 
         OverrideBehavior(
             MonsterActionPatternType.Cycle,
-            CreateWhiteDogAction(action1Id, action1Min, action1Max),
-            CreateWhiteDogAction(action2Id, action2Min, action2Max),
-            CreateWhiteDogAction(action3Id, action3Min, action3Max)
+            CreateWhiteDogAction(action1Id, action1Min, action1Max, statusEffectId),
+            CreateWhiteDogAction(action2Id, action2Min, action2Max, statusEffectId),
+            CreateWhiteDogAction(action3Id, action3Min, action3Max, statusEffectId)
         );
     }
 
-    private static MonsterActionDefinition CreateWhiteDogAction(string actionId, int min, int max)
+    private MonsterActionDefinition CreateWhiteDogAction(string actionId, int min, int max, string statusEffectId)
     {
         MonsterActionDefinition definition = new MonsterActionDefinition
         {
@@ -79,8 +84,8 @@ public class Monster_WhiteDog : Monster
                 break;
             case "2410003":
                 definition.ActionType = MonsterActionType.ApplyStatus;
-                definition.TargetType = MonsterActionTargetType.Player;
-                definition.StatusEffectId = StatusEffectController.CurseStatusId;
+                definition.TargetType = ResolvePrimaryStatusTargetType();
+                definition.StatusEffectId = statusEffectId;
                 definition.StatusStack = Mathf.Max(1, min);
                 break;
             default:

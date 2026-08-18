@@ -36,6 +36,7 @@ public class Player : BaseUnit
     
     [Header("Status Effect UI")]
     [SerializeField] private Sprite weaknessStatusSprite;
+    [SerializeField] private Sprite curseStatusSprite;
     [SerializeField] private Transform statusBottomRoot;
     
     private Tweener attackTextTweener;
@@ -45,11 +46,16 @@ public class Player : BaseUnit
     private const int AttackSortingOrder = 7;
     private const string WeaknessStatusNodeName = "Weakness";
     private const string WeaknessTurnTextNodeName = "Text_Turn";
+    private const string CurseStatusNodeName = "Curse";
+    private const string CurseStackTextNodeName = "Text_Stack";
     
     private StatusEffectController statusEffectController;
     private GameObject weaknessStatusRoot;
     private Image weaknessStatusImage;
     private TMP_Text weaknessTurnText;
+    private GameObject curseStatusRoot;
+    private Image curseStatusImage;
+    private TMP_Text curseStackText;
 
     public int AttackValue => Mathf.RoundToInt(baseAttack + cardAttackBonus) + battleSynergyAttackBonus + turnSynergyAttackBonus;
     public float DefenseValue => cardDefenseBonus;
@@ -584,6 +590,29 @@ public class Player : BaseUnit
         {
             weaknessStatusRoot.SetActive(false);
         }
+
+        Transform curseRootTransform = statusBottomRoot.Find(CurseStatusNodeName);
+        if (curseRootTransform == null)
+        {
+            curseStatusRoot = CreateCurseStatusNode(statusBottomRoot);
+        }
+        else
+        {
+            curseStatusRoot = curseRootTransform.gameObject;
+            curseStatusImage = curseStatusRoot.GetComponent<Image>();
+            Transform curseTextTransform = curseStatusRoot.transform.Find(CurseStackTextNodeName);
+            curseStackText = curseTextTransform != null ? curseTextTransform.GetComponent<TMP_Text>() : null;
+        }
+
+        if (curseStatusImage != null && curseStatusSprite != null)
+        {
+            curseStatusImage.sprite = curseStatusSprite;
+        }
+
+        if (curseStatusRoot != null)
+        {
+            curseStatusRoot.SetActive(false);
+        }
     }
 
     private GameObject CreateWeaknessStatusNode(Transform parent)
@@ -617,6 +646,37 @@ public class Player : BaseUnit
         return root;
     }
 
+    private GameObject CreateCurseStatusNode(Transform parent)
+    {
+        GameObject root = new GameObject(CurseStatusNodeName, typeof(RectTransform), typeof(Image));
+        RectTransform rootRect = root.GetComponent<RectTransform>();
+        rootRect.SetParent(parent, false);
+        rootRect.sizeDelta = new Vector2(0.5f, 0.5f);
+        rootRect.localScale = Vector3.one;
+
+        curseStatusImage = root.GetComponent<Image>();
+        curseStatusImage.sprite = curseStatusSprite;
+        curseStatusImage.preserveAspect = true;
+
+        GameObject textObject = new GameObject(CurseStackTextNodeName, typeof(RectTransform), typeof(TextMeshProUGUI));
+        RectTransform textRect = textObject.GetComponent<RectTransform>();
+        textRect.SetParent(rootRect, false);
+        textRect.anchorMin = new Vector2(0.5f, 0f);
+        textRect.anchorMax = new Vector2(1f, 0.5f);
+        textRect.offsetMin = Vector2.zero;
+        textRect.offsetMax = Vector2.zero;
+
+        TextMeshProUGUI text = textObject.GetComponent<TextMeshProUGUI>();
+        text.font = attackText != null ? attackText.font : null;
+        text.fontSize = attackText != null ? attackText.fontSize * 0.8f : 0.2f;
+        text.alignment = TextAlignmentOptions.BottomRight;
+        text.color = Color.white;
+        text.text = string.Empty;
+        curseStackText = text;
+
+        return root;
+    }
+
     private void SubscribeStatusEffectEvents()
     {
         statusEffectController = GetComponent<StatusEffectController>();
@@ -629,6 +689,7 @@ public class Player : BaseUnit
         statusEffectController.OnStatusRemoved += OnPlayerStatusUpdated;
         statusEffectController.OnStatusChanged += OnPlayerStatusUpdated;
         RefreshWeaknessStatusUI();
+        RefreshCurseStatusUI();
     }
 
     private void UnsubscribeStatusEffectEvents()
@@ -647,6 +708,7 @@ public class Player : BaseUnit
     private void OnPlayerStatusUpdated(StatusEffectRuntime runtime)
     {
         RefreshWeaknessStatusUI();
+        RefreshCurseStatusUI();
     }
 
     private void RefreshWeaknessStatusUI()
@@ -681,6 +743,39 @@ public class Player : BaseUnit
 
         int turnValue = weaknessRuntime.RemainingTurns == int.MaxValue ? 0 : Mathf.Max(0, weaknessRuntime.RemainingTurns);
         weaknessTurnText.text = turnValue.ToString();
+    }
+
+    private void RefreshCurseStatusUI()
+    {
+        if (curseStatusRoot == null || curseStackText == null || statusEffectController == null)
+        {
+            return;
+        }
+
+        StatusEffectRuntime curseRuntime = null;
+        foreach (StatusEffectRuntime runtime in statusEffectController.ActiveStatuses)
+        {
+            if (runtime == null)
+            {
+                continue;
+            }
+
+            if (runtime.StatusEffectId == StatusEffectController.CurseStatusId)
+            {
+                curseRuntime = runtime;
+                break;
+            }
+        }
+
+        bool shouldShow = curseRuntime != null && !curseRuntime.IsExpired;
+        curseStatusRoot.SetActive(shouldShow);
+        if (!shouldShow)
+        {
+            curseStackText.text = string.Empty;
+            return;
+        }
+
+        curseStackText.text = Mathf.Max(0, curseRuntime.Stack).ToString();
     }
 
 }

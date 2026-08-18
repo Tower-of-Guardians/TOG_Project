@@ -16,6 +16,10 @@ MonoBehaviour:
   Name: "\uADF8\uB77C\uC6B4\uB354"
   Image: {fileID: 0}
   HP: 38
+  ATKMin: 7
+  ATKMax: 8
+  DEFMin: 0
+  DEFMax: 0
   Kind: 1
   PatternType: 1
   Passive1ID: 
@@ -45,3 +49,12 @@ MonoBehaviour:
   Action7ID: 
   Action7Min: 0
   Action7Max: 0
+  StatusEffect1ID: 51001001
+  Target1: 2
+  Value1: 1
+  StatusEffect2ID: 
+  Target2: 0
+  Value2: 0
+  StatusEffect3ID: 
+  Target3: 0
+  Value3: 0

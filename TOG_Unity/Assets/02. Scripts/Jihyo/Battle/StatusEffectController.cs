@@ -188,7 +188,7 @@ public sealed class CurseHandler : IStatusEffectHandler
 
     public int ResolveInitialDuration(StatusEffectData data)
     {
-        return data != null && data.DurationType > 0 ? data.DurationType : 3;
+        return StatusEffectDurationUtility.ResolveDurationFromData(data, defaultTurns: int.MaxValue);
     }
 
     public int ResolveInitialValue(StatusEffectData data, int requestedValue)

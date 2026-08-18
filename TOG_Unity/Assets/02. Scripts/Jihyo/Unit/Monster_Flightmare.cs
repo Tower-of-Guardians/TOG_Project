@@ -1,18 +1,17 @@
 using UnityEngine;
 
 /// <summary>
-/// 플라이트메어. 공격 후 자신에게 힘:적(51003029) +1을 부여합니다.
-/// 힘:적은 영구(누적)이므로 첫 공격은 기본 8, 이후 매 공격마다 +1씩 누적됩니다.
+/// 플라이트메어. 공격 후 자신에게 힘:적(51003029)을 부여합니다.
+/// 버프 수치는 MonsterData.Value1을 참조합니다.
 /// </summary>
 public class Monster_Flightmare : Monster
 {
-    private const string StrengthBuffStatusId = StatusEffectController.EnemyStrengthStatusId;
+    private string strengthBuffStatusId = StatusEffectController.EnemyStrengthStatusId;
 
     [Header("플라이트메어 데이터 ID")]
     [SerializeField] private string monsterId = "41001002";
 
-    [Header("공격 후 자가 버프")]
-    [SerializeField] private int selfBuffStackPerAttack = 1;
+    private int selfBuffStackPerAttack;
 
     protected override void Awake()
     {
@@ -26,11 +25,17 @@ public class Monster_Flightmare : Monster
         int attackMin = 8;
         int attackMax = 8;
 
-        if (TryGetLoadedMonsterData(out MonsterData data) && !string.IsNullOrEmpty(data.Action1ID))
+        if (TryGetLoadedMonsterData(out MonsterData data))
         {
-            attackId = data.Action1ID;
-            attackMin = data.Action1Min;
-            attackMax = data.Action1Max;
+            if (!string.IsNullOrEmpty(data.Action1ID))
+            {
+                attackId = data.Action1ID;
+                attackMin = data.Action1Min;
+                attackMax = data.Action1Max;
+            }
+
+            strengthBuffStatusId = ResolvePrimaryStatusEffectId(strengthBuffStatusId);
+            selfBuffStackPerAttack = ResolvePrimaryStatusValue(0);
         }
 
         OverrideBehavior(
@@ -65,7 +70,7 @@ public class Monster_Flightmare : Monster
             return 0;
         }
 
-        return statusEffectController.TryGetStatusStack(StrengthBuffStatusId, out int stack) ? stack : 0;
+        return statusEffectController.TryGetStatusStack(strengthBuffStatusId, out int stack) ? stack : 0;
     }
 
     private void ApplySelfStrengthBuff()
@@ -76,7 +81,12 @@ public class Monster_Flightmare : Monster
             statusEffectController = gameObject.AddComponent<StatusEffectController>();
         }
 
-        if (statusEffectController.TryApplyStatus(StrengthBuffStatusId, selfBuffStackPerAttack))
+        if (selfBuffStackPerAttack <= 0)
+        {
+            return;
+        }
+
+        if (statusEffectController.TryApplyStatus(strengthBuffStatusId, selfBuffStackPerAttack))
         {
             RefreshUI();
         }
