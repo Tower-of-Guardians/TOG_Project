@@ -11,6 +11,8 @@ namespace Jongmin
         private HandSystem _handSystem;
         private CardDropSystem _dropSystem;
         private CardContainer _container;
+        private Vector2 _dragPointerOffset;
+        private Vector3 _dragStartScale = Vector3.one;
         private bool _isDragging;
         private bool _isDragCanceled;
 
@@ -97,7 +99,9 @@ namespace Jongmin
             }
 
             card?.DOKill();
+            card.RectTransform.localRotation = Quaternion.identity;
             RequestBeginDrag?.Invoke();
+            CacheDragPointerOffset(eventData);
         }
 
         private void HandleOnDrag(Card card, PointerEventData eventData)
@@ -119,7 +123,7 @@ namespace Jongmin
                 return;
             }
 
-            _handSystem.HoverCard.transform.position = eventData.position;
+            MoveHoverCardToMousePosition(eventData);
 
             var swapTargetCard = TryGetCard(eventData.position);
             if (swapTargetCard != null)
@@ -141,6 +145,8 @@ namespace Jongmin
             {
                 _isDragging = false;
                 _isDragCanceled = false;
+                _dragPointerOffset = Vector2.zero;
+                _dragStartScale = Vector3.one;
                 return;
             }
 
@@ -149,6 +155,8 @@ namespace Jongmin
                 CancelDrag();
                 _isDragging = false;
                 _isDragCanceled = false;
+                _dragPointerOffset = Vector2.zero;
+                _dragStartScale = Vector3.one;
                 return;
             }
 
@@ -157,6 +165,8 @@ namespace Jongmin
                 CancelDrag();
                 _isDragging = false;
                 _isDragCanceled = false;
+                _dragPointerOffset = Vector2.zero;
+                _dragStartScale = Vector3.one;
                 return;
             }
 
@@ -170,6 +180,8 @@ namespace Jongmin
             RequestEndDrag?.Invoke();
             _isDragging = false;
             _isDragCanceled = false;
+            _dragPointerOffset = Vector2.zero;
+            _dragStartScale = Vector3.one;
         }
         
         public void OnDrop(PointerEventData eventData)
@@ -217,6 +229,60 @@ namespace Jongmin
             }
             
             return true;
+        }
+
+        private void MoveHoverCardToMousePosition(PointerEventData eventData)
+        {
+            var hoverCard = _handSystem.HoverCard;
+            if (hoverCard == null)
+            {
+                return;
+            }
+
+            if (!CardDragRaycastResolver.TrySetAnchoredPositionFromScreenPoint(hoverCard.RectTransform,
+                                                                               eventData.position,
+                                                                               eventData.pressEventCamera,
+                                                                               GetScaledDragPointerOffset(hoverCard)))
+            {
+                hoverCard.transform.position = eventData.position;
+            }
+
+            hoverCard.RectTransform.localRotation = Quaternion.identity;
+        }
+
+        private void CacheDragPointerOffset(PointerEventData eventData)
+        {
+            var hoverCard = _handSystem.HoverCard;
+            if (hoverCard == null)
+            {
+                _dragPointerOffset = Vector2.zero;
+                _dragStartScale = Vector3.one;
+                return;
+            }
+
+            _dragStartScale = hoverCard.RectTransform.localScale;
+
+            if (!CardDragRaycastResolver.TryGetPointerOffset(hoverCard.RectTransform,
+                                                             eventData.position,
+                                                             eventData.pressEventCamera,
+                                                             out _dragPointerOffset))
+            {
+                _dragPointerOffset = Vector2.zero;
+            }
+        }
+
+        private Vector2 GetScaledDragPointerOffset(Card hoverCard)
+        {
+            if (hoverCard == null)
+            {
+                return _dragPointerOffset;
+            }
+
+            var currentScale = hoverCard.RectTransform.localScale;
+            var ratioX = Mathf.Approximately(_dragStartScale.x, 0f) ? 1f : currentScale.x / _dragStartScale.x;
+            var ratioY = Mathf.Approximately(_dragStartScale.y, 0f) ? 1f : currentScale.y / _dragStartScale.y;
+
+            return new Vector2(_dragPointerOffset.x * ratioX, _dragPointerOffset.y * ratioY);
         }
 
         private void CancelDrag()

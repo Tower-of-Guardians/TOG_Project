@@ -80,10 +80,13 @@ namespace Jongmin
             
             card.transform.DOKill();
 
-            card.transform.DOLocalMove(new Vector3(targetTransform.position.x, 
-                                                   card == _system.HoverCard ? _designer.HoverY : targetTransform.position.y, 
-                                                   targetTransform.position.z),
-                                       _designer.AnimeSPD);
+            var targetPosition = new Vector2(
+                targetTransform.position.x,
+                card == _system.HoverCard ? _designer.HoverY : targetTransform.position.y
+            );
+
+            card.RectTransform.DOAnchorPos(targetPosition, _designer.AnimeSPD);
+            card.RectTransform.DOLocalMoveZ(targetTransform.position.z, _designer.AnimeSPD);
 
             card.transform.DOLocalRotate(targetTransform.rotation, _designer.AnimeSPD).SetEase(Ease.OutBack);
             card.transform.DOScale(targetTransform.scale, _designer.AnimeSPD).SetEase(Ease.OutBack);

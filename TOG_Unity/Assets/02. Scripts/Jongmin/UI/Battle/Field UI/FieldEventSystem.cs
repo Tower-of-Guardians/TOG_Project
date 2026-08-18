@@ -11,6 +11,7 @@ namespace Jongmin
         private CardDropSystem _dropSystem;
         private CardContainer _container;
         private Vector2 _lastPointerPosition;
+        private Vector2 _dragPointerOffset;
         private bool _isDragCanceled;
         
         public event Action<Card, FieldType> RequestOnBeginDrag;
@@ -44,8 +45,9 @@ namespace Jongmin
             _isDragCanceled = false;
 
             var fieldType = GetFieldType(card);
-            
+             
             RequestOnBeginDrag?.Invoke(card, fieldType);
+            CacheDragPointerOffset(eventData);
         }
 
         public void HandleOnDrag(Card card, PointerEventData eventData)
@@ -68,7 +70,7 @@ namespace Jongmin
                 return;
             }
             
-            MoveHoverCardToMousePosition(eventData.position);
+            MoveHoverCardToMousePosition(eventData);
 
             if (!TryGetFieldCard(out var fieldCard))
             {
@@ -88,6 +90,7 @@ namespace Jongmin
             if (_isDragCanceled)
             {
                 _isDragCanceled = false;
+                _dragPointerOffset = Vector2.zero;
                 return;
             }
 
@@ -100,6 +103,7 @@ namespace Jongmin
             {
                 CancelDrag(card);
                 _isDragCanceled = false;
+                _dragPointerOffset = Vector2.zero;
                 return;
             }
 
@@ -108,6 +112,7 @@ namespace Jongmin
             var success = TryInvokeDropHandler(eventData.position);
             RequestOnEndDrag?.Invoke(success, fieldType);
             _isDragCanceled = false;
+            _dragPointerOffset = Vector2.zero;
         }
         
         public void OnDrop(PointerEventData eventData)
@@ -174,9 +179,39 @@ namespace Jongmin
             };
         }
 
-        private void MoveHoverCardToMousePosition(Vector2 position)
+        private void MoveHoverCardToMousePosition(PointerEventData eventData)
         {
-            _fieldSystem.HoverCard.transform.position = position;
+            var hoverCard = _fieldSystem.HoverCard;
+            if (hoverCard == null)
+            {
+                return;
+            }
+
+            if (!CardDragRaycastResolver.TrySetAnchoredPositionFromScreenPoint(hoverCard.RectTransform,
+                                                                               eventData.position,
+                                                                               eventData.pressEventCamera,
+                                                                               _dragPointerOffset))
+            {
+                hoverCard.transform.position = eventData.position;
+            }
+        }
+
+        private void CacheDragPointerOffset(PointerEventData eventData)
+        {
+            var hoverCard = _fieldSystem.HoverCard;
+            if (hoverCard == null)
+            {
+                _dragPointerOffset = Vector2.zero;
+                return;
+            }
+
+            if (!CardDragRaycastResolver.TryGetPointerOffset(hoverCard.RectTransform,
+                                                             eventData.position,
+                                                             eventData.pressEventCamera,
+                                                             out _dragPointerOffset))
+            {
+                _dragPointerOffset = Vector2.zero;
+            }
         }
 
         private void CancelDrag(Card card)

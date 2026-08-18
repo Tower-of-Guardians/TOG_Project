@@ -58,5 +58,75 @@ namespace Jongmin
                 && position.y >= 0f
                 && position.y <= Screen.height;
         }
+
+        public static bool TrySetAnchoredPositionFromScreenPoint(RectTransform rectTransform,
+                                                                 Vector2 screenPosition,
+                                                                 Camera eventCamera)
+            => TrySetAnchoredPositionFromScreenPoint(rectTransform, screenPosition, eventCamera, Vector2.zero);
+
+        public static bool TrySetAnchoredPositionFromScreenPoint(RectTransform rectTransform,
+                                                                 Vector2 screenPosition,
+                                                                 Camera eventCamera,
+                                                                 Vector2 offset)
+        {
+            if (!TryGetLocalPointInParent(rectTransform, screenPosition, eventCamera, out var localPosition))
+            {
+                return false;
+            }
+
+            rectTransform.anchoredPosition = localPosition + offset;
+            return true;
+        }
+
+        public static bool TryGetPointerOffset(RectTransform rectTransform,
+                                               Vector2 screenPosition,
+                                               Camera eventCamera,
+                                               out Vector2 offset)
+        {
+            offset = Vector2.zero;
+
+            if (!TryGetLocalPointInParent(rectTransform, screenPosition, eventCamera, out var localPosition))
+            {
+                return false;
+            }
+
+            offset = rectTransform.anchoredPosition - localPosition;
+            return true;
+        }
+
+        private static bool TryGetLocalPointInParent(RectTransform rectTransform,
+                                                     Vector2 screenPosition,
+                                                     Camera eventCamera,
+                                                     out Vector2 localPosition)
+        {
+            localPosition = Vector2.zero;
+
+            if (rectTransform == null || rectTransform.parent is not RectTransform parentRect)
+            {
+                return false;
+            }
+
+            var camera = ResolveEventCamera(parentRect, eventCamera);
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRect,
+                                                                         screenPosition,
+                                                                         camera,
+                                                                         out localPosition))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static Camera ResolveEventCamera(RectTransform rectTransform, Camera fallbackCamera)
+        {
+            var canvas = rectTransform.GetComponentInParent<Canvas>();
+            if (canvas != null && canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+            {
+                return null;
+            }
+
+            return fallbackCamera != null ? fallbackCamera : canvas != null ? canvas.worldCamera : null;
+        }
     }
 }

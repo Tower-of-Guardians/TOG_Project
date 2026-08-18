@@ -273,7 +273,13 @@ namespace Jongmin
         private void MoveHoverCardToCanvas(Card card)
         {
             card.DOKill();
+
+            var worldPosition = card.transform.position;
+            var worldRotation = card.transform.rotation;
+
             card.transform.SetParent(rootCanvas.transform, false);
+            card.transform.position = worldPosition;
+            card.transform.rotation = worldRotation;
         }
 
         private void SyncAtkDataWithContainer()

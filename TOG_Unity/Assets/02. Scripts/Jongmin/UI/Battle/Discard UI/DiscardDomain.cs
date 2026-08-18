@@ -120,12 +120,30 @@ namespace Jongmin
         private void MoveHoverCardToRoot(Card card)
         {
             card.DOKill();
+
+            var worldPosition = card.transform.position;
+            var worldRotation = card.transform.rotation;
+
             card.transform.SetParent(rootCanvas.transform, false);
+            card.transform.position = worldPosition;
+            card.transform.rotation = worldRotation;
         }
 
         private void MoveHoverCardToParent()
         {
-            discardSystem.HoverCard.transform.SetParent(discardView.CardRoot, false);
+            var hoverCard = discardSystem.HoverCard;
+            if (hoverCard == null)
+            {
+                return;
+            }
+
+            var worldPosition = hoverCard.transform.position;
+            var worldRotation = hoverCard.transform.rotation;
+
+            hoverCard.transform.SetParent(discardView.CardRoot, false);
+            hoverCard.transform.position = worldPosition;
+            hoverCard.transform.rotation = worldRotation;
+            hoverCard.RectTransform.localScale = Vector3.one;
         }
         
         private bool InsertInSameField(Card card, Vector2 position)
