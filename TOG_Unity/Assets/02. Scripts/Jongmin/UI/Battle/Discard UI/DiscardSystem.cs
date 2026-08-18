@@ -65,8 +65,8 @@ namespace Jongmin
         public void DiscardCards()
         {
             _view.Hide();
-            DiscardEffect?.Invoke(this, _container);
             RequestUpdateThrowAction?.Invoke(false);
+            DiscardEffect?.Invoke(this, _container);
             OnDiscardViewVisibilityChanged?.Invoke(false);
         }
 

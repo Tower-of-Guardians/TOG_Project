@@ -30,6 +30,7 @@ namespace Jongmin
         public void RemoveCard(Card card)
         {
             _container.Remove(card);
+            ResetCardState(card);
             _factory.Release(card);
         }
 
@@ -202,7 +203,7 @@ namespace Jongmin
 
         private IEnumerator DrawHandSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
         {
-            card.transform.DOKill();
+            KillCardTweens(card);
 
             var sequence = DOTween.Sequence();
             sequence.Join(card.RectTransform.DOJump(destination, 0f, 1, duration));
@@ -215,12 +216,12 @@ namespace Jongmin
 
         private IEnumerator DiscardHandSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
         {
-            card.transform.DOKill();
+            KillCardTweens(card);
             
             var sequence = DOTween.Sequence();
             sequence.Join(card.RectTransform.DOJump(destination, 50f, 1, duration));
             sequence.Join(card.RectTransform.DOScale(0.11f * Vector3.one, duration));
-            sequence.Join(card.RectTransform.DORotate(-180f * Vector3.forward, duration, RotateMode.LocalAxisAdd));
+            sequence.Join(card.RectTransform.DOLocalRotate(-180f * Vector3.forward, duration, RotateMode.FastBeyond360));
             sequence.Join(card.View.CanvasGroup.DOFade(0.5f, duration));
             sequence.OnComplete(() => completeAction());
             
@@ -233,7 +234,7 @@ namespace Jongmin
 
         private IEnumerator RevertHandSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
         {
-            card.transform.DOKill();
+            KillCardTweens(card);
             
             var sequence = DOTween.Sequence();
             sequence.Join(card.RectTransform.DOJump(destination, 0f, 1, duration).SetEase(Ease.InQuad));
@@ -246,7 +247,7 @@ namespace Jongmin
         
         private IEnumerator DiscardDiscardSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
         {
-            card.transform.DOKill();
+            KillCardTweens(card);
             
             var sequence = DOTween.Sequence();
             sequence.Join(card.RectTransform.DOJump(destination, -50f, 1, duration).SetEase(Ease.InQuad));
@@ -260,12 +261,12 @@ namespace Jongmin
 
         private IEnumerator DiscardFieldSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
         {
-            card.transform.DOKill();
+            KillCardTweens(card);
             
             var sequence = DOTween.Sequence();
             sequence.Join(card.RectTransform.DOJump(destination, 150f, 1, duration).SetEase(Ease.InOutQuad));
             sequence.Join(card.RectTransform.DOScale(0.11f * Vector3.one, duration).SetEase(Ease.InQuad));
-            sequence.Join(card.RectTransform.DORotate(-180f * Vector3.forward, duration, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuad));
+            sequence.Join(card.RectTransform.DOLocalRotate(-180f * Vector3.forward, duration, RotateMode.FastBeyond360).SetEase(Ease.InOutQuad));
             sequence.Join(card.View.CanvasGroup.DOFade(0.5f, duration));
             sequence.OnComplete(() => completeAction());
             
@@ -273,6 +274,20 @@ namespace Jongmin
             GameData.Instance.UseCard(card.CardData.id);
             GameData.Instance.InvokeDeckCountChange(DeckType.Throw);
             RemoveCard(card);
+        }
+
+        private void KillCardTweens(Card card)
+        {
+            card.transform.DOKill();
+            card.RectTransform.DOKill();
+            card.View.CanvasGroup.DOKill();
+        }
+
+        private void ResetCardState(Card card)
+        {
+            KillCardTweens(card);
+            card.RectTransform.localRotation = Quaternion.identity;
+            card.View.CanvasGroup.alpha = 1f;
         }
     }
 }

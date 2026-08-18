@@ -42,7 +42,7 @@ namespace Jongmin
 
         private void Return()
         {
-            ObjectPoolManager.Instance.Return(gameObject);
+            JxModule.ObjectPoolManager.Instance.Return(gameObject);
         }
     }
 }

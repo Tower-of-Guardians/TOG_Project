@@ -16,7 +16,7 @@ namespace Jongmin
         
         public Card Create()
         {
-            var cardObject = ObjectPoolManager.Instance.Get(_prefab.gameObject);
+            var cardObject = JxModule.ObjectPoolManager.Instance.Get(_prefab.gameObject);
             cardObject.transform.SetParent(_cardRoot, false);
             cardObject.transform.localPosition = Vector3.zero;
             cardObject.transform.localRotation = Quaternion.identity;
@@ -28,7 +28,7 @@ namespace Jongmin
 
         public void Release(Card card)
         {
-            ObjectPoolManager.Instance.Return(card.gameObject);
+            JxModule.ObjectPoolManager.Instance.Return(card.gameObject);
         }
     }
 }
