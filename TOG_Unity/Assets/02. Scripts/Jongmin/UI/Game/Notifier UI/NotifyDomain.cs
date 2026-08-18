@@ -4,11 +4,8 @@ namespace Jongmin
 {
     public class NotifyDomain : MonoBehaviour
     {
-        public NotifySystem System { get; private set; }
+        [SerializeField] private NotifySystem notifySystem;
 
-        public void Construct()
-        {
-            System = new NotifySystem();
-        }
+        public NotifySystem System => notifySystem;
     }
 }

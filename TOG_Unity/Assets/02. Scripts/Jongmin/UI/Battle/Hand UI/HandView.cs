@@ -15,6 +15,7 @@ namespace Jongmin
         public void TogglePreview(bool isActive)
         {
             previewCard.gameObject.SetActive(isActive);
+            previewCard.transform.SetAsFirstSibling();
         }
 
         public void UpdatePreviewPosition(CardLayoutData layoutData)

@@ -9,6 +9,18 @@ namespace Jongmin
 {
     public class EffectSystem : MonoBehaviour
     {
+        [BigHeader("Card Move Effect")]
+        [Header("Draw To Hand")]
+        [SerializeField] private float drawMoveArcHeight = 180f;
+        [SerializeField] private float drawMoveEndScale = 0.4f;
+        [SerializeField] private Ease drawMoveEase = Ease.InOutQuad;
+
+        [Header("Hand / Field To Throw")]
+        [SerializeField] private float discardMoveArcHeight = 180f;
+        [SerializeField] private float discardMoveEndScale = 0.11f;
+        [SerializeField] private float discardMoveFadeAlpha = 0.5f;
+        [SerializeField] private Ease discardMoveEase = Ease.InOutQuad;
+
         private CardContainer _container;
         private EffectCardFactory _factory;
 
@@ -203,33 +215,28 @@ namespace Jongmin
 
         private IEnumerator DrawHandSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
         {
-            KillCardTweens(card);
+            yield return PlayCardArcMoveEffect(
+                card,
+                destination,
+                duration,
+                drawMoveArcHeight,
+                drawMoveEndScale * Vector3.one,
+                drawMoveEase
+            );
 
-            var sequence = DOTween.Sequence();
-            sequence.Join(card.RectTransform.DOJump(destination, 0f, 1, duration));
-            sequence.Join(card.RectTransform.DOScale(0.4f * Vector3.one, duration));
-            sequence.OnComplete(() => completeAction());
-
-            yield return sequence.WaitForCompletion();
+            completeAction?.Invoke();
             RemoveCard(card);
         }
 
         private IEnumerator DiscardHandSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
         {
-            KillCardTweens(card);
-            
-            var sequence = DOTween.Sequence();
-            sequence.Join(card.RectTransform.DOJump(destination, 50f, 1, duration));
-            sequence.Join(card.RectTransform.DOScale(0.11f * Vector3.one, duration));
-            sequence.Join(card.RectTransform.DOLocalRotate(-180f * Vector3.forward, duration, RotateMode.FastBeyond360));
-            sequence.Join(card.View.CanvasGroup.DOFade(0.5f, duration));
-            sequence.OnComplete(() => completeAction());
-            
-            yield return sequence.WaitForCompletion();
+            yield return PlayDiscardMoveEffect(card, destination, duration);
+
             GameData.Instance.UseCard(card.CardData.id);
             GameData.Instance.handDeck.Remove(card.CardData.id);
             GameData.Instance.InvokeDeckCountChange(DeckType.Throw);
             RemoveCard(card);
+            completeAction?.Invoke();
         }
 
         private IEnumerator RevertHandSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
@@ -247,33 +254,96 @@ namespace Jongmin
         
         private IEnumerator DiscardDiscardSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
         {
-            KillCardTweens(card);
-            
-            var sequence = DOTween.Sequence();
-            sequence.Join(card.RectTransform.DOJump(destination, -50f, 1, duration).SetEase(Ease.InQuad));
-            sequence.Join(card.RectTransform.DOScale(Vector3.zero, duration).SetEase(Ease.InQuad));
-            sequence.Join(card.View.CanvasGroup.DOFade(0.5f, duration));
-            sequence.OnComplete(() => completeAction());
-            
-            yield return sequence.WaitForCompletion();
+            yield return PlayDiscardMoveEffect(card, destination, duration);
+
+            completeAction?.Invoke();
             RemoveCard(card);
         }
 
         private IEnumerator DiscardFieldSubRoutine(Card card, Vector3 destination, float duration, Action completeAction)
         {
-            KillCardTweens(card);
-            
-            var sequence = DOTween.Sequence();
-            sequence.Join(card.RectTransform.DOJump(destination, 150f, 1, duration).SetEase(Ease.InOutQuad));
-            sequence.Join(card.RectTransform.DOScale(0.11f * Vector3.one, duration).SetEase(Ease.InQuad));
-            sequence.Join(card.RectTransform.DOLocalRotate(-180f * Vector3.forward, duration, RotateMode.FastBeyond360).SetEase(Ease.InOutQuad));
-            sequence.Join(card.View.CanvasGroup.DOFade(0.5f, duration));
-            sequence.OnComplete(() => completeAction());
-            
-            yield return sequence.WaitForCompletion();
+            yield return PlayDiscardMoveEffect(card, destination, duration);
+
             GameData.Instance.UseCard(card.CardData.id);
             GameData.Instance.InvokeDeckCountChange(DeckType.Throw);
             RemoveCard(card);
+            completeAction?.Invoke();
+        }
+
+        private IEnumerator PlayDiscardMoveEffect(Card card, Vector3 destination, float duration)
+        {
+            yield return PlayCardArcMoveEffect(
+                card,
+                destination,
+                duration,
+                discardMoveArcHeight,
+                discardMoveEndScale * Vector3.one,
+                discardMoveEase,
+                discardMoveFadeAlpha
+            );
+        }
+
+        private IEnumerator PlayCardArcMoveEffect(Card card,
+                                                  Vector3 destination,
+                                                  float duration,
+                                                  float arcHeight,
+                                                  Vector3 endScale,
+                                                  Ease moveEase,
+                                                  float fadeAlpha = -1f)
+        {
+            KillCardTweens(card);
+
+            var rectTransform = card.RectTransform;
+            var startPosition = rectTransform.position;
+            var controlPosition = startPosition + Vector3.up * arcHeight;
+
+            var sequence = DOTween.Sequence();
+            sequence.Join(DOTween.To(
+                () => 0f,
+                progress =>
+                {
+                    var position = EvaluateQuadraticBezier(startPosition, controlPosition, destination, progress);
+                    var tangent = EvaluateQuadraticBezierTangent(startPosition, controlPosition, destination, progress);
+
+                    rectTransform.position = position;
+                    RotateCardHeadToDirection(rectTransform, tangent);
+                },
+                1f,
+                duration
+            ).SetEase(moveEase));
+            sequence.Join(rectTransform.DOScale(endScale, duration).SetEase(Ease.InQuad));
+            
+            if (fadeAlpha >= 0f)
+            {
+                sequence.Join(card.View.CanvasGroup.DOFade(fadeAlpha, duration));
+            }
+
+            yield return sequence.WaitForCompletion();
+        }
+
+        private Vector3 EvaluateQuadraticBezier(Vector3 start, Vector3 control, Vector3 end, float progress)
+        {
+            var inverseProgress = 1f - progress;
+            return inverseProgress * inverseProgress * start
+                   + 2f * inverseProgress * progress * control
+                   + progress * progress * end;
+        }
+
+        private Vector3 EvaluateQuadraticBezierTangent(Vector3 start, Vector3 control, Vector3 end, float progress)
+        {
+            return 2f * (1f - progress) * (control - start)
+                   + 2f * progress * (end - control);
+        }
+
+        private void RotateCardHeadToDirection(RectTransform rectTransform, Vector3 direction)
+        {
+            if (direction.sqrMagnitude <= Mathf.Epsilon)
+            {
+                return;
+            }
+
+            var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+            rectTransform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
         private void KillCardTweens(Card card)

@@ -10,6 +10,7 @@ namespace Jongmin
         private HandCardFactory _factory;
         
         public event Action<bool> OnTogglePreviews;
+        public event Action<Card> OnCardRemoved;
         
         public Card HoverCard { get; set; }
 
@@ -32,6 +33,7 @@ namespace Jongmin
         {
             _container.Remove(card);
             _factory.Release(card);
+            OnCardRemoved?.Invoke(card);
 
             if (isUpdateLayout)
             {

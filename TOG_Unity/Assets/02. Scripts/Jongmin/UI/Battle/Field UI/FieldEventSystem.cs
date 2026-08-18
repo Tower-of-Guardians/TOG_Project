@@ -10,6 +10,9 @@ namespace Jongmin
         private FieldSystem _fieldSystem;
         private CardDropSystem _dropSystem;
         private CardContainer _container;
+        private Vector2 _lastPointerPosition;
+        private Vector2 _dragPointerOffset;
+        private bool _isDragCanceled;
         
         public event Action<Card, FieldType> RequestOnBeginDrag;
         public event Action<Card, FieldType, Vector2> RequestSwapInSameField;
@@ -39,19 +42,35 @@ namespace Jongmin
 
         public void HandleOnBeginDrag(Card card, PointerEventData eventData)
         {
+            _isDragCanceled = false;
+
             var fieldType = GetFieldType(card);
-            
+             
             RequestOnBeginDrag?.Invoke(card, fieldType);
+            CacheDragPointerOffset(eventData);
         }
 
         public void HandleOnDrag(Card card, PointerEventData eventData)
         {
+            _lastPointerPosition = eventData.position;
+
+            if (_isDragCanceled)
+            {
+                return;
+            }
+
             if (_fieldSystem.HoverCard == null)
             {
                 return;
             }
+
+            if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
+            {
+                CancelDrag(card);
+                return;
+            }
             
-            MoveHoverCardToMousePosition(eventData.position);
+            MoveHoverCardToMousePosition(eventData);
 
             if (!TryGetFieldCard(out var fieldCard))
             {
@@ -66,15 +85,34 @@ namespace Jongmin
 
         public void HandleOnEndDrag(Card card, PointerEventData eventData)
         {
+            _lastPointerPosition = eventData.position;
+
+            if (_isDragCanceled)
+            {
+                _isDragCanceled = false;
+                _dragPointerOffset = Vector2.zero;
+                return;
+            }
+
             if (_fieldSystem.HoverCard == null)
             {
                 return;
             }
 
+            if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
+            {
+                CancelDrag(card);
+                _isDragCanceled = false;
+                _dragPointerOffset = Vector2.zero;
+                return;
+            }
+
             var fieldType = GetFieldType(card);
             
-            var success = TryInvokeDropHandler();
+            var success = TryInvokeDropHandler(eventData.position);
             RequestOnEndDrag?.Invoke(success, fieldType);
+            _isDragCanceled = false;
+            _dragPointerOffset = Vector2.zero;
         }
         
         public void OnDrop(PointerEventData eventData)
@@ -90,26 +128,31 @@ namespace Jongmin
             {
                 return;
             }
+
+            if (card.Pointer.IsDragCanceled)
+            {
+                return;
+            }
             
             _dropSystem.OnDroppedHandToField(card, _fieldSystem.FieldType);
         }
 
         public bool TryMoveHoverCardToOppositeField()
         {
-            var hit = CheckField(out _);
+            var hit = CheckField(_lastPointerPosition, out _);
             if (hit == null)
             {
                 return false;
             }
             
-            var fieldEventSystem = hit.Value.gameObject.GetComponent<FieldEventSystem>();
+            var fieldEventSystem = CardDragRaycastResolver.GetComponentInParent<FieldEventSystem>(hit.Value);
             if (fieldEventSystem != null && fieldEventSystem != this)
             {
                 RequestMoveHoverCardToOpposite?.Invoke(_fieldSystem.FieldType);
                 return true;
             }
             
-            var card = hit.Value.gameObject.GetComponent<Card>();
+            var card = CardDragRaycastResolver.GetCard(hit.Value);
 
             if (card == null)
                 return false;
@@ -136,38 +179,77 @@ namespace Jongmin
             };
         }
 
-        private void MoveHoverCardToMousePosition(Vector2 position)
+        private void MoveHoverCardToMousePosition(PointerEventData eventData)
         {
-            _fieldSystem.HoverCard.transform.position = position;
+            var hoverCard = _fieldSystem.HoverCard;
+            if (hoverCard == null)
+            {
+                return;
+            }
+
+            if (!CardDragRaycastResolver.TrySetAnchoredPositionFromScreenPoint(hoverCard.RectTransform,
+                                                                               eventData.position,
+                                                                               eventData.pressEventCamera,
+                                                                               _dragPointerOffset))
+            {
+                hoverCard.transform.position = eventData.position;
+            }
         }
 
-        private RaycastResult? CheckField(out PointerEventData eventData)
+        private void CacheDragPointerOffset(PointerEventData eventData)
         {
-            eventData = new PointerEventData(EventSystem.current)
+            var hoverCard = _fieldSystem.HoverCard;
+            if (hoverCard == null)
             {
-                position = Input.mousePosition,
-                pointerDrag = _fieldSystem.HoverCard.gameObject
-            };
+                _dragPointerOffset = Vector2.zero;
+                return;
+            }
 
-            var rayHits = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventData, rayHits);
+            if (!CardDragRaycastResolver.TryGetPointerOffset(hoverCard.RectTransform,
+                                                             eventData.position,
+                                                             eventData.pressEventCamera,
+                                                             out _dragPointerOffset))
+            {
+                _dragPointerOffset = Vector2.zero;
+            }
+        }
+
+        private void CancelDrag(Card card)
+        {
+            if (_isDragCanceled)
+            {
+                return;
+            }
+
+            _isDragCanceled = true;
+            _fieldSystem.HoverCard?.Pointer.CancelDrag();
+            RequestOnEndDrag?.Invoke(false, GetFieldType(card));
+        }
+
+        private RaycastResult? CheckField(Vector2 position, out PointerEventData eventData)
+        {
+            var rayHits = CardDragRaycastResolver.Raycast(
+                position,
+                _fieldSystem.HoverCard.gameObject,
+                out eventData
+            );
 
             foreach (var hit in rayHits)
             {
-                var fieldEventSystem = hit.gameObject.GetComponent<FieldEventSystem>();
+                var fieldEventSystem = CardDragRaycastResolver.GetComponentInParent<FieldEventSystem>(hit);
                 if (fieldEventSystem != null && fieldEventSystem != this)
                 {
                     return hit;
                 }
                 
-                var card = hit.gameObject.GetComponent<Card>();
+                var card = CardDragRaycastResolver.GetCard(hit);
                 if (card != null && _fieldSystem.HoverCard != card)
                 {
                     return hit;
                 }
                 
-                var dropHandler = hit.gameObject.GetComponent<IDropHandler>();
-                if (dropHandler != null)
+                var handHandler = CardDragRaycastResolver.GetComponentInParent<HandEventSystem>(hit);
+                if (handHandler != null)
                 {
                     return hit;
                 }
@@ -178,14 +260,14 @@ namespace Jongmin
 
         private bool TryGetFieldCard(out Card card)
         {
-            var cardHit = CheckField(out _);
+            var cardHit = CheckField(_lastPointerPosition, out _);
             if (cardHit == null)
             {
                 card = null;
                 return false;
             }
 
-            card = cardHit.Value.gameObject.GetComponent<Card>();
+            card = CardDragRaycastResolver.GetCard(cardHit.Value);
             if (card == null || card.CardType is not (CardType.AtkField or CardType.DefField))
             {
                 card = null;
@@ -195,21 +277,21 @@ namespace Jongmin
             return true;
         }
 
-        private bool TryInvokeDropHandler()
+        private bool TryInvokeDropHandler(Vector2 position)
         {
-            var handHit = CheckField(out var eventData);
+            var handHit = CheckField(position, out var eventData);
             if (handHit == null)
             {
                 return false;
             }
             
-            var handEventSystem = handHit.Value.gameObject.GetComponent<HandEventSystem>();
+            var handEventSystem = CardDragRaycastResolver.GetComponentInParent<HandEventSystem>(handHit.Value);
             if (handEventSystem == null)
             {
                 return false;
             }
             
-            ExecuteEvents.Execute(handHit.Value.gameObject, eventData, ExecuteEvents.dropHandler);
+            ExecuteEvents.Execute(handEventSystem.gameObject, eventData, ExecuteEvents.dropHandler);
             return true;
         }
     }
