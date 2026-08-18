@@ -9,6 +9,7 @@ public class BattleActionController : MonoBehaviour, IBattleController
 
     private int throwCountBeforeAction;
     private int lastThrowCountBeforeRemoveAll;
+    private bool isResolvingThrowAction;
 
     public bool IsInitialized => isInitialized;
 
@@ -31,6 +32,7 @@ public class BattleActionController : MonoBehaviour, IBattleController
         DetachThrowPresenter();
         throwCountBeforeAction = 0;
         lastThrowCountBeforeRemoveAll = 0;
+        isResolvingThrowAction = false;
         battleManager = null;
         isInitialized = false;
     }
@@ -44,6 +46,8 @@ public class BattleActionController : MonoBehaviour, IBattleController
             turnManager.Initialize();
 
             throwCountBeforeAction = 0;
+            lastThrowCountBeforeRemoveAll = 0;
+            isResolvingThrowAction = false;
         }
     }
 
@@ -74,11 +78,20 @@ public class BattleActionController : MonoBehaviour, IBattleController
 
     private void OnThrowCountChanged(ActionData actionData, bool canDiscard)
     {
-        // Throw 카운트가 증가할 때 저장
-        if (actionData.Current > throwCountBeforeAction)
+        if (isResolvingThrowAction)
         {
-            throwCountBeforeAction = actionData.Current;
+            return;
+        }
+        
+        throwCountBeforeAction = actionData.Current;
+
+        if (actionData.Current > 0)
+        {
             lastThrowCountBeforeRemoveAll = actionData.Current;
+        }
+        else
+        {
+            lastThrowCountBeforeRemoveAll = 0;
         }
     }
 
@@ -87,6 +100,7 @@ public class BattleActionController : MonoBehaviour, IBattleController
         if (!canThrow)
         {
             int throwCount = throwCountBeforeAction;
+            isResolvingThrowAction = true;
             
             if (throwCount == 0 && lastThrowCountBeforeRemoveAll > 0)
             {
