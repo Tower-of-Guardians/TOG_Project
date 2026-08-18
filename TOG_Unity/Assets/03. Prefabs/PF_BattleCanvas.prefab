@@ -5998,6 +5998,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135a007c01484cd1b227539008a98746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawMoveArcHeight: 180
+  drawMoveEndScale: 1
+  drawMoveEase: 7
+  discardMoveArcHeight: 180
+  discardMoveEndScale: 0.11
+  discardMoveFadeAlpha: 0.5
+  discardMoveEase: 7
 --- !u!1 &6127632747297770007
 GameObject:
   m_ObjectHideFlags: 0
