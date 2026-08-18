@@ -64,22 +64,6 @@ MonoBehaviour:
   initialPoolSize: 10
   maxPoolSize: 20
   isExpandable: 1
---- !u!114 &-428830837793138341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f6ddfd734745b387ca5b21e91a3132, type: 3}
-  m_Name: PF_NotifyView Config
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 5036417651735963403, guid: 8847dbe405a264e49a876f811ee4ccc4, type: 3}
-  initialPoolSize: 10
-  maxPoolSize: 10
-  isExpandable: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,4 +81,20 @@ MonoBehaviour:
   - {fileID: -4954802132380530291}
   - {fileID: -686806640366933914}
   - {fileID: -1372580029320835892}
-  - {fileID: -428830837793138341}
+  - {fileID: 7413472698984366559}
+--- !u!114 &7413472698984366559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f6ddfd734745b387ca5b21e91a3132, type: 3}
+  m_Name: PF_NotifyView Config
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4522312676660030521, guid: 8847dbe405a264e49a876f811ee4ccc4, type: 3}
+  initialPoolSize: 4
+  maxPoolSize: 4
+  isExpandable: 0

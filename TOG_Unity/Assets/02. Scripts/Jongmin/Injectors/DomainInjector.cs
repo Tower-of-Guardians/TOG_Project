@@ -22,8 +22,6 @@ namespace Jongmin
         
         public void Inject()
         {
-            notifyDomain.Construct();
-            
             var dropSystem = new CardDropSystem(
                 handDomain.System, 
                 fieldDomain.AtkSystem, 
