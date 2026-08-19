@@ -41,10 +41,16 @@ namespace Jongmin
             RequestUpdateActionCount?.Invoke(count);
         }
 
-        public virtual void RemoveCard(Card card, bool unused = true)
+        public virtual void RemoveCard(Card card, bool isUpdateLayout = true)
         {
             Container.Remove(card);
             Factory.Release(card);
+
+            if (isUpdateLayout)
+            {
+                Layout.UpdateLayout(FieldPreviewMode.None);
+            }
+
             RequestUpdateActionCount?.Invoke(-1);
         }
 

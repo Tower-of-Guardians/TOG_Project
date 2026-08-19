@@ -98,21 +98,24 @@ namespace Jongmin
 
         private void HandleRequestOnBeginDrag(Card card, FieldType fieldType)
         {
-            handDomain.View.SetInteraction(false);
-            
             var system = GetSystem(fieldType);
             var view = GetView(fieldType);
             var container = GetContainer(fieldType);
             var layout = GetLayout(fieldType);
 
+            container.CompleteCardTweens();
             var oppositeSystem = GetOppositeSystem(fieldType);
 
+            if (!container.TryGetIndex(card, out var index))
+            {
+                handDomain.View.SetInteraction(true);
+                return;
+            }
+
+            handDomain.View.SetInteraction(false);
             system.HoverCard = card;
 
             MoveHoverCardToCanvas(card);
-
-            if (!container.TryGetIndex(card, out var index))
-                return;
 
             view.TogglePreview(true);
 
@@ -158,40 +161,39 @@ namespace Jongmin
             var eventSystem = GetEventSystem(fieldType);
 
             var hoverCard = system.HoverCard;
-            if (hoverCard == null)
+            try
             {
-                return;
-            }
+                if (hoverCard != null && !success)
+                {
+                    var movedToOpposite = eventSystem.TryMoveHoverCardToOppositeField();
+                    var hoverCardWorldPosition = hoverCard.transform.position;
+                    var finalRoot = movedToOpposite ? oppositeView.CardRoot : currentView.CardRoot;
 
-            var movedToOpposite = false;
-            if (!success)
+                    hoverCard.transform.SetParent(finalRoot, false);
+
+                    var localPosition = hoverCard.transform.parent.InverseTransformPoint(hoverCardWorldPosition);
+                    hoverCard.transform.localPosition = localPosition;
+                }
+
+            }
+            finally
             {
-                movedToOpposite = eventSystem.TryMoveHoverCardToOppositeField();
+                atkView.TogglePreview(false);
+                defView.TogglePreview(false);
 
-                var hoverCardWorldPosition = hoverCard.transform.position;
-                var finalRoot = movedToOpposite ? oppositeView.CardRoot : currentView.CardRoot;
+                atkFieldSystem.HoverCard = null;
+                defFieldSystem.HoverCard = null;
 
-                hoverCard.transform.SetParent(finalRoot, false);
+                handDomain.View.SetInteraction(true);
 
-                var localPosition = hoverCard.transform.parent.InverseTransformPoint(hoverCardWorldPosition);
-                hoverCard.transform.localPosition = localPosition;
+                _atkCardLayout.UpdateLayout(FieldPreviewMode.None);
+                _defCardLayout.UpdateLayout(FieldPreviewMode.None);
+
+                SyncAtkDataWithContainer();
+                SyncDefDataWithContainer();
+                AtkSystem.UpdateFieldStatus();
+                DefSystem.UpdateFieldStatus();
             }
-
-            atkView.TogglePreview(false);
-            defView.TogglePreview(false);
-
-            atkFieldSystem.HoverCard = null;
-            defFieldSystem.HoverCard = null;
-
-            _atkCardLayout.UpdateLayout(FieldPreviewMode.None);
-            _defCardLayout.UpdateLayout(FieldPreviewMode.None);
-
-            SyncAtkDataWithContainer();
-            SyncDefDataWithContainer();
-            AtkSystem.UpdateFieldStatus();
-            DefSystem.UpdateFieldStatus();
-            
-            handDomain.View.SetInteraction(true);
         }
         
         private void HandleMoveHoverCardToOpposite(FieldType sourceFieldType)
@@ -272,7 +274,7 @@ namespace Jongmin
 
         private void MoveHoverCardToCanvas(Card card)
         {
-            card.DOKill();
+            card.KillTweens();
 
             var worldPosition = card.transform.position;
             var worldRotation = card.transform.rotation;

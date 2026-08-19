@@ -95,6 +95,7 @@ namespace Jongmin
                 return;
             }
 
+            _cardContainer.CompleteCardTweens();
             handSystem.ToggleFieldPreview(true);
             UpdatePreviewCard();
         }
@@ -107,7 +108,7 @@ namespace Jongmin
 
         private void HandleRequestChangeDropState(bool canDrop)
         {
-            handSystem.HoverCard?.DOKill();
+            handSystem.HoverCard?.KillTweens();
             handSystem.HoverCard?.transform.DOScale(canDrop ? 0.8f : handDesigner.Scale, handDesigner.AnimeSPD);
         }
 

@@ -76,6 +76,7 @@ namespace Jongmin
 
         private void HandleRequestOnBeginDrag(Card card)
         {
+            _cardContainer.CompleteCardTweens();
             discardSystem.HoverCard = card;
 
             MoveHoverCardToRoot(card);
@@ -119,7 +120,7 @@ namespace Jongmin
 
         private void MoveHoverCardToRoot(Card card)
         {
-            card.DOKill();
+            card.KillTweens();
 
             var worldPosition = card.transform.position;
             var worldRotation = card.transform.rotation;

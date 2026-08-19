@@ -78,18 +78,19 @@ namespace Jongmin
                 return;
             }
             
-            card.transform.DOKill();
+            card.KillTweens();
 
             var targetPosition = new Vector2(
                 targetTransform.position.x,
                 card == _system.HoverCard ? _designer.HoverY : targetTransform.position.y
             );
 
-            card.RectTransform.DOAnchorPos(targetPosition, _designer.AnimeSPD);
-            card.RectTransform.DOLocalMoveZ(targetTransform.position.z, _designer.AnimeSPD);
-
-            card.transform.DOLocalRotate(targetTransform.rotation, _designer.AnimeSPD).SetEase(Ease.OutBack);
-            card.transform.DOScale(targetTransform.scale, _designer.AnimeSPD).SetEase(Ease.OutBack);
+            DOTween.Sequence()
+                   .SetTarget(card)
+                   .Join(card.RectTransform.DOAnchorPos(targetPosition, _designer.AnimeSPD))
+                   .Join(card.RectTransform.DOLocalMoveZ(targetTransform.position.z, _designer.AnimeSPD))
+                   .Join(card.transform.DOLocalRotate(targetTransform.rotation, _designer.AnimeSPD).SetEase(Ease.OutBack))
+                   .Join(card.transform.DOScale(targetTransform.scale, _designer.AnimeSPD).SetEase(Ease.OutBack));
         }
 
         private void RebuildSiblingOrder()

@@ -12,7 +12,13 @@ namespace Jongmin
         private CardContainer _container;
         private Vector2 _lastPointerPosition;
         private Vector2 _dragPointerOffset;
+        private FieldType _dragFieldType;
+        private bool _isDragging;
         private bool _isDragCanceled;
+        private bool _isEndDragRequested;
+        private Action _pendingDropCommit;
+
+        public FieldType FieldType => _fieldSystem.FieldType;
         
         public event Action<Card, FieldType> RequestOnBeginDrag;
         public event Action<Card, FieldType, Vector2> RequestSwapInSameField;
@@ -42,17 +48,29 @@ namespace Jongmin
 
         public void HandleOnBeginDrag(Card card, PointerEventData eventData)
         {
-            _isDragCanceled = false;
+            if (_isDragging)
+            {
+                CompleteDrag(false);
+            }
 
-            var fieldType = GetFieldType(card);
-             
-            RequestOnBeginDrag?.Invoke(card, fieldType);
+            _isDragging = true;
+            _isDragCanceled = false;
+            _isEndDragRequested = false;
+            _pendingDropCommit = null;
+            _dragFieldType = GetFieldTypeOrDefault(card);
+
+            RequestOnBeginDrag?.Invoke(card, _dragFieldType);
             CacheDragPointerOffset(eventData);
         }
 
         public void HandleOnDrag(Card card, PointerEventData eventData)
         {
             _lastPointerPosition = eventData.position;
+
+            if (!_isDragging)
+            {
+                return;
+            }
 
             if (_isDragCanceled)
             {
@@ -61,6 +79,7 @@ namespace Jongmin
 
             if (_fieldSystem.HoverCard == null)
             {
+                CompleteDrag(false);
                 return;
             }
 
@@ -87,54 +106,49 @@ namespace Jongmin
         {
             _lastPointerPosition = eventData.position;
 
+            if (!_isDragging)
+            {
+                if (_fieldSystem.HoverCard != null)
+                {
+                    _dragFieldType = GetFieldTypeOrDefault(card);
+                    CompleteDrag(false);
+                }
+
+                return;
+            }
+
             if (_isDragCanceled)
             {
-                _isDragCanceled = false;
-                _dragPointerOffset = Vector2.zero;
+                CompleteDrag(false, false);
                 return;
             }
 
             if (_fieldSystem.HoverCard == null)
             {
+                CompleteDrag(false);
                 return;
             }
 
             if (!CardDragRaycastResolver.IsInsideScreen(eventData.position))
             {
                 CancelDrag(card);
-                _isDragCanceled = false;
-                _dragPointerOffset = Vector2.zero;
                 return;
             }
-
-            var fieldType = GetFieldType(card);
             
-            var success = TryInvokeDropHandler(eventData.position);
-            RequestOnEndDrag?.Invoke(success, fieldType);
-            _isDragCanceled = false;
-            _dragPointerOffset = Vector2.zero;
+            var success = false;
+            try
+            {
+                success = TryInvokeDropHandler(eventData.position);
+            }
+            finally
+            {
+                CompleteDrag(success);
+            }
         }
         
         public void OnDrop(PointerEventData eventData)
         {
-            var droppedObject = eventData.pointerDrag;
-            if (droppedObject == null)
-            {
-                return;
-            }
-            
-            var card = droppedObject.GetComponent<Card>();
-            if (card == null || card.CardType != CardType.Hand)
-            {
-                return;
-            }
-
-            if (card.Pointer.IsDragCanceled)
-            {
-                return;
-            }
-            
-            _dropSystem.OnDroppedHandToField(card, _fieldSystem.FieldType);
+            // Drop commits are executed by the drag source after cleanup.
         }
 
         public bool TryMoveHoverCardToOppositeField()
@@ -176,6 +190,21 @@ namespace Jongmin
             {
                 CardType.AtkField => FieldType.Attack,
                 CardType.DefField => FieldType.Defense
+            };
+        }
+
+        private FieldType GetFieldTypeOrDefault(Card card)
+        {
+            if (card == null)
+            {
+                return _fieldSystem.FieldType;
+            }
+
+            return card.CardType switch
+            {
+                CardType.AtkField => FieldType.Attack,
+                CardType.DefField => FieldType.Defense,
+                _ => _fieldSystem.FieldType
             };
         }
 
@@ -223,7 +252,23 @@ namespace Jongmin
 
             _isDragCanceled = true;
             _fieldSystem.HoverCard?.Pointer.CancelDrag();
-            RequestOnEndDrag?.Invoke(false, GetFieldType(card));
+            CompleteDrag(false);
+        }
+
+        private void CompleteDrag(bool success, bool requestEndDrag = true)
+        {
+            if (requestEndDrag && !_isEndDragRequested)
+            {
+                _isEndDragRequested = true;
+                RequestOnEndDrag?.Invoke(success, _dragFieldType);
+            }
+
+            var pendingDropCommit = success ? _pendingDropCommit : null;
+            _pendingDropCommit = null;
+            _isDragging = false;
+            _isDragCanceled = false;
+            _dragPointerOffset = Vector2.zero;
+            pendingDropCommit?.Invoke();
         }
 
         private RaycastResult? CheckField(Vector2 position, out PointerEventData eventData)
@@ -279,7 +324,7 @@ namespace Jongmin
 
         private bool TryInvokeDropHandler(Vector2 position)
         {
-            var handHit = CheckField(position, out var eventData);
+            var handHit = CheckField(position, out _);
             if (handHit == null)
             {
                 return false;
@@ -290,8 +335,14 @@ namespace Jongmin
             {
                 return false;
             }
-            
-            ExecuteEvents.Execute(handEventSystem.gameObject, eventData, ExecuteEvents.dropHandler);
+
+            var hoverCard = _fieldSystem.HoverCard;
+            if (hoverCard == null)
+            {
+                return false;
+            }
+
+            _pendingDropCommit = () => _dropSystem.OnDroppedFieldToHand(hoverCard);
             return true;
         }
     }
