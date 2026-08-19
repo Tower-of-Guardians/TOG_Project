@@ -8,98 +8,121 @@ namespace JxDialogueBox
     public sealed class TypeWriter : MonoBehaviour
     {
         [Header("Configure")]
-        private float m_char_interval = 0.03f;
-
+        [SerializeField]
+        private float charInterval = 0.03f;
+ 
         [Header("Use unscaled time")]
-        [SerializeField] private bool m_use_unscaled_time = false;
+        [SerializeField]
+        private bool useUnscaledTime = false;
 
         [Header("Target Text")]
-        [SerializeField] private TMP_Text m_target_text;
+        [SerializeField]
+        private TMP_Text targetText;
 
-        private Coroutine m_write_coroutine;
-        private bool m_is_typing;
-        private string m_full_text = string.Empty;
+        private Coroutine _writeCoroutine;
+        private bool _isTyping;
+        private string _fullText = string.Empty;
 
         public event Action OnCompleted;
 
-        public bool IsTyping => m_is_typing;
-        public string FullText => m_full_text = string.Empty;
+        public bool IsTyping => _isTyping;
+        public string FullText => _fullText;
 
         public void Play(string text)
         {
-            m_full_text = text ?? string.Empty;
+            _fullText = text ?? string.Empty;
 
-            if(m_write_coroutine != null)
+            if (_writeCoroutine != null)
             {
-                StopCoroutine(m_write_coroutine);
-                m_write_coroutine = null;
+                StopCoroutine(_writeCoroutine);
+                _writeCoroutine = null;
             }
 
-            m_write_coroutine = StartCoroutine(TypeRoutine(m_full_text));
+            _writeCoroutine = StartCoroutine(TypeRoutine(_fullText));
         }
 
         public void Skip()
         {
-            if(!m_is_typing)
-                return;
-
-            if(m_write_coroutine != null)
+            if (!_isTyping)
             {
-                StopCoroutine(m_write_coroutine);
-                m_write_coroutine = null;
+                return;
             }
 
-            m_is_typing = false;
+            if (_writeCoroutine != null)
+            {
+                StopCoroutine(_writeCoroutine);
+                _writeCoroutine = null;
+            }
 
-            if(m_target_text)
-                m_target_text.text = m_full_text;
+            _isTyping = false;
+
+            if (targetText)
+            {
+                targetText.text = _fullText;
+            }
         }
 
         public void Stop(bool clear = false)
         {
-            if(m_write_coroutine != null)
+            if (_writeCoroutine != null)
             {
-                StopCoroutine(m_write_coroutine);
-                m_write_coroutine = null;
+                StopCoroutine(_writeCoroutine);
+                _writeCoroutine = null;
             }
 
-            m_is_typing = false;
+            _isTyping = false;
 
-            if(clear && m_target_text)
-                m_target_text.text = string.Empty;
+            if (clear && targetText)
+            {
+                targetText.text = string.Empty;
+            }
         }
 
         public void SetInterval(float spc)
-            => m_char_interval = Mathf.Max(0f, spc);
+        {
+            charInterval = Mathf.Max(0f, spc);
+        }
 
         private IEnumerator TypeRoutine(string text)
         {
-            m_is_typing = true;
+            _isTyping = true;
 
-            if(m_target_text)
-                m_target_text.text = string.Empty;
-
-            for(int i = 0; i < text.Length; i++)
+            if (targetText)
             {
-                if(m_target_text)
-                    m_target_text.text += text[i];
+                targetText.text = string.Empty;
+            }
 
-                if(m_char_interval > 0f)
+            foreach (var ch in text)
+            {
+                if (targetText)
                 {
-                    if(m_use_unscaled_time)
-                        yield return new WaitForSecondsRealtime(m_char_interval);
+                    targetText.text += ch;
+                }
+
+                if (charInterval > 0f)
+                {
+                    if (useUnscaledTime)
+                    {
+                        yield return new WaitForSecondsRealtime(charInterval);
+                    }
                     else
-                        yield return new WaitForSeconds(m_char_interval);
+                    {
+                        yield return new WaitForSeconds(charInterval);
+                    }
                 }
                 else
                 {
-                    m_target_text.text = text;
+                    if (targetText)
+                    {
+                        targetText.text = text;
+                    }
+
                     break;
                 }
             }
 
-            m_is_typing = false;
-            m_write_coroutine = null;
+            _isTyping = false;
+            _writeCoroutine = null;
 
             OnCompleted?.Invoke();
         }

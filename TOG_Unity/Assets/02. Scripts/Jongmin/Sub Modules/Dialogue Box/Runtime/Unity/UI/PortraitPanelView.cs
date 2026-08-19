@@ -16,6 +16,11 @@ namespace JxDialogueBox
 
         private void Start()
         {
+            if (playerSlot == null)
+            {
+                return;
+            }
+
             playerSlot.SetCharacter("eccliss");
             playerSlot.SetPortraitByKey("default");
         }

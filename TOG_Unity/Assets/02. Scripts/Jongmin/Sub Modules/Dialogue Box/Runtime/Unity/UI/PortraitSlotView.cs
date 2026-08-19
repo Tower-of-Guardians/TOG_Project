@@ -47,6 +47,7 @@ namespace JxDialogueBox
 
             if (string.IsNullOrWhiteSpace(_characterID))
             {
+                SetPortraitVisible(false);
                 return;
             }
 
@@ -63,6 +64,7 @@ namespace JxDialogueBox
             }
             
             portraitImage.sprite = sprite;
+            SetPortraitVisible(sprite != null);
         }
 
         public bool IsPortraitEmpty()
@@ -78,7 +80,19 @@ namespace JxDialogueBox
             }
 
             var color = portraitImage.color;
-            color.a = alpha;
+            color.a = portraitImage.sprite == null ? 0f : alpha;
+            portraitImage.color = color;
+        }
+
+        private void SetPortraitVisible(bool isVisible)
+        {
+            if (portraitImage == null)
+            {
+                return;
+            }
+
+            var color = portraitImage.color;
+            color.a = isVisible ? 1f : 0f;
             portraitImage.color = color;
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace JxDialogueBox
 {
@@ -55,6 +56,7 @@ namespace JxDialogueBox
         public string CurrentNodeID { get; private set; } = string.Empty;
 
         private readonly IDialogueDataSource _source;
+        private const int MaxJumpDepth = 100;
 
         public DialogueEngine(IDialogueDataSource source)
         {
@@ -120,6 +122,9 @@ namespace JxDialogueBox
 
         private void Goto(string nodeID)
         {
+            var visitedJumpNodes = new HashSet<string>(StringComparer.Ordinal);
+            var jumpDepth = 0;
+
             while(true)
             {
                 CurrentNodeID = nodeID;
@@ -167,10 +172,17 @@ namespace JxDialogueBox
                     {
                         if (node is not JumpNode jumpNode)
                         {
+                            EndInternal();
                             return;
                         }
 
                         if(string.IsNullOrEmpty(jumpNode.TargetID))
+                        {
+                            EndInternal();
+                            return;
+                        }
+
+                        if (!visitedJumpNodes.Add(jumpNode.ID) || ++jumpDepth > MaxJumpDepth)
                         {
                             EndInternal();
                             return;

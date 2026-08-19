@@ -50,9 +50,10 @@ namespace JxDialogueBox
                 }
 
                 optionObj.onClick.AddListener(() => _onChoose?.Invoke(index));
+                BindPointerEnter(optionObj);
             }
 
-            SetSelected(0);
+            ClearSelection();
         }
 
         public void Hide()
@@ -84,7 +85,9 @@ namespace JxDialogueBox
                 return;
             }
 
-            var nextIndex = _selectedIndex + delta;
+            var nextIndex = _selectedIndex < 0
+                ? GetInitialKeyboardIndex(delta)
+                : _selectedIndex + delta;
 
             if(wrap)
             {
@@ -108,18 +111,58 @@ namespace JxDialogueBox
 
         public void ConfirmSelection()
         {
-            if(_selectedIndex < 0 || _selectedIndex >= _buttons.Count)
+            if (_selectedIndex < 0 || _selectedIndex >= _buttons.Count)
+            {
                 return;
+            }
 
             Choose(_selectedIndex);
         }
 
         private void Choose(int index)
         {
-            if(index < 0 || index >= _buttons.Count)
+            if (index < 0 || index >= _buttons.Count)
+            {
                 return;
+            }
 
             _onChoose?.Invoke(index);            
+        }
+
+        private void BindPointerEnter(Button option)
+        {
+            if (option == null)
+            {
+                return;
+            }
+
+            var trigger = option.GetComponent<EventTrigger>();
+            if (trigger == null)
+            {
+                trigger = option.gameObject.AddComponent<EventTrigger>();
+            }
+
+            var entry = new EventTrigger.Entry
+            {
+                eventID = EventTriggerType.PointerEnter
+            };
+            entry.callback.AddListener(_ => ClearSelection());
+            trigger.triggers.Add(entry);
+        }
+
+        private int GetInitialKeyboardIndex(int delta)
+        {
+            return delta < 0 ? _buttons.Count - 1 : 0;
+        }
+
+        private void ClearSelection()
+        {
+            _selectedIndex = -1;
+
+            if (EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
         }
 
         private void Clear()

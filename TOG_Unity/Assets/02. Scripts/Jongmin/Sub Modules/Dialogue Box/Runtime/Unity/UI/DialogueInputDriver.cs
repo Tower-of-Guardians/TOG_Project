@@ -23,6 +23,11 @@ namespace JxDialogueBox
         {
             if (!dialogueView)
             {
+                dialogueView = GetComponent<DialogueView>();
+            }
+
+            if (!dialogueView)
+            {
                 return;
             }
 

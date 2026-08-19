@@ -40,6 +40,11 @@ namespace JxDialogueBox
 
         private void BuildEntryDict()
         {
+            if (_entryTable == null)
+            {
+                return;
+            }
+
             foreach (var row in _entryTable.FindAll<DialogueEntryDataTableRow>())
             {
                 if (string.IsNullOrEmpty(row.dialogueID))
@@ -53,6 +58,11 @@ namespace JxDialogueBox
 
         private void BuildNodeDict()
         {
+            if (_nodeTable == null)
+            {
+                return;
+            }
+
             foreach (var row in _nodeTable.FindAll<DialogueNodeDataTableRow>())
             {
                 if (string.IsNullOrEmpty(row.rowID))
@@ -85,6 +95,11 @@ namespace JxDialogueBox
         private List<ChoiceOption> BuildOptions(string nodeID)
         {
             var options = new List<DialogueChoiceDataTableRow>();
+            if (_choiceTable == null)
+            {
+                return new List<ChoiceOption>();
+            }
+
             foreach (var row in _choiceTable.FindAll<DialogueChoiceDataTableRow>())
             {
                 if (row.nodeID == nodeID)

@@ -15,8 +15,8 @@ MonoBehaviour:
   typingEnabled: 1
   typingSecondsPerCharacter: 0.03
   typingSkipAllowed: 1
-  keyboardInputAllowed: 0
-  advanceAction: {fileID: 0}
-  selectionAction: {fileID: 0}
+  keyboardInputAllowed: 1
+  advanceAction: {fileID: 1349623126165088497, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  selectionAction: {fileID: 3036492762044300582, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   autoAdvanceAllowed: 0
   autoAdvanceDelay: 3
