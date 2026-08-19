@@ -1,3 +1,4 @@
+using System;
 using JxModule;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace JxDialogueBox
         [SerializeField, Required] private DialogueView dialogueView;
 
         private DialogueEngine _dialogueEngine;
+        private Action _onDialogueEnded;
 
         private void Awake()
         {
@@ -32,8 +34,9 @@ namespace JxDialogueBox
                               onChooseAction: (idx) => _dialogueEngine.Choose(idx));
         }
 
-        public void StartDialogue(string dialogueID)
+        public void StartDialogue(string dialogueID, Action onEnded = null)
         {
+            _onDialogueEnded = onEnded;
             dialogueView.OpenView();
             _dialogueEngine.Start(dialogueID);
         }
@@ -50,7 +53,12 @@ namespace JxDialogueBox
 
         private void HandleEnded()
         {
+            var onEnded = _onDialogueEnded;
+
             dialogueView.CloseView();
+            _onDialogueEnded = null;
+
+            onEnded?.Invoke();
         }
 
         private void OnDestroy()
