@@ -4,9 +4,7 @@ using UnityEngine;
 public class TestXyilbia : ClickableObject
 {
     [Header("Dialogue Runner")]
-    [SerializeField] private DialogueRunner m_dialogue_runner;
-
-    bool m_dialogue_completed = false;
+    [SerializeField] private DialogueRunner dialogueRunner;
 
     protected override void OnEnable()
     {
@@ -22,15 +20,7 @@ public class TestXyilbia : ClickableObject
 
     private void TryDialogue()
     {
-        string dialogue_id = string.Empty;
-        if(!m_dialogue_completed)
-        {
-            dialogue_id = "demo_simple";
-            m_dialogue_completed = true;
-        }
-        else
-            dialogue_id = "test2";
-
-        m_dialogue_runner.StartDialogue(dialogue_id);
+        var dialogueId = "EventPriest_First";
+        dialogueRunner.StartDialogue(dialogueId);
     }
 }

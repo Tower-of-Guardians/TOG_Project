@@ -40,19 +40,29 @@ namespace JxDialogueBox
 
         private void BuildEntryDict()
         {
+            if (_entryTable == null)
+            {
+                return;
+            }
+
             foreach (var row in _entryTable.FindAll<DialogueEntryDataTableRow>())
             {
-                if (string.IsNullOrEmpty(row.DialogueID))
+                if (string.IsNullOrEmpty(row.dialogueID))
                 {
                     continue;
                 }
                 
-                _entryDict[row.DialogueID] = row.EntryNodeID;
+                _entryDict[row.dialogueID] = row.entryNodeID;
             }
         }
 
         private void BuildNodeDict()
         {
+            if (_nodeTable == null)
+            {
+                return;
+            }
+
             foreach (var row in _nodeTable.FindAll<DialogueNodeDataTableRow>())
             {
                 if (string.IsNullOrEmpty(row.rowID))
@@ -60,20 +70,20 @@ namespace JxDialogueBox
                     continue;
                 }
 
-                var nodeType = ParseNodeType(row.NodeType);
+                var nodeType = ParseNodeType(row.nodeType);
                 DialogueNode node = nodeType switch
                 {
                     NodeType.Line => new LineNode(row.rowID,
-                                                  new SpeakerRef(ParseSpeaker(row.Speaker), row.CharacterID),
-                                                  row.Text ?? string.Empty,
-                                                  row.PortraitKey ?? string.Empty,
-                                                  row.NextID ?? string.Empty),
+                                                  new SpeakerRef(ParseSpeaker(row.speaker), row.characterID),
+                                                  row.text ?? string.Empty,
+                                                  row.portraitKey ?? string.Empty,
+                                                  row.nextID ?? string.Empty),
 
                     NodeType.Choice => new ChoiceNode(row.rowID,
-                                                      row.Prompt ?? string.Empty,
+                                                      row.prompt ?? string.Empty,
                                                       BuildOptions(row.rowID)),
 
-                    NodeType.Jump => new JumpNode(row.rowID, row.TargetID ?? string.Empty),
+                    NodeType.Jump => new JumpNode(row.rowID, row.targetID ?? string.Empty),
                     
                     _ => new EndNode(row.rowID)
                 };
@@ -85,20 +95,25 @@ namespace JxDialogueBox
         private List<ChoiceOption> BuildOptions(string nodeID)
         {
             var options = new List<DialogueChoiceDataTableRow>();
+            if (_choiceTable == null)
+            {
+                return new List<ChoiceOption>();
+            }
+
             foreach (var row in _choiceTable.FindAll<DialogueChoiceDataTableRow>())
             {
-                if (row.NodeID == nodeID)
+                if (row.nodeID == nodeID)
                 {
                     options.Add(row);
                 }
             }
 
-            options.Sort((a, b) => a.OptionIndex.CompareTo(b.OptionIndex));
+            options.Sort((a, b) => a.optionIndex.CompareTo(b.optionIndex));
 
             var result = new List<ChoiceOption>(options.Count);
             foreach (var option in options)
             {
-                result.Add(new ChoiceOption(option.Text ?? string.Empty, option.NextID ?? string.Empty));
+                result.Add(new ChoiceOption(option.text ?? string.Empty, option.nextID ?? string.Empty));
             }
 
             return result;

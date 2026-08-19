@@ -38,6 +38,11 @@ namespace JxDialogueBox
             {
                 return;
             }
+
+            if (dialogueView == null || dialogueView.ChoiceMode)
+            {
+                return;
+            }
             
             StopAutoAdvance();
             _autoCoroutine = StartCoroutine(AutoRoutine());
@@ -52,7 +57,10 @@ namespace JxDialogueBox
             }
 
             _autoCoroutine = null;
-            dialogueView.RequestAdvance();
+            if (dialogueView != null && !dialogueView.ChoiceMode)
+            {
+                dialogueView.RequestAdvance();
+            }
         }
 
         public void StopAutoAdvance()

@@ -11,7 +11,7 @@ namespace JxDialogueBox
     {
         [BigHeader("UI")]
         [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField] private TMP_Text nameLabel;
+        [SerializeField] private LabelBoxView nameBoxView;
         [SerializeField] private TypeWriter typeWriter;
         [SerializeField] private TMP_Text promptLabel;
         [SerializeField] private AdvanceButton advanceButton;
@@ -33,13 +33,25 @@ namespace JxDialogueBox
         private void Awake()
         {
             _characterTable = DataTableManager.FindTable<CharacterDataTableRow>("DT_Character");
-            
-            typeWriter.SetInterval(dialogueSettings.typingEnabled ? dialogueSettings.typingSecondsPerCharacter : 0f);
-            typeWriter.OnCompleted += advanceButton.SetHighlight;
+
+            if (typeWriter != null && dialogueSettings != null)
+            {
+                typeWriter.SetInterval(dialogueSettings.typingEnabled ? dialogueSettings.typingSecondsPerCharacter : 0f);
+            }
+
+            if (typeWriter != null && advanceButton != null)
+            {
+                typeWriter.OnCompleted += advanceButton.SetHighlight;
+            }
         }
 
         private void OnDestroy()
-            => typeWriter.OnCompleted -= advanceButton.SetHighlight;
+        {
+            if (typeWriter != null && advanceButton != null)
+            {
+                typeWriter.OnCompleted -= advanceButton.SetHighlight;
+            }
+        }
 
         public void Bind(Action onNextAction, Action<int> onChooseAction)
         {
@@ -67,9 +79,10 @@ namespace JxDialogueBox
         {
             ClearChoice();
 
-            if (nameLabel)
+            if (nameBoxView)
             {
-                nameLabel.text = ResolveName(speaker.CharacterID);
+                nameBoxView.Label.text = ResolveName(speaker.CharacterID);
+                nameBoxView.CanvasGroup.alpha = 1f;
             }
 
             if (promptLabel)
@@ -97,9 +110,11 @@ namespace JxDialogueBox
         {
             ChoiceMode = true;
 
-            if (nameLabel)
+            
+            if (nameBoxView)
             {
-                nameLabel.text = string.Empty;
+                nameBoxView.CanvasGroup.alpha = 0f;
+                nameBoxView.Label.text = string.Empty;
             }
 
             if (promptLabel)
@@ -180,15 +195,15 @@ namespace JxDialogueBox
 
             if (typeWriter && typeWriter.IsTyping)
             {
-                if (dialogueSettings.typingSkipAllowed)
+                if (dialogueSettings != null && dialogueSettings.typingSkipAllowed)
                 {
-                    advanceButton.SetHighlight();
+                    advanceButton?.SetHighlight();
                     typeWriter.Skip();
                 }
                 return;
             }
 
-            advanceButton.SetNormal();
+            advanceButton?.SetNormal();
             _onNext?.Invoke();
         }
         

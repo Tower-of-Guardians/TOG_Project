@@ -1,0 +1,5 @@
+rowID,nodeID,optionIndex,text,nextID,isEnable
+EventPriest_Default_1,EventPriest_First_14,1,회복을 받는다.,EventPriest_First_15,TRUE
+EventPriest_Default_2,EventPriest_First_14,2,카드를 받는다. ,EventPriest_First_15,TRUE
+Krabian_First_Choice_1,Krabian_First_4,1,죽여버린다.,Krabian_First_5,TRUE
+Krabian_First_Choice_2,Krabian_First_4,2,죽이지 않는다.,Krabian_First_5,TRUE

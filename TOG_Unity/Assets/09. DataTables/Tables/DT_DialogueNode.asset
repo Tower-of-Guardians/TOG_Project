@@ -1,0 +1,1559 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8475625295027826726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_Architect_5
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Architect_5
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Krabian
+  text: "\uC7A5\uC0AC \uC798 \uD574\uC11C \uC804\uBD80 \uD314\uBA74 \uAD00\uB9AC\uC790\uAC00
+    \uD3EC\uC0C1 \uC900\uB2E4\uACE0 \uD588\uB2E4."
+  portraitKey: Talk
+  nextID: Krabian_Architect_6
+  prompt: 
+  targetID: 
+--- !u!114 &-7037408839055747455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_8
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_8
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uC5EC\uAE34 \uB098\uC758 \uC601\uC5ED\uC774\uB77C \uAD34\uBB3C\uAC19\uC740
+    \uAC74 \uB4E4\uC5B4\uC624\uC9C0 \uC54A\uC544.\n\uB124\uAC00 \uC774\uD574\uD558\uAE30
+    \uC27D\uAC8C \uB9D0\uD558\uC790\uBA74, \uB09C \uC2DC\uB828\uC758 \uACFC\uC815\uC5D0
+    \uD3EC\uD568\uB41C \uC77C\uBD80\uC9C0.\n\uADF8\uB7EC\uB2C8 \uB0B4\uAC00 \uC8FD\uB294
+    \uC77C \uAC19\uC740 \uAC74 \uC77C\uC5B4\uB098\uC9C0 \uC54A\uC544."
+  portraitKey: Talk
+  nextID: Heca_First_9
+  prompt: 
+  targetID: 
+--- !u!114 &-7013713075139222376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_6
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_6
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Krabian
+  text: "\uB098 \uCC29\uD55C \uB9C8\uC871\uC774\uB2E4! \uC8FD\uC774\uC9C0 \uB9C8\uB77C!"
+  portraitKey: Scared
+  nextID: Krabian_First_7
+  prompt: 
+  targetID: 
+--- !u!114 &-7008047537780837786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_12
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_12
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: ...
+  portraitKey: Default
+  nextID: EventPriest_First_13
+  prompt: 
+  targetID: 
+--- !u!114 &-6721571694523514403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_Architect_7
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Architect_7
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Krabian
+  text: "\uADF8\uB7F0 \uAC74 \uC0C1\uAD00 \uC5C6\uB2E4. \uACE0\uB9D9\uB2E4 \uC778\uAC04.
+    \uC120\uBB3C \uC8FC\uACA0\uB2E4."
+  portraitKey: Talk
+  nextID: Krabian_Architect_8
+  prompt: 
+  targetID: 
+--- !u!114 &-6659334234426285813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_9
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_9
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uADF8\uB7FC \uB108\uB3C4 \uC774 \uC2DC\uB828\uC5D0\uC11C \uB9E1\uC740 \uC5ED\uD560\uC774
+    \uC788\uACA0\uAD70."
+  portraitKey: Talk
+  nextID: Heca_First_10
+  prompt: 
+  targetID: 
+--- !u!114 &-6281868515485761051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_14
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_14
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: ...
+  portraitKey: Bored
+  nextID: Heca_Second_15
+  prompt: 
+  targetID: 
+--- !u!114 &-6255919494396030617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_1
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_1
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uC624, \uC80A\uC740\uC774. \uB610 \uBCF4\uB124?"
+  portraitKey: Talk
+  nextID: Heca_Second_2
+  prompt: 
+  targetID: 
+--- !u!114 &-6255013754392742682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_10
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_10
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uADF8\uB7F0 \uADDC\uCE59\uC744 \uADF8\uB807\uAC8C \uB124 \uB9C8\uC74C\uB300\uB85C
+    \uB9CC\uB4E4\uC5B4\uB3C4 \uB418\uB294 \uAC74\uAC00?"
+  portraitKey: Talk
+  nextID: EventPriest_First_11
+  prompt: 
+  targetID: 
+--- !u!114 &-5832036859369099879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_13
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_13
+  isEnable: 1
+  nodeType: End
+  speaker: 
+  characterID: 
+  text: 
+  portraitKey: 
+  nextID: 
+  prompt: 
+  targetID: 
+--- !u!114 &-5525464463933884598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_16
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_16
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Priest
+  text: "\uB610 \uBD10\uC694. \uB2F9\uC2E0\uC5D0\uAC8C \uC2E0\uC758 \uC740\uCD1D\uC774
+    \uD568\uAED8\uD558\uAE38."
+  portraitKey: Talk
+  nextID: EventPriest_First_17
+  prompt: 
+  targetID: 
+--- !u!114 &-5474248856896104310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_11
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_11
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uC0C1\uC778?"
+  portraitKey: Talk
+  nextID: Krabian_First_12
+  prompt: 
+  targetID: 
+--- !u!114 &-5414235902684260889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_6
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_6
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Priest
+  text: "\uC74C... \uC7A0\uC2DC\uB9CC\uC694."
+  portraitKey: Talk
+  nextID: EventPriest_First_7
+  prompt: 
+  targetID: 
+--- !u!114 &-5038650987491740254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_11
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_11
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Priest
+  text: "\uBB3C\uB860\uC774\uC8E0. \uC800\uB294 \uC774 \uD0D1\uC758 \uAD00\uB9AC\uC790\uB2C8\uAE4C\uC694."
+  portraitKey: Talk
+  nextID: EventPriest_First_12
+  prompt: 
+  targetID: 
+--- !u!114 &-4576541125275604349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_14
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_14
+  isEnable: 1
+  nodeType: Choice
+  speaker: 
+  characterID: 
+  text: 
+  portraitKey: 
+  nextID: 
+  prompt: "\uC5B4\uB5A4 \uB3C4\uC6C0\uC744 \uBC1B\uC73C\uC2E4 \uAC74\uAC00\uC694?"
+  targetID: 
+--- !u!114 &-4563328619676625775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_6
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_6
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uB124 \uAC71\uC815\uC744 \uD55C \uAC8C \uC544\uB2C8\uC57C. \uC774\uACF3\uC5D0\uC11C\uB3C4
+    \uAD6C\uC5ED\uC9C8\uB098\uB294 \uC778\uAC04 \uC2DC\uCCB4\uB97C \uBCF4\uB294 \uAC8C
+    \uC2EB\uC744 \uBFD0.\n\uB124\uAC00 \uC8FD\uACE0 \uB9D0\uACE0\uC5D4 \uAD00\uC2EC
+    \uC5C6\uB2E4."
+  portraitKey: Talk
+  nextID: Heca_First_7
+  prompt: 
+  targetID: 
+--- !u!114 &-4485738298962034424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_8
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_8
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uB3C4\uC6C0?"
+  portraitKey: Talk
+  nextID: EventPriest_First_9
+  prompt: 
+  targetID: 
+--- !u!114 &-4414220781366246913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_9
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_9
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uD1B5\uC131\uBA85\uC774\uB098 \uD560\uAE4C? \uD5E4\uCE74\uB77C\uACE0 \uD55C\uB2E4.
+    \uC798 \uBD80\uD0C1\uD574."
+  portraitKey: Talk
+  nextID: Heca_Second_10
+  prompt: 
+  targetID: 
+--- !u!114 &-4382594666925340120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_4
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_4
+  isEnable: 1
+  nodeType: Choice
+  speaker: Player
+  characterID: Eclis
+  text: 
+  portraitKey: 
+  nextID: 
+  prompt: "(\uAC80\uC744 \uB4E0\uB2E4.)"
+  targetID: 
+--- !u!114 &-4082046218872834174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_15
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_15
+  isEnable: 1
+  nodeType: End
+  speaker: 
+  characterID: 
+  text: 
+  portraitKey: 
+  nextID: 
+  prompt: 
+  targetID: 
+--- !u!114 &-3364610461520010637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_12
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_12
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uC0AC\uC2E4 \uB108\uC758 \uC774\uB984\uC740 \uC54C\uACE0 \uC788\uC5C8\uC5B4.
+    \uADF8\uB0E5 \uB0B4 \uC774\uB984\uC744 \uC18C\uAC1C\uD558\uACE0 \uC2F6\uC5C8\uC9C0."
+  portraitKey: Talk
+  nextID: Heca_Second_13
+  prompt: 
+  targetID: 
+--- !u!114 &-2944062657765976236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_7
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_7
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uBB50? \uC6C3\uAE30\uC2DC\uB124, \uB9C8\uC871\uC774 \uCC29\uD560\uB9AC\uAC00
+    \uC5C6\uC796\uC544."
+  portraitKey: Talk
+  nextID: Krabian_First_8
+  prompt: 
+  targetID: 
+--- !u!114 &-2783333446593190376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_2
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_2
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uB098\uB97C \uB9D0\uD558\uB294 \uAC74\uAC00? \uD638\uCE6D\uC774 \uC65C
+    \uADF8 \uBAA8\uC591\uC774\uC9C0?"
+  portraitKey: Talk
+  nextID: Heca_Second_3
+  prompt: 
+  targetID: 
+--- !u!114 &-2584952342824281215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_8
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_8
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: ...
+  portraitKey: Default
+  nextID: Krabian_First_9
+  prompt: 
+  targetID: 
+--- !u!114 &-2407630574326306578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_2
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_2
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Krabian
+  text: "\uD06C\uB77C\uBE44\uC548 \uC778\uAC04 \uCC98\uC74C \uBCF8\uB2E4!"
+  portraitKey: Talk
+  nextID: Krabian_First_3
+  prompt: 
+  targetID: 
+--- !u!114 &-2009083279740606265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_11
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_11
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uADF8\uB807\uAD70, \uC774\uD074\uB9AC\uC2A4."
+  portraitKey: Default
+  nextID: Heca_Second_12
+  prompt: 
+  targetID: 
+--- !u!114 &-1156229575823285550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_12
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_12
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uC790, \uC774\uD574\uD588\uC73C\uBA74 \uC5BC\uB978 \uADF8 \uAC80\uC744
+    \uC774\uB9AC \uAC00\uC838\uC640 \uBD10."
+  portraitKey: Talk
+  nextID: Heca_First_13
+  prompt: 
+  targetID: 
+--- !u!114 &-1095630414979591963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_9
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_9
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Priest
+  text: "\uADF8\uB798\uC694. \uC55E\uC73C\uB85C \uC774\uB807\uAC8C \uC800\uC640 \uC6B0\uC5F0\uD788
+    \uB9C8\uC8FC\uCE60 \uB54C\uBA74 \uC81C\uAC00 \uB2F9\uC2E0\uC5D0\uAC8C \uC57D\uAC04\uC758
+    \uB3C4\uC6C0\uC744 \uB4DC\uB9AC\uACA0\uC2B5\uB2C8\uB2E4."
+  portraitKey: Talk
+  nextID: EventPriest_First_10
+  prompt: 
+  targetID: 
+--- !u!114 &-563223500846256217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_1
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_1
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uC74C... \uC548\uB155?"
+  portraitKey: Default
+  nextID: Heca_First_2
+  prompt: 
+  targetID: 
+--- !u!114 &-553837453883002774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_4
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_4
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uADF8 \uB300\uC7A5\uC7A5\uC774\uAC00 \uC804\uC7A5 \uD55C\uBCF5\uD310\uC5D0
+    \uC788\uB294 \uAC74 \uBABB \uBCF8 \uAC83 \uAC19\uC740\uB370."
+  portraitKey: Talk
+  nextID: Heca_First_5
+  prompt: 
+  targetID: 
+--- !u!114 &-457366639562876988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_10
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_10
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uB9DE\uC544, \uC774\uD574\uAC00 \uBE60\uB978 \uAC78! \uB09C \uB108\uC758
+    \uADF8 \uBA4B\uC9C4 \uAC80\uC744 \uC0B4\uC9DD \uAC15\uD654\uD574\uC904 \uC218
+    \uC788\uC5B4.\n\uADDC\uCE59\uC0C1 \uB9CC\uB0A0 \uB54C \uB9C8\uB2E4 \uD55C \uBC88\uB9CC
+    \uD574\uC8FC\uACA0\uC9C0\uB9CC."
+  portraitKey: Talk
+  nextID: Heca_First_11
+  prompt: 
+  targetID: 
+--- !u!114 &-173556153699755568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_15
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_15
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uB098\uC058\uC9C0 \uC54A\uB124."
+  portraitKey: Talk
+  nextID: EventPriest_First_16
+  prompt: 
+  targetID: 
+--- !u!114 &-19422891551718686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_5
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_5
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uB098\uB791\uC740 \uC804\uD600 \uC0C1\uAD00 \uC5C6\uB294 \uC77C\uC778 \uAC83
+    \uAC19\uC740\uB370, \uAE38\uC744 \uBE44\uCF1C\uC8FC\uBA74 \uC88B\uACA0\uAD70."
+  portraitKey: Talk
+  nextID: EventPriest_First_6
+  prompt: 
+  targetID: 
+--- !u!114 &-1073348714277411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_8
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_8
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "...\uD558\uD56B."
+  portraitKey: Default
+  nextID: Heca_Second_9
+  prompt: 
+  targetID: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
+  m_Name: DT_DialogueNode
+  m_EditorClassIdentifier: 
+  dataTableCsv: {fileID: 4900000, guid: ca4230fde9c6aa543b09d6c474e836d8, type: 3}
+  dataTableRowName: JxDialogueBox.DialogueNodeDataTableRow, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=1483868669
+  dataTableRows:
+  - {fileID: 5623012690604833036}
+  - {fileID: 6668032964185737004}
+  - {fileID: 3244509853814651804}
+  - {fileID: 3361075063231962791}
+  - {fileID: -19422891551718686}
+  - {fileID: -5414235902684260889}
+  - {fileID: 4235543843080390885}
+  - {fileID: -4485738298962034424}
+  - {fileID: -1095630414979591963}
+  - {fileID: -6255013754392742682}
+  - {fileID: -5038650987491740254}
+  - {fileID: -7008047537780837786}
+  - {fileID: 6823623904902908034}
+  - {fileID: -4576541125275604349}
+  - {fileID: -173556153699755568}
+  - {fileID: -5525464463933884598}
+  - {fileID: 7530516001599937434}
+  - {fileID: -563223500846256217}
+  - {fileID: 5080070895324569759}
+  - {fileID: 8772732974677879254}
+  - {fileID: -553837453883002774}
+  - {fileID: 7042848113166415850}
+  - {fileID: -4563328619676625775}
+  - {fileID: 8503044987366492170}
+  - {fileID: -7037408839055747455}
+  - {fileID: -6659334234426285813}
+  - {fileID: -457366639562876988}
+  - {fileID: 9175782193367641879}
+  - {fileID: -1156229575823285550}
+  - {fileID: 8113235041793244920}
+  - {fileID: -6255919494396030617}
+  - {fileID: -2783333446593190376}
+  - {fileID: 7336445309377066865}
+  - {fileID: 5010151765656739420}
+  - {fileID: 7422805129670227044}
+  - {fileID: 5775303782729499710}
+  - {fileID: 4192108554575616831}
+  - {fileID: -1073348714277411}
+  - {fileID: -4414220781366246913}
+  - {fileID: 6572398983199858909}
+  - {fileID: -2009083279740606265}
+  - {fileID: -3364610461520010637}
+  - {fileID: 2349056753279864153}
+  - {fileID: -6281868515485761051}
+  - {fileID: -4082046218872834174}
+  - {fileID: 7228363484265844171}
+  - {fileID: -2407630574326306578}
+  - {fileID: 3180691263197312554}
+  - {fileID: -4382594666925340120}
+  - {fileID: 2179948538413541560}
+  - {fileID: -7013713075139222376}
+  - {fileID: -2944062657765976236}
+  - {fileID: -2584952342824281215}
+  - {fileID: 8938699054273322660}
+  - {fileID: 6264868655760870262}
+  - {fileID: -5474248856896104310}
+  - {fileID: 2625531344506747601}
+  - {fileID: -5832036859369099879}
+  - {fileID: 4593511362649863214}
+  - {fileID: 8633384765264660842}
+  - {fileID: 2966639612290848527}
+  - {fileID: 1030763075241543908}
+  - {fileID: -8475625295027826726}
+  - {fileID: 525914345190883805}
+  - {fileID: -6721571694523514403}
+  dataTableRowScript: {fileID: 0}
+--- !u!114 &525914345190883805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_Architect_6
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Architect_6
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uB531\uD788 \uB124\uAC00 \uC7A5\uC0AC\uB97C \uC798\uD574\uC11C \uB2E4 \uD310
+    \uAC74 \uC544\uB2CC \uAC70 \uAC19\uC740\uB370."
+  portraitKey: Talk
+  nextID: Krabian_Architect_7
+  prompt: 
+  targetID: 
+--- !u!114 &1030763075241543908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_Architect_4
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Architect_4
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uD3EC\uC0C1?"
+  portraitKey: Talk
+  nextID: Krabian_Architect_5
+  prompt: 
+  targetID: 
+--- !u!114 &2179948538413541560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_5
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_5
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Krabian
+  text: "\uC7A0, \uC7A0\uAE50! \uBA48\uCDB0\uB77C!"
+  portraitKey: Scared
+  nextID: Krabian_First_6
+  prompt: 
+  targetID: 
+--- !u!114 &2349056753279864153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_13
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_13
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uD558\uD558\uD558\uD56B!"
+  portraitKey: Laugh
+  nextID: Heca_Second_14
+  prompt: 
+  targetID: 
+--- !u!114 &2625531344506747601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_12
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_12
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Krabian
+  text: "\uADF8\uB807\uB2E4. \uC778\uAC04\uC5D0\uAC8C \uB3C4\uC6C0\uC774 \uB41C\uB2E4."
+  portraitKey: Talk
+  nextID: Krabian_First_13
+  prompt: 
+  targetID: 
+--- !u!114 &2966639612290848527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_Architect_3
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Architect_3
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Krabian
+  text: "\uADF8\uB807\uB2E4. \uC774\uC81C \uAD00\uB9AC\uC790\uC5D0\uAC8C \uD3EC\uC0C1
+    \uBC1B\uC744 \uC218 \uC788\uB2E4."
+  portraitKey: Delight
+  nextID: Krabian_Architect_4
+  prompt: 
+  targetID: 
+--- !u!114 &3180691263197312554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_3
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_3
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uBB50\uC57C, \uB9C8\uC871\uC774\uC796\uC544."
+  portraitKey: Talk
+  nextID: Krabian_First_4
+  prompt: 
+  targetID: 
+--- !u!114 &3244509853814651804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_3
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_3
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Priest
+  text: "\uC800\uB294 \uC774 \uD0D1\uC758 \uAD00\uB9AC\uC790\uB2C8\uAE4C\uC694. \uB3CC\uC544\uB2E4\uB2C8\uBA74\uC11C
+    \uC9C0\uC800\uBD84\uD55C \uACF3\uC744 \uCCAD\uC18C\uD55C\uB2F5\uB2C8\uB2E4."
+  portraitKey: Talk
+  nextID: EventPriest_First_4
+  prompt: 
+  targetID: 
+--- !u!114 &3361075063231962791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_4
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_4
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Priest
+  text: "\uC9C0\uAE08\uC740 \uB2F9\uC2E0\uACFC \uC6B0\uC5F0\uD788 \uB9C8\uC8FC\uCE5C
+    \uAC70\uB77C\uACE0 \uD560 \uC218 \uC788\uACA0\uB124\uC694."
+  portraitKey: Talk
+  nextID: EventPriest_First_5
+  prompt: 
+  targetID: 
+--- !u!114 &4192108554575616831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_7
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_7
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "...\uAD00\uC2EC \uC5C6\uC5B4. \uD558\uB358 \uC77C\uC774\uB098 \uD558\uC2DC\uC9C0."
+  portraitKey: SickOf
+  nextID: Heca_Second_8
+  prompt: 
+  targetID: 
+--- !u!114 &4235543843080390885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_7
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_7
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Priest
+  text: "\uC774\uB807\uAC8C \uAC00\uB054 \uB9C8\uC8FC\uCE58\uB294 \uC815\uB3C4\uB77C\uBA74
+    \uB2F9\uC2E0\uC5D0\uAC8C \uC870\uAE08 \uB3C4\uC6C0\uC744 \uC918\uB3C4 \uAD1C\uCC2E\uC744
+    \uAC83 \uAC19\uB124\uC694."
+  portraitKey: Talk
+  nextID: EventPriest_First_8
+  prompt: 
+  targetID: 
+--- !u!114 &4593511362649863214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_Architect_1
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Architect_1
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Krabian
+  text: "\uC804\uBD80 \uD314\uC558\uB2E4!"
+  portraitKey: Delight
+  nextID: Krabian_Architect_2
+  prompt: 
+  targetID: 
+--- !u!114 &5010151765656739420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_4
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_4
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uB098\uBCF4\uB2E4 \uC80A\uC5B4\uBCF4\uC774\uB294 \uC5EC\uC131\uD55C\uD14C
+    \uC80A\uC740\uC774\uB77C \uBD88\uB9AC\uB2C8 \uAE30\uBD84\uC774 \uAD49\uC7A5\uD788
+    \uBB18\uD55C\uB370."
+  portraitKey: Talk
+  nextID: Heca_Second_5
+  prompt: 
+  targetID: 
+--- !u!114 &5080070895324569759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_2
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_2
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uB300\uC7A5\uAC04? \uC774\uB7F0 \uACF3\uC5D0 \uC65C \uB300\uC7A5\uC7A5\uC774\uAC00
+    \uC788\uB294 \uAC70\uC9C0?"
+  portraitKey: Talk
+  nextID: Heca_First_3
+  prompt: 
+  targetID: 
+--- !u!114 &5623012690604833036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_1
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_1
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Priest
+  text: "\uBC18\uAC00\uC6CC\uC694. \uC774\uD074\uB9AC\uC2A4."
+  portraitKey: Talk
+  nextID: EventPriest_First_2
+  prompt: 
+  targetID: 
+--- !u!114 &5775303782729499710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_6
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_6
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uC774\uB798 \uBD2C\uB3C4 \uC5F0\uBC30\uAC00 \uC788\uC73C\uC2DC\uB2E4\uACE0.
+    \uD558\uD56B!"
+  portraitKey: Laugh
+  nextID: Heca_Second_7
+  prompt: 
+  targetID: 
+--- !u!114 &6264868655760870262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_10
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_10
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Krabian
+  text: "\uD06C\uB77C\uBE44\uC548, \uC0C1\uC778\uC774\uB2E4. \uC778\uAC04\uC5D0\uAC8C
+    \uD544\uC694\uD55C \uC874\uC7AC\uB2E4."
+  portraitKey: Talk
+  nextID: Krabian_First_11
+  prompt: 
+  targetID: 
+--- !u!114 &6572398983199858909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_10
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_10
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uC774\uD074\uB9AC\uC2A4\uB2E4."
+  portraitKey: Talk
+  nextID: Heca_Second_11
+  prompt: 
+  targetID: 
+--- !u!114 &6668032964185737004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_2
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_2
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uC5EC\uAE30\uC11C \uBB58 \uD558\uACE0 \uC788\uB294 \uAC70\uC9C0?"
+  portraitKey: Talk
+  nextID: EventPriest_First_3
+  prompt: 
+  targetID: 
+--- !u!114 &6823623904902908034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_13
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_13
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uADF8\uB798. \uB3C4\uC6C0\uC774 \uB41C\uB2E4\uBA74\uC57C."
+  portraitKey: Talk
+  nextID: EventPriest_First_14
+  prompt: 
+  targetID: 
+--- !u!114 &7042848113166415850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_5
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_5
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uC544\uD558, \uB0B4\uAC00 \uC774\uB7EC\uB2E4\uAC00 \uB9C8\uC871\uC758 \uC2B5\uACA9\uC774\uB77C\uB3C4
+    \uB2F9\uD560\uAE4C\uBD10 \uAC71\uC815\uD558\uB294 \uAC74\uAC00?"
+  portraitKey: Talk
+  nextID: Heca_First_6
+  prompt: 
+  targetID: 
+--- !u!114 &7228363484265844171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_1
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_1
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Krabian
+  text: "\uD06C\uC544\uC544\uC545! \uC778\uAC04\uC774\uB2E4, \uC778\uAC04!"
+  portraitKey: Talk
+  nextID: Krabian_First_2
+  prompt: 
+  targetID: 
+--- !u!114 &7336445309377066865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_3
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_3
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uAC70 \uCC38, \uC800\uBC88\uBD80\uD130 \uAF2C\uD22C\uB9AC \uCC38 \uB9CE\uC774
+    \uC7A1\uB124. \uADF8\uB7FC \uB124\uAC00 \uB299\uC740\uC774\uC57C?"
+  portraitKey: Talk
+  nextID: Heca_Second_4
+  prompt: 
+  targetID: 
+--- !u!114 &7422805129670227044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_Second_5
+  m_EditorClassIdentifier: 
+  rowID: Heca_Second_5
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uD558\uAE34 \uADF8\uB807\uACA0\uAD70, \uBBF8\uC548\uD558\uC9C0\uB9CC \uC774\uAC74
+    \uB0B4 \uC6D0\uB798 \uBAA8\uC2B5\uC774 \uC544\uB2C8\uC57C."
+  portraitKey: Talk
+  nextID: Heca_Second_6
+  prompt: 
+  targetID: 
+--- !u!114 &7530516001599937434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: EventPriest_First_17
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_First_17
+  isEnable: 1
+  nodeType: End
+  speaker: 
+  characterID: 
+  text: 
+  portraitKey: 
+  nextID: 
+  prompt: 
+  targetID: 
+--- !u!114 &8113235041793244920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_13
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_13
+  isEnable: 1
+  nodeType: End
+  speaker: 
+  characterID: 
+  text: 
+  portraitKey: 
+  nextID: 
+  prompt: 
+  targetID: 
+--- !u!114 &8503044987366492170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_7
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_7
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uD558\uD558, \uC0DD\uAC01\uD55C \uAC83 \uBCF4\uB2E8 \uD6E8\uC52C \uAD34\uD30D\uD55C
+    \uC131\uACA9\uC774\uB124.\n\uD558\uAE34, \uC774\uB7F0 \uACF3\uC5D0 \uCC29\uD574\uBE60\uC9C4
+    \uC6A9\uC0AC\uB294 \uC548 \uC5B4\uC6B8\uB9AC\uAE34 \uD558\uC9C0."
+  portraitKey: Talk
+  nextID: Heca_First_8
+  prompt: 
+  targetID: 
+--- !u!114 &8633384765264660842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_Architect_2
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Architect_2
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uADF8\uB798, \uB9C8\uC74C\uC5D0 \uB4DC\uB098?"
+  portraitKey: Smile
+  nextID: Krabian_Architect_3
+  prompt: 
+  targetID: 
+--- !u!114 &8772732974677879254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_3
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_3
+  isEnable: 1
+  nodeType: Line
+  speaker: NPC
+  characterID: Heca
+  text: "\uC804\uD22C\uAC00 \uC788\uB294 \uACF3\uC5D0\uB294 \uC804\uD22C\uC5D0 \uD544\uC694\uD55C
+    \uC7A5\uBE44\uAC00 \uC788\uACE0 \uC7A5\uBE44\uAC00 \uC788\uB294 \uACF3\uC5D4
+    \uB300\uC7A5\uC7A5\uC774\uAC00 \uC788\uB294 \uAC70\uC9C0.\n\uADF8\uAC8C \uADF8\uB807\uAC8C
+    \uC774\uC0C1\uD560 \uC77C\uC778\uAC00?"
+  portraitKey: Talk
+  nextID: Heca_First_4
+  prompt: 
+  targetID: 
+--- !u!114 &8938699054273322660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Krabian_First_9
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_9
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uB0B4\uAC00 \uB110 \uC65C \uC8FD\uC774\uBA74 \uC548 \uB418\uB294\uC9C0
+    \uBA85\uD655\uD558\uAC8C \uC124\uBA85\uD574\uB77C."
+  portraitKey: Talk
+  nextID: Krabian_First_10
+  prompt: 
+  targetID: 
+--- !u!114 &9175782193367641879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01991a7811a047c4bf2e428e13ad4ce7, type: 3}
+  m_Name: Heca_First_11
+  m_EditorClassIdentifier: 
+  rowID: Heca_First_11
+  isEnable: 1
+  nodeType: Line
+  speaker: Player
+  characterID: Eclis
+  text: "\uADDC\uCE59..."
+  portraitKey: Default
+  nextID: Heca_First_12
+  prompt: 
+  targetID: 

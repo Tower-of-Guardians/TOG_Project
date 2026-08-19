@@ -29,6 +29,11 @@ namespace JxDialogueBox
                 return cached;
             }
 
+            if (_table == null)
+            {
+                return null;
+            }
+
             var row = _table.Find<DialoguePortraitDataTableRow>(rowID);
 
             if (row?.portraitTexture == null)

@@ -4,7 +4,7 @@ namespace JxDialogueBox
 {
     public class DialogueEntryDataTableRow : DataTableRowBase
     {
-        public string DialogueID;
-        public string EntryNodeID;
+        public string dialogueID;
+        public string entryNodeID;
     }
 }
