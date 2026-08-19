@@ -21,7 +21,7 @@ namespace JxDialogueBox
                 return;
             }
 
-            playerSlot.SetCharacter("eccliss");
+            playerSlot.SetCharacter("Eclis");
             playerSlot.SetPortraitByKey("default");
         }
 

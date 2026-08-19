@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 13370b9ff9f58254d8de8d0fea7a8c5e
+guid: 2b970140ef30b9c4689f6292399bddf9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3279152384857617569
-    second: Player Portrait_0
-  - first:
-      213: -8097111120427589914
-    second: Player Portrait_1
-  - first:
-      213: -2740870884985674476
-    second: Player Portrait_2
+      213: -5366412308936598194
+    second: Lucien_Talk_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player Portrait_0
+      name: Lucien_Talk_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1193
         y: 0
-        width: 1072
-        height: 956
+        width: 637
+        height: 971
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,52 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f5bcf28974c1e72d0800000000000000
-      internalID: -3279152384857617569
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Portrait_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 478
-        width: 7
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6ee5c08165841af80800000000000000
-      internalID: -8097111120427589914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Portrait_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 450
-        width: 5
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 415e73da37876f9d0800000000000000
-      internalID: -2740870884985674476
+      spriteID: e4ddc8fff6ca685b0800000000000000
+      internalID: -5366412308936598194
       vertices: []
       indices: 
       edges: []
@@ -185,9 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Player Portrait_0: -3279152384857617569
-      Player Portrait_1: -8097111120427589914
-      Player Portrait_2: -2740870884985674476
+      Lucien_Talk_0: -5366412308936598194
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

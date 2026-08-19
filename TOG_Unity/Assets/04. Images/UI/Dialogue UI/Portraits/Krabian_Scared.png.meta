@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 49b0528e5cb3b264583fe6aa9c08d681
+guid: b9091f803e78c05418a6fdbad2a53a5e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2353262383020976846
-    second: Preist_0
+      213: 2764606168461403610
+    second: Krabian_Scared_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Preist_0
+      name: Krabian_Scared_0
       rect:
         serializedVersion: 2
-        x: 1105
+        x: 1041
         y: 0
-        width: 815
-        height: 942
+        width: 879
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 235debca458875fd0800000000000000
-      internalID: -2353262383020976846
+      spriteID: ad5eef6a9aadd5620800000000000000
+      internalID: 2764606168461403610
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Preist_0: -2353262383020976846
+      Krabian_Scared_0: 2764606168461403610
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

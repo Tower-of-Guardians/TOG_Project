@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c39b43e4a0458ac4086af9a3aa3e9872
+guid: cc6c5601de8ae1d428bbe64664141e8e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6821027440879438252
-    second: Shop Portrait_0
+      213: 5814730534913032086
+    second: Heca_Talk_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shop Portrait_0
+      name: Heca_Talk_0
       rect:
         serializedVersion: 2
-        x: 1041
+        x: 1049
         y: 0
-        width: 879
-        height: 1000
+        width: 851
+        height: 978
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ca98fc0715829ae50800000000000000
-      internalID: 6821027440879438252
+      spriteID: 69fbb1e1d9212b050800000000000000
+      internalID: 5814730534913032086
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Shop Portrait_0: 6821027440879438252
+      Heca_Talk_0: 5814730534913032086
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

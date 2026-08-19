@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9159ba8ee8f84414e931b8c07d8d9deb
+guid: bb73e1b1a34093b42b911137d7c233b5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1037772002901234433
-    second: Craftman_0
+      213: 5005988744869449354
+    second: Krabian_Delight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Craftman_0
+      name: Krabian_Delight_0
       rect:
         serializedVersion: 2
-        x: 1050
+        x: 1041
         y: 0
-        width: 850
-        height: 978
+        width: 879
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10316c66328e66e00800000000000000
-      internalID: 1037772002901234433
+      spriteID: a8e0c879d38d87540800000000000000
+      internalID: 5005988744869449354
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Craftman_0: 1037772002901234433
+      Krabian_Delight_0: 5005988744869449354
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
