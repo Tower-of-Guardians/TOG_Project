@@ -88,12 +88,7 @@ namespace JxDialogueBox
 
                     Goto(line.NextID);
                 }
-
-                return;
             }
-
-            if(State == EngineState.AwaitingChoice)
-                return;
         }
 
         public void Choose(int optionIndex)
@@ -139,7 +134,11 @@ namespace JxDialogueBox
                 {
                     case NodeType.Line:
                     {
-                        var lineNode = node as LineNode;
+                        if (node is not LineNode lineNode)
+                        {
+                            return;
+                        }
+                        
                         State = EngineState.ShowingLine;
                         OnLine?.Invoke(new LineEvent(lineNode.Speaker, lineNode.Text, lineNode.PortraitKey, lineNode.ID));
                         return;
@@ -147,7 +146,11 @@ namespace JxDialogueBox
 
                     case NodeType.Choice:
                     {
-                        var choiceNode = node as ChoiceNode;
+                        if (node is not ChoiceNode choiceNode)
+                        {
+                            return;
+                        }
+                        
                         State = EngineState.AwaitingChoice;
 
                         var options = new ChoiceOption[choiceNode.Options.Count];
@@ -162,7 +165,11 @@ namespace JxDialogueBox
 
                     case NodeType.Jump:
                     {
-                        var jumpNode = node as JumpNode;
+                        if (node is not JumpNode jumpNode)
+                        {
+                            return;
+                        }
+
                         if(string.IsNullOrEmpty(jumpNode.TargetID))
                         {
                             EndInternal();

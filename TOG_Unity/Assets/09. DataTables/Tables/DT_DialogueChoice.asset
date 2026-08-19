@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3800452044814359564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cda94aaf9243baa8665bfc3d2290cf, type: 3}
+  m_Name: EventPriest_Default_2
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_Default_2
+  isEnable: 1
+  nodeID: EventPriest_First_14
+  optionIndex: 2
+  text: "\uCE74\uB4DC\uB97C \uBC1B\uB294\uB2E4. "
+  nextID: EventPriest_First_15
+--- !u!114 &-1098350552173047585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cda94aaf9243baa8665bfc3d2290cf, type: 3}
+  m_Name: Krabian_First_Choice_1
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_Choice_1
+  isEnable: 1
+  nodeID: Krabian_First_4
+  optionIndex: 1
+  text: "\uC8FD\uC5EC\uBC84\uB9B0\uB2E4."
+  nextID: Krabian_First_5
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
+  m_Name: DT_DialogueChoice
+  m_EditorClassIdentifier: 
+  dataTableCsv: {fileID: 4900000, guid: 4fe7a3f520d7d794ab41ca99a421599d, type: 3}
+  dataTableRowName: JxDialogueBox.DialogueChoiceDataTableRow, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=1885234140
+  dataTableRows:
+  - {fileID: 4662710501914084901}
+  - {fileID: -3800452044814359564}
+  - {fileID: -1098350552173047585}
+  - {fileID: 635224174123747644}
+  dataTableRowScript: {fileID: 0}
+--- !u!114 &635224174123747644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cda94aaf9243baa8665bfc3d2290cf, type: 3}
+  m_Name: Krabian_First_Choice_2
+  m_EditorClassIdentifier: 
+  rowID: Krabian_First_Choice_2
+  isEnable: 1
+  nodeID: Krabian_First_4
+  optionIndex: 2
+  text: "\uC8FD\uC774\uC9C0 \uC54A\uB294\uB2E4."
+  nextID: Krabian_First_5
+--- !u!114 &4662710501914084901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cda94aaf9243baa8665bfc3d2290cf, type: 3}
+  m_Name: EventPriest_Default_1
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_Default_1
+  isEnable: 1
+  nodeID: EventPriest_First_14
+  optionIndex: 1
+  text: "\uD68C\uBCF5\uC744 \uBC1B\uB294\uB2E4."
+  nextID: EventPriest_First_15

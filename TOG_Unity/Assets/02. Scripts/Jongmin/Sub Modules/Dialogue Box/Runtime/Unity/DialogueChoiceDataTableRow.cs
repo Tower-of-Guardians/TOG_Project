@@ -4,9 +4,9 @@ namespace JxDialogueBox
 {
     public class DialogueChoiceDataTableRow : DataTableRowBase
     {
-        public string NodeID;
-        public int OptionIndex;
-        public string Text;
-        public string NextID;
+        public string nodeID;
+        public int optionIndex;
+        public string text;
+        public string nextID;
     }
 }

@@ -4,16 +4,16 @@ namespace JxDialogueBox
 {
     public class DialogueNodeDataTableRow : DataTableRowBase
     {
-        public string NodeType;
+        public string nodeType;
 
-        public string Speaker;
-        public string CharacterID;
-        public string Text;
-        public string PortraitKey;
+        public string speaker;
+        public string characterID;
+        public string text;
+        public string portraitKey;
 
-        public string NextID;
+        public string nextID;
 
-        public string Prompt;
-        public string TargetID;
+        public string prompt;
+        public string targetID;
     }
 }

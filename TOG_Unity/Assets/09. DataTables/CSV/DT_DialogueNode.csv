@@ -1,0 +1,66 @@
+rowID,nodeType,speaker,characterID,text,portraitKey,nextID,prompt,targetID,isEnable
+EventPriest_First_1,Line,NPC,Priest,반가워요. 이클리스.,Talk,EventPriest_First_2,,,TRUE
+EventPriest_First_2,Line,Player,Eclis,여기서 뭘 하고 있는 거지?,Talk,EventPriest_First_3,,,TRUE
+EventPriest_First_3,Line,NPC,Priest,저는 이 탑의 관리자니까요. 돌아다니면서 지저분한 곳을 청소한답니다.,Talk,EventPriest_First_4,,,TRUE
+EventPriest_First_4,Line,NPC,Priest,지금은 당신과 우연히 마주친 거라고 할 수 있겠네요.,Talk,EventPriest_First_5,,,TRUE
+EventPriest_First_5,Line,Player,Eclis,"나랑은 전혀 상관 없는 일인 것 같은데, 길을 비켜주면 좋겠군.",Talk,EventPriest_First_6,,,TRUE
+EventPriest_First_6,Line,NPC,Priest,음... 잠시만요.,Talk,EventPriest_First_7,,,TRUE
+EventPriest_First_7,Line,NPC,Priest,이렇게 가끔 마주치는 정도라면 당신에게 조금 도움을 줘도 괜찮을 것 같네요.,Talk,EventPriest_First_8,,,TRUE
+EventPriest_First_8,Line,Player,Eclis,도움?,Talk,EventPriest_First_9,,,TRUE
+EventPriest_First_9,Line,NPC,Priest,그래요. 앞으로 이렇게 저와 우연히 마주칠 때면 제가 당신에게 약간의 도움을 드리겠습니다.,Talk,EventPriest_First_10,,,TRUE
+EventPriest_First_10,Line,Player,Eclis,그런 규칙을 그렇게 네 마음대로 만들어도 되는 건가?,Talk,EventPriest_First_11,,,TRUE
+EventPriest_First_11,Line,NPC,Priest,물론이죠. 저는 이 탑의 관리자니까요.,Talk,EventPriest_First_12,,,TRUE
+EventPriest_First_12,Line,Player,Eclis,...,Default,EventPriest_First_13,,,TRUE
+EventPriest_First_13,Line,Player,Eclis,그래. 도움이 된다면야.,Talk,EventPriest_First_14,,,TRUE
+EventPriest_First_14,Choice,,,,,,어떤 도움을 받으실 건가요?,,TRUE
+EventPriest_First_15,Line,Player,Eclis,나쁘지 않네.,Talk,EventPriest_First_16,,,TRUE
+EventPriest_First_16,Line,NPC,Priest,또 봐요. 당신에게 신의 은총이 함께하길.,Talk,EventPriest_First_17,,,TRUE
+EventPriest_First_17,End,,,,,,,,TRUE
+Heca_First_1,Line,NPC,Heca,음... 안녕?,Default,Heca_First_2,,,TRUE
+Heca_First_2,Line,Player,Eclis,대장간? 이런 곳에 왜 대장장이가 있는 거지?,Talk,Heca_First_3,,,TRUE
+Heca_First_3,Line,NPC,Heca,전투가 있는 곳에는 전투에 필요한 장비가 있고 장비가 있는 곳엔 대장장이가 있는 거지.\n그게 그렇게 이상할 일인가?,Talk,Heca_First_4,,,TRUE
+Heca_First_4,Line,Player,Eclis,그 대장장이가 전장 한복판에 있는 건 못 본 것 같은데.,Talk,Heca_First_5,,,TRUE
+Heca_First_5,Line,NPC,Heca,"아하, 내가 이러다가 마족의 습격이라도 당할까봐 걱정하는 건가?",Talk,Heca_First_6,,,TRUE
+Heca_First_6,Line,Player,Eclis,네 걱정을 한 게 아니야. 이곳에서도 구역질나는 인간 시체를 보는 게 싫을 뿐.\n네가 죽고 말고엔 관심 없다.,Talk,Heca_First_7,,,TRUE
+Heca_First_7,Line,NPC,Heca,"하하, 생각한 것 보단 훨씬 괴팍한 성격이네.\n하긴, 이런 곳에 착해빠진 용사는 안 어울리긴 하지.",Talk,Heca_First_8,,,TRUE
+Heca_First_8,Line,NPC,Heca,"여긴 나의 영역이라 괴물같은 건 들어오지 않아.\n네가 이해하기 쉽게 말하자면, 난 시련의 과정에 포함된 일부지.\n그러니 내가 죽는 일 같은 건 일어나지 않아.",Talk,Heca_First_9,,,TRUE
+Heca_First_9,Line,Player,Eclis,그럼 너도 이 시련에서 맡은 역할이 있겠군.,Talk,Heca_First_10,,,TRUE
+Heca_First_10,Line,NPC,Heca,"맞아, 이해가 빠른 걸! 난 너의 그 멋진 검을 살짝 강화해줄 수 있어.\n규칙상 만날 때 마다 한 번만 해주겠지만.",Talk,Heca_First_11,,,TRUE
+Heca_First_11,Line,Player,Eclis,규칙...,Default,Heca_First_12,,,TRUE
+Heca_First_12,Line,NPC,Heca,"자, 이해했으면 얼른 그 검을 이리 가져와 봐.",Talk,Heca_First_13,,,TRUE
+Heca_First_13,End,,,,,,,,TRUE
+Heca_Second_1,Line,NPC,Heca,"오, 젊은이. 또 보네?",Talk,Heca_Second_2,,,TRUE
+Heca_Second_2,Line,Player,Eclis,나를 말하는 건가? 호칭이 왜 그 모양이지?,Talk,Heca_Second_3,,,TRUE
+Heca_Second_3,Line,NPC,Heca,"거 참, 저번부터 꼬투리 참 많이 잡네. 그럼 네가 늙은이야?",Talk,Heca_Second_4,,,TRUE
+Heca_Second_4,Line,Player,Eclis,나보다 젊어보이는 여성한테 젊은이라 불리니 기분이 굉장히 묘한데.,Talk,Heca_Second_5,,,TRUE
+Heca_Second_5,Line,NPC,Heca,"하긴 그렇겠군, 미안하지만 이건 내 원래 모습이 아니야.",Talk,Heca_Second_6,,,TRUE
+Heca_Second_6,Line,NPC,Heca,이래 봬도 연배가 있으시다고. 하핫!,Laugh,Heca_Second_7,,,TRUE
+Heca_Second_7,Line,Player,Eclis,...관심 없어. 하던 일이나 하시지.,SickOf,Heca_Second_8,,,TRUE
+Heca_Second_8,Line,NPC,Heca,...하핫.,Default,Heca_Second_9,,,TRUE
+Heca_Second_9,Line,NPC,Heca,통성명이나 할까? 헤카라고 한다. 잘 부탁해.,Talk,Heca_Second_10,,,TRUE
+Heca_Second_10,Line,Player,Eclis,이클리스다.,Talk,Heca_Second_11,,,TRUE
+Heca_Second_11,Line,NPC,Heca,"그렇군, 이클리스.",Default,Heca_Second_12,,,TRUE
+Heca_Second_12,Line,NPC,Heca,사실 너의 이름은 알고 있었어. 그냥 내 이름을 소개하고 싶었지.,Talk,Heca_Second_13,,,TRUE
+Heca_Second_13,Line,NPC,Heca,하하하핫!,Laugh,Heca_Second_14,,,TRUE
+Heca_Second_14,Line,Player,Eclis,...,Bored,Heca_Second_15,,,TRUE
+Heca_Second_15,End,,,,,,,,TRUE
+Krabian_First_1,Line,NPC,Krabian,"크아아악! 인간이다, 인간!",Talk,Krabian_First_2,,,TRUE
+Krabian_First_2,Line,NPC,Krabian,크라비안 인간 처음 본다!,Talk,Krabian_First_3,,,TRUE
+Krabian_First_3,Line,Player,Eclis,"뭐야, 마족이잖아.",Talk,Krabian_First_4,,,TRUE
+Krabian_First_4,Choice,Player,Eclis,,,,(검을 든다.),,TRUE
+Krabian_First_5,Line,NPC,Krabian,"잠, 잠깐! 멈춰라!",Scared,Krabian_First_6,,,TRUE
+Krabian_First_6,Line,NPC,Krabian,나 착한 마족이다! 죽이지 마라!,Scared,Krabian_First_7,,,TRUE
+Krabian_First_7,Line,Player,Eclis,"뭐? 웃기시네, 마족이 착할리가 없잖아.",Talk,Krabian_First_8,,,TRUE
+Krabian_First_8,Line,Player,Eclis,...,Default,Krabian_First_9,,,TRUE
+Krabian_First_9,Line,Player,Eclis,내가 널 왜 죽이면 안 되는지 명확하게 설명해라.,Talk,Krabian_First_10,,,TRUE
+Krabian_First_10,Line,NPC,Krabian,"크라비안, 상인이다. 인간에게 필요한 존재다.",Talk,Krabian_First_11,,,TRUE
+Krabian_First_11,Line,Player,Eclis,상인?,Talk,Krabian_First_12,,,TRUE
+Krabian_First_12,Line,NPC,Krabian,그렇다. 인간에게 도움이 된다.,Talk,Krabian_First_13,,,TRUE
+Krabian_First_13,End,,,,,,,,TRUE
+Krabian_Architect_1,Line,NPC,Krabian,전부 팔았다!,Delight,Krabian_Architect_2,,,TRUE
+Krabian_Architect_2,Line,Player,Eclis,"그래, 마음에 드나?",Smile,Krabian_Architect_3,,,TRUE
+Krabian_Architect_3,Line,NPC,Krabian,그렇다. 이제 관리자에게 포상 받을 수 있다.,Delight,Krabian_Architect_4,,,TRUE
+Krabian_Architect_4,Line,Player,Eclis,포상?,Talk,Krabian_Architect_5,,,TRUE
+Krabian_Architect_5,Line,NPC,Krabian,장사 잘 해서 전부 팔면 관리자가 포상 준다고 했다.,Talk,Krabian_Architect_6,,,TRUE
+Krabian_Architect_6,Line,Player,Eclis,딱히 네가 장사를 잘해서 다 판 건 아닌 거 같은데.,Talk,Krabian_Architect_7,,,TRUE
+Krabian_Architect_7,Line,NPC,Krabian,그런 건 상관 없다. 고맙다 인간. 선물 주겠다.,Talk,Krabian_Architect_8,,,TRUE
