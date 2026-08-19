@@ -1,0 +1,326 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8896122525110706194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Krabian_Scared
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Scared
+  isEnable: 1
+  characterID: Krabian
+  portraitKey: Scared
+  portraitTexture: {fileID: 2800000, guid: b9091f803e78c05418a6fdbad2a53a5e, type: 3}
+--- !u!114 &-7440893245425973147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Eclis_Default
+  m_EditorClassIdentifier: 
+  rowID: Eclis_Default
+  isEnable: 1
+  characterID: Eclis
+  portraitKey: Default
+  portraitTexture: {fileID: 2800000, guid: cc42d9f724d59b647a879c13ce43d6d5, type: 3}
+--- !u!114 &-6770111331807905232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Clown_Default
+  m_EditorClassIdentifier: 
+  rowID: Clown_Default
+  isEnable: 1
+  characterID: Clown
+  portraitKey: Default
+  portraitTexture: {fileID: 2800000, guid: 8a3d6ad8b05b02741a6d55f12b180268, type: 3}
+--- !u!114 &-6140634009539949585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Krabian_Talk
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Talk
+  isEnable: 1
+  characterID: Krabian
+  portraitKey: Talk
+  portraitTexture: {fileID: 2800000, guid: 0007db3fe6c425446a6a7d7f1b347c14, type: 3}
+--- !u!114 &-4961596101903300005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Heca_Default
+  m_EditorClassIdentifier: 
+  rowID: Heca_Default
+  isEnable: 1
+  characterID: Heca
+  portraitKey: Default
+  portraitTexture: {fileID: 2800000, guid: 325964a170f14b949abf61f02c843338, type: 3}
+--- !u!114 &-4568782389883080491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Eclis_Talk
+  m_EditorClassIdentifier: 
+  rowID: Eclis_Talk
+  isEnable: 1
+  characterID: Eclis
+  portraitKey: Talk
+  portraitTexture: {fileID: 2800000, guid: ca404b8df36046e438cf12f9a0f78be4, type: 3}
+--- !u!114 &-4248654438604861216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Heca_Laugh
+  m_EditorClassIdentifier: 
+  rowID: Heca_Laugh
+  isEnable: 1
+  characterID: Heca
+  portraitKey: Laugh
+  portraitTexture: {fileID: 2800000, guid: fe1f6c776235312439efcfa5f0806bba, type: 3}
+--- !u!114 &-3287797823960673408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Priest_Talk
+  m_EditorClassIdentifier: 
+  rowID: Priest_Talk
+  isEnable: 1
+  characterID: Prieist
+  portraitKey: Talk
+  portraitTexture: {fileID: 2800000, guid: b578daf83d1cb364587fed684d2a630c, type: 3}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
+  m_Name: DT_DialoguePortrait
+  m_EditorClassIdentifier: 
+  dataTableCsv: {fileID: 4900000, guid: d99915b3f6882dd48b4f77aea5076404, type: 3}
+  dataTableRowName: JxDialogueBox.DialoguePortraitDataTableRow, Assembly-CSharp,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=2118324427
+  dataTableRows:
+  - {fileID: -7440893245425973147}
+  - {fileID: -4568782389883080491}
+  - {fileID: 840030564754554093}
+  - {fileID: 1723445576394246797}
+  - {fileID: 733057667372450613}
+  - {fileID: -3287797823960673408}
+  - {fileID: -4961596101903300005}
+  - {fileID: 4376356219945013966}
+  - {fileID: -4248654438604861216}
+  - {fileID: 5202081786397821739}
+  - {fileID: -6140634009539949585}
+  - {fileID: -8896122525110706194}
+  - {fileID: 6500592835228805348}
+  - {fileID: -6770111331807905232}
+  - {fileID: 3022790658918190166}
+  - {fileID: 4783137584462649185}
+  - {fileID: 6234478614861830009}
+  dataTableRowScript: {fileID: 0}
+--- !u!114 &733057667372450613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Priest_Default
+  m_EditorClassIdentifier: 
+  rowID: Priest_Default
+  isEnable: 1
+  characterID: Priest
+  portraitKey: Default
+  portraitTexture: {fileID: 2800000, guid: 955afcda1cc508145b26acdab6a5d4cd, type: 3}
+--- !u!114 &840030564754554093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Eclis_SickOf
+  m_EditorClassIdentifier: 
+  rowID: Eclis_SickOf
+  isEnable: 1
+  characterID: Eclis
+  portraitKey: SickOf
+  portraitTexture: {fileID: 2800000, guid: 0c55743a0d5de5a4491812870c766caa, type: 3}
+--- !u!114 &1723445576394246797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Eclis_Bored
+  m_EditorClassIdentifier: 
+  rowID: Eclis_Bored
+  isEnable: 1
+  characterID: Eclis
+  portraitKey: Bored
+  portraitTexture: {fileID: 2800000, guid: 496a5f95fd2687f4a842720553484886, type: 3}
+--- !u!114 &3022790658918190166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Clown_Talk
+  m_EditorClassIdentifier: 
+  rowID: Clown_Talk
+  isEnable: 1
+  characterID: Clown
+  portraitKey: Talk
+  portraitTexture: {fileID: 2800000, guid: 36b8f5770c51e3b4eace2596aa953e53, type: 3}
+--- !u!114 &4376356219945013966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Heca_Talk
+  m_EditorClassIdentifier: 
+  rowID: Heca_Talk
+  isEnable: 1
+  characterID: Heca
+  portraitKey: Talk
+  portraitTexture: {fileID: 2800000, guid: cc6c5601de8ae1d428bbe64664141e8e, type: 3}
+--- !u!114 &4783137584462649185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Lucien_Default
+  m_EditorClassIdentifier: 
+  rowID: Lucien_Default
+  isEnable: 1
+  characterID: Lucien
+  portraitKey: Default
+  portraitTexture: {fileID: 2800000, guid: d1053cc849b34504c9c55aee5faf0745, type: 3}
+--- !u!114 &5202081786397821739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Krabian_Default
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Default
+  isEnable: 1
+  characterID: Krabian
+  portraitKey: Default
+  portraitTexture: {fileID: 2800000, guid: 9ff60862b0e6ce44aba4d460e297fa5d, type: 3}
+--- !u!114 &6234478614861830009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Lucien_Talk
+  m_EditorClassIdentifier: 
+  rowID: Lucien_Talk
+  isEnable: 1
+  characterID: Lucien
+  portraitKey: Talk
+  portraitTexture: {fileID: 2800000, guid: 2b970140ef30b9c4689f6292399bddf9, type: 3}
+--- !u!114 &6500592835228805348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Krabian_Delight
+  m_EditorClassIdentifier: 
+  rowID: Krabian_Delight
+  isEnable: 1
+  characterID: Krabian
+  portraitKey: Delight
+  portraitTexture: {fileID: 2800000, guid: bb73e1b1a34093b42b911137d7c233b5, type: 3}

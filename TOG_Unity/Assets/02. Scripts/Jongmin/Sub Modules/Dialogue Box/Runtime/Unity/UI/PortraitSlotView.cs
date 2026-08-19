@@ -10,7 +10,7 @@ namespace JxDialogueBox
         [SerializeField] private Image portraitImage;
         
         [Space(20f), BigHeader("Default Settings")]
-        [SerializeField] private string defaultKey = "default";
+        [SerializeField] private string defaultKey = "Default";
 
         private static DialoguePortraitTable _portraitTable;
         private string _characterID;

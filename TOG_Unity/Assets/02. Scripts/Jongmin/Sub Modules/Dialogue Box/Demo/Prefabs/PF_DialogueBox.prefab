@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portraitImage: {fileID: 8766164714070035461}
-  defaultKey: default
+  defaultKey: Default
 --- !u!1 &920481015485946340
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portraitImage: {fileID: 22445215901714430}
-  defaultKey: default
+  defaultKey: Default
 --- !u!1 &4340263913436784959
 GameObject:
   m_ObjectHideFlags: 0
