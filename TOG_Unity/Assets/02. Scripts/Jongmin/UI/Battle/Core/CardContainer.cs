@@ -73,5 +73,13 @@ namespace Jongmin
             index = _cards.IndexOf(card);
             return true;
         }
+
+        public void CompleteCardTweens()
+        {
+            foreach (var card in _cards)
+            {
+                card?.CompleteTweens();
+            }
+        }
     }
 }

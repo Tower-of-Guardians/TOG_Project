@@ -12,6 +12,7 @@ namespace Jongmin
         private CardContainer _container;
         private Vector2 _dragPointerOffset;
         private bool _isDragCanceled;
+        private Action _pendingDropCommit;
         
         public event Action<Card> RequestOnBeginDrag;
         public event Action<Card, Vector2> RequestSwapInSameField;
@@ -41,6 +42,7 @@ namespace Jongmin
         private void HandleOnBeginDrag(Card card, PointerEventData eventData)
         {
             _isDragCanceled = false;
+            _pendingDropCommit = null;
             RequestOnBeginDrag?.Invoke(card);
             CacheDragPointerOffset(eventData);
         }
@@ -93,35 +95,19 @@ namespace Jongmin
                 return;
             }
               
-            var success = TryInvokeDropHandler(eventData.position);
+            var success = TryCreateDropCommit(eventData.position);
             RequestOnEndDrag?.Invoke(success);
+
+            var pendingDropCommit = success ? _pendingDropCommit : null;
+            _pendingDropCommit = null;
             _isDragCanceled = false;
             _dragPointerOffset = Vector2.zero;
+            pendingDropCommit?.Invoke();
         }
 
         public void OnDrop(PointerEventData eventData)
         {
-            var droppedObject = eventData.pointerDrag;
-            if (droppedObject == null)
-            {
-                return;
-            }
-            
-            var card = droppedObject.GetComponent<Card>();
-            if (card == null)
-            {
-                return;
-            }
-
-            if (card.Pointer.IsDragCanceled)
-            {
-                return;
-            }
-
-            if (card.CardType == CardType.Hand)
-            {
-                _dropSystem.OnDroppedHandToDiscard(card);    
-            }
+            // Drop commits are executed by the drag source after cleanup.
         }
 
         private void MoveHoverCardToMousePosition(PointerEventData eventData)
@@ -171,9 +157,9 @@ namespace Jongmin
             RequestOnEndDrag?.Invoke(false);
         }
 
-        private bool TryInvokeDropHandler(Vector2 position)
+        private bool TryCreateDropCommit(Vector2 position)
         {
-            var handHit  = CheckField(position, out var eventData);
+            var handHit = CheckField(position, out _);
             if (handHit == null)
             {
                 return false;
@@ -184,8 +170,14 @@ namespace Jongmin
             {
                 return false;
             }
-            
-            ExecuteEvents.Execute(handEventSystem.gameObject, eventData, ExecuteEvents.dropHandler);
+
+            var hoverCard = _discardSystem.HoverCard;
+            if (hoverCard == null || hoverCard.Pointer.IsDragCanceled)
+            {
+                return false;
+            }
+
+            _pendingDropCommit = () => _dropSystem.OnDroppedDiscardToHand(hoverCard);
             return true;
         }
 

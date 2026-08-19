@@ -21,11 +21,11 @@
             RequestUpdateActionCountEvent(1);
         }
         
-        public override void RemoveCard(Card card, bool unused = true)
+        public override void RemoveCard(Card card, bool isUpdateLayout = true)
         {
             GameData.Instance.attackField.Remove(card.CardData);
             UpdateFieldStatus();
-            base.RemoveCard(card, unused);
+            base.RemoveCard(card, isUpdateLayout);
         }
 
         public override void UpdateFieldStatus()

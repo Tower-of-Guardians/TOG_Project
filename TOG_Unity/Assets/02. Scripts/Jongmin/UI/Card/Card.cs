@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace Jongmin
@@ -40,8 +41,39 @@ namespace Jongmin
             CardType = cardType;
         }
 
+        public void CompleteTweens()
+        {
+            DOTween.Complete(this);
+            RectTransform?.DOComplete();
+            transform.DOComplete();
+            view?.CanvasGroup?.DOComplete();
+            SetInteraction(true);
+        }
+
+        public void KillTweens(bool complete = false)
+        {
+            DOTween.Kill(this, complete);
+            RectTransform?.DOKill(complete);
+            transform.DOKill(complete);
+            view?.CanvasGroup?.DOKill(complete);
+            SetInteraction(true);
+        }
+
+        public void SetInteraction(bool isActive)
+        {
+            if (view?.CanvasGroup != null)
+            {
+                view.CanvasGroup.interactable = isActive;
+                view.CanvasGroup.blocksRaycasts = isActive;
+            }
+
+            pointer?.SetInteraction(isActive);
+        }
+
         private void OnDisable()
         {
+            KillTweens();
+            SetInteraction(true);
             BattleCardData = null;
             CardData = null;
             CardType = CardType.None;

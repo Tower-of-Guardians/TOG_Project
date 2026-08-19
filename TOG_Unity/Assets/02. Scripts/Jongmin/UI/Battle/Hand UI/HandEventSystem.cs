@@ -15,6 +15,7 @@ namespace Jongmin
         private Vector3 _dragStartScale = Vector3.one;
         private bool _isDragging;
         private bool _isDragCanceled;
+        private Action _pendingDropCommit;
 
         public event Action<Card> OnPointerEntered;
         public event Action OnPointerExited;
@@ -91,6 +92,7 @@ namespace Jongmin
         {
             _isDragging = true;
             _isDragCanceled = false;
+            _pendingDropCommit = null;
 
             if (!EnsureHoverCard(card))
             {
@@ -98,7 +100,7 @@ namespace Jongmin
                 return;
             }
 
-            card?.DOKill();
+            card?.KillTweens();
             card.RectTransform.localRotation = Quaternion.identity;
             RequestBeginDrag?.Invoke();
             CacheDragPointerOffset(eventData);
@@ -170,50 +172,21 @@ namespace Jongmin
                 return;
             }
 
-            var hit = CheckField(eventData.position, out var pointerData);
-            var dropHandler = TryGetDropArea(hit, out var dropHandlerObject);
-            if (dropHandler != null)
-            {
-                ExecuteEvents.Execute(dropHandlerObject, pointerData, ExecuteEvents.dropHandler);
-            }
+            TryCreateDropCommit(eventData.position, card, out _pendingDropCommit);
             
             RequestEndDrag?.Invoke();
+            var pendingDropCommit = _pendingDropCommit;
             _isDragging = false;
             _isDragCanceled = false;
+            _pendingDropCommit = null;
             _dragPointerOffset = Vector2.zero;
             _dragStartScale = Vector3.one;
+            pendingDropCommit?.Invoke();
         }
         
         public void OnDrop(PointerEventData eventData)
         {
-            var droppedObject = eventData.pointerDrag;
-            if (droppedObject == null)
-            {
-                return;
-            }
-            
-            var card = droppedObject.GetComponent<Card>();
-            if (card == null)
-            {
-                return;
-            }
-
-            if (card.Pointer.IsDragCanceled)
-            {
-                return;
-            }
-
-            switch (card.CardType)
-            {
-                case CardType.Discard:
-                    _dropSystem.OnDroppedDiscardToHand(card);
-                    break;
-                
-                case CardType.AtkField:
-                case CardType.DefField:
-                    _dropSystem.OnDroppedFieldToHand(card);
-                    break;
-            }
+            // Drop commits are executed by the drag source after cleanup.
         }
 
         private bool EnsureHoverCard(Card card)
@@ -301,6 +274,38 @@ namespace Jongmin
         {
             var hit = CheckField(position, out _);
             return hit == null ? null : CardDragRaycastResolver.GetCard(hit.Value);
+        }
+
+        private bool TryCreateDropCommit(Vector2 position, Card card, out Action commit)
+        {
+            commit = null;
+
+            if (card == null || card.Pointer.IsDragCanceled)
+            {
+                return false;
+            }
+
+            var hit = CheckField(position, out _);
+            if (hit == null)
+            {
+                return false;
+            }
+
+            var fieldHandler = CardDragRaycastResolver.GetComponentInParent<FieldEventSystem>(hit.Value);
+            if (fieldHandler != null)
+            {
+                commit = () => _dropSystem.OnDroppedHandToField(card, fieldHandler.FieldType);
+                return true;
+            }
+
+            var discardHandler = CardDragRaycastResolver.GetComponentInParent<DiscardEventSystem>(hit.Value);
+            if (discardHandler != null)
+            {
+                commit = () => _dropSystem.OnDroppedHandToDiscard(card);
+                return true;
+            }
+
+            return false;
         }
 
         private IDropHandler TryGetDropArea(Vector2 position,

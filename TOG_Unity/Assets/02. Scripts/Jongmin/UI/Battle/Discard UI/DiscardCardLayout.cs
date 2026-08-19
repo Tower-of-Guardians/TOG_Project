@@ -166,13 +166,16 @@ namespace Jongmin
 
         private void ApplyCardPosition(RectTransform rectTransform, Vector2 position, bool isAnime)
         {
+            var card = rectTransform.GetComponent<Card>();
+
             rectTransform.DOKill();
 
             if (isAnime)
             {
                 rectTransform
                     .DOAnchorPos(position, _designer.AnimeDuration)
-                    .SetEase(Ease.InOutSine);
+                    .SetEase(Ease.InOutSine)
+                    .SetTarget(card);
             }
             else
             {

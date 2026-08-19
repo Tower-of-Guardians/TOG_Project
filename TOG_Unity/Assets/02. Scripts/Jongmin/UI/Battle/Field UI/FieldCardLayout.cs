@@ -57,11 +57,14 @@ namespace Jongmin
                         _designer.Space
                     );
 
-                card.transform.DOKill();
+                card.KillTweens();
 
                 if (isAnime)
                 {
-                    card.RectTransform.DOAnchorPos(layoutPosition, _designer.AnimeDuration).SetEase(Ease.InOutSine);
+                    card.RectTransform
+                        .DOAnchorPos(layoutPosition, _designer.AnimeDuration)
+                        .SetEase(Ease.InOutSine)
+                        .SetTarget(card);
                 }
                 else
                 {
