@@ -4,8 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Jongmin;
 
-public class Player : BaseUnit
+public class Player : BaseUnit, ITooltipProvider
 {
     [Header("Stats")]
     private int baseAttack;
@@ -60,7 +61,8 @@ public class Player : BaseUnit
     public int AttackValue => Mathf.RoundToInt(baseAttack + cardAttackBonus) + battleSynergyAttackBonus + turnSynergyAttackBonus;
     public float DefenseValue => cardDefenseBonus;
     public float GetStatAnimationWaitTime() => statAnimationDuration;
-
+    public bool CanShowTooltip => true;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -778,5 +780,15 @@ public class Player : BaseUnit
         curseStackText.text = Mathf.Max(0, curseRuntime.Stack).ToString();
     }
 
+    public TooltipContent GetTooltipContent()
+    {
+        var tooltipId = "Player";
+        var tooltipDict = new Dictionary<string, object>()
+        {
+            { "attackPower", AttackValue }
+        };
+        
+        return new TooltipContent(tooltipId, tooltipDict);
+    }
 }
 

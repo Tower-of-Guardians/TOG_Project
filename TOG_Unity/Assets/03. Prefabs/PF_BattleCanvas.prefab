@@ -336,8 +336,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
-  m_sharedMaterial: {fileID: -4652781241862084518, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
+  m_sharedMaterial: {fileID: -3253763356394748447, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -473,8 +473,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 12
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
-  m_sharedMaterial: {fileID: -4652781241862084518, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
+  m_sharedMaterial: {fileID: -3253763356394748447, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -498,8 +498,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -901,8 +901,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0 / 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
-  m_sharedMaterial: {fileID: -4652781241862084518, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
+  m_sharedMaterial: {fileID: -3253763356394748447, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -926,8 +926,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1475,8 +1475,9 @@ GameObject:
   - component: {fileID: 2705494310584770910}
   - component: {fileID: 4374054994197908949}
   - component: {fileID: 6234643238263376225}
-  - component: {fileID: 4572592272985710700}
   - component: {fileID: 8055187406652160797}
+  - component: {fileID: 1896065295485215907}
+  - component: {fileID: 2342150619502231440}
   m_Layer: 5
   m_Name: Discard UI Active Button
   m_TagString: Untagged
@@ -1586,19 +1587,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4572592272985710700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075375974800824787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb9eda22b756044eaa57c85d0963d03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tooltip_position: {x: 490, y: -270, z: 0}
 --- !u!95 &8055187406652160797
 Animator:
   serializedVersion: 7
@@ -1621,6 +1609,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1896065295485215907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075375974800824787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deeae2e5fe3642189f0b7790d2e1148c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnManager: {fileID: 0}
+--- !u!114 &2342150619502231440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075375974800824787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402d278123014381beb50b64fbe52b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipOffset: {x: -110, y: 0}
 --- !u!1 &2252648961851823871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2339,8 +2353,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB098\uAC00\uAE30"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
-  m_sharedMaterial: {fileID: -4652781241862084518, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
+  m_sharedMaterial: {fileID: -3253763356394748447, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2529,7 +2543,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6940226415747294780}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.2
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2547,7 +2561,8 @@ GameObject:
   - component: {fileID: 2128689377717095818}
   - component: {fileID: 8147921078561760732}
   - component: {fileID: 6965133948527797294}
-  - component: {fileID: 3972447069809663277}
+  - component: {fileID: 6793003762196827449}
+  - component: {fileID: 7811904240730099494}
   m_Layer: 5
   m_Name: Draw Deck Button
   m_TagString: Untagged
@@ -2679,7 +2694,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3972447069809663277
+--- !u!114 &6793003762196827449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2688,10 +2703,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2854693053555266072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfcc4670c6249c848b56c1657c9531c2, type: 3}
+  m_Script: {fileID: 11500000, guid: ff2aaad32caa4aeda5ad3c2e7924b689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tooltip_position: {x: -630, y: -400, z: 0}
+  turnManager: {fileID: 0}
+--- !u!114 &7811904240730099494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854693053555266072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402d278123014381beb50b64fbe52b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipOffset: {x: 60, y: 0}
 --- !u!1 &2898421006004874127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3345,8 +3373,9 @@ GameObject:
   - component: {fileID: 8132359892589764136}
   - component: {fileID: 5710459888182914715}
   - component: {fileID: 8982214903200857727}
-  - component: {fileID: 7711354388294575800}
   - component: {fileID: 7995620928649174840}
+  - component: {fileID: 8819653504000325074}
+  - component: {fileID: 330277339912987190}
   m_Layer: 5
   m_Name: Discard Deck Button
   m_TagString: Untagged
@@ -3456,24 +3485,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7711354388294575800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3352704063757898819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9f9a34f74ac8c84e928739a886fe80a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tooltip_data:
-    Description: "<color=#99CCFF>\uD68C\uC218 \uCE74\uB4DC \uB371</color>\n\n\uD6C4\uBCF4
-      \uCE74\uB4DC \uB371\uC774 \uBE44\uC5B4\uC788\uB294 \uACBD\uC6B0, \n\uD68C\uC218
-      \uCE74\uB4DC \uB371\uC758 \uCE74\uB4DC\uB97C \uAC00\uC838\uC640 \n\uD6C4\uBCF4
-      \uCE74\uB4DC \uB371\uC5D0 \uC11E\uC5B4 \uB123\uC2B5\uB2C8\uB2E4."
-    Position: {x: 630, y: -400, z: 0}
 --- !u!95 &7995620928649174840
 Animator:
   serializedVersion: 7
@@ -3496,6 +3507,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8819653504000325074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3352704063757898819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502708c6c2754d4681bfd580ca3bb9a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnManager: {fileID: 0}
+--- !u!114 &330277339912987190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3352704063757898819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402d278123014381beb50b64fbe52b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipOffset: {x: -60, y: 0}
 --- !u!1 &3445896615942292966
 GameObject:
   m_ObjectHideFlags: 0
@@ -4065,8 +4102,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0 / 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
-  m_sharedMaterial: {fileID: -4652781241862084518, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
+  m_sharedMaterial: {fileID: -3253763356394748447, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4090,8 +4127,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4343,7 +4380,7 @@ GameObject:
   - component: {fileID: 289710584511593573}
   - component: {fileID: 5133612953978391893}
   - component: {fileID: 8503773310865717940}
-  - component: {fileID: 4727660232205482989}
+  - component: {fileID: 4595627918465126211}
   m_Layer: 5
   m_Name: Action Manual UI
   m_TagString: Untagged
@@ -4434,7 +4471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e2e425d3bca52c4c8ba2fe259d28c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4727660232205482989
+--- !u!114 &4595627918465126211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4443,10 +4480,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4861953893440332955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23525fd1975d3f64fbf79cf4f766b696, type: 3}
+  m_Script: {fileID: 11500000, guid: 402d278123014381beb50b64fbe52b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tooltip_position: {x: 490, y: -160, z: 0}
+  tooltipOffset: {x: -110, y: 0}
 --- !u!1 &4980719745885676497
 GameObject:
   m_ObjectHideFlags: 0
@@ -4892,8 +4929,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Turn
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
-  m_sharedMaterial: {fileID: -4652781241862084518, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
+  m_sharedMaterial: {fileID: -3253763356394748447, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4917,8 +4954,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5758,8 +5795,8 @@ GameObject:
   - component: {fileID: 4136936831904086664}
   - component: {fileID: 8228963619222871465}
   - component: {fileID: 7111102408197703697}
-  - component: {fileID: 2405540292223089334}
   - component: {fileID: 992952587808796855}
+  - component: {fileID: 8452296538499691765}
   m_Layer: 5
   m_Name: Discard Manual UI
   m_TagString: Untagged
@@ -5850,19 +5887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a808d7911e071b46a3565810da58d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2405540292223089334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5863841520900385864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f03cf717e753b24d984fd0aa35f562d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tooltip_position: {x: 490, y: 70, z: 0}
 --- !u!225 &992952587808796855
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5875,6 +5899,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &8452296538499691765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5863841520900385864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402d278123014381beb50b64fbe52b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipOffset: {x: -110, y: 0}
 --- !u!1 &5988593010168462196
 GameObject:
   m_ObjectHideFlags: 0
@@ -7411,8 +7448,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 12
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
-  m_sharedMaterial: {fileID: -4652781241862084518, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
+  m_sharedMaterial: {fileID: -3253763356394748447, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7436,8 +7473,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8252,8 +8289,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
-  m_sharedMaterial: {fileID: -4652781241862084518, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
+  m_sharedMaterial: {fileID: -3253763356394748447, guid: b94b75833d79c60428d27385b8aa6960, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

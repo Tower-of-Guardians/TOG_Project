@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Jongmin;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -663,14 +664,14 @@ public class SynergyUI : MonoBehaviour
             return;
         }
 
-        SynergyDescriptor tooltip = tooltipTarget.GetComponent<SynergyDescriptor>();
-        if (tooltip == null)
+        var tooltipProvider = tooltipTarget.GetComponent<SynergyTooltipProvider>();
+        if (tooltipProvider == null)
         {
-            tooltip = tooltipTarget.AddComponent<SynergyDescriptor>();
+            tooltipProvider = tooltipTarget.AddComponent<SynergyTooltipProvider>();
         }
 
-        tooltip.SetTooltipData(entry);
-        TryInjectTooltipPresenter(tooltip);
+        tooltipProvider.SetEntry(entry);
+        EnsureTooltipUI(tooltipTarget);
     }
 
     private void ApplyOverflowTooltip(List<SynergyTotalData> overflowEntries)
@@ -680,14 +681,14 @@ public class SynergyUI : MonoBehaviour
             return;
         }
 
-        SynergyDescriptor tooltip = _overflowRoot.GetComponent<SynergyDescriptor>();
-        if (tooltip == null)
+        var tooltipProvider = _overflowRoot.GetComponent<SynergyOverflowTooltipProvider>();
+        if (tooltipProvider == null)
         {
-            tooltip = _overflowRoot.AddComponent<SynergyDescriptor>();
+            tooltipProvider = _overflowRoot.AddComponent<SynergyOverflowTooltipProvider>();
         }
 
-        tooltip.SetOverflowTooltipData(overflowEntries);
-        TryInjectTooltipPresenter(tooltip);
+        tooltipProvider.SetEntries(overflowEntries);
+        EnsureTooltipUI(_overflowRoot);
 
         Image overflowImage = _overflowRoot.GetComponent<Image>();
         if (overflowImage != null)
@@ -696,13 +697,19 @@ public class SynergyUI : MonoBehaviour
         }
     }
 
-    private static void TryInjectTooltipPresenter(SynergyDescriptor descriptor)
+    private static void EnsureTooltipUI(GameObject target)
     {
-        if (descriptor == null || !DIContainer.IsRegistered<TooltipPresenter>())
+        if (target == null)
         {
             return;
         }
 
-        descriptor.Inject(DIContainer.Resolve<TooltipPresenter>());
+        var tooltipUI = target.GetComponent<TooltipUI>();
+        if (tooltipUI == null)
+        {
+            tooltipUI = target.AddComponent<TooltipUI>();
+        }
+
+        tooltipUI.enabled = true;
     }
 }

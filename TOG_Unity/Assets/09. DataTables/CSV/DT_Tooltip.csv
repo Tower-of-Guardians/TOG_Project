@@ -1,0 +1,9 @@
+rowID,layout,headerText,tagText,bodyText,isEnable
+UI_DrawDeck,LeftUI,<color=#99CCFF>미사용 덱</color>,,턴마다 <color=#99CCFF>{cardCount}</color>개의 카드를 드로우합니다.,TRUE
+UI_DiscardDeck,RightUI,<color=#99CCFF>버려진 덱</color>,,"미사용 덱이 비어있는 경우, 버려진 덱의\n카드를 가져와 미사용 덱에 섞어 넣습니다.",TRUE
+UI_ActionManual,RightUI,<color=#99CCFF>행동 제한</color>,,<color=#99CCFF>{actionCount}</color>번으로 행동이 제한됩니다. 더 많은 행동을\n하기 위해서는 더 많은 카드를 수집해야 합니다.,TRUE
+UI_DiscardButton,RightUI,<color=#99CCFF>카드 버리기</color>,,매 턴마다 최대 <color=#99CCFF>{actionCount}</color>장의 카드를 1회 버릴 수 있습니다.|이번 턴에 더 이상 버릴 수 없습니다.,TRUE
+UI_DiscardManual,RightUI,<color=#99CCFF>버리기 제한</color>,,최대 <color=#99CCFF>{actionCount}</color>장의 카드를 버릴 수 있습니다.\n버리기 제한은 행동 제한과 동일하게 계산됩니다.,TRUE
+UI_Synergy,Synergy,{synergyName}|+,일반|레어|유니크|에픽|별,{synergyDescription}|<color=#FFFFFF>({requiredCount}) : {gradeName} 등급</color>|<color=#6E6E6E>({requiredCount}) : {gradeName} 등급</color>|{synergyName}({activatedCount}),TRUE
+,,,,,
+Player,Player,,,현재 <color=red>{attackPower}</color>의 공격력을 가지고 있습니다.,TRUE

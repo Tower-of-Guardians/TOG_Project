@@ -101,9 +101,9 @@ GameObject:
   - component: {fileID: 4625413738402288248}
   - component: {fileID: 8227538613326071428}
   - component: {fileID: 7773025701886003426}
-  - component: {fileID: 6321516154979108677}
   - component: {fileID: 2409638708001309342}
   - component: {fileID: 5585972110413678562}
+  - component: {fileID: 7549655035048179241}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -200,11 +200,15 @@ MonoBehaviour:
   attack1StateName: Player1_Attack1
   attack2StateName: Player1_Attack2
   attack3StateName: Player1_Attack3
+  attack1EnforceStateName: Player1_Attack1_Enforce
   attack2EnforceStateName: Player1_Attack2_Enforce
   attack3EnforceStateName: Player1_Attack3_Enforce
-  attack2IdleStateName: Player1_Attack2_Idle
-  attack3IdleStateName: Player1_Attack3_Idle
-  attackMotionDuration: 0.3
+  attack1MoveStateName: Player1_Attack1_Move
+  attack2MoveStateName: Player1_Attack2_Move
+  attack3MoveStateName: Player1_Attack3_Move
+  fallbackMotionDuration: 0.3
+  fallbackHitNormalizedTime: 0.488
+  fallbackHitDelaySeconds: 0.08
   lightAttack: 10
   normalAttack: 20
 --- !u!114 &7773025701886003426
@@ -220,19 +224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableDebugLog: 0
---- !u!114 &6321516154979108677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2675832450616904799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9e7a5fcf95fd514a8d1b6f5a1c9e829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tooltip_position: {x: -230, y: 150, z: 0}
 --- !u!61 &2409638708001309342
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -334,6 +325,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7549655035048179241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675832450616904799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b52f7341f147428947d6baebfd8b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipOffset: {x: 90, y: 0}
 --- !u!1001 &660389295489819428
 PrefabInstance:
   m_ObjectHideFlags: 0
