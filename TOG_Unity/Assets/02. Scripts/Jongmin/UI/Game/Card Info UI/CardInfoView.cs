@@ -21,6 +21,7 @@ namespace Jongmin
 
         public void Show()
         {
+            layerToggle.SetIsOnWithoutNotify(false);
             ToggleChange(false);
 
             CanvasGroup.Show();
@@ -28,6 +29,7 @@ namespace Jongmin
 
         public void Hide()
         {
+            layerToggle.SetIsOnWithoutNotify(false);
             CanvasGroup.Hide();
         }
         

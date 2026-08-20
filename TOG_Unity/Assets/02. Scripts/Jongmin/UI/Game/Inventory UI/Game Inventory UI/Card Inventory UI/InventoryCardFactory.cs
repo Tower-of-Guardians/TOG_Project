@@ -20,10 +20,9 @@ namespace Jongmin
         {
             var cardObject = JxModule.ObjectPoolManager.Instance.Get(_prefab.gameObject);
             cardObject.transform.SetParent(_view.CardRoot, false);
-            cardObject.transform.localRotation = Quaternion.identity;
-            cardObject.transform.localScale = Vector3.one;
 
             var card = cardObject.GetComponent<Card>();
+            card.ResetRectTransform(Vector3.one);
 
             _eventSystem.Subscribe(card);
             return card;

@@ -38,6 +38,12 @@ namespace Jongmin
             refreshButton.Label.text = canRefresh ? $"리롤: {refreshCost}" : $"리롤: <color=red>{refreshCost}</color>";
             refreshButton.Button.interactable = canRefresh;
         }
+
+        public void SetRefreshRollingState()
+        {
+            refreshButton.Label.text = "리롤중";
+            refreshButton.Button.interactable = false;
+        }
         
         public IEnumerator Show()
         {

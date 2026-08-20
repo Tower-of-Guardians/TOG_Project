@@ -245,6 +245,14 @@ public class BattleManager : MonoBehaviour
         // 승리 체크
         if (combatController.CheckVictory(setupController))
         {
+            // 필드 카드 버리기
+            yield return new WaitForSeconds(0.5f);
+            yield return effectDomain.DiscardFieldCards(FieldType.Attack);
+            yield return effectDomain.DiscardFieldCards(FieldType.Defense);
+            RefreshFieldSynergyState();
+            yield return new WaitForSeconds(1f);
+            effectDomain.EnableBattleView();
+            
             yield return HandleVictory();
             isProcessingAttack = false;
             yield break;
@@ -273,6 +281,14 @@ public class BattleManager : MonoBehaviour
         // 최종 승리 체크
         if (combatController.CheckVictory(setupController))
         {
+            // 필드 카드 버리기
+            yield return new WaitForSeconds(0.5f);
+            yield return effectDomain.DiscardFieldCards(FieldType.Attack);
+            yield return effectDomain.DiscardFieldCards(FieldType.Defense);
+            RefreshFieldSynergyState();
+            yield return new WaitForSeconds(1f);
+            effectDomain.EnableBattleView();
+            
             yield return HandleVictory();
             isProcessingAttack = false;
             yield break;
