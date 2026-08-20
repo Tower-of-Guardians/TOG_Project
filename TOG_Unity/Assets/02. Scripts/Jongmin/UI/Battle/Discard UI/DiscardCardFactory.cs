@@ -22,9 +22,7 @@ namespace Jongmin
             cardObject.transform.SetParent(_view.CardRoot, false);
         
             var card = cardObject.GetComponent<Card>();
-            card.RectTransform.anchoredPosition = Vector2.zero;
-            card.RectTransform.localRotation = Quaternion.identity;
-            card.RectTransform.localScale = Vector3.one;
+            card.ResetRectTransform(Vector3.one);
             card.View.CanvasGroup.alpha = 1f;
             
             _eventSystem.Subscribe(card);

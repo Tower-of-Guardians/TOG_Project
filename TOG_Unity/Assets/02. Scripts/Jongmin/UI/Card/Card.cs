@@ -5,6 +5,9 @@ namespace Jongmin
 {
     public class Card : MonoBehaviour
     {
+        private static readonly Vector2 CenterAnchor = new(0.5f, 0.5f);
+        private static readonly Vector2 DefaultSize = new(180f, 270f);
+
         [SerializeField] private CardView view;
         [SerializeField] private CardPointer pointer;
 
@@ -68,6 +71,23 @@ namespace Jongmin
             }
 
             pointer?.SetInteraction(isActive);
+        }
+
+        public void ResetRectTransform(Vector3 scale)
+        {
+            var rectTransform = RectTransform;
+            if (rectTransform == null)
+            {
+                return;
+            }
+
+            rectTransform.anchorMin = CenterAnchor;
+            rectTransform.anchorMax = CenterAnchor;
+            rectTransform.pivot = CenterAnchor;
+            rectTransform.sizeDelta = DefaultSize;
+            rectTransform.anchoredPosition = Vector2.zero;
+            rectTransform.localRotation = Quaternion.identity;
+            rectTransform.localScale = scale;
         }
 
         private void OnDisable()
