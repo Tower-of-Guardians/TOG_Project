@@ -1,0 +1,185 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9156543633736687718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0957fceaffe4543a4ca5a2046bfd5fe, type: 3}
+  m_Name: UI_Synergy
+  m_EditorClassIdentifier: 
+  rowID: UI_Synergy
+  isEnable: 1
+  layout: 6
+  headerText:
+  - '{synergyName}'
+  - +
+  tagText:
+  - "\uC77C\uBC18"
+  - "\uB808\uC5B4"
+  - "\uC720\uB2C8\uD06C"
+  - "\uC5D0\uD53D"
+  - "\uBCC4"
+  bodyText:
+  - '{synergyDescription}'
+  - "<color=#FFFFFF>({requiredCount}) : {gradeName} \uB4F1\uAE09</color>"
+  - "<color=#6E6E6E>({requiredCount}) : {gradeName} \uB4F1\uAE09</color>"
+  - '{synergyName}({activatedCount})'
+--- !u!114 &-5033781331871973118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0957fceaffe4543a4ca5a2046bfd5fe, type: 3}
+  m_Name: UI_ActionManual
+  m_EditorClassIdentifier: 
+  rowID: UI_ActionManual
+  isEnable: 1
+  layout: 2
+  headerText:
+  - "<color=#99CCFF>\uD589\uB3D9 \uC81C\uD55C</color>"
+  tagText: []
+  bodyText:
+  - "<color=#99CCFF>{actionCount}</color>\uBC88\uC73C\uB85C \uD589\uB3D9\uC774 \uC81C\uD55C\uB429\uB2C8\uB2E4.
+    \uB354 \uB9CE\uC740 \uD589\uB3D9\uC744\n\uD558\uAE30 \uC704\uD574\uC11C\uB294
+    \uB354 \uB9CE\uC740 \uCE74\uB4DC\uB97C \uC218\uC9D1\uD574\uC57C \uD569\uB2C8\uB2E4."
+--- !u!114 &-4743176453694679801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0957fceaffe4543a4ca5a2046bfd5fe, type: 3}
+  m_Name: UI_DrawDeck
+  m_EditorClassIdentifier: 
+  rowID: UI_DrawDeck
+  isEnable: 1
+  layout: 1
+  headerText:
+  - "<color=#99CCFF>\uBBF8\uC0AC\uC6A9 \uB371</color>"
+  tagText: []
+  bodyText:
+  - "\uD134\uB9C8\uB2E4 <color=#99CCFF>{cardCount}</color>\uAC1C\uC758 \uCE74\uB4DC\uB97C
+    \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+--- !u!114 &-4497981705717921518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0957fceaffe4543a4ca5a2046bfd5fe, type: 3}
+  m_Name: UI_DiscardManual
+  m_EditorClassIdentifier: 
+  rowID: UI_DiscardManual
+  isEnable: 1
+  layout: 2
+  headerText:
+  - "<color=#99CCFF>\uBC84\uB9AC\uAE30 \uC81C\uD55C</color>"
+  tagText: []
+  bodyText:
+  - "\uCD5C\uB300 <color=#99CCFF>{actionCount}</color>\uC7A5\uC758 \uCE74\uB4DC\uB97C
+    \uBC84\uB9B4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uBC84\uB9AC\uAE30 \uC81C\uD55C\uC740
+    \uD589\uB3D9 \uC81C\uD55C\uACFC \uB3D9\uC77C\uD558\uAC8C \uACC4\uC0B0\uB429\uB2C8\uB2E4."
+--- !u!114 &-3591438035195280731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0957fceaffe4543a4ca5a2046bfd5fe, type: 3}
+  m_Name: UI_DiscardButton
+  m_EditorClassIdentifier: 
+  rowID: UI_DiscardButton
+  isEnable: 1
+  layout: 2
+  headerText:
+  - "<color=#99CCFF>\uCE74\uB4DC \uBC84\uB9AC\uAE30</color>"
+  tagText: []
+  bodyText:
+  - "\uB9E4 \uD134\uB9C8\uB2E4 \uCD5C\uB300 <color=#99CCFF>{actionCount}</color>\uC7A5\uC758
+    \uCE74\uB4DC\uB97C 1\uD68C \uBC84\uB9B4 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  - "\uC774\uBC88 \uD134\uC5D0 \uB354 \uC774\uC0C1 \uBC84\uB9B4 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4."
+--- !u!114 &-2862541768964757092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0957fceaffe4543a4ca5a2046bfd5fe, type: 3}
+  m_Name: UI_DiscardDeck
+  m_EditorClassIdentifier: 
+  rowID: UI_DiscardDeck
+  isEnable: 1
+  layout: 2
+  headerText:
+  - "<color=#99CCFF>\uBC84\uB824\uC9C4 \uB371</color>"
+  tagText: []
+  bodyText:
+  - "\uBBF8\uC0AC\uC6A9 \uB371\uC774 \uBE44\uC5B4\uC788\uB294 \uACBD\uC6B0, \uBC84\uB824\uC9C4
+    \uB371\uC758\n\uCE74\uB4DC\uB97C \uAC00\uC838\uC640 \uBBF8\uC0AC\uC6A9 \uB371\uC5D0
+    \uC11E\uC5B4 \uB123\uC2B5\uB2C8\uB2E4."
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
+  m_Name: DT_Tooltip
+  m_EditorClassIdentifier: 
+  dataTableCsv: {fileID: 4900000, guid: 88129c013ce50d54aab0bd03ae03d9e7, type: 3}
+  dataTableRowName: Jongmin.TooltipDataTableRow, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=95787741
+  dataTableRows:
+  - {fileID: -4743176453694679801}
+  - {fileID: -2862541768964757092}
+  - {fileID: -5033781331871973118}
+  - {fileID: -3591438035195280731}
+  - {fileID: -4497981705717921518}
+  - {fileID: -9156543633736687718}
+  - {fileID: 8456176856692278869}
+  dataTableRowScript: {fileID: 0}
+--- !u!114 &8456176856692278869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0957fceaffe4543a4ca5a2046bfd5fe, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  rowID: Player
+  isEnable: 1
+  layout: 3
+  headerText: []
+  tagText: []
+  bodyText:
+  - "\uD604\uC7AC <color=red>{attackPower}</color>\uC758 \uACF5\uACA9\uB825\uC744
+    \uAC00\uC9C0\uACE0 \uC788\uC2B5\uB2C8\uB2E4."

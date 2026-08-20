@@ -143,12 +143,6 @@ public class BattleManager : MonoBehaviour
 
     private void CloseSynergyOverlayExtras()
     {
-        if (DIContainer.IsRegistered<TooltipPresenter>())
-        {
-            TooltipPresenter tooltipPresenter = DIContainer.Resolve<TooltipPresenter>();
-            tooltipPresenter?.CloseUI();
-        }
-
         if (DIContainer.IsRegistered<CardInfoDomain>())
         {
             var cardInfoDomain = DIContainer.Resolve<CardInfoDomain>();

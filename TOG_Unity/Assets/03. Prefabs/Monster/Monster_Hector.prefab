@@ -189,7 +189,6 @@ GameObject:
   - component: {fileID: 3739762124255010228}
   - component: {fileID: 4344606365010817277}
   - component: {fileID: 5641636053510105752}
-  - component: {fileID: 8334733415889442526}
   m_Layer: 7
   m_Name: Monster_Hector
   m_TagString: Monster
@@ -352,19 +351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableDebugLog: 0
---- !u!114 &8334733415889442526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4839011377745383518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77daa8af771ae0945a612eaae15589c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tooltip_position: {x: 300, y: 150, z: 0}
 --- !u!1 &8759010155118555184
 GameObject:
   m_ObjectHideFlags: 0

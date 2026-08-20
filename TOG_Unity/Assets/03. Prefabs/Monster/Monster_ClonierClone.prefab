@@ -277,7 +277,6 @@ GameObject:
   - component: {fileID: 3739762124255010228}
   - component: {fileID: 4344606365010817277}
   - component: {fileID: 5641636053510105752}
-  - component: {fileID: 8334733415889442526}
   m_Layer: 7
   m_Name: Monster_ClonierClone
   m_TagString: Monster
@@ -409,6 +408,7 @@ MonoBehaviour:
   actionShieldSprite: {fileID: -7572360096558737171, guid: cfe50b82cd96c8b458f6f5fe0e57d27e, type: 3}
   actionBuffSprite: {fileID: -589363397543447557, guid: bbaeb42226bf64c4d98766fbfbd2f6b5, type: 3}
   actionDebuffSprite: {fileID: 4216437783088810774, guid: 8d804c2f12fb1be418093cf84c2949d0, type: 3}
+  actionCurseSprite: {fileID: 0}
   spriteRenderer: {fileID: 4842365065420270011}
   attackMoveOffset: 5
   attackMoveDuration: 0.3
@@ -439,19 +439,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableDebugLog: 0
---- !u!114 &8334733415889442526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4839011377745383518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77daa8af771ae0945a612eaae15589c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tooltip_position: {x: 300, y: 150, z: 0}
 --- !u!1 &8759010155118555184
 GameObject:
   m_ObjectHideFlags: 0
