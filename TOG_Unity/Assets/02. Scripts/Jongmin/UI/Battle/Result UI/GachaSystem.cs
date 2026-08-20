@@ -46,7 +46,7 @@ namespace Jongmin
         public IEnumerator CreateSlots()
         {
             _isCreatingSlots = true;
-            UpdateRefreshState(DataCenter.Instance.playerstate.money);
+            _view.SetRefreshRollingState();
 
             foreach (var data in _datas)
             {
@@ -76,6 +76,12 @@ namespace Jongmin
 
         public void UpdateRefreshState(int gold)
         {
+            if (_isCreatingSlots)
+            {
+                _view.SetRefreshRollingState();
+                return;
+            }
+
             var canRefresh = !_isCreatingSlots && gold >= _currentRefreshCost;
             _view.SetRefreshState(_currentRefreshCost, canRefresh);
         }
