@@ -1,37 +1,46 @@
 using System;
+using DG.Tweening;
+using Jongmin;
 using JxModule;
 using JxModule.DataTable;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace JxDialogueBox
 {
-    public class DialogueView : MonoBehaviour
+    public class DialogueView : ViewBase
     {
         [BigHeader("UI")]
-        [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private Image backgroundImage;
+        [SerializeField] private ImageView dialoguePanel;
         [SerializeField] private LabelBoxView nameBoxView;
         [SerializeField] private TypeWriter typeWriter;
         [SerializeField] private TMP_Text promptLabel;
         [SerializeField] private AdvanceButton advanceButton;
-
-        [FormerlySerializedAs("m_settings")]
+        
         [Space(30f), BigHeader("References")]
         [SerializeField] private DialogueSettings dialogueSettings;
         [SerializeField] private ChoiceListView choiceView;
         [SerializeField] private PortraitPanelView portraits;
+        
+        [Space(30f)]
+        [BigHeader("Effect")]
+        [SerializeField] private DialogueEffect dialogueEffect; 
 
         public event Action OnAdvanceRequested;
 
         private DataTable _characterTable;
         private Action _onNext;
         private Action<int> _onChoose;
+        private Vector2 _originAnchoredPosition;
 
         public bool ChoiceMode { get; private set; }
 
         private void Awake()
         {
+            _originAnchoredPosition = dialoguePanel.RectTransform.anchoredPosition;
+            
             _characterTable = DataTableManager.FindTable<CharacterDataTableRow>("DT_Character");
 
             if (typeWriter != null && dialogueSettings != null)
@@ -69,11 +78,77 @@ namespace JxDialogueBox
             }
         }
 
-        public void OpenView()
-            => canvasGroup.Show();
+        public Tween Show()
+        {
+            CanvasGroup.Show();
+            ClearDialogueText();
 
-        public void CloseView()
-            => canvasGroup.Hide();
+            if (dialogueEffect == null || dialoguePanel == null)
+            {
+                return portraits != null ? portraits.Show() : DOTween.Sequence();
+            }
+
+            return dialogueEffect.PlayShowEffect(backgroundImage,
+                                                 dialoguePanel.RectTransform,
+                                                 _originAnchoredPosition,
+                                                 portraits != null ? portraits.Show() : null);
+        }
+        
+        public Tween Hide()
+        {
+            ClearDialogueText();
+
+            if (portraits)
+            {
+                portraits.SetActiveColor();
+            }
+
+            if (dialogueEffect == null || dialoguePanel == null)
+            {
+                CanvasGroup.Hide();
+                return portraits != null ? portraits.Hide() : DOTween.Sequence();
+            }
+
+            return dialogueEffect.PlayHideEffect(backgroundImage,
+                                                 dialoguePanel.RectTransform,
+                                                 _originAnchoredPosition,
+                                                 portraits != null ? portraits.Hide() : null,
+                                                 () => CanvasGroup.Hide());
+        }
+
+        public void ClearDialogueText()
+        {
+            ClearChoice();
+
+            if (nameBoxView)
+            {
+                nameBoxView.CanvasGroup.alpha = 0f;
+                nameBoxView.Label.text = string.Empty;
+            }
+
+            if (promptLabel)
+            {
+                promptLabel.text = string.Empty;
+            }
+
+            if (typeWriter)
+            {
+                typeWriter.Stop(true);
+            }
+
+            if (advanceButton)
+            {
+                advanceButton.Hide();
+            }
+        }
+
+        public void PrepareSpeaker(SpeakerRef speaker, string portraitKey)
+        {
+            if (portraits)
+            {
+                portraits.PrepareSpeaker(speaker, portraitKey);
+            }
+        }
 
         public void ShowLine(SpeakerRef speaker, string text, string portraitKey)
         {
@@ -109,7 +184,6 @@ namespace JxDialogueBox
         public void ShowChoice(string prompt, ChoiceOption[] options)
         {
             ChoiceMode = true;
-
             
             if (nameBoxView)
             {

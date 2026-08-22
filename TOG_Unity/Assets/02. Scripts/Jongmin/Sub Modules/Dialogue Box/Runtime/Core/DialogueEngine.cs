@@ -76,6 +76,64 @@ namespace JxDialogueBox
             Goto(entryID);
         }
 
+        public bool TryGetFirstLine(string dialogueID, out LineEvent lineEvent)
+        {
+            lineEvent = default;
+
+            var nodeID = _source.GetEntryNodeID(dialogueID);
+            if (string.IsNullOrEmpty(nodeID))
+            {
+                return false;
+            }
+
+            var visitedJumpNodes = new HashSet<string>(StringComparer.Ordinal);
+            var jumpDepth = 0;
+
+            while (true)
+            {
+                if (!_source.TryGetNode(nodeID, out var node))
+                {
+                    return false;
+                }
+
+                switch (node.Type)
+                {
+                    case NodeType.Line:
+                    {
+                        if (node is not LineNode lineNode)
+                        {
+                            return false;
+                        }
+
+                        lineEvent = new LineEvent(lineNode.Speaker,
+                                                  lineNode.Text,
+                                                  lineNode.PortraitKey,
+                                                  lineNode.ID);
+                        return true;
+                    }
+
+                    case NodeType.Jump:
+                    {
+                        if (node is not JumpNode jumpNode || string.IsNullOrEmpty(jumpNode.TargetID))
+                        {
+                            return false;
+                        }
+
+                        if (!visitedJumpNodes.Add(jumpNode.ID) || ++jumpDepth > MaxJumpDepth)
+                        {
+                            return false;
+                        }
+
+                        nodeID = jumpNode.TargetID;
+                        break;
+                    }
+
+                    default:
+                        return false;
+                }
+            }
+        }
+
         public void Advance()
         {
             if(State == EngineState.ShowingLine)
