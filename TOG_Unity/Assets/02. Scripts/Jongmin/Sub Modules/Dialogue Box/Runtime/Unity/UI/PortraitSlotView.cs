@@ -1,14 +1,10 @@
 using JxModule;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace JxDialogueBox
 {
-    public class PortraitSlotView : MonoBehaviour
+    public class PortraitSlotView : ImageView
     {
-        [BigHeader("UI")]
-        [SerializeField] private Image portraitImage;
-        
         [Space(20f), BigHeader("Default Settings")]
         [SerializeField] private string defaultKey = "Default";
 
@@ -40,7 +36,7 @@ namespace JxDialogueBox
 
         public void SetPortraitByKey(string key)
         {
-            if (portraitImage == null)
+            if (!Image)
             {
                 return;
             }
@@ -63,37 +59,35 @@ namespace JxDialogueBox
                 sprite = _portraitTable.GetPortraitSprite(_characterID, defaultKey);
             }
             
-            portraitImage.sprite = sprite;
+            Image.sprite = sprite;
             SetPortraitVisible(sprite != null);
         }
 
         public bool IsPortraitEmpty()
         {
-            return portraitImage == null || portraitImage.sprite == null;
+            return Image == null || Image.sprite == null;
         }
 
-        public void SetAlpha(float alpha)
+        public void SetColor(Color color)
         {
-            if (portraitImage == null)
+            if (!Image || !Image.sprite)
             {
                 return;
             }
 
-            var color = portraitImage.color;
-            color.a = portraitImage.sprite == null ? 0f : alpha;
-            portraitImage.color = color;
+            Image.color = color;
         }
 
         private void SetPortraitVisible(bool isVisible)
         {
-            if (portraitImage == null)
+            if (Image == null)
             {
                 return;
             }
 
-            var color = portraitImage.color;
+            var color = Image.color;
             color.a = isVisible ? 1f : 0f;
-            portraitImage.color = color;
+            Image.color = color;
         }
     }
 }
