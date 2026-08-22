@@ -18,7 +18,7 @@ namespace Jongmin
         public GachaSlot Create()
         {
             var slotObject = JxModule.ObjectPoolManager.Instance.Get(_prefab.gameObject);
-            slotObject.transform.SetParent(_gachaView.CardRoot);
+            slotObject.transform.SetParent(_gachaView.CardRoot, false);
             
             var gachaSlot = slotObject.GetComponent<GachaSlot>();
             _gachaEventSystem.Subscribe(gachaSlot.Card);
