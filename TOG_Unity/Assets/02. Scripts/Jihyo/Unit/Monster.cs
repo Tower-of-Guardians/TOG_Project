@@ -91,6 +91,8 @@ public class Monster : BaseUnit, IPointerClickHandler
     private bool hasGuardShieldPendingExpire;
     private int guardShieldAppliedTurnNumber = -1;
     private GameObject attackStatusRoot;
+    private Coroutine monsterDataRoutine;
+    private int lastSelectClickFrame = -1;
 
     protected override void Awake()
     {
@@ -117,6 +119,10 @@ public class Monster : BaseUnit, IPointerClickHandler
     private void OnEnable()
     {
         RegisterBattleManager();
+        if (loadedMonsterData == null)
+        {
+            ApplyMonsterDataIfConfigured();
+        }
     }
 
     private void OnDisable()
@@ -131,6 +137,12 @@ public class Monster : BaseUnit, IPointerClickHandler
         {
             StopCoroutine(registrationRoutine);
             registrationRoutine = null;
+        }
+
+        if (monsterDataRoutine != null)
+        {
+            StopCoroutine(monsterDataRoutine);
+            monsterDataRoutine = null;
         }
     }
 
@@ -303,13 +315,31 @@ public class Monster : BaseUnit, IPointerClickHandler
 
     private void ApplyMonsterDataIfConfigured()
     {
-        if (string.IsNullOrEmpty(monsterDataId) || DataCenter.Instance == null)
+        if (string.IsNullOrEmpty(monsterDataId))
         {
             return;
         }
 
-        DataCenter.Instance.GetMonsterData(monsterDataId, data => loadedMonsterData = data);
-        ApplyLoadedMonsterDataStats();
+        if (DataCenter.Instance != null && DataCenter.IsMonsterDataLoaded)
+        {
+            DataCenter.Instance.GetMonsterData(monsterDataId, data => loadedMonsterData = data);
+            ApplyLoadedMonsterDataStats();
+            return;
+        }
+
+        if (isActiveAndEnabled && monsterDataRoutine == null)
+        {
+            monsterDataRoutine = StartCoroutine(WaitForMonsterData());
+        }
+    }
+
+    private IEnumerator WaitForMonsterData()
+    {
+        yield return new WaitUntil(() =>
+            DataCenter.Instance != null && DataCenter.IsMonsterDataLoaded);
+
+        monsterDataRoutine = null;
+        RefreshMonsterDataStats();
     }
 
     /// <summary>
@@ -814,73 +844,91 @@ public class Monster : BaseUnit, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // UI 위에 포인터가 있으면 몬스터 클릭 무시
-        if (IsPointerOverUI(eventData))
-        {
-            return;
-        }
-
-        if (!IsAlive)
-        {
-            return;
-        }
-
-        Clicked?.Invoke(this);
+        TrySelectAsTarget(eventData);
     }
 
     private void OnMouseDown()
     {
-        // UI 위에 포인터가 있으면 몬스터 클릭 무시
-        if (IsPointerOverUI())
+        TrySelectAsTarget(null);
+    }
+
+    private void TrySelectAsTarget(PointerEventData eventData)
+    {
+        if (lastSelectClickFrame == Time.frameCount)
         {
             return;
         }
 
-        if (!IsAlive)
+        // maxHealth가 아직 0이면 데이터 미적용 상태이므로, 죽은 몬스터로 보지 않습니다.
+        if (isMarkedForDeath || (maxHealth > 0 && !IsAlive))
         {
             return;
         }
 
+        if (IsBlockedByForeignUI(eventData))
+        {
+            return;
+        }
+
+        lastSelectClickFrame = Time.frameCount;
         Clicked?.Invoke(this);
     }
 
     /// <summary>
-    /// 포인터가 UI 위에 있는지 확인 (PointerEventData 사용)
+    /// 손패/버튼 등 다른 UI를 누른 경우에만 몬스터 선택을 막습니다.
+    /// 이 몬스터의 Status(HP, 공격력) 월드 캔버스는 선택으로 취급합니다.
     /// </summary>
-    private bool IsPointerOverUI(PointerEventData eventData)
+    private bool IsBlockedByForeignUI(PointerEventData eventData)
     {
         if (EventSystem.current == null)
         {
             return false;
+        }
+
+        PointerEventData pointerData = eventData;
+        if (pointerData == null)
+        {
+            pointerData = new PointerEventData(EventSystem.current)
+            {
+                position = ResolvePointerScreenPosition()
+            };
         }
 
         var results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventData, results);
+        EventSystem.current.RaycastAll(pointerData, results);
 
-        // UI 요소가 있으면 true 반환
-        return results.Count > 0;
+        for (int i = 0; i < results.Count; i++)
+        {
+            GameObject hitObject = results[i].gameObject;
+            if (hitObject == null)
+            {
+                continue;
+            }
+
+            if (hitObject.transform == transform || hitObject.transform.IsChildOf(transform))
+            {
+                continue;
+            }
+
+            if (results[i].module is PhysicsRaycaster || results[i].module is Physics2DRaycaster)
+            {
+                continue;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
-    /// <summary>
-    /// 포인터가 UI 위에 있는지 확인
-    /// </summary>
-    private bool IsPointerOverUI()
+    private static Vector2 ResolvePointerScreenPosition()
     {
-        if (EventSystem.current == null)
-        {
-            return false;
-        }
-
         if (Input.touchCount > 0)
         {
-            // 터치 입력
-            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+            return Input.GetTouch(0).position;
         }
-        else
-        {
-            // 마우스 입력
-            return EventSystem.current.IsPointerOverGameObject();
-        }
+
+        return Input.mousePosition;
     }
 
     private void RegisterBattleManager()
