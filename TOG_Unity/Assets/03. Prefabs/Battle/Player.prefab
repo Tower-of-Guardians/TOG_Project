@@ -185,6 +185,7 @@ MonoBehaviour:
   weaknessStatusSprite: {fileID: 4035860371971368088, guid: 34bb51b54453114419ec29327fc29b9f, type: 3}
   curseStatusSprite: {fileID: -3409644966883235842, guid: 62a349f432a25cb44bba532a28c90c78, type: 3}
   statusBottomRoot: {fileID: 7062197768075648575}
+  buffDebuffIconPrefab: {fileID: 540952265996419494, guid: 32477f2e8b1f76c47be21c6113af8989, type: 3}
 --- !u!114 &8227538613326071428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4365299715425314957, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.4
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4365299715425314957, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

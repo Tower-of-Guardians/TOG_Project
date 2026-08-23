@@ -23,7 +23,6 @@ public class BattleManager : MonoBehaviour
     private void Awake()
     {
         InitializeControllers();
-        ResolveSynergyUIIfNeeded();
     }
 
     private void OnDestroy()
@@ -132,7 +131,6 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator CloseSynergyOverlayUI()
     {
-        ResolveSynergyUIIfNeeded();
         if (synergyUI != null)
         {
             yield return synergyUI.HideWithFade();
@@ -152,7 +150,6 @@ public class BattleManager : MonoBehaviour
 
     private void ShowSynergyUIForTurnStart()
     {
-        ResolveSynergyUIIfNeeded();
         RefreshFieldSynergyState();
         synergyUI?.SetVisible(true);
     }
@@ -167,14 +164,6 @@ public class BattleManager : MonoBehaviour
         GameData.Instance.attackField.Clear();
         GameData.Instance.defenseField.Clear();
         GameData.Instance.GetSynergyData();
-    }
-
-    private void ResolveSynergyUIIfNeeded()
-    {
-        if (synergyUI == null)
-        {
-            synergyUI = FindFirstObjectByType<SynergyUI>();
-        }
     }
 
     private IEnumerator ProcessAttackSequence()
@@ -196,7 +185,6 @@ public class BattleManager : MonoBehaviour
             yield break;
         }
 
-        ResolveSynergyUIIfNeeded();
         yield return combatController.ExecutePreAttackSynergyPhase(initResult.player, synergyUI);
         yield return CloseSynergyOverlayUI();
 

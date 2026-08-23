@@ -55,6 +55,12 @@ public class BattleTurnEndController : MonoBehaviour, IBattleController
     {
         // 새 턴 시작 시 카드 드로우
         DrawCards();
+
+        // 이전 턴 록온은 다음 턴이 되면 해제합니다.
+        if (battleManager != null)
+        {
+            battleManager.GetSetupController()?.ClearSelectedTarget();
+        }
     }
 
     public void ProcessTurnEnd()

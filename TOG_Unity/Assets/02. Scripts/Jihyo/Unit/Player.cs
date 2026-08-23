@@ -39,6 +39,7 @@ public class Player : BaseUnit, ITooltipProvider
     [SerializeField] private Sprite weaknessStatusSprite;
     [SerializeField] private Sprite curseStatusSprite;
     [SerializeField] private Transform statusBottomRoot;
+    [SerializeField] private GameObject buffDebuffIconPrefab;
     
     private Tweener attackTextTweener;
     private Tweener protectionTweener;
@@ -46,9 +47,7 @@ public class Player : BaseUnit, ITooltipProvider
     private const int NormalSortingOrder = 5;
     private const int AttackSortingOrder = 7;
     private const string WeaknessStatusNodeName = "Weakness";
-    private const string WeaknessTurnTextNodeName = "Text_Turn";
     private const string CurseStatusNodeName = "Curse";
-    private const string CurseStackTextNodeName = "Text_Stack";
     
     private StatusEffectController statusEffectController;
     private GameObject weaknessStatusRoot;
@@ -561,27 +560,15 @@ public class Player : BaseUnit, ITooltipProvider
     {
         if (statusBottomRoot == null)
         {
-            Transform statusRoot = transform.Find("Status");
-            statusBottomRoot = statusRoot != null ? statusRoot.Find("Status_Bottom") : null;
-        }
-
-        if (statusBottomRoot == null)
-        {
             return;
         }
 
-        Transform weaknessRootTransform = statusBottomRoot.Find(WeaknessStatusNodeName);
-        if (weaknessRootTransform == null)
+        if (weaknessStatusRoot == null)
         {
-            weaknessStatusRoot = CreateWeaknessStatusNode(statusBottomRoot);
+            weaknessStatusRoot = CreateStatusIconNode(statusBottomRoot, WeaknessStatusNodeName, weaknessStatusSprite);
         }
-        else
-        {
-            weaknessStatusRoot = weaknessRootTransform.gameObject;
-            weaknessStatusImage = weaknessStatusRoot.GetComponent<Image>();
-            Transform textTransform = weaknessStatusRoot.transform.Find(WeaknessTurnTextNodeName);
-            weaknessTurnText = textTransform != null ? textTransform.GetComponent<TMP_Text>() : null;
-        }
+
+        BindStatusIcon(weaknessStatusRoot, weaknessStatusSprite, out weaknessStatusImage, out weaknessTurnText);
 
         if (weaknessStatusImage != null && weaknessStatusSprite != null)
         {
@@ -593,18 +580,12 @@ public class Player : BaseUnit, ITooltipProvider
             weaknessStatusRoot.SetActive(false);
         }
 
-        Transform curseRootTransform = statusBottomRoot.Find(CurseStatusNodeName);
-        if (curseRootTransform == null)
+        if (curseStatusRoot == null)
         {
-            curseStatusRoot = CreateCurseStatusNode(statusBottomRoot);
+            curseStatusRoot = CreateStatusIconNode(statusBottomRoot, CurseStatusNodeName, curseStatusSprite);
         }
-        else
-        {
-            curseStatusRoot = curseRootTransform.gameObject;
-            curseStatusImage = curseStatusRoot.GetComponent<Image>();
-            Transform curseTextTransform = curseStatusRoot.transform.Find(CurseStackTextNodeName);
-            curseStackText = curseTextTransform != null ? curseTextTransform.GetComponent<TMP_Text>() : null;
-        }
+
+        BindStatusIcon(curseStatusRoot, curseStatusSprite, out curseStatusImage, out curseStackText);
 
         if (curseStatusImage != null && curseStatusSprite != null)
         {
@@ -617,66 +598,60 @@ public class Player : BaseUnit, ITooltipProvider
         }
     }
 
-    private GameObject CreateWeaknessStatusNode(Transform parent)
+    private GameObject CreateStatusIconNode(Transform parent, string nodeName, Sprite iconSprite)
     {
-        GameObject root = new GameObject(WeaknessStatusNodeName, typeof(RectTransform), typeof(Image));
-        RectTransform rootRect = root.GetComponent<RectTransform>();
-        rootRect.SetParent(parent, false);
-        rootRect.sizeDelta = new Vector2(0.5f, 0.5f);
-        rootRect.localScale = Vector3.one;
+        GameObject root;
+        if (buffDebuffIconPrefab != null)
+        {
+            root = Instantiate(buffDebuffIconPrefab, parent);
+            root.name = nodeName;
+        }
+        else
+        {
+            root = new GameObject(nodeName, typeof(RectTransform), typeof(Image));
+            RectTransform rootRect = root.GetComponent<RectTransform>();
+            rootRect.SetParent(parent, false);
+            rootRect.sizeDelta = new Vector2(0.5f, 0.5f);
+            rootRect.localScale = Vector3.one;
 
-        weaknessStatusImage = root.GetComponent<Image>();
-        weaknessStatusImage.sprite = weaknessStatusSprite;
-        weaknessStatusImage.preserveAspect = true;
+            GameObject textObject = new GameObject(StatusEffectIcon.AmountTextName, typeof(RectTransform), typeof(TextMeshProUGUI));
+            RectTransform textRect = textObject.GetComponent<RectTransform>();
+            textRect.SetParent(rootRect, false);
+            textRect.anchorMin = new Vector2(1f, 0f);
+            textRect.anchorMax = new Vector2(1f, 0f);
+            textRect.pivot = new Vector2(1f, 0f);
+            textRect.sizeDelta = new Vector2(0.5f, 0.5f);
+            textRect.anchoredPosition = Vector2.zero;
 
-        GameObject textObject = new GameObject(WeaknessTurnTextNodeName, typeof(RectTransform), typeof(TextMeshProUGUI));
-        RectTransform textRect = textObject.GetComponent<RectTransform>();
-        textRect.SetParent(rootRect, false);
-        textRect.anchorMin = new Vector2(0.5f, 0f);
-        textRect.anchorMax = new Vector2(1f, 0.5f);
-        textRect.offsetMin = Vector2.zero;
-        textRect.offsetMax = Vector2.zero;
+            StatusEffectIcon fallbackIcon = root.AddComponent<StatusEffectIcon>();
+            fallbackIcon.AssignAmountText(textObject.GetComponent<TMP_Text>());
+        }
 
-        TextMeshProUGUI text = textObject.GetComponent<TextMeshProUGUI>();
-        text.font = attackText != null ? attackText.font : null;
-        text.fontSize = attackText != null ? attackText.fontSize * 0.8f : 0.2f;
-        text.alignment = TextAlignmentOptions.BottomRight;
-        text.color = Color.white;
-        text.text = string.Empty;
-        weaknessTurnText = text;
-
+        BindStatusIcon(root, iconSprite, out _, out _);
         return root;
     }
 
-    private GameObject CreateCurseStatusNode(Transform parent)
+    private static void BindStatusIcon(GameObject root, Sprite iconSprite, out Image iconImage, out TMP_Text amountText)
     {
-        GameObject root = new GameObject(CurseStatusNodeName, typeof(RectTransform), typeof(Image));
-        RectTransform rootRect = root.GetComponent<RectTransform>();
-        rootRect.SetParent(parent, false);
-        rootRect.sizeDelta = new Vector2(0.5f, 0.5f);
-        rootRect.localScale = Vector3.one;
+        iconImage = null;
+        amountText = null;
+        if (root == null)
+        {
+            return;
+        }
 
-        curseStatusImage = root.GetComponent<Image>();
-        curseStatusImage.sprite = curseStatusSprite;
-        curseStatusImage.preserveAspect = true;
+        StatusEffectIcon icon = StatusEffectIcon.Resolve(root);
+        icon.SetIcon(iconSprite);
+        icon.SetAmount(string.Empty);
 
-        GameObject textObject = new GameObject(CurseStackTextNodeName, typeof(RectTransform), typeof(TextMeshProUGUI));
-        RectTransform textRect = textObject.GetComponent<RectTransform>();
-        textRect.SetParent(rootRect, false);
-        textRect.anchorMin = new Vector2(0.5f, 0f);
-        textRect.anchorMax = new Vector2(1f, 0.5f);
-        textRect.offsetMin = Vector2.zero;
-        textRect.offsetMax = Vector2.zero;
+        iconImage = root.GetComponent<Image>();
+        if (iconImage != null && iconSprite != null)
+        {
+            iconImage.sprite = iconSprite;
+            iconImage.preserveAspect = true;
+        }
 
-        TextMeshProUGUI text = textObject.GetComponent<TextMeshProUGUI>();
-        text.font = attackText != null ? attackText.font : null;
-        text.fontSize = attackText != null ? attackText.fontSize * 0.8f : 0.2f;
-        text.alignment = TextAlignmentOptions.BottomRight;
-        text.color = Color.white;
-        text.text = string.Empty;
-        curseStackText = text;
-
-        return root;
+        amountText = icon.AmountText;
     }
 
     private void SubscribeStatusEffectEvents()
@@ -739,12 +714,12 @@ public class Player : BaseUnit, ITooltipProvider
         weaknessStatusRoot.SetActive(shouldShow);
         if (!shouldShow)
         {
-            weaknessTurnText.text = string.Empty;
+            StatusEffectIcon.Resolve(weaknessStatusRoot).SetAmount(string.Empty);
             return;
         }
 
         int turnValue = weaknessRuntime.RemainingTurns == int.MaxValue ? 0 : Mathf.Max(0, weaknessRuntime.RemainingTurns);
-        weaknessTurnText.text = turnValue.ToString();
+        StatusEffectIcon.Resolve(weaknessStatusRoot).SetAmount(turnValue.ToString());
     }
 
     private void RefreshCurseStatusUI()
@@ -773,11 +748,11 @@ public class Player : BaseUnit, ITooltipProvider
         curseStatusRoot.SetActive(shouldShow);
         if (!shouldShow)
         {
-            curseStackText.text = string.Empty;
+            StatusEffectIcon.Resolve(curseStatusRoot).SetAmount(string.Empty);
             return;
         }
 
-        curseStackText.text = Mathf.Max(0, curseRuntime.Stack).ToString();
+        StatusEffectIcon.Resolve(curseStatusRoot).SetAmount(Mathf.Max(0, curseRuntime.Stack).ToString());
     }
 
     public TooltipContent GetTooltipContent()

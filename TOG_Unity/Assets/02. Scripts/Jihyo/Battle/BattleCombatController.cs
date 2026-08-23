@@ -129,7 +129,8 @@ public class BattleCombatController : MonoBehaviour, IBattleController
             return null;
         }
 
-        // 타겟 선택
+        // 타겟 선택: 록온한 몬스터를 공격하고, 없으면 랜덤 공격합니다.
+        // 카드/유물 효과로 강제 랜덤 공격하는 경우는 아직 미구현입니다.
         List<IDamageable> playerTargets = new();
         Monster primaryMonsterTarget = null;
         Monster selectedTarget = setupController.GetSelectedTarget();
@@ -511,15 +512,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         // 몬스터 공격 대기
         yield return new WaitForSeconds(0.5f);
 
-        // 타겟 선택 해제
-        foreach (Monster monster in primaryMonsters)
-        {
-            if (monster != null)
-            {
-                monster.SetTargeted(false);
-            }
-        }
-        setupController.ClearSelectedTarget();
+        setupController.RefreshSelectedTargetLock();
 
         List<Monster> aliveMonsters = primaryMonsters.Where(m => m != null && m.IsAlive).ToList();
 

@@ -140,6 +140,25 @@ public class BattleSetupController : MonoBehaviour, IBattleController
     }
 
     /// <summary>
+    /// 록온 중인 타겟이 살아 있으면 표시를 다시 맞춥니다. 죽었으면 해제합니다.
+    /// </summary>
+    public void RefreshSelectedTargetLock()
+    {
+        if (selectedTarget == null)
+        {
+            return;
+        }
+
+        if (!selectedTarget.IsAlive)
+        {
+            ClearSelectedTarget();
+            return;
+        }
+
+        selectedTarget.SetTargeted(true);
+    }
+
+    /// <summary>
     /// 죽은 몬스터들을 제거
     /// </summary>
     public void RemoveDeadMonsters()
@@ -158,7 +177,7 @@ public class BattleSetupController : MonoBehaviour, IBattleController
 
     private void OnMonsterClicked(Monster monster)
     {
-        if (monster == null || !monster.IsAlive)
+        if (monster == null || (monster.MaxHealth > 0 && !monster.IsAlive))
         {
             return;
         }

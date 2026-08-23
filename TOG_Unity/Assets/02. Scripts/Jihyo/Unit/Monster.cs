@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -45,7 +44,7 @@ public class MonsterActionDefinition
     public int StatusStack = 1;
 }
 
-public class Monster : BaseUnit, IPointerClickHandler
+public class Monster : BaseUnit
 {
     [Header("Data")]
     [SerializeField] private int defaultAttack = 5;
@@ -92,13 +91,12 @@ public class Monster : BaseUnit, IPointerClickHandler
     private int guardShieldAppliedTurnNumber = -1;
     private GameObject attackStatusRoot;
     private Coroutine monsterDataRoutine;
-    private int lastSelectClickFrame = -1;
 
     protected override void Awake()
     {
         ApplyMonsterDataIfConfigured();
+        BindAttackStatusRoot();
         base.Awake();
-        ResolveStatusUIReferences();
         currentHealth = maxHealth;
         BuildActionsFromMonsterDataIfNeeded();
         ConfigureMonsterTraits();
@@ -842,35 +840,30 @@ public class Monster : BaseUnit, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        TrySelectAsTarget(eventData);
-    }
-
     private void OnMouseDown()
     {
-        TrySelectAsTarget(null);
-    }
-
-    private void TrySelectAsTarget(PointerEventData eventData)
-    {
-        if (lastSelectClickFrame == Time.frameCount)
+        // 좌클릭/터치만 록온합니다. OnPointerClick과 같이 쓰면 누름+뗌이 두 번 토글됩니다.
+        if (!Input.GetMouseButtonDown(0) && Input.touchCount == 0)
         {
             return;
         }
 
+        TrySelectAsTarget();
+    }
+
+    private void TrySelectAsTarget()
+    {
         // maxHealth가 아직 0이면 데이터 미적용 상태이므로, 죽은 몬스터로 보지 않습니다.
         if (isMarkedForDeath || (maxHealth > 0 && !IsAlive))
         {
             return;
         }
 
-        if (IsBlockedByForeignUI(eventData))
+        if (IsBlockedByForeignUI())
         {
             return;
         }
 
-        lastSelectClickFrame = Time.frameCount;
         Clicked?.Invoke(this);
     }
 
@@ -878,21 +871,17 @@ public class Monster : BaseUnit, IPointerClickHandler
     /// 손패/버튼 등 다른 UI를 누른 경우에만 몬스터 선택을 막습니다.
     /// 이 몬스터의 Status(HP, 공격력) 월드 캔버스는 선택으로 취급합니다.
     /// </summary>
-    private bool IsBlockedByForeignUI(PointerEventData eventData)
+    private bool IsBlockedByForeignUI()
     {
         if (EventSystem.current == null)
         {
             return false;
         }
 
-        PointerEventData pointerData = eventData;
-        if (pointerData == null)
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
         {
-            pointerData = new PointerEventData(EventSystem.current)
-            {
-                position = ResolvePointerScreenPosition()
-            };
-        }
+            position = ResolvePointerScreenPosition()
+        };
 
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerData, results);
@@ -1093,20 +1082,12 @@ public class Monster : BaseUnit, IPointerClickHandler
         return baseValue;
     }
 
-    private void ResolveStatusUIReferences()
+    private void BindAttackStatusRoot()
     {
-        if (attackText != null && attackText.transform.parent != null)
+        if (attackText != null)
         {
-            attackStatusRoot = attackText.transform.parent.gameObject;
-        }
-
-        if (actionIndicatorRenderer == null)
-        {
-            Transform actionTransform = transform.Find("Action");
-            if (actionTransform != null)
-            {
-                actionIndicatorRenderer = actionTransform.GetComponent<SpriteRenderer>();
-            }
+            // 비공격 행동일 때는 수치만 숨기고 Action 아이콘은 유지합니다.
+            attackStatusRoot = attackText.gameObject;
         }
     }
 

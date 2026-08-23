@@ -36,16 +36,14 @@ public class BattleManagerInjector : MonoBehaviour, IInjector
 
         if (player == null)
         {
-            player = FindAnyObjectByType<Player>();
+            Debug.LogError("BattleManagerInjector requires a Player reference.");
+            yield break;
         }
 
         if (globalRoot == null)
         {
-            GameObject globalObject = GameObject.Find("[Global]");
-            if (globalObject != null)
-            {
-                globalRoot = globalObject.transform;
-            }
+            Debug.LogError("BattleManagerInjector requires a globalRoot reference.");
+            yield break;
         }
 
         yield return new WaitUntil(() =>
