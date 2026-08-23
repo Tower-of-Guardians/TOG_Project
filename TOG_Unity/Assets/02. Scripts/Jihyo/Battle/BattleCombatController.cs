@@ -278,7 +278,14 @@ public class BattleCombatController : MonoBehaviour, IBattleController
             {
                 BaseUnit targetUnit = target as BaseUnit;
                 int finalDamage = player.ApplyOutgoingStatusEffects(currentAttack, targetUnit);
-                target.TakeDamage(finalDamage);
+                if (targetUnit != null)
+                {
+                    targetUnit.TakeDamage(finalDamage, player);
+                }
+                else
+                {
+                    target.TakeDamage(finalDamage);
+                }
                 totalDealtDamage += finalDamage;
             }
         }
@@ -386,12 +393,13 @@ public class BattleCombatController : MonoBehaviour, IBattleController
             return;
         }
 
+        Player player = setupController.GetPlayer();
         IEnumerable<Monster> monsters = setupController.GetPrimaryMonsters();
         foreach (Monster monster in monsters)
         {
             if (monster != null && monster.IsAlive)
             {
-                monster.TakeDamage(pendingOverwhelmingDamage);
+                monster.TakeDamage(pendingOverwhelmingDamage, player);
             }
         }
     }

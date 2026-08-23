@@ -217,7 +217,14 @@ public class Player : BaseUnit, ITooltipProvider
                 {
                     BaseUnit targetUnit = target as BaseUnit;
                     int finalDamage = ApplyOutgoingStatusEffects(currentAttack, targetUnit);
-                    target.TakeDamage(finalDamage);
+                    if (targetUnit != null)
+                    {
+                        targetUnit.TakeDamage(finalDamage, this);
+                    }
+                    else
+                    {
+                        target.TakeDamage(finalDamage);
+                    }
                 }
             }
         }
@@ -314,14 +321,14 @@ public class Player : BaseUnit, ITooltipProvider
         }
     }
 
-    public override void TakeDamage(int amount)
+    protected override void ApplyIncomingDamage(int amount, BaseUnit source)
     {
-        // 데미지 받기 전에 카드 스탯 업데이트
         UpdateCardStats();
-        
-        // 보호력 먼저 감소, 남은 데미지는 체력으로
-        base.TakeDamage(amount);
+        base.ApplyIncomingDamage(amount, source);
+    }
 
+    protected override void OnAfterIncomingDamageApplied()
+    {
         if (playerAnimation != null)
         {
             if (IsAlive)

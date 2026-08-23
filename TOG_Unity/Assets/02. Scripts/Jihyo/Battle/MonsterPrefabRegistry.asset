@@ -19,6 +19,8 @@ MonoBehaviour:
     Prefab: {fileID: 3739762124255010228, guid: 4c4f9e356dac3c14997fe48f7e456fd7, type: 3}
   - MonsterDataId: 41001002
     Prefab: {fileID: 3739762124255010228, guid: 4adca0b473124914085d28c14af7efa8, type: 3}
+  - MonsterDataId: 41001003
+    Prefab: {fileID: 3739762124255010228, guid: 2e799f72018a75c488398ac522c83453, type: 3}
   - MonsterDataId: 41001004
     Prefab: {fileID: 3739762124255010228, guid: 42e9b44723db90b4b81da7460e0d038b, type: 3}
   - MonsterDataId: 41001006

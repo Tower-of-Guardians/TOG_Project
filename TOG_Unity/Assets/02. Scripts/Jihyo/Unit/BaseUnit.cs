@@ -64,12 +64,22 @@ public abstract class BaseUnit : MonoBehaviour, IDamageable
 
     public virtual void TakeDamage(int amount)
     {
+        ApplyIncomingDamage(amount, null);
+    }
+
+    public void TakeDamage(int amount, BaseUnit source)
+    {
+        ApplyIncomingDamage(amount, source);
+    }
+
+    protected virtual void ApplyIncomingDamage(int amount, BaseUnit source)
+    {
         int beforeHealth = currentHealth;
         StatusEffectController statusEffectController = GetComponent<StatusEffectController>();
         DamageContext incomingDamageContext = null;
         if (statusEffectController != null)
         {
-            incomingDamageContext = new DamageContext(amount, null, this);
+            incomingDamageContext = new DamageContext(amount, source, this);
             statusEffectController.OnBeforeTakeDamage(incomingDamageContext);
             amount = incomingDamageContext.FinalDamage;
         }
@@ -98,6 +108,12 @@ public abstract class BaseUnit : MonoBehaviour, IDamageable
             incomingDamageContext.SetFinalDamage(appliedHealthDamage);
             statusEffectController.OnAfterTakeDamage(incomingDamageContext);
         }
+
+        OnAfterIncomingDamageApplied();
+    }
+
+    protected virtual void OnAfterIncomingDamageApplied()
+    {
     }
 
     /// <summary>

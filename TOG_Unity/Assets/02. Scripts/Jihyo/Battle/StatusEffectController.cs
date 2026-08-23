@@ -59,6 +59,7 @@ public sealed class StatusEffectRuntime
     public int Value;
     public int DurationType;
     public int ReleaseCondition;
+    public bool SuppressNextDurationTick;
 
     public bool IsExpired => Stack <= 0 || RemainingTurns == 0;
 
@@ -222,6 +223,60 @@ public sealed class CurseHandler : IStatusEffectHandler
 }
 
 /// <summary>
+/// 저주의 가시(51001004) 핸들러.
+/// DurationType=1은 상태효과 테이블의 1턴 지속입니다.
+/// 피격 시 공격자에게 부여하는 저주 수치는 몬스터 테이블 Value에서 전달된 runtime.Value를 사용합니다.
+/// </summary>
+public sealed class CurseThornsHandler : IStatusEffectHandler
+{
+    public string StatusEffectId => StatusEffectController.CurseThornsStatusId;
+    public StatusEffectStackPolicy StackPolicy => StatusEffectStackPolicy.RefreshDuration;
+
+    public int ResolveInitialStack(StatusEffectData data, int requestedStack)
+    {
+        return Mathf.Max(1, requestedStack);
+    }
+
+    public int ResolveInitialDuration(StatusEffectData data)
+    {
+        return StatusEffectDurationUtility.ResolveDurationFromData(data, defaultTurns: 1);
+    }
+
+    public int ResolveInitialValue(StatusEffectData data, int requestedValue)
+    {
+        return Mathf.Max(0, requestedValue);
+    }
+
+    public void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew) { }
+    public void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnTurnEnd(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnBeforeDealDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+    public void OnBeforeTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+
+    public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context)
+    {
+        if (runtime == null || context == null || context.Source == null || context.Source == context.Target)
+        {
+            return;
+        }
+
+        int curseStack = runtime.Value > 0 ? runtime.Value : runtime.Stack;
+        if (curseStack <= 0)
+        {
+            return;
+        }
+
+        StatusEffectController attackerController = StatusEffectController.Resolve(context.Source);
+        if (attackerController == null)
+        {
+            return;
+        }
+
+        attackerController.TryApplyStatus(StatusEffectController.CurseStatusId, curseStack);
+    }
+}
+
+/// <summary>
 /// 힘:적(51003029) 핸들러.
 /// 공격 행동 피해량을 스택 수치만큼 증가시킵니다. (영구, 스택 누적)
 /// </summary>
@@ -270,6 +325,7 @@ public sealed class EnemyStrengthBuffHandler : IStatusEffectHandler
 public class StatusEffectController : MonoBehaviour
 {
     public const string WeaknessExposureStatusId = "51001001";
+    public const string CurseThornsStatusId = "51001004";
     public const string CurseStatusId = "51001005";
     public const string EnemyStrengthStatusId = "51003029";
 
@@ -299,6 +355,22 @@ public class StatusEffectController : MonoBehaviour
         }
 
         HandlerMap[handler.StatusEffectId] = handler;
+    }
+
+    public static StatusEffectController Resolve(BaseUnit unit)
+    {
+        if (unit == null)
+        {
+            return null;
+        }
+
+        StatusEffectController controller = unit.GetComponent<StatusEffectController>();
+        if (controller == null)
+        {
+            controller = unit.gameObject.AddComponent<StatusEffectController>();
+        }
+
+        return controller;
     }
 
     public bool TryApplyStatus(string statusEffectId, int requestedStack = 1, int requestedValue = 0)
@@ -337,11 +409,13 @@ public class StatusEffectController : MonoBehaviour
                 ReleaseCondition = data.ReleaseCondition
             };
             activeStatusMap[statusEffectId] = runtime;
+            MarkTurnDurationSkip(runtime, data);
             OnStatusAdded?.Invoke(runtime);
         }
         else
         {
             ApplyStackPolicy(handler.StackPolicy, runtime, incomingStack, incomingDuration, incomingValue);
+            MarkTurnDurationSkip(runtime, data);
             OnStatusChanged?.Invoke(runtime);
         }
 
@@ -434,7 +508,11 @@ public class StatusEffectController : MonoBehaviour
                 handler.OnTurnEnd(this, runtime);
             }
 
-            if (ShouldDecreaseTurn(runtime))
+            if (runtime.SuppressNextDurationTick)
+            {
+                runtime.SuppressNextDurationTick = false;
+            }
+            else if (ShouldDecreaseTurn(runtime))
             {
                 runtime.DecreaseTurn();
                 OnStatusChanged?.Invoke(runtime);
@@ -534,6 +612,7 @@ public class StatusEffectController : MonoBehaviour
         }
 
         RegisterHandler(new WeaknessExposureHandler());
+        RegisterHandler(new CurseThornsHandler());
         RegisterHandler(new CurseHandler());
         RegisterHandler(new EnemyStrengthBuffHandler());
         isDefaultHandlerRegistered = true;
@@ -582,6 +661,17 @@ public class StatusEffectController : MonoBehaviour
                 runtime.Value = Mathf.Max(runtime.Value, incomingValue);
                 break;
         }
+    }
+
+    private static void MarkTurnDurationSkip(StatusEffectRuntime runtime, StatusEffectData data)
+    {
+        if (runtime == null || data == null || data.DurationType != 1)
+        {
+            return;
+        }
+
+        // 몬스터 행동 직후 같은 턴 종료에서 1턴 효과가 바로 만료되지 않도록, 부여된 턴의 감소는 건너뜁니다.
+        runtime.SuppressNextDurationTick = true;
     }
 
     private static bool ShouldDecreaseTurn(StatusEffectRuntime runtime)

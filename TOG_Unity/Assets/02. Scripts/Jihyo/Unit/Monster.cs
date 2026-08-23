@@ -42,6 +42,7 @@ public class MonsterActionDefinition
     public int MaxValue = 0;
     public string StatusEffectId;
     public int StatusStack = 1;
+    public int StatusValue;
 }
 
 public class Monster : BaseUnit
@@ -287,7 +288,14 @@ public class Monster : BaseUnit
                 monsterAnimation.PlayDefenseAnimation();
                 break;
             case MonsterActionType.ApplyStatus:
-                monsterAnimation.PlayCurseAnimation();
+                if (IsDebuffTarget(selectedAction.TargetType))
+                {
+                    monsterAnimation.PlayCurseAnimation();
+                }
+                else
+                {
+                    monsterAnimation.PlayBuffAnimation();
+                }
                 break;
             case MonsterActionType.Summon:
                 monsterAnimation.PlaySummonAnimation();
@@ -353,6 +361,7 @@ public class Monster : BaseUnit
         DataCenter.Instance.GetMonsterData(monsterDataId, data => loadedMonsterData = data);
         ApplyLoadedMonsterDataStats();
         BuildActionsFromMonsterDataIfNeeded();
+        ConfigureMonsterTraits();
         RefreshUI();
     }
 
@@ -441,6 +450,7 @@ public class Monster : BaseUnit
                 definition.TargetType = ResolvePrimaryStatusTargetType();
                 definition.StatusEffectId = ResolvePrimaryStatusEffectId(StatusEffectController.WeaknessExposureStatusId);
                 definition.StatusStack = Mathf.Max(1, min);
+                definition.StatusValue = Mathf.Max(0, min);
                 break;
             case "2410004":
                 definition.ActionType = MonsterActionType.Summon;
@@ -556,7 +566,7 @@ public class Monster : BaseUnit
                 MarkGuardShieldAppliedThisTurn();
                 break;
             case MonsterActionType.ApplyStatus:
-                ExecuteApplyStatusAction(targets, action.StatusEffectId, action.StatusStack);
+                ExecuteApplyStatusAction(targets, action.StatusEffectId, action.StatusStack, action.StatusValue);
                 break;
             case MonsterActionType.Heal:
                 SetCurrentHealth(CurrentHealth + actionValue);
@@ -612,7 +622,14 @@ public class Monster : BaseUnit
         int damage = GetAttackValue();
         BaseUnit targetUnit = target as BaseUnit;
         int finalDamage = ApplyOutgoingStatusEffects(damage, targetUnit);
-        target.TakeDamage(finalDamage);
+        if (targetUnit != null)
+        {
+            targetUnit.TakeDamage(finalDamage, this);
+        }
+        else
+        {
+            target.TakeDamage(finalDamage);
+        }
     }
 
     private void ExecuteAttackAction(List<IDamageable> targets, int damage)
@@ -632,11 +649,18 @@ public class Monster : BaseUnit
 
             BaseUnit targetUnit = target as BaseUnit;
             int finalDamage = ApplyOutgoingStatusEffects(damage, targetUnit);
-            target.TakeDamage(finalDamage);
+            if (targetUnit != null)
+            {
+                targetUnit.TakeDamage(finalDamage, this);
+            }
+            else
+            {
+                target.TakeDamage(finalDamage);
+            }
         }
     }
 
-    private void ExecuteApplyStatusAction(List<IDamageable> targets, string statusEffectId, int stack)
+    private void ExecuteApplyStatusAction(List<IDamageable> targets, string statusEffectId, int stack, int value)
     {
         if (targets == null || targets.Count == 0 || string.IsNullOrEmpty(statusEffectId))
         {
@@ -651,13 +675,13 @@ public class Monster : BaseUnit
                 continue;
             }
 
-            StatusEffectController statusEffectController = targetUnit.GetComponent<StatusEffectController>();
+            StatusEffectController statusEffectController = StatusEffectController.Resolve(targetUnit);
             if (statusEffectController == null)
             {
-                statusEffectController = targetUnit.gameObject.AddComponent<StatusEffectController>();
+                continue;
             }
 
-            statusEffectController.TryApplyStatus(statusEffectId, stack);
+            statusEffectController.TryApplyStatus(statusEffectId, stack, value);
         }
     }
 
@@ -987,10 +1011,8 @@ public class Monster : BaseUnit
         guardShieldAppliedTurnNumber = -1;
     }
 
-    public override void TakeDamage(int amount)
+    protected override void OnAfterIncomingDamageApplied()
     {
-        base.TakeDamage(amount);
-
         if (ProtectionValue <= 0f)
         {
             hasGuardShieldPendingExpire = false;

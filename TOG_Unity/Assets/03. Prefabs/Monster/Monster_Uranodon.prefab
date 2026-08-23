@@ -293,7 +293,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4839011377745383518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e63514cb18061540a7048b0e8b41d13, type: 3}
+  m_Script: {fileID: 11500000, guid: d5e6f7a890123456789abcde01234567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
@@ -326,7 +326,7 @@ MonoBehaviour:
   attackMoveOffset: 5
   attackMoveDuration: 0.3
   damageApplyDelay: 0.5
-  monsterId: 41001000
+  monsterId: 41001003
 --- !u!114 &4344606365010817277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,40 +691,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4573666398134420694, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
-      propertyPath: m_SortingOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5529159781888594652, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5721189975780642282, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5721189975780642282, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6249288637204260897, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8782220635215014918, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8782220635215014918, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8782220635215014918, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8782220635215014918, guid: 02f2ce7dbb2385d43a22f32947968aa9, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

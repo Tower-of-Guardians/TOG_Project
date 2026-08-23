@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
+public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, IPointerDownHandler, IPointerUpHandler
 {
     private Animator animator;
     private Button button;
@@ -84,6 +84,7 @@ public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             isPlayingIntro = false;
             button.interactable = true;
             introRoutine = null;
+            SyncHoverFromPointer();
             yield break;
         }
 
@@ -109,20 +110,73 @@ public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         animator.ResetTrigger(TRIGGER_DISABLED);
         isPlayingIntro = false;
         button.interactable = true;
-        ApplyIdleVisual();
+        yield return null;
+        SyncHoverFromPointer();
         introRoutine = null;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        isMouseOver = true;
-        ApplyIdleVisual();
+        SetHovered(true);
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        SetHovered(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        isMouseOver = false;
+        if (isPlayingIntro || button == null || !button.interactable)
+        {
+            return;
+        }
+
+        if (IsOwnedGraphic(eventData.pointerCurrentRaycast.gameObject))
+        {
+            return;
+        }
+
+        SetHovered(false);
+    }
+
+    private bool IsOwnedGraphic(GameObject target)
+    {
+        if (target == null)
+        {
+            return false;
+        }
+
+        return target == gameObject || target.transform.IsChildOf(transform);
+    }
+
+    private void SetHovered(bool hovered)
+    {
+        if (isMouseOver == hovered)
+        {
+            if (hovered)
+            {
+                KeepHighlightedIfNeeded();
+            }
+
+            return;
+        }
+
+        isMouseOver = hovered;
         ApplyIdleVisual();
+    }
+
+    private void KeepHighlightedIfNeeded()
+    {
+        if (!CanHandlePointer() || animator == null || !isMouseOver)
+        {
+            return;
+        }
+
+        if (!IsInState(STATE_HIGHLIGHTED))
+        {
+            ApplyIdleVisual();
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -261,8 +315,47 @@ public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             return;
         }
 
+        string targetState = isMouseOver ? STATE_HIGHLIGHTED : STATE_NORMAL;
+        if (IsInState(targetState))
+        {
+            return;
+        }
+
         ResetAllTriggers();
-        animator.Play(isMouseOver ? STATE_HIGHLIGHTED : STATE_NORMAL, 0, 0f);
+        animator.Play(targetState, 0, 0f);
+    }
+
+    private void SyncHoverFromPointer()
+    {
+        isMouseOver = IsPointerOverThis();
+        ApplyIdleVisual();
+    }
+
+    private bool IsPointerOverThis()
+    {
+        RectTransform rect = transform as RectTransform;
+        if (rect == null)
+        {
+            return false;
+        }
+
+        return RectTransformUtility.RectangleContainsScreenPoint(rect, GetPointerScreenPosition(), GetEventCamera());
+    }
+
+    private static Vector2 GetPointerScreenPosition()
+    {
+        return Input.mousePosition;
+    }
+
+    private Camera GetEventCamera()
+    {
+        Canvas canvas = GetComponentInParent<Canvas>();
+        if (canvas == null || canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+        {
+            return null;
+        }
+
+        return canvas.worldCamera;
     }
 
     private void ResetAllTriggers()

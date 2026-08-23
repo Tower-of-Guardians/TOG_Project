@@ -11,22 +11,23 @@ public class MonsterAnimation : MonoBehaviour
     private static readonly int HitHash = Animator.StringToHash("Hit");
     private static readonly int DeadHash = Animator.StringToHash("Dead");
     private static readonly int CurseHash = Animator.StringToHash("Curse");
+    private static readonly int BuffHash = Animator.StringToHash("Buff");
     private static readonly int DefenseHash = Animator.StringToHash("Defense");
     private static readonly int SummonHash = Animator.StringToHash("Summon");
 
     private static readonly string[] AttackStateNames =
     {
-        "Attack", "WhiteDog_Attack", "Clonier_Attack", "ClonierClone_Attack", "Grounder_Attack", "Flightmare_Attack"
+        "Attack", "WhiteDog_Attack", "Clonier_Attack", "ClonierClone_Attack", "Grounder_Attack", "Flightmare_Attack", "Uranodon_Attack"
     };
 
     private static readonly string[] HitStateNames =
     {
-        "Hit", "WhiteDog_Hit", "Clonier_Hit", "ClonierClone_Hit", "Grounder_Hit", "Flightmare_Hit"
+        "Hit", "WhiteDog_Hit", "Clonier_Hit", "ClonierClone_Hit", "Grounder_Hit", "Flightmare_Hit", "Uranodon_Hit"
     };
 
     private static readonly string[] DeadStateNames =
     {
-        "Dead", "WhiteDog_Dead", "Clonier_Dead", "ClonierClone_Dead", "Grounder_Dead", "Flightmare_Dead"
+        "Dead", "WhiteDog_Dead", "Clonier_Dead", "ClonierClone_Dead", "Grounder_Dead", "Flightmare_Dead", "Uranodon_Death"
     };
 
     private void Awake()
@@ -74,6 +75,14 @@ public class MonsterAnimation : MonoBehaviour
         }
     }
 
+    public void PlayBuffAnimation()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger(BuffHash);
+        }
+    }
+
     public void PlayDefenseAnimation()
     {
         if (animator != null)
@@ -98,6 +107,7 @@ public class MonsterAnimation : MonoBehaviour
             animator.ResetTrigger(HitHash);
             animator.ResetTrigger(DeadHash);
             animator.ResetTrigger(CurseHash);
+            animator.ResetTrigger(BuffHash);
             animator.ResetTrigger(DefenseHash);
             animator.ResetTrigger(SummonHash);
         }
@@ -139,9 +149,9 @@ public class MonsterAnimation : MonoBehaviour
             case MonsterActionType.Attack:
                 return AttackStateNames;
             case MonsterActionType.Guard:
-                return new[] { "Defense", "WhiteDog_Defense" };
+                return new[] { "Defense", "WhiteDog_Defense", "Uranodon_Defense" };
             case MonsterActionType.ApplyStatus:
-                return new[] { "Curse", "WhiteDog_Curse", "Grounder_Debuff" };
+                return new[] { "Curse", "WhiteDog_Curse", "Grounder_Debuff", "Uranodon_Buff" };
             case MonsterActionType.Summon:
                 return new[] { "Summon", "Clonier_Summon" };
             default:
