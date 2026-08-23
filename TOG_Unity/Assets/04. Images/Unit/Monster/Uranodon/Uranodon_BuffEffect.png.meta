@@ -1,0 +1,516 @@
+fileFormatVersion: 2
+guid: c5bf80c9fefd0c542902273ef2649fd3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1941236143001729382
+    second: Uranodon_BuffEffect_0
+  - first:
+      213: 3246929388634927486
+    second: Uranodon_BuffEffect_1
+  - first:
+      213: 7650552769154348948
+    second: Uranodon_BuffEffect_2
+  - first:
+      213: -5555190249080457902
+    second: Uranodon_BuffEffect_3
+  - first:
+      213: 3865265165629854815
+    second: Uranodon_BuffEffect_4
+  - first:
+      213: -4635202941204946346
+    second: Uranodon_BuffEffect_5
+  - first:
+      213: -4893805409215400748
+    second: Uranodon_BuffEffect_6
+  - first:
+      213: -230514643311279681
+    second: Uranodon_BuffEffect_7
+  - first:
+      213: 9105153547914581475
+    second: Uranodon_BuffEffect_8
+  - first:
+      213: -3587682666840377014
+    second: Uranodon_BuffEffect_9
+  - first:
+      213: 3537132293096463401
+    second: Uranodon_BuffEffect_10
+  - first:
+      213: 3936185811842290069
+    second: Uranodon_BuffEffect_11
+  - first:
+      213: -4061872255860399237
+    second: Uranodon_BuffEffect_12
+  - first:
+      213: -9021602678334012380
+    second: Uranodon_BuffEffect_13
+  - first:
+      213: 1713917197213753219
+    second: Uranodon_BuffEffect_14
+  - first:
+      213: -5067502033709572268
+    second: Uranodon_BuffEffect_15
+  - first:
+      213: 2965074869766386050
+    second: Uranodon_BuffEffect_16
+  - first:
+      213: -8411709567724998075
+    second: Uranodon_BuffEffect_17
+  - first:
+      213: 1599622693900790810
+    second: Uranodon_BuffEffect_18
+  - first:
+      213: -7371427840569491774
+    second: Uranodon_BuffEffect_19
+  - first:
+      213: -5256638925786254193
+    second: Uranodon_BuffEffect_20
+  - first:
+      213: -935067024055367958
+    second: Uranodon_BuffEffect_21
+  - first:
+      213: -8233300059247744775
+    second: Uranodon_BuffEffect_22
+  - first:
+      213: 2737674414359385873
+    second: Uranodon_BuffEffect_23
+  - first:
+      213: -7867537622167767759
+    second: Uranodon_BuffEffect_24
+  - first:
+      213: 4350774674432431299
+    second: Uranodon_BuffEffect_25
+  - first:
+      213: -7139094887980518410
+    second: Uranodon_BuffEffect_26
+  - first:
+      213: -2497101289079743994
+    second: Uranodon_BuffEffect_27
+  - first:
+      213: -6866149032578596344
+    second: Uranodon_BuffEffect_28
+  - first:
+      213: -1669009529883515565
+    second: Uranodon_BuffEffect_29
+  - first:
+      213: -3552550415977216087
+    second: Uranodon_BuffEffect_30
+  - first:
+      213: -8720060594422817002
+    second: Uranodon_BuffEffect_31
+  - first:
+      213: 5710832127166871870
+    second: Uranodon_BuffEffect_32
+  - first:
+      213: -1279509982627381442
+    second: Uranodon_BuffEffect_33
+  - first:
+      213: -264059242405489235
+    second: Uranodon_BuffEffect_34
+  - first:
+      213: -4343741171476438636
+    second: Uranodon_BuffEffect_35
+  - first:
+      213: 1758819479553009683
+    second: Uranodon_BuffEffect_36
+  - first:
+      213: -7360763749421756830
+    second: Uranodon_BuffEffect_37
+  - first:
+      213: 301626386552611359
+    second: Uranodon_BuffEffect_38
+  - first:
+      213: -1884198924204197789
+    second: Uranodon_BuffEffect_39
+  - first:
+      213: -740538880206864746
+    second: Uranodon_BuffEffect_40
+  - first:
+      213: -469530495085759789
+    second: Uranodon_BuffEffect_41
+  - first:
+      213: 6672814862976788934
+    second: Uranodon_BuffEffect_42
+  - first:
+      213: -461056713827264996
+    second: Uranodon_BuffEffect_43
+  - first:
+      213: 7962007503818056142
+    second: Uranodon_BuffEffect_44
+  - first:
+      213: -2663634177633313437
+    second: Uranodon_BuffEffect_45
+  - first:
+      213: 7979641059066945386
+    second: Uranodon_BuffEffect_46
+  - first:
+      213: 6206975366959633399
+    second: Uranodon_BuffEffect_47
+  - first:
+      213: -7501148432256364509
+    second: Uranodon_BuffEffect_48
+  - first:
+      213: -8675139511472973590
+    second: Uranodon_BuffEffect_49
+  - first:
+      213: -2266357217300861992
+    second: Uranodon_BuffEffect_50
+  - first:
+      213: 6926850410748390768
+    second: Uranodon_BuffEffect_51
+  - first:
+      213: -870086116605981186
+    second: Uranodon_BuffEffect_52
+  - first:
+      213: -8956861247590780429
+    second: Uranodon_BuffEffect_53
+  - first:
+      213: -2268694355667036167
+    second: Uranodon_BuffEffect_54
+  - first:
+      213: -2190879957594447864
+    second: Uranodon_BuffEffect_55
+  - first:
+      213: -7326781691385019298
+    second: Uranodon_BuffEffect_56
+  - first:
+      213: -5097502124493906751
+    second: Uranodon_BuffEffect_57
+  - first:
+      213: -3003307780701391773
+    second: Uranodon_BuffEffect_58
+  - first:
+      213: -7189370128339905955
+    second: Uranodon_BuffEffect_59
+  - first:
+      213: -3206739023208140811
+    second: Uranodon_BuffEffect_60
+  - first:
+      213: -2578290963968967261
+    second: Uranodon_BuffEffect_61
+  - first:
+      213: -8315163936480182261
+    second: Uranodon_BuffEffect_62
+  - first:
+      213: 4756904771952464114
+    second: Uranodon_BuffEffect_63
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Uranodon_BuffEffect_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 576
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66974c8acf7a0fa10800000000000000
+      internalID: 1941236143001729382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uranodon_BuffEffect_1
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 576
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e717c5473196f0d20800000000000000
+      internalID: 3246929388634927486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uranodon_BuffEffect_2
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 576
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49773dc85393c2a60800000000000000
+      internalID: 7650552769154348948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uranodon_BuffEffect_3
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 0
+        width: 576
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25578dfa6eff7e2b0800000000000000
+      internalID: -5555190249080457902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uranodon_BuffEffect_4
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 576
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f541f08603e24a530800000000000000
+      internalID: 3865265165629854815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uranodon_BuffEffect_5
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 576
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65222abbb737cafb0800000000000000
+      internalID: -4635202941204946346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uranodon_BuffEffect_6
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 0
+        width: 576
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d4b4d7a8e5b51cb0800000000000000
+      internalID: -4893805409215400748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uranodon_BuffEffect_7
+      rect:
+        serializedVersion: 2
+        x: 4032
+        y: 0
+        width: 576
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb1c7e9372c0dccf0800000000000000
+      internalID: -230514643311279681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uranodon_BuffEffect_8
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 0
+        width: 576
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e516d029e00c5e70800000000000000
+      internalID: 9105153547914581475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c467fa773d1314945b4d59212f80f1ae
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Uranodon_BuffEffect_0: 1941236143001729382
+      Uranodon_BuffEffect_1: 3246929388634927486
+      Uranodon_BuffEffect_2: 7650552769154348948
+      Uranodon_BuffEffect_3: -5555190249080457902
+      Uranodon_BuffEffect_4: 3865265165629854815
+      Uranodon_BuffEffect_5: -4635202941204946346
+      Uranodon_BuffEffect_6: -4893805409215400748
+      Uranodon_BuffEffect_7: -230514643311279681
+      Uranodon_BuffEffect_8: 9105153547914581475
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
