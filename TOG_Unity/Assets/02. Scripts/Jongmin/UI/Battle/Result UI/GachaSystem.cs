@@ -131,7 +131,8 @@ namespace Jongmin
 
         private void HandleSlotPurchased(CardData cardData)
         {
-            DataCenter.Instance.userDeck.Add(Instantiate(cardData));
+            cardData.time = (long)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            DataCenter.Instance.userDeck.Add(cardData);
             RequestRefreshInventory?.Invoke();
         }
 

@@ -24,7 +24,7 @@ namespace Jongmin
         public void RefreshView()
         {
             RemoveAllSlots();
-            DataCenter.Instance.SortUserCards(SortType.Grade);
+            DataCenter.Instance.SortUserCards(SortType.Grade, true);
 
             foreach (var cardData in DataCenter.Instance.userDeck)
             {

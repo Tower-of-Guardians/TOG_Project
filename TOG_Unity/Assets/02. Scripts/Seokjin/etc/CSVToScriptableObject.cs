@@ -177,6 +177,7 @@ public class CSVToScriptableObject
             // CSV 열 순서에 맞게 데이터 파싱 및 할당
             // 오류 처리는 생략, 실제 사용 시에는 예외 처리 필요
             newItem.id = values[n++].Trim();
+            if (int.TryParse(newItem.id, out int id_int)) newItem.id_int = id_int;
             newItem.itemName = values[n++].Trim();
 
             // ✨ 스프라이트 시트 파일 이름과 개별 스프라이트 이름 읽기
@@ -186,12 +187,20 @@ public class CSVToScriptableObject
             if (int.TryParse(values[n++].Trim(), out int garde)) newItem.grade = garde;
             if (int.TryParse(values[n++].Trim(), out int star)) newItem.star = star;
             if (int.TryParse(values[n++].Trim(), out int price)) newItem.price = price;
-            newItem.synergy1Icon = FindSprite(values[n++].Trim(), "Icons/", "ItemIcon.png");
+
+            string synergyIcon_path = Path.Combine(imageResourcesPath + "UI/Jongmin/Associate With Card/").Replace('\\', '/');
+            string iconname = values[n++].Trim();
+            newItem.synergy1Icon = AssetDatabase.LoadAssetAtPath<Sprite>(synergyIcon_path + iconname + ".png");
             newItem.synergy1ID = values[n++].Trim();
-            newItem.synergy2Icon = FindSprite(values[n++].Trim(), "Icons/", "ItemIcon.png");
+
+            iconname = values[n++].Trim();
+            newItem.synergy2Icon = AssetDatabase.LoadAssetAtPath<Sprite>(synergyIcon_path + iconname + ".png");
             newItem.synergy2ID = values[n++].Trim();
-            newItem.synergy3Icon = FindSprite(values[n++].Trim(), "Icons/", "ItemIcon.png");
+
+            iconname = values[n++].Trim();
+            newItem.synergy3Icon = AssetDatabase.LoadAssetAtPath<Sprite>(synergyIcon_path + iconname + ".png");
             newItem.synergy3ID = values[n++].Trim();
+
             string newdescription = values[n++].Replace("\"\"", "<br>").Replace("\"", "").Replace("<br>", "\"").Trim();
             newItem.effectDescription = newdescription;
             if (int.TryParse(values[n++].Trim(), out int ATK)) newItem.ATK = ATK;

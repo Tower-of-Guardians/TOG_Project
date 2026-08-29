@@ -96,7 +96,7 @@ namespace Jongmin
 
         private void SyncWithData()
         {
-            DataCenter.Instance.SortUserCards(_sortType);
+            DataCenter.Instance.SortUserCards(_sortType, true);
             RequestResetCriterion?.Invoke();
         }
     }

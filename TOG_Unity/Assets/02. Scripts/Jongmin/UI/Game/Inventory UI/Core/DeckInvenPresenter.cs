@@ -39,7 +39,7 @@
 
     protected void CreateCardsFromDataCenter()
     {
-        DataCenter.Instance.SortUserCards(SortType.Grade);
+        DataCenter.Instance.SortUserCards(SortType.Grade , false);
 
         foreach (CardData cardData in DataCenter.Instance.userDeck)
         {

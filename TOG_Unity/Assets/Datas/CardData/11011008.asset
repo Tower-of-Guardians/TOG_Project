@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 11011008
   m_EditorClassIdentifier: 
   id: 11011008
+  id_int: 11011008
   itemName: "\uAD8C\uBC95\uC7A5\uAC11"
   iconimage: {fileID: 7042404619664934232, guid: 9fe8859a05bc9d44db79491c3c4b1900, type: 3}
   synergyFrameImage: {fileID: 21300000, guid: 2fdd58a991429e841972473141ccc819, type: 3}
@@ -20,8 +21,8 @@ MonoBehaviour:
   star: 1
   price: 10
   cardimage: {fileID: 21300000, guid: 8ed487a1d0db5fb40bad83cb34426193, type: 3}
-  synergy1Icon: {fileID: 0}
-  synergy2Icon: {fileID: 0}
+  synergy1Icon: {fileID: 21300000, guid: ea32e3c8969fd5247b0daf9ed4208356, type: 3}
+  synergy2Icon: {fileID: 21300000, guid: 4fe2cda9a9165df4a8b2d0aface8a758, type: 3}
   synergy3Icon: {fileID: 0}
   synergy1ID: 210007
   synergy2ID: 210005
@@ -36,3 +37,4 @@ MonoBehaviour:
   effect2ID: 
   effect1Value: 4
   effect2Value: 
+  time: 0

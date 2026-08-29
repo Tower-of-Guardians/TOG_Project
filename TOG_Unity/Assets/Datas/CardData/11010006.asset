@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 11010006
   m_EditorClassIdentifier: 
   id: 11010006
+  id_int: 11010006
   itemName: "\uD22C\uCC99\uC6A9 \uCE7C\uB0A0"
   iconimage: {fileID: 0}
   synergyFrameImage: {fileID: 21300000, guid: 2fdd58a991429e841972473141ccc819, type: 3}
@@ -36,3 +37,4 @@ MonoBehaviour:
   effect2ID: 
   effect1Value: 10
   effect2Value: 
+  time: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 public class CardData : ScriptableObject
 {
     public string id;
+    public int id_int;
     public string itemName;
     public Sprite iconimage;
     public Sprite synergyFrameImage;
@@ -23,5 +24,5 @@ public class CardData : ScriptableObject
     public string effect1ID, effect2ID;
     public string effect1Value, effect2Value;
 
-    public DateTime time;
+    public long time;
 }

@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System; // async/await 사용을 위해 필요
 using System.Collections;
 using System.Collections.Generic;
@@ -103,8 +104,10 @@ public class DataCenter : Singleton<DataCenter>
 
     public void LoadPlayerData()
     {
-        playerstate.level = 1;
-        playerstate.experience = 40;
+        SetPlayerLevel(0);
+        /*playerstate.level = 1;
+        playerstate.experience = 0;
+        playerstate.maxexperience = 25 + 6 * (playerstate.level - 1); // 경험치 수식*/
         playerstate.hp = 70;
         playerstate.lhp = 5;
         playerstate.atk = 4;
@@ -400,7 +403,7 @@ public class DataCenter : Singleton<DataCenter>
     /// 정렬 타입에 따른 userDeck 리스트 정렬
     /// </summary>
     /// <param name="type"></param>
-    public void SortUserCards(SortType type)
+    public void SortUserCards(SortType type, bool refresh)
     {
         List<CardData> sortedDescending = new List<CardData>();
         if (type != sortType)
@@ -410,6 +413,15 @@ public class DataCenter : Singleton<DataCenter>
             {
                 sortType_oder = false;
             }
+        }
+        else
+        {
+            if (refresh)
+            {
+                sortType_oder = false;
+            }
+            sortedDescending = userDeck.OrderByDescending(data => data.id_int).ToList();
+            userDeck = sortedDescending;
         }
 
         switch (type)
