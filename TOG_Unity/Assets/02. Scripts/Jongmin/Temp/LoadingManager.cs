@@ -12,6 +12,8 @@ public class LoadingManager : Singleton<LoadingManager>
     [SerializeField] private TMP_Text m_loading_label;
 
     private string m_target_scene_name;
+    private string m_previous_active_scene_name;
+    private LoadSceneMode m_load_scene_mode = LoadSceneMode.Single;
 
     public string Scene
     {
@@ -20,13 +22,53 @@ public class LoadingManager : Singleton<LoadingManager>
 
     public void LoadScene(string scene_name)
     {
-        DIContainer.Clear();
+        LoadScene(scene_name, LoadSceneMode.Single);
+    }
+
+    public void LoadSceneAdditive(string scene_name)
+    {
+        Scene scene = SceneManager.GetSceneByName(scene_name);
+
+        if (scene.IsValid() && scene.isLoaded)
+        {
+            SceneManager.SetActiveScene(scene);
+            return;
+        }
+
+        LoadScene(scene_name, LoadSceneMode.Additive);
+    }
+
+    public void UnloadAdditiveScene(string scene_name)
+    {
+        Scene scene = SceneManager.GetSceneByName(scene_name);
+
+        if (!scene.IsValid() || !scene.isLoaded)
+        {
+            return;
+        }
+
+        StartCoroutine(UnloadAdditiveSceneProcess(scene));
+    }
+
+    private void LoadScene(string scene_name, LoadSceneMode load_scene_mode)
+    {
+        if (load_scene_mode == LoadSceneMode.Single)
+        {
+            DIContainer.Clear();
+            m_previous_active_scene_name = null;
+        }
+        else
+        {
+            m_previous_active_scene_name = SceneManager.GetActiveScene().name;
+        }
 
         gameObject.SetActive(true);
 
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         m_target_scene_name = scene_name;
+        m_load_scene_mode = load_scene_mode;
 
         StartCoroutine(LoadSceneProcess());
     }
@@ -40,7 +82,7 @@ public class LoadingManager : Singleton<LoadingManager>
 
         yield return StartCoroutine(Fade(true));
 
-        var op = SceneManager.LoadSceneAsync(m_target_scene_name);
+        var op = SceneManager.LoadSceneAsync(m_target_scene_name, m_load_scene_mode);
         op.allowSceneActivation = false;
 
         float elapsed_time = 0f;
@@ -92,11 +134,29 @@ public class LoadingManager : Singleton<LoadingManager>
     {
         if (arg0.name == m_target_scene_name)
         {
+            if (arg1 == LoadSceneMode.Additive)
+            {
+                SceneManager.SetActiveScene(arg0);
+            }
+
             m_canvas_group.interactable = false;
             m_canvas_group.blocksRaycasts = false;
 
             StartCoroutine(Fade(false));
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
+    }
+
+    private IEnumerator UnloadAdditiveSceneProcess(Scene scene)
+    {
+        Scene previous_scene = SceneManager.GetSceneByName(m_previous_active_scene_name);
+
+        if (previous_scene.IsValid() && previous_scene.isLoaded)
+        {
+            SceneManager.SetActiveScene(previous_scene);
+        }
+
+        yield return SceneManager.UnloadSceneAsync(scene);
+        m_previous_active_scene_name = null;
     }
 }

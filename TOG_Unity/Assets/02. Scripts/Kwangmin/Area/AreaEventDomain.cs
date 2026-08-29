@@ -2,11 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Kwangmin
 {
     public class AreaEventDomain : MonoBehaviour
     {
+
+        private const string ShopSceneName = "AreaEvent_Shop";
+        private const string BlacksmithSceneName = "AreaEvent_Blacksmith";
+        private const string BlessingSceneName = "AreaEvent_Blessing";
+
         [SerializeField] private AreaEventUI areaEventUI;
 
         [Header("Runtime Status")]
@@ -56,6 +62,7 @@ namespace Kwangmin
             if (areaEventUI != null)
             {
                 areaEventUI.Hide();
+                return;
             }
         }
 
@@ -108,15 +115,15 @@ namespace Kwangmin
             switch (type)
             {
                 case AreaEventType.Shop:
-                    LoadingManager.Instance?.LoadScene("AreaEvent_Shop");
+                    LoadingManager.Instance?.LoadSceneAdditive(ShopSceneName);
                     CloseView();
                     break;
                 case AreaEventType.Blacksmith:
-                    LoadingManager.Instance?.LoadScene("AreaEvent_Blacksmith");
+                    LoadingManager.Instance?.LoadSceneAdditive(BlacksmithSceneName);
                     CloseView();
                     break;
                 case AreaEventType.Blessing:
-                    LoadingManager.Instance?.LoadScene("AreaEvent_Blessing");
+                    LoadingManager.Instance?.LoadSceneAdditive(BlessingSceneName);
                     CloseView();
                     break;
                 case AreaEventType.Battle:

@@ -5,10 +5,12 @@ using DG.Tweening;
 using JxModule;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AreaEventUI : ViewBase
 {
     [SerializeField] private TMP_Text _texTopLabel;
+    [SerializeField] private Image _panel;
     [SerializeField] private AreaEventItemUI[] _items;
 
     private Action<AreaEventType> _onEventSelected;
@@ -54,15 +56,15 @@ public class AreaEventUI : ViewBase
         switch (type)
         {
             case AreaEventType.Shop:
-                LoadingManager.Instance?.LoadScene("AreaEvent_Shop");
+                LoadingManager.Instance?.LoadSceneAdditive("AreaEvent_Shop");
                 Hide();
                 break;
             case AreaEventType.Blacksmith:
-                LoadingManager.Instance?.LoadScene("AreaEvent_Blacksmith");
+                LoadingManager.Instance?.LoadSceneAdditive("AreaEvent_Blacksmith");
                 Hide();
                 break;
             case AreaEventType.Blessing:
-                LoadingManager.Instance?.LoadScene("AreaEvent_Blessing");
+                LoadingManager.Instance?.LoadSceneAdditive("AreaEvent_Blessing");
                 Hide();
                 break;
             default:
@@ -74,6 +76,8 @@ public class AreaEventUI : ViewBase
     public IEnumerator Show()
     {
         CanvasGroup.Hide();
+
+        _panel.raycastTarget = true;
 
         _toggleTween?.Kill();
         _toggleTween = CanvasGroup.DOFade(1f, 0.5f).OnComplete(CanvasGroup.Show);
@@ -116,10 +120,15 @@ public class AreaEventUI : ViewBase
         yield return Show();
     }
 
-    public void Hide()
+    public void Hide(Action onComplete = null)
     {
+        _panel.raycastTarget = false;
         _toggleTween?.Kill();
-        _toggleTween = CanvasGroup.DOFade(0f, 0.5f).OnComplete(CanvasGroup.Hide);
+        _toggleTween = CanvasGroup.DOFade(0f, 0.5f).OnComplete(() =>
+        {
+            CanvasGroup.Hide();
+            onComplete?.Invoke();
+        });
     }
 
     public void RefreshData(string title, List<AreaEventType> typeList)

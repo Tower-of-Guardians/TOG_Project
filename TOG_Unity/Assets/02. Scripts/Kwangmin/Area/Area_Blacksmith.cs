@@ -8,16 +8,16 @@ public class Area_Blacksmith : ClickableObject
     protected override void OnEnable()
     {
         base.OnEnable();
-        m_interactable_object.OnMouseUpAction += TryShopUI;
+        m_interactable_object.OnMouseUpAction += TryOpenUI;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        m_interactable_object.OnMouseUpAction -= TryShopUI; 
+        m_interactable_object.OnMouseUpAction -= TryOpenUI; 
     }
 
-    private void TryShopUI()
+    private void TryOpenUI()
     {
         if (_blacksmithUI != null)
         {
