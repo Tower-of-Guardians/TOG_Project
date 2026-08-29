@@ -1561,7 +1561,7 @@ GameObject:
   - component: {fileID: 1776773006}
   - component: {fileID: 1776773008}
   m_Layer: 0
-  m_Name: Xyilbia
+  m_Name: BlackSmith
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1575,9 +1575,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776773001}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9acc916b47feb3f469174d923ce79b71, type: 2}
+  m_Controller: {fileID: 9100000, guid: cca9325b7143db940b36fc47d143deb7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1633,7 +1633,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 670230546273294682, guid: 37c9d374f1a9b4199ab5656409bcc658, type: 3}
+  m_Sprite: {fileID: 9130478305477362661, guid: b345423376329e4448541420f543c407, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1653,7 +1653,7 @@ Transform:
   m_GameObject: {fileID: 1776773001}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.5, y: -1.5, z: 0}
+  m_LocalPosition: {x: 4, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

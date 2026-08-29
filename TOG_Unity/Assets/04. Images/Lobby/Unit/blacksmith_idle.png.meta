@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 5757d60c028cb4752ba944c42910fd85
+guid: b345423376329e4448541420f543c407
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1151905075149521417
-    second: Shop_0
+      213: 9130478305477362661
+    second: blacksmith_idle_0
+  - first:
+      213: -8695494846678698393
+    second: blacksmith_idle_1
+  - first:
+      213: 3822057697942927308
+    second: blacksmith_idle_2
+  - first:
+      213: -2936521051485135650
+    second: blacksmith_idle_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 700
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shop_0
+      name: blacksmith_idle_0
       rect:
         serializedVersion: 2
-        x: 137
-        y: 50
-        width: 2272
-        height: 3003
+        x: 0
+        y: 288
+        width: 288
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7fd3ebcef6c9300f0800000000000000
-      internalID: -1151905075149521417
+      spriteID: 5e3836bb4a9f5be70800000000000000
+      internalID: 9130478305477362661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blacksmith_idle_1
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 288
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 766f975f185635780800000000000000
+      internalID: -8695494846678698393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blacksmith_idle_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 288
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc77fe4e93daa0530800000000000000
+      internalID: 3822057697942927308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blacksmith_idle_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 288
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edc95ca79a16f37d0800000000000000
+      internalID: -2936521051485135650
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 301eb1c8d6a334f4db2006c4be092db2
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Shop_0: -1151905075149521417
+      blacksmith_idle_0: 9130478305477362661
+      blacksmith_idle_1: -8695494846678698393
+      blacksmith_idle_2: 3822057697942927308
+      blacksmith_idle_3: -2936521051485135650
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
