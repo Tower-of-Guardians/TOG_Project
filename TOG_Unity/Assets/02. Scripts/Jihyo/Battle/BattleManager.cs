@@ -470,4 +470,50 @@ public class BattleManager : MonoBehaviour
     {
         return isProcessingAttack;
     }
+
+    public void ForceVictoryForDebug()
+    {
+        if (!isInitialized || isProcessingAttack)
+        {
+            return;
+        }
+
+        StartCoroutine(ForceVictoryRoutine());
+    }
+
+    private IEnumerator ForceVictoryRoutine()
+    {
+        isProcessingAttack = true;
+        KillAllPrimaryMonsters();
+        yield return new WaitForSeconds(0.5f);
+
+        if (setupController != null)
+        {
+            setupController.RemoveDeadMonsters();
+        }
+
+        yield return HandleVictory();
+        isProcessingAttack = false;
+    }
+
+    private void KillAllPrimaryMonsters()
+    {
+        if (setupController == null)
+        {
+            return;
+        }
+
+        List<Monster> monsters = setupController.GetPrimaryMonsters();
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            Monster monster = monsters[i];
+            if (monster == null || !monster.IsAlive)
+            {
+                continue;
+            }
+
+            int lethalDamage = monster.MaxHealth + Mathf.CeilToInt(monster.ProtectionValue) + 1;
+            monster.TakeDamage(lethalDamage);
+        }
+    }
 }

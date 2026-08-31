@@ -101,6 +101,8 @@ public class BattleWindowEditor : EditorWindow
         DrawPlayerHealthSection();
         EditorGUILayout.Space(8f);
         DrawMonsterHealthSection();
+        EditorGUILayout.Space(8f);
+        DrawDebugVictorySection();
 
         if (!string.IsNullOrEmpty(statusMessage))
         {
@@ -258,6 +260,53 @@ public class BattleWindowEditor : EditorWindow
             EditorGUILayout.Space(4f);
             DrawUnitHealthControls(monster, $"{i + 1}. {monster.name}");
         }
+    }
+
+    private void DrawDebugVictorySection()
+    {
+        EditorGUILayout.LabelField("Debug Victory", EditorStyles.boldLabel);
+
+        if (!CanUseBattleTools())
+        {
+            EditorGUILayout.HelpBox("Game 씬 플레이 모드에서만 디버그 승리를 실행할 수 있습니다.", MessageType.None);
+            return;
+        }
+
+        BattleManager battleManager = FindSceneObject<BattleManager>();
+        if (battleManager == null)
+        {
+            EditorGUILayout.HelpBox("씬에서 BattleManager를 찾을 수 없습니다.", MessageType.Warning);
+            return;
+        }
+
+        EditorGUI.BeginDisabledGroup(battleManager.IsProcessingAttack());
+        if (GUILayout.Button("Kill All & Show Result", GUILayout.Height(28f)))
+        {
+            ForceDebugVictory(battleManager);
+        }
+        EditorGUI.EndDisabledGroup();
+
+        EditorGUILayout.HelpBox(
+            "필드 몬스터를 전부 죽인 뒤 기존 승리 판정(HandleVictory)으로 결과창을 엽니다. 인카운터 Gold/Exp가 지급됩니다.",
+            MessageType.Info);
+    }
+
+    private void ForceDebugVictory(BattleManager battleManager)
+    {
+        if (battleManager == null)
+        {
+            SetStatus("BattleManager가 없습니다.", MessageType.Error);
+            return;
+        }
+
+        if (battleManager.IsProcessingAttack())
+        {
+            SetStatus("전투 처리 중에는 디버그 승리를 실행할 수 없습니다.", MessageType.Warning);
+            return;
+        }
+
+        battleManager.ForceVictoryForDebug();
+        SetStatus("디버그 승리: 몬스터 처치 후 결과창을 엽니다.", MessageType.Info);
     }
 
     private static void DrawUnitHealthControls(BaseUnit unit, string label)

@@ -23,15 +23,32 @@ namespace Jongmin
         {
             if (GUI.Button(new Rect(new Vector2(1800, 150), new Vector2(100, 50)), "Result"))
             {
-                TempShow();
+                ForceVictoryForDebug();
             }
         }
 
         [Button("Test")]
         public void TempShow()
         {
-            var resultData = new ResultData(46, 82, true);
-            StartCoroutine(ShowRoutine(resultData));
+            ForceVictoryForDebug();
+        }
+
+        private void ForceVictoryForDebug()
+        {
+            if (!DIContainer.IsRegistered<BattleManager>())
+            {
+                Debug.LogWarning("ResultDomain: BattleManager가 없어 디버그 승리를 실행할 수 없습니다.");
+                return;
+            }
+
+            BattleManager battleManager = DIContainer.Resolve<BattleManager>();
+            if (battleManager == null)
+            {
+                Debug.LogWarning("ResultDomain: BattleManager가 null입니다.");
+                return;
+            }
+
+            battleManager.ForceVictoryForDebug();
         }
         
         public void Construct()

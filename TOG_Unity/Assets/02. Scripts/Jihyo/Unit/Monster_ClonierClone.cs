@@ -24,4 +24,14 @@ public class Monster_ClonierClone : Monster
     {
         summonSlotX = slotX;
     }
+
+    protected override void RefreshUI()
+    {
+        base.RefreshUI();
+
+        if (!HasPreparedAction)
+        {
+            HideAttackStatus();
+        }
+    }
 }

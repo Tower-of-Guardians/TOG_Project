@@ -88,6 +88,8 @@ public class Monster : BaseUnit
     private MonsterActionDefinition preparedAction;
     private int preparedActionValue;
     private bool hasPreparedAction;
+
+    protected bool HasPreparedAction => hasPreparedAction;
     private bool hasGuardShieldPendingExpire;
     private int guardShieldAppliedTurnNumber = -1;
     private GameObject attackStatusRoot;
@@ -1066,6 +1068,14 @@ public class Monster : BaseUnit
         }
 
         RefreshActionIndicator();
+    }
+
+    protected void HideAttackStatus()
+    {
+        if (attackStatusRoot != null)
+        {
+            attackStatusRoot.SetActive(false);
+        }
     }
 
     private int ResolveAttackDisplayValue(out bool showAttackStatus)

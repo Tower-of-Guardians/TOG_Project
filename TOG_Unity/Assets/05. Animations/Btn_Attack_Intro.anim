@@ -42,8 +42,10 @@ AnimationClip:
       value: {fileID: -5188046428047771285, guid: 4c4b184b7a29e9843943447e54291569, type: 3}
     - time: 0.8333333
       value: {fileID: -4421811155914275007, guid: 4c4b184b7a29e9843943447e54291569, type: 3}
+    - time: 0.9166667
+      value: {fileID: -4574788962965949657, guid: 4c4b184b7a29e9843943447e54291569, type: 3}
     attribute: m_Sprite
-    path: 
+    path: Img_Attack Button
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
     flags: 2
@@ -55,7 +57,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 4052182778
       attribute: 2015549526
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114
@@ -75,12 +77,13 @@ AnimationClip:
     - {fileID: -3858360630498910793, guid: 4c4b184b7a29e9843943447e54291569, type: 3}
     - {fileID: -5188046428047771285, guid: 4c4b184b7a29e9843943447e54291569, type: 3}
     - {fileID: -4421811155914275007, guid: 4c4b184b7a29e9843943447e54291569, type: 3}
+    - {fileID: -4574788962965949657, guid: 4c4b184b7a29e9843943447e54291569, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.84999996
+    m_StopTime: 0.93333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

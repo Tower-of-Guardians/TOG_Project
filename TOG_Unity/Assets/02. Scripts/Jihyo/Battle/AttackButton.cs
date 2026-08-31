@@ -1,252 +1,48 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, IPointerDownHandler, IPointerUpHandler
+public class AttackButton : MonoBehaviour
 {
-    private Animator animator;
-    private Button button;
-    private TurnManager turnManager;
-
-    private bool isMouseOver;
-    private bool isProcessingClick;
-    private bool isPlayingIntro;
-    private Coroutine introRoutine;
-    private Coroutine clickRoutine;
-    private Coroutine subscribeRoutine;
-    private Coroutine preventDisabledAnimationCoroutine;
-
-    private const string TRIGGER_NORMAL = "Normal";
-    private const string TRIGGER_HIGHLIGHTED = "Highlighted";
-    private const string TRIGGER_PRESSED = "Pressed";
-    private const string TRIGGER_SELECTED = "Selected";
-    private const string TRIGGER_DISABLED = "Disabled";
     private const string STATE_INTRO = "Intro";
     private const string STATE_NORMAL = "Normal";
     private const string STATE_HIGHLIGHTED = "Highlighted";
-    private const string STATE_PRESSED = "Pressed";
     private const string STATE_SELECTED = "Selected";
+
+    private Animator animator;
+    private Button button;
+    private RectTransform hitRect;
+    private TurnManager turnManager;
+
+    private bool isInside;
+    private bool isPlayingIntro;
+    private bool isPlayingSelected;
+    private bool isHiddenUntilNextTurn;
+    private Coroutine introRoutine;
+    private Coroutine selectedRoutine;
+    private Coroutine subscribeRoutine;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         button = GetComponent<Button>();
+        hitRect = transform as RectTransform;
+
+        if (button != null)
+        {
+            button.interactable = false;
+        }
     }
 
     private void Start()
     {
-        PlayIntroAnimation();
+        PlayIntro();
 
-        if (turnManager == null && subscribeRoutine == null)
+        if (subscribeRoutine == null && turnManager == null)
         {
             subscribeRoutine = StartCoroutine(SubscribeToTurnManager());
         }
-    }
-
-    private void PlayIntroAnimation()
-    {
-        if (animator == null)
-        {
-            return;
-        }
-
-        if (introRoutine != null)
-        {
-            StopCoroutine(introRoutine);
-            introRoutine = null;
-        }
-
-        if (clickRoutine != null)
-        {
-            StopCoroutine(clickRoutine);
-            clickRoutine = null;
-        }
-
-        if (preventDisabledAnimationCoroutine != null)
-        {
-            StopCoroutine(preventDisabledAnimationCoroutine);
-            preventDisabledAnimationCoroutine = null;
-        }
-
-        isProcessingClick = false;
-        isPlayingIntro = true;
-        ResetAllTriggers();
-        button.interactable = false;
-        animator.Play(STATE_INTRO, 0, 0f);
-        introRoutine = StartCoroutine(HandleIntroEnd());
-    }
-
-    private IEnumerator HandleIntroEnd()
-    {
-        if (animator == null)
-        {
-            isPlayingIntro = false;
-            button.interactable = true;
-            introRoutine = null;
-            SyncHoverFromPointer();
-            yield break;
-        }
-
-        float waitTime = 0f;
-        while (waitTime < 0.2f && !IsInState(STATE_INTRO))
-        {
-            yield return null;
-            waitTime += Time.deltaTime;
-        }
-
-        if (!IsInState(STATE_INTRO))
-        {
-            animator.Play(STATE_INTRO, 0, 0f);
-            yield return null;
-        }
-
-        while (IsInState(STATE_INTRO))
-        {
-            animator.ResetTrigger(TRIGGER_DISABLED);
-            yield return null;
-        }
-
-        animator.ResetTrigger(TRIGGER_DISABLED);
-        isPlayingIntro = false;
-        button.interactable = true;
-        yield return null;
-        SyncHoverFromPointer();
-        introRoutine = null;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        SetHovered(true);
-    }
-
-    public void OnPointerMove(PointerEventData eventData)
-    {
-        SetHovered(true);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (isPlayingIntro || button == null || !button.interactable)
-        {
-            return;
-        }
-
-        if (IsOwnedGraphic(eventData.pointerCurrentRaycast.gameObject))
-        {
-            return;
-        }
-
-        SetHovered(false);
-    }
-
-    private bool IsOwnedGraphic(GameObject target)
-    {
-        if (target == null)
-        {
-            return false;
-        }
-
-        return target == gameObject || target.transform.IsChildOf(transform);
-    }
-
-    private void SetHovered(bool hovered)
-    {
-        if (isMouseOver == hovered)
-        {
-            if (hovered)
-            {
-                KeepHighlightedIfNeeded();
-            }
-
-            return;
-        }
-
-        isMouseOver = hovered;
-        ApplyIdleVisual();
-    }
-
-    private void KeepHighlightedIfNeeded()
-    {
-        if (!CanHandlePointer() || animator == null || !isMouseOver)
-        {
-            return;
-        }
-
-        if (!IsInState(STATE_HIGHLIGHTED))
-        {
-            ApplyIdleVisual();
-        }
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (!CanHandlePointer() || animator == null)
-        {
-            return;
-        }
-
-        ResetAllTriggers();
-        animator.Play(STATE_PRESSED, 0, 0f);
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (!CanHandlePointer())
-        {
-            return;
-        }
-
-        if (isMouseOver)
-        {
-            clickRoutine = StartCoroutine(ClickSequence());
-            return;
-        }
-
-        ApplyIdleVisual();
-    }
-
-    private IEnumerator ClickSequence()
-    {
-        isProcessingClick = true;
-
-        if (animator != null)
-        {
-            ResetAllTriggers();
-            animator.Play(STATE_SELECTED, 0, 0f);
-            yield return null;
-
-            if (IsInState(STATE_SELECTED))
-            {
-                yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-            }
-        }
-
-        button.interactable = false;
-
-        if (preventDisabledAnimationCoroutine != null)
-        {
-            StopCoroutine(preventDisabledAnimationCoroutine);
-        }
-
-        preventDisabledAnimationCoroutine = StartCoroutine(PreventDisabledAnimation());
-        button.onClick.Invoke();
-        clickRoutine = null;
-    }
-
-    private IEnumerator PreventDisabledAnimation()
-    {
-        while (button != null && !button.interactable)
-        {
-            if (animator != null)
-            {
-                animator.ResetTrigger(TRIGGER_DISABLED);
-            }
-
-            yield return null;
-        }
-
-        preventDisabledAnimationCoroutine = null;
     }
 
     private void OnEnable()
@@ -261,6 +57,199 @@ public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         UnsubscribeFromTurnManager();
         subscribeRoutine = null;
+    }
+
+    private void Update()
+    {
+        bool inside = IsPointerInside();
+
+        if (isHiddenUntilNextTurn || isPlayingIntro || isPlayingSelected)
+        {
+            isInside = inside;
+            return;
+        }
+
+        if (inside && WasPressedThisFrame())
+        {
+            isInside = inside;
+            PlaySelected();
+            return;
+        }
+
+        if (inside == isInside)
+        {
+            return;
+        }
+
+        isInside = inside;
+        PlayHover();
+    }
+
+    private void PlayIntro()
+    {
+        StopSelected();
+        ShowButton();
+
+        if (introRoutine != null)
+        {
+            StopCoroutine(introRoutine);
+        }
+
+        introRoutine = StartCoroutine(IntroRoutine());
+    }
+
+    private IEnumerator IntroRoutine()
+    {
+        isPlayingIntro = true;
+        isHiddenUntilNextTurn = false;
+        PlayState(STATE_INTRO, forceRestart: true);
+
+        yield return null;
+        while (IsInState(STATE_INTRO) && GetNormalizedTime() < 1f)
+        {
+            yield return null;
+        }
+
+        isPlayingIntro = false;
+        introRoutine = null;
+        isInside = IsPointerInside();
+        PlayHover();
+    }
+
+    private void PlaySelected()
+    {
+        StopSelected();
+        selectedRoutine = StartCoroutine(SelectedRoutine());
+    }
+
+    private IEnumerator SelectedRoutine()
+    {
+        isPlayingSelected = true;
+        PlayState(STATE_SELECTED, forceRestart: true);
+
+        yield return null;
+        if (IsInState(STATE_SELECTED))
+        {
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        }
+
+        if (button != null)
+        {
+            button.onClick.Invoke();
+        }
+
+        isPlayingSelected = false;
+        selectedRoutine = null;
+        HideUntilNextTurn();
+    }
+
+    private void HideUntilNextTurn()
+    {
+        isHiddenUntilNextTurn = true;
+        isInside = false;
+        SetVisible(false);
+    }
+
+    private void ShowButton()
+    {
+        isHiddenUntilNextTurn = false;
+        SetVisible(true);
+    }
+
+    private void SetVisible(bool visible)
+    {
+        if (animator != null)
+        {
+            animator.enabled = visible;
+        }
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(visible);
+        }
+    }
+
+    private void StopSelected()
+    {
+        if (selectedRoutine == null)
+        {
+            return;
+        }
+
+        StopCoroutine(selectedRoutine);
+        selectedRoutine = null;
+        isPlayingSelected = false;
+    }
+
+    private void PlayHover()
+    {
+        PlayState(isInside ? STATE_HIGHLIGHTED : STATE_NORMAL);
+    }
+
+    private void PlayState(string stateName, bool forceRestart = false)
+    {
+        if (animator == null)
+        {
+            return;
+        }
+
+        if (!forceRestart && IsInState(stateName) && !animator.IsInTransition(0))
+        {
+            return;
+        }
+
+        animator.Play(stateName, 0, 0f);
+    }
+
+    private bool IsInState(string stateName)
+    {
+        return animator != null && animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    }
+
+    private float GetNormalizedTime()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    }
+
+    private bool IsPointerInside()
+    {
+        if (hitRect == null)
+        {
+            return false;
+        }
+
+        return RectTransformUtility.RectangleContainsScreenPoint(hitRect, GetPointerScreenPosition(), GetEventCamera());
+    }
+
+    private static bool WasPressedThisFrame()
+    {
+        if (Mouse.current != null)
+        {
+            return Mouse.current.leftButton.wasPressedThisFrame;
+        }
+
+        return Input.GetMouseButtonDown(0);
+    }
+
+    private static Vector2 GetPointerScreenPosition()
+    {
+        if (Mouse.current != null)
+        {
+            return Mouse.current.position.ReadValue();
+        }
+
+        return Input.mousePosition;
+    }
+
+    private Camera GetEventCamera()
+    {
+        Canvas canvas = GetComponentInParent<Canvas>();
+        if (canvas == null || canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+        {
+            return null;
+        }
+
+        return canvas.worldCamera;
     }
 
     private IEnumerator SubscribeToTurnManager()
@@ -298,82 +287,8 @@ public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void OnTurnStart()
     {
-        PlayIntroAnimation();
+        PlayIntro();
     }
 
     public void OnAttackButtonClicked() { }
-
-    private bool CanHandlePointer()
-    {
-        return button != null && button.interactable && !isProcessingClick && !isPlayingIntro;
-    }
-
-    private void ApplyIdleVisual()
-    {
-        if (!CanHandlePointer() || animator == null)
-        {
-            return;
-        }
-
-        string targetState = isMouseOver ? STATE_HIGHLIGHTED : STATE_NORMAL;
-        if (IsInState(targetState))
-        {
-            return;
-        }
-
-        ResetAllTriggers();
-        animator.Play(targetState, 0, 0f);
-    }
-
-    private void SyncHoverFromPointer()
-    {
-        isMouseOver = IsPointerOverThis();
-        ApplyIdleVisual();
-    }
-
-    private bool IsPointerOverThis()
-    {
-        RectTransform rect = transform as RectTransform;
-        if (rect == null)
-        {
-            return false;
-        }
-
-        return RectTransformUtility.RectangleContainsScreenPoint(rect, GetPointerScreenPosition(), GetEventCamera());
-    }
-
-    private static Vector2 GetPointerScreenPosition()
-    {
-        return Input.mousePosition;
-    }
-
-    private Camera GetEventCamera()
-    {
-        Canvas canvas = GetComponentInParent<Canvas>();
-        if (canvas == null || canvas.renderMode == RenderMode.ScreenSpaceOverlay)
-        {
-            return null;
-        }
-
-        return canvas.worldCamera;
-    }
-
-    private void ResetAllTriggers()
-    {
-        if (animator == null)
-        {
-            return;
-        }
-
-        animator.ResetTrigger(TRIGGER_NORMAL);
-        animator.ResetTrigger(TRIGGER_HIGHLIGHTED);
-        animator.ResetTrigger(TRIGGER_PRESSED);
-        animator.ResetTrigger(TRIGGER_SELECTED);
-        animator.ResetTrigger(TRIGGER_DISABLED);
-    }
-
-    private bool IsInState(string stateName)
-    {
-        return animator != null && animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
-    }
 }
