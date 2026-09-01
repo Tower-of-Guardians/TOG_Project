@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
+  m_Name: DT_EventReward
+  m_EditorClassIdentifier: 
+  dataTableCsv: {fileID: 4900000, guid: 42afc950cd1508440adbb03fa035e6eb, type: 3}
+  dataTableRowName: Jongmin.EventRewardDataTableRow, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=356024588
+  dataTableRows: []
+  dataTableRowScript: {fileID: 0}

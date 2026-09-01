@@ -31,7 +31,6 @@ public class GameLifetimeScope : LifetimeScope
         // ConfigureResultUI(builder);
         ConfigureCraftmanUI(builder);
         ConfigureMerchantUI(builder);
-        ConfigureEventUI(builder);
     }
 
     private void ConfigureCore(IContainerBuilder builder)
@@ -493,11 +492,6 @@ public class GameLifetimeScope : LifetimeScope
 
             resolver.Resolve<MerchantPresenter>();
         });
-    }
-
-    private void ConfigureEventUI(IContainerBuilder builder)
-    {
-        builder.RegisterComponentInHierarchy<EventPresenter>();
     }
 
     private static T FindInScene<T>() where T : Object
