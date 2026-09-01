@@ -2100,8 +2100,6 @@ GameObject:
   - component: {fileID: 6793724522367334817}
   - component: {fileID: 8923648163832173622}
   - component: {fileID: 2764094145342332961}
-  - component: {fileID: 4079591804856030496}
-  - component: {fileID: 275861570789915152}
   m_Layer: 0
   m_Name: PF_EventCanvas
   m_TagString: Untagged
@@ -2205,36 +2203,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4079591804856030496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2687189348031286124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61fb820210c45f4b79ccdecb42642ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventGroup: {fileID: 2764094145342332961}
-  backgroundImage: {fileID: 6566371252737140918}
-  closeButton: {fileID: 7534231236312193337}
-  prefabRoot: {fileID: 8978767017949531243}
---- !u!114 &275861570789915152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2687189348031286124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eed6200af0d34471bf1441aabc8f530b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventLoadManager: {fileID: 0}
-  eventUI: {fileID: 4079591804856030496}
 --- !u!1 &2896177671120908476
 GameObject:
   m_ObjectHideFlags: 0
