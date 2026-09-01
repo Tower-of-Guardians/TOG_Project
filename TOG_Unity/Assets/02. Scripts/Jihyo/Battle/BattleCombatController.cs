@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Jongmin;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,6 +24,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     private int pendingOverwhelmingDamage;
     private int pendingBloodSuckingPercent;
     private int preparedAttackValue;
+    private EventDomain eventDomain;
 
     public float GetStatAnimationWaitTime() => statAnimationWaitTime;
     public bool GetPlayerAttackHitsAll() => playerAttackHitsAll;
@@ -37,6 +39,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
 
         battleManager = manager;
+        eventDomain = DIContainer.IsRegistered<EventDomain>() ? DIContainer.Resolve<EventDomain>() : null;
         isInitialized = true;
     }
 
@@ -57,6 +60,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
 
         battleManager = null;
+        eventDomain = null;
         isInitialized = false;
         battlePermanentAttackBonus = 0;
         preparedAttackValue = 0;
@@ -289,6 +293,9 @@ public class BattleCombatController : MonoBehaviour, IBattleController
                 totalDealtDamage += finalDamage;
             }
         }
+
+        eventDomain?.RecordSingleAttackDamage(totalDealtDamage);
+
         ApplyOnHitSynergies(player, totalDealtDamage);
 
         if (playerAnimation != null)

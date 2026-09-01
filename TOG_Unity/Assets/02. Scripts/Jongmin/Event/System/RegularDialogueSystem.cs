@@ -8,15 +8,15 @@ namespace Jongmin
     public class RegularDialogueSystem : MonoBehaviour
     {
         private DialogueRunner _dialogueRunner;
-        private NPCDialogueHistory _dialogueHistory;
+        private IMutableDialogueProgress _dialogueProgress;
         private DataTable _dialogueDataTable;
 
         public void Construct(DialogueRunner dialogueRunner,
-                              NPCDialogueHistory dialogueHistory,
+                              IMutableDialogueProgress dialogueProgress,
                               DataTable dialogueDataTable)
         {
             _dialogueRunner = dialogueRunner;
-            _dialogueHistory = dialogueHistory;
+            _dialogueProgress = dialogueProgress;
             _dialogueDataTable = dialogueDataTable;
         }
 
@@ -27,20 +27,20 @@ namespace Jongmin
         {
             if (string.IsNullOrWhiteSpace(npcID) ||
                 _dialogueRunner == null ||
-                _dialogueHistory == null ||
+                _dialogueProgress == null ||
                 _dialogueDataTable == null)
             {
                 return false;
             }
 
-            var step = _dialogueHistory.GetStep(npcID);
+            var step = _dialogueProgress.GetStep(npcID);
             var dialogueDataTableRow = FindDialogue(npcID, step);
             if (dialogueDataTableRow == null)
             {
                 return false;
             }
 
-            _dialogueRunner.StartDialogue(dialogueDataTableRow.dialogueID, () => _dialogueHistory.AdvanceStep(npcID));
+            _dialogueRunner.StartDialogue(dialogueDataTableRow.dialogueID, () => _dialogueProgress.AdvanceStep(npcID));
             return true;
         }
 

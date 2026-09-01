@@ -5,9 +5,19 @@
         bool HasSeen(string eventID);
     }
 
+    public interface IMutableEventProgress : IEventProgress
+    {
+        void MarkSeen(string eventID);
+    }
+
     public interface IDialogueProgress
     {
         int GetStep(string npcID);
+    }
+
+    public interface IMutableDialogueProgress : IDialogueProgress
+    {
+        void AdvanceStep(string npcID);
     }
     
     public interface IShopProgress
