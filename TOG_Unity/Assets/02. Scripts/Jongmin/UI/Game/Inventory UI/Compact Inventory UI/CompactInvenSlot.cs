@@ -16,6 +16,10 @@ namespace Jongmin
         private void OnEnable()
         {
             _slotBehaviour = null;
+            
+            card.View.CanvasGroup.interactable = false;
+            card.View.CanvasGroup.blocksRaycasts = false;
+            
             CanvasGroup.Show();
             selectedImage.CanvasGroup.Hide();
         }
@@ -27,6 +31,7 @@ namespace Jongmin
 
         public override void OnPointerDown(PointerEventData eventData)
         {
+            Debug.Log("들어옴");
             _slotBehaviour?.OnPointerDown(this);
         }
 
