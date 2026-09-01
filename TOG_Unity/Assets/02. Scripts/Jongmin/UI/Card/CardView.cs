@@ -16,6 +16,7 @@ namespace Jongmin
         [SerializeField] protected LabelView cardAtkLabel;
         [SerializeField] protected LabelView cardDefLabel;
         [SerializeField] private Image[] starObjectArray;
+        [SerializeField] private Image[] synergyFrameArray;
         [SerializeField] private Image[] synergyImageArray;
         [SerializeField] private GameObject selectImage;
         [SerializeField] private Image atkLockImage;
@@ -111,7 +112,37 @@ namespace Jongmin
                 synergyImage.gameObject.SetActive(false);
             }
 
-            // TODO: 시너지 데이터를 채워야 합니다.
+            foreach (var synergyFrame in synergyFrameArray)
+            {
+                synergyFrame.gameObject.SetActive(false);
+            }
+
+            if (cardData.synergy1Icon != null)
+            {
+                synergyFrameArray[0].gameObject.SetActive(true);
+                synergyFrameArray[0].sprite = cardData.synergyFrameImage;
+                
+                synergyImageArray[0].gameObject.SetActive(true);
+                synergyImageArray[0].sprite = cardData.synergy1Icon;
+            }
+            
+            if (cardData.synergy2Icon != null)
+            {
+                synergyFrameArray[1].gameObject.SetActive(true);
+                synergyFrameArray[1].sprite = cardData.synergyFrameImage;
+                
+                synergyImageArray[1].gameObject.SetActive(true);
+                synergyImageArray[1].sprite = cardData.synergy2Icon;
+            }
+            
+            if (cardData.synergy3Icon != null)
+            {
+                synergyFrameArray[2].gameObject.SetActive(true);
+                synergyFrameArray[2].sprite = cardData.synergyFrameImage;
+                
+                synergyImageArray[2].gameObject.SetActive(true);
+                synergyImageArray[2].sprite = cardData.synergy3Icon;
+            }
         }
     }
 }
