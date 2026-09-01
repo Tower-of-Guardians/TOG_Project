@@ -7,38 +7,20 @@ namespace Jongmin
     public class EventDialogueSystem : MonoBehaviour
     {
         private DialogueRunner _dialogueRunner;
-        private EventDomain _eventDomain;
 
-        public event Action<EventDataTableRow> OnBeginEventReward;
-
-        public void Construct(DialogueRunner dialogueRunner, EventDomain eventDomain)
+        public void Construct(DialogueRunner dialogueRunner)
         {
             _dialogueRunner = dialogueRunner;
-            _eventDomain = eventDomain;
         }
-
-        /// <summary>
-        /// NPC와 이벤트 대화를 진행할 수 있는지 시도합니다.
-        /// </summary>
-        public bool TryStartEventDialogue(string npcID)
+        
+        public bool StartEventDialogue(EventDataTableRow eventDataTableRow, Action onEnded)
         {
-            if (string.IsNullOrWhiteSpace(npcID) || _dialogueRunner == null || _eventDomain == null)
+            if (eventDataTableRow == null || string.IsNullOrWhiteSpace(eventDataTableRow.dialogueID) || _dialogueRunner == null)
             {
                 return false;
             }
 
-            var eventDataTableRow = _eventDomain.FindRunnableEvent(npcID);
-            if (eventDataTableRow == null)
-            {
-                return false;
-            }
-
-            _dialogueRunner.StartDialogue(eventDataTableRow.dialogueID, () =>
-            {
-                OnBeginEventReward?.Invoke(eventDataTableRow);
-                _eventDomain.MarkEventSeen(eventDataTableRow);
-            });
-
+            _dialogueRunner.StartDialogue(eventDataTableRow.dialogueID, onEnded);
             return true;
         }
     }

@@ -53,7 +53,7 @@ namespace Jongmin
                 _progressCache.Run,
                 _progressCache.Run);
 
-            eventDialogueSystem.Construct(dialogueRunner, this);
+            eventDialogueSystem.Construct(dialogueRunner);
             regularDialogueSystem.Construct(dialogueRunner, _progressCache.Global, _dialogueEntryDataTable);
             eventRewardSystem.Construct(_eventRewardDataTable);
 
@@ -62,15 +62,22 @@ namespace Jongmin
         
         public void BindEvents()
         {
-            eventDialogueSystem.OnBeginEventReward += HandleBeginEventReward;
+            if (GameData.Instance == null)
+            {
+                return;
+            }
+
             GameData.Instance.SynergyChange += HandleSynergyChanged;
-            
             HandleSynergyChanged(GameData.Instance.synergyIDList);
         }
         
         public void ReleaseEvents()
         {
-            eventDialogueSystem.OnBeginEventReward -= HandleBeginEventReward;
+            if (GameData.Instance == null)
+            {
+                return;
+            }
+
             GameData.Instance.SynergyChange -= HandleSynergyChanged;
         }
 
@@ -138,7 +145,7 @@ namespace Jongmin
         /// NPC와 진행 가능한 대화를 시작합니다.
         /// 이벤트 대화를 먼저 검사하고, 이벤트 대화가 없을 때만 정규 대화를 검사합니다.
         /// </summary>
-        public bool TryStartDialogue(string npcID)
+        private bool TryStartDialogue(string npcID)
         {
             if (TryStartEventDialogue(npcID))
             {
@@ -152,16 +159,31 @@ namespace Jongmin
         /// NPC와 진행 가능한 이벤트 대화를 시작합니다.
         /// 이벤트 조건과 이미 본 이벤트 여부는 내부에서 검사합니다.
         /// </summary>
-        public bool TryStartEventDialogue(string npcID)
+        private bool TryStartEventDialogue(string npcID)
         {
-            return eventDialogueSystem != null && eventDialogueSystem.TryStartEventDialogue(npcID);
+            if (eventDialogueSystem == null)
+            {
+                return false;
+            }
+
+            var eventDataTableRow = FindRunnableEvent(npcID);
+            if (eventDataTableRow == null)
+            {
+                return false;
+            }
+
+            return eventDialogueSystem.StartEventDialogue(eventDataTableRow, () =>
+            {
+                HandleBeginEventReward(eventDataTableRow);
+                MarkEventSeen(eventDataTableRow);
+            });
         }
 
         /// <summary>
         /// NPC와 진행 가능한 정규 대화를 시작합니다.
         /// 현재 NPC 대화 step에 매칭되는 대화가 있을 때만 실행합니다.
         /// </summary>
-        public bool TryStartRegularDialogue(string npcID)
+        private bool TryStartRegularDialogue(string npcID)
         {
             return regularDialogueSystem != null && regularDialogueSystem.TryStartRegularDialogue(npcID);
         }
@@ -170,7 +192,7 @@ namespace Jongmin
         /// NPC에게서 현재 실행 가능한 이벤트 행을 찾습니다.
         /// 같은 NPC의 이벤트 중 활성화 상태, 일회성 실행 여부, 조건 만족 여부를 검사한 뒤 우선순위가 가장 낮은 이벤트를 반환합니다.
         /// </summary>
-        public EventDataTableRow FindRunnableEvent(string npcID)
+        private EventDataTableRow FindRunnableEvent(string npcID)
         {
             if (string.IsNullOrWhiteSpace(npcID) || _eventDataTable == null)
             {
@@ -191,7 +213,7 @@ namespace Jongmin
         /// 일회성 이벤트를 이미 실행했던 이벤트로 기록합니다.
         /// 대화가 끝난 뒤 이벤트 재실행을 막기 위해 호출합니다.
         /// </summary>
-        public void MarkEventSeen(EventDataTableRow eventDataTableRow)
+        private void MarkEventSeen(EventDataTableRow eventDataTableRow)
         {
             if (eventDataTableRow == null || !eventDataTableRow.isOnce)
             {
