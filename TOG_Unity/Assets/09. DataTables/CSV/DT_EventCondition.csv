@@ -1,0 +1,14 @@
+rowID,isEnable,conditionType,targetID,value,arguments
+COND_Krabian_AllShopPurchased,TRUE,ShopAllItemsPurchased,,0,
+COND_FirstReachedStage5,TRUE,FirstReachedStage,,5,
+COND_MaxSingleAttackDamage200,TRUE,MaxSingleAttackDamageAtLeast,,200,
+COND_MaxSingleAttackDamage400,TRUE,MaxSingleAttackDamageAtLeast,,400,
+COND_MaxSingleAttackDamage600,TRUE,MaxSingleAttackDamageAtLeast,,600,
+COND_GainedFiveTwoStarCards_Grade2,TRUE,GainedCardGradeCountInRunAtLeast,,5,2
+COND_FirstActivatedHonestySynergy5,TRUE,FirstActivatedSynergyAtLeast,210001,5,
+COND_FirstActivatedShieldAttackSynergy5,TRUE,FirstActivatedSynergyAtLeast,210002,5,
+COND_FirstActivatedBloodSuckingSynergy5,TRUE,FirstActivatedSynergyAtLeast,210004,5,
+COND_FirstActivatedPlunderSynergy5,TRUE,FirstActivatedSynergyAtLeast,210005,5,
+COND_FirstActivatedDarkSynergy5,TRUE,FirstActivatedSynergyAtLeast,210008,5,
+COND_FirstActivatedMysterySynergy5,TRUE,FirstActivatedSynergyAtLeast,210006,5,
+COND_FirstActivatedUnfairSynergy5,TRUE,FirstActivatedSynergyAtLeast,210013,5,

@@ -6,5 +6,7 @@ namespace JxDialogueBox
     {
         public string dialogueID;
         public string entryNodeID;
+        public string npcID;
+        public int step;
     }
 }

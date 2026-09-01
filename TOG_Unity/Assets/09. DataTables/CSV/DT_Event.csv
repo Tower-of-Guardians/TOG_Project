@@ -1,0 +1,4 @@
+rowID,isEnable,npcID,dialogueID,priority,conditionIDs,rewardIDs,isOnce
+EV_Krabian_AllShopPurchased,TRUE,Krabian,Krabian_Relic,0,COND_Krabian_AllShopPurchased,,TRUE
+EV_Priest_FirstReachedStage5,TRUE,Priest,EventPriest_First,0,COND_FirstReachedStage5,,TRUE
+EV_Heca_GainedFiveTwoStarCards,TRUE,Heca,Heca_Second,0,COND_GainedFiveTwoStarCards_Grade2,,TRUE

@@ -133,6 +133,12 @@ namespace Jongmin
         {
             cardData.time = (long)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             DataCenter.Instance.userDeck.Add(cardData);
+
+            if (DIContainer.IsRegistered<EventDomain>())
+            {
+                DIContainer.Resolve<EventDomain>().RecordGainedCard(cardData);
+            }
+
             RequestRefreshInventory?.Invoke();
         }
 
