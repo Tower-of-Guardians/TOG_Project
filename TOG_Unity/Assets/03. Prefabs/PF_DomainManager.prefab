@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 1207552728969784614}
   - component: {fileID: 7353947813304814526}
   - component: {fileID: 1695937485330053346}
+  - component: {fileID: 9018627852006201758}
+  - component: {fileID: 1285990846914638512}
   m_Layer: 0
   m_Name: PF_DomainManager
   m_TagString: Untagged
@@ -187,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c0b8649a9c4cfd8b15a57203d5a028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notifySystem: {fileID: 0}
 --- !u!114 &7890823130175476279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,8 +225,8 @@ MonoBehaviour:
   invenTabView: {fileID: 0}
   inventorySystem: {fileID: 0}
   cardSortSystem: {fileID: 0}
-  cardInfoDomain: {fileID: 0}
-  cardInvenDomain: {fileID: 0}
+  cardInfoDomain: {fileID: 7890823130175476279}
+  cardInvenDomain: {fileID: 836590661421698260}
 --- !u!114 &836590661421698260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +242,7 @@ MonoBehaviour:
   cardInvenView: {fileID: 0}
   cardInvenSystem: {fileID: 0}
   cardInvenEventSystem: {fileID: 0}
-  cardInfoDomain: {fileID: 0}
+  cardInfoDomain: {fileID: 7890823130175476279}
 --- !u!114 &4880444273205225551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,8 +289,9 @@ MonoBehaviour:
   gachaView: {fileID: 0}
   gachaSystem: {fileID: 0}
   gachaEventSystem: {fileID: 0}
-  cardInfoDomain: {fileID: 0}
-  compactInvenDomain: {fileID: 0}
+  cardInfoDomain: {fileID: 7890823130175476279}
+  compactInvenDomain: {fileID: 1207552728969784614}
+  areaEventDomain: {fileID: 9018627852006201758}
 --- !u!114 &1695937485330053346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,5 +308,40 @@ MonoBehaviour:
   forgeView: {fileID: 0}
   craftmanSystem: {fileID: 0}
   forgeSystem: {fileID: 0}
-  compactInvenDomain: {fileID: 0}
-  speechBubbleDomain: {fileID: 0}
+  compactInvenDomain: {fileID: 1207552728969784614}
+  speechBubbleDomain: {fileID: 4880444273205225551}
+--- !u!114 &9018627852006201758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00a1130b50214448979432ec5f61887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaEventUI: {fileID: 0}
+  currentAreaEventId: 310102
+  playerStatus:
+    ShopCountInStage: 0
+    SmithyCountInStage: 0
+    BlessingCooldownTurns: 0
+--- !u!114 &1285990846914638512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b55b6126d2447aa9ccf4195c380ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueRunner: {fileID: 0}
+  eventDialogueSystem: {fileID: 0}
+  regularDialogueSystem: {fileID: 0}
+  eventConditionSystem: {fileID: 0}
+  eventRewardSystem: {fileID: 0}
