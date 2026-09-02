@@ -9,6 +9,7 @@ namespace Jongmin
         public string displayImage;
         public ERelicType relicType;
         public string description;
+        public string condition;
         public List<string> effectIDs;
     }
 }
