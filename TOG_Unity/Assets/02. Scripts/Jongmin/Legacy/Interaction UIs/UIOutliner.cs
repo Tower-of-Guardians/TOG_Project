@@ -12,6 +12,8 @@ public class UIOutliner : MonoBehaviour
     [SerializeField] private bool outlineEnable;
     [ShowIf("outlineEnable"), SerializeField, Range(0f, 2f)] private float outlineThickness = 1f;  
     [ShowIf("outlineEnable"), SerializeField] private Color outlineColor = Color.white;
+
+    private Material runtimeOutlineMaterial;
     
     private static readonly int OutlineID = Shader.PropertyToID("_Outline");
     private static readonly int OutlineColorID = Shader.PropertyToID("_OutlineColor");
@@ -36,7 +38,20 @@ public class UIOutliner : MonoBehaviour
             enabled = false;
         }
         
-        targetImage.material = outlineMaterial;
+        runtimeOutlineMaterial = new Material(outlineMaterial);
+        targetImage.material = runtimeOutlineMaterial;
+        ApplyOutline(false);
+    }
+
+    private void OnDestroy()
+    {
+        if (runtimeOutlineMaterial == null)
+            return;
+
+        if (Application.isPlaying)
+            Destroy(runtimeOutlineMaterial);
+        else
+            DestroyImmediate(runtimeOutlineMaterial);
     }
 
     public void Show()
@@ -61,8 +76,11 @@ public class UIOutliner : MonoBehaviour
 
     private void ApplyOutline(bool isActive)
     {
-        targetImage.material.SetFloat(OutlineID, isActive ? 1f : 0f);
-        targetImage.material.SetColor(OutlineColorID, outlineColor);
-        targetImage.material.SetFloat(OutlineThicknessID, outlineThickness);
+        if (runtimeOutlineMaterial == null)
+            return;
+
+        runtimeOutlineMaterial.SetFloat(OutlineID, isActive ? 1f : 0f);
+        runtimeOutlineMaterial.SetColor(OutlineColorID, outlineColor);
+        runtimeOutlineMaterial.SetFloat(OutlineThicknessID, outlineThickness);
     }
 }

@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1656923792582434692, guid: d8f2cc2a894f9f541a69f141395c506a, type: 3}
+  m_Sprite: {fileID: 2624615686710680001, guid: 771ec0f1351c5b548b6297dafb32be1d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -179,10 +179,10 @@ GameObject:
   - component: {fileID: 2515949631767008520}
   - component: {fileID: 4157162761302568755}
   - component: {fileID: 1013252097531171494}
-  - component: {fileID: 6388747903850669784}
-  - component: {fileID: 3630465972179163099}
+  - component: {fileID: 2695799357447925523}
+  - component: {fileID: 1437361862871316124}
   m_Layer: 5
-  m_Name: PF_EventCraftmanNpc
+  m_Name: PF_EventBlessingNpc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,7 +233,7 @@ Animator:
   m_GameObject: {fileID: 8204512018641580614}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7b6d50d35e2b9464091d948edfc3f87b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 46041d578ba3ad841af690fc205d2e67, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -245,7 +245,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6388747903850669784
+--- !u!114 &2695799357447925523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65d94e2fbd93d64684353ed9f0b0e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3630465972179163099
+--- !u!114 &1437361862871316124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,7 +282,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4904193816123273464, guid: d0d8b2207105f434ba55f1e6135d15fe, type: 3}
       propertyPath: 'interactionTags.Array.data[0]'
-      value: "<sprite=0>\uD5E4\uCE74\uC640\uC758 \uB300\uD654"
+      value: "<sprite=0>\uC790\uC77C\uBE44\uC544\uC640\uC758 \uB300\uD654"
       objectReference: {fileID: 0}
     - target: {fileID: 6136861738569394680, guid: d0d8b2207105f434ba55f1e6135d15fe, type: 3}
       propertyPath: m_Name
@@ -503,7 +503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8652603331867533421, guid: 4991f5dfc92966841b21ab8421ab8d1a, type: 3}
       propertyPath: targetName
-      value: "\uD5E4\uCE74"
+      value: "\uC790\uC77C\uBE44\uC544"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

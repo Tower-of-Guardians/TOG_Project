@@ -5,6 +5,7 @@ public class ClickableObject : MonoBehaviour
 {
     protected InteractableObject m_interactable_object;
     private Animator m_animator;
+    private bool m_has_clicked_parameter;
 
     private static readonly int m_clicked_parameter = Animator.StringToHash("Clicked");
 
@@ -12,6 +13,15 @@ public class ClickableObject : MonoBehaviour
     {
         m_interactable_object = GetComponent<InteractableObject>();
         m_animator = GetComponent<Animator>();
+
+        foreach (AnimatorControllerParameter parameter in m_animator.parameters)
+        {
+            if (parameter.nameHash != m_clicked_parameter || parameter.type != AnimatorControllerParameterType.Bool)
+                continue;
+
+            m_has_clicked_parameter = true;
+            break;
+        }
     }
 
     protected virtual void OnEnable()
@@ -27,8 +37,14 @@ public class ClickableObject : MonoBehaviour
     }
 
     private void MouseDownAction()
-        => m_animator.SetBool(m_clicked_parameter, true);
+    {
+        if (m_has_clicked_parameter)
+            m_animator.SetBool(m_clicked_parameter, true);
+    }
 
     private void MouseUpAction()
-        => m_animator.SetBool(m_clicked_parameter, false);
+    {
+        if (m_has_clicked_parameter)
+            m_animator.SetBool(m_clicked_parameter, false);
+    }
 }
