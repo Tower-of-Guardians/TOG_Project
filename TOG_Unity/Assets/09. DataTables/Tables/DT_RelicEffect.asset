@@ -1,0 +1,282 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9193582066505379793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_006
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_006
+  isEnable: 1
+  effectType: 3
+  triggerType: 3
+  valueType: 1
+  targetIDs: []
+  value: 3
+--- !u!114 &-8586019568714588800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_009
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_009
+  isEnable: 1
+  effectType: 4
+  triggerType: 0
+  valueType: 1
+  targetIDs: []
+  value: 10
+--- !u!114 &-7476542372008423231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_013
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_013
+  isEnable: 1
+  effectType: 7
+  triggerType: 5
+  valueType: 1
+  targetIDs: []
+  value: 1
+--- !u!114 &-3007369439240075365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_008
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_008
+  isEnable: 1
+  effectType: 8
+  triggerType: 1
+  valueType: 0
+  targetIDs:
+  - "\uBD80\uBAA8 \uB9C8\uBC95 ID"
+  value: 0
+--- !u!114 &-2943507404864699427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_003
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_003
+  isEnable: 1
+  effectType: 2
+  triggerType: 0
+  valueType: 1
+  targetIDs: []
+  value: 2
+--- !u!114 &-2765903445797877916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_001
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_001
+  isEnable: 1
+  effectType: 0
+  triggerType: 0
+  valueType: 2
+  targetIDs: []
+  value: 10
+--- !u!114 &-2714555157419159686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_010
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_010
+  isEnable: 1
+  effectType: 5
+  triggerType: 0
+  valueType: 2
+  targetIDs: []
+  value: 10
+--- !u!114 &-563504568020805807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_007
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_007
+  isEnable: 1
+  effectType: 2
+  triggerType: 4
+  valueType: 1
+  targetIDs: []
+  value: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
+  m_Name: DT_RelicEffect
+  m_EditorClassIdentifier: 
+  dataTableCsv: {fileID: 4900000, guid: 3d6455c8f6e8ada4a92e5fe927a96440, type: 3}
+  dataTableRowName: Jongmin.RelicEffectDataTableRow, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=897106267
+  dataTableRows:
+  - {fileID: -2765903445797877916}
+  - {fileID: 2441227316616868047}
+  - {fileID: -2943507404864699427}
+  - {fileID: 2094953878512095390}
+  - {fileID: 198191846616375300}
+  - {fileID: -9193582066505379793}
+  - {fileID: -563504568020805807}
+  - {fileID: -3007369439240075365}
+  - {fileID: -8586019568714588800}
+  - {fileID: -2714555157419159686}
+  - {fileID: 6463640004632351815}
+  - {fileID: 4279825412627045782}
+  - {fileID: -7476542372008423231}
+  dataTableRowScript: {fileID: 0}
+--- !u!114 &198191846616375300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_005
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_005
+  isEnable: 1
+  effectType: 2
+  triggerType: 0
+  valueType: 1
+  targetIDs: []
+  value: 6
+--- !u!114 &2094953878512095390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_004
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_004
+  isEnable: 1
+  effectType: 2
+  triggerType: 0
+  valueType: 1
+  targetIDs: []
+  value: 4
+--- !u!114 &2441227316616868047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_002
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_002
+  isEnable: 1
+  effectType: 1
+  triggerType: 2
+  valueType: 2
+  targetIDs: []
+  value: 50
+--- !u!114 &4279825412627045782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_012
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_012
+  isEnable: 1
+  effectType: 8
+  triggerType: 1
+  valueType: 0
+  targetIDs:
+  - "\uC18C\uB144 \uB9C8\uBC95 ID"
+  value: 0
+--- !u!114 &6463640004632351815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2561cb6fe81d4dadba91ebf4cd1464dd, type: 3}
+  m_Name: RelicEffect_011
+  m_EditorClassIdentifier: 
+  rowID: RelicEffect_011
+  isEnable: 1
+  effectType: 6
+  triggerType: 6
+  valueType: 1
+  targetIDs: []
+  value: 10
