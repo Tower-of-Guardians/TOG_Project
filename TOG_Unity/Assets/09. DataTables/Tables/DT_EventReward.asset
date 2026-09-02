@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7409229098542786215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_003
+  m_EditorClassIdentifier: 
+  rowID: Reward_003
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_006
+  amount: 1
+  arguments: []
+--- !u!114 &-1381236280537753527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_001
+  m_EditorClassIdentifier: 
+  rowID: Reward_001
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_001
+  amount: 1
+  arguments: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,5 +52,26 @@ MonoBehaviour:
   dataTableRowName: Jongmin.EventRewardDataTableRow, Assembly-CSharp, Version=0.0.0.0,
     Culture=neutral, PublicKeyToken=null
   remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=356024588
-  dataTableRows: []
+  dataTableRows:
+  - {fileID: -1381236280537753527}
+  - {fileID: 8042986678861217810}
+  - {fileID: -7409229098542786215}
   dataTableRowScript: {fileID: 0}
+--- !u!114 &8042986678861217810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_002
+  m_EditorClassIdentifier: 
+  rowID: Reward_002
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_002
+  amount: 1
+  arguments: []

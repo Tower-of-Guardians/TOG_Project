@@ -1,0 +1,322 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8210134116465454342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_005
+  m_EditorClassIdentifier: 
+  rowID: Relic_005
+  isEnable: 1
+  displayName: "\uAC00\uB514\uC5B8\uC758 \uC815\uC2E0 3"
+  displayImage: {fileID: 0}
+  relicType: 0
+  description: "\uB2F9\uC2E0\uC740 \uAC00\uB514\uC5B8\uC758 \uC758\uC9C0\uB97C \uC774\uC5B4\uBC1B\uC558\uC2B5\uB2C8\uB2E4."
+  condition: 
+  effectIDs:
+  - RelicEffect_005
+--- !u!114 &-7962137949439619119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_013
+  m_EditorClassIdentifier: 
+  rowID: Relic_013
+  isEnable: 1
+  displayName: "\uC655\uC758 \uD798"
+  displayImage: {fileID: 0}
+  relicType: 1
+  description: "(\uBE44\uC5B4\uC788\uC74C)"
+  condition: 
+  effectIDs:
+  - RelicEffect_013
+--- !u!114 &-7665413722984171012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_011
+  m_EditorClassIdentifier: 
+  rowID: Relic_011
+  isEnable: 1
+  displayName: "\uB9C8\uB140\uC758 \uD798"
+  displayImage: {fileID: 0}
+  relicType: 1
+  description: "(\uBE44\uC5B4\uC788\uC74C)"
+  condition: 
+  effectIDs:
+  - RelicEffect_011
+--- !u!114 &-7644389145438450800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_007
+  m_EditorClassIdentifier: 
+  rowID: Relic_007
+  isEnable: 1
+  displayName: "\uC804\uC0AC\uC758 \uD798"
+  displayImage: {fileID: 0}
+  relicType: 1
+  description: "(\uBE44\uC5B4\uC788\uC74C)"
+  condition: 
+  effectIDs:
+  - RelicEffect_007
+--- !u!114 &-7376085898038636911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_008
+  m_EditorClassIdentifier: 
+  rowID: Relic_008
+  isEnable: 1
+  displayName: "\uBCF4\uD638\uC790\uC758 \uD798"
+  displayImage: {fileID: 0}
+  relicType: 1
+  description: "(\uBE44\uC5B4\uC788\uC74C)"
+  condition: 
+  effectIDs:
+  - RelicEffect_008
+--- !u!114 &-5159418131642851544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_002
+  m_EditorClassIdentifier: 
+  rowID: Relic_002
+  isEnable: 1
+  displayName: "\uC131\uC9C1\uC790\uC758 \uBCF4\uC8FC"
+  displayImage: {fileID: 0}
+  relicType: 0
+  description: "\uD0DC\uC5B4\uB098\uC11C \uCC98\uC74C \uB290\uAEF4\uBCF4\uB294 \uC2E0\uBE44\uD55C
+    \uB9C8\uB825\uC758 \uBCF4\uC8FC\uC785\uB2C8\uB2E4. \uB3C4\uB300\uCCB4 \uADF8\uB140\uB294
+    \uC815\uCCB4\uAC00 \uBB58\uAE4C\uC694?"
+  condition: "{0}\uC2A4\uD14C\uC774\uC9C0\uC5D0 \uCD5C\uCD08 \uC9C4\uC785\uD55C \uC774\uD6C4
+    \uC131\uC9C1\uC790\uC640\uC758 \uB300\uD654\uB97C \uD1B5\uD574 \uD68D\uB4DD"
+  effectIDs:
+  - RelicEffect_002
+--- !u!114 &-4630798838318046013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_010
+  m_EditorClassIdentifier: 
+  rowID: Relic_010
+  isEnable: 1
+  displayName: "\uC57D\uD0C8\uAFBC\uC758 \uD798"
+  displayImage: {fileID: 0}
+  relicType: 1
+  description: "(\uBE44\uC5B4\uC788\uC74C)"
+  condition: 
+  effectIDs:
+  - RelicEffect_010
+--- !u!114 &-4200698063951385621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_001
+  m_EditorClassIdentifier: 
+  rowID: Relic_001
+  isEnable: 1
+  displayName: "\uD06C\uB77C\uBE44\uC548\uC758 \uC1A1\uACF3\uB2C8"
+  displayImage: {fileID: 0}
+  relicType: 0
+  description: "\uD0D1\uC758 \uC0C1\uC778\uC778 \uB9C8\uC871 \uD06C\uB77C\uBE44\uC548\uC774
+    \uACE0\uB9C8\uC6C0\uC758 \uD45C\uC2DC\uB85C \uC900 \uC120\uBB3C\uC785\uB2C8\uB2E4.
+    \"\uB9C8\uC871\uC758 \uC774\uBE68\uC744 \uC804\uB9AC\uD488\uC73C\uB85C \uC5BB\uC740
+    \uAC8C \uC544\uB2C8\uB77C \uB9C8\uC871\uD55C\uD14C \uC120\uBB3C \uBC1B\uC740\uAC70\uB77C\uACE0
+    \uB9D0\uD558\uACE0 \uB2E4\uB2C8\uBA74 \uC815\uC2E0\uB098\uAC04 \uB188 \uCDE8\uAE09\uC744
+    \uBC1B\uACA0\uC9C0.\""
+  condition: "\uC0C1\uC810\uC5D0 \uC788\uB294 \uBAA8\uB4E0 \uD488\uBAA9\uC744 \uAD6C\uB9E4\uD55C
+    \uD6C4 \uD06C\uB9AC\uBE44\uC548\uACFC\uC758 \uB300\uD654\uB97C \uD1B5\uD574 \uD68D\uB4DD"
+  effectIDs:
+  - RelicEffect_001
+--- !u!114 &-3948921465826693322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_004
+  m_EditorClassIdentifier: 
+  rowID: Relic_004
+  isEnable: 1
+  displayName: "\uAC00\uB514\uC5B8\uC758 \uC815\uC2E0 2"
+  displayImage: {fileID: 0}
+  relicType: 0
+  description: "\uAC00\uB514\uC5B8\uC774 \uB2F9\uC2E0\uC758 \uD798\uC744 \uB208\uC5EC\uACA8
+    \uBCF4\uACE0 \uC788\uC2B5\uB2C8\uB2E4. \uADF8\uC5D0\uAC8C \uC778\uC815\uBC1B\uAE30
+    \uC704\uD574 \uB354 \uB178\uB825\uD574\uBCF4\uC138\uC694."
+  condition: 
+  effectIDs:
+  - RelicEffect_004
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e7f3d83ee4d15ab06220faf1fed1b, type: 3}
+  m_Name: DT_Relic
+  m_EditorClassIdentifier: 
+  dataTableCsv: {fileID: 4900000, guid: 40b5370125e587940ab925e6a3874a6b, type: 3}
+  dataTableRowName: Jongmin.RelicDataTableRow, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=1079365067
+  dataTableRows:
+  - {fileID: -4200698063951385621}
+  - {fileID: -5159418131642851544}
+  - {fileID: 8733704653634582133}
+  - {fileID: -3948921465826693322}
+  - {fileID: -8210134116465454342}
+  - {fileID: 651345852948833889}
+  - {fileID: -7644389145438450800}
+  - {fileID: -7376085898038636911}
+  - {fileID: 544741347267319634}
+  - {fileID: -4630798838318046013}
+  - {fileID: -7665413722984171012}
+  - {fileID: 7984751522390049919}
+  - {fileID: -7962137949439619119}
+  dataTableRowScript: {fileID: 0}
+--- !u!114 &544741347267319634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_009
+  m_EditorClassIdentifier: 
+  rowID: Relic_009
+  isEnable: 1
+  displayName: "\uD761\uD608\uADC0\uC758 \uD798"
+  displayImage: {fileID: 0}
+  relicType: 1
+  description: "(\uBE44\uC5B4\uC788\uC74C)"
+  condition: 
+  effectIDs:
+  - RelicEffect_009
+--- !u!114 &651345852948833889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_006
+  m_EditorClassIdentifier: 
+  rowID: Relic_006
+  isEnable: 1
+  displayName: "\uD5E4\uCE74\uC758 \uBCF4\uC11D"
+  displayImage: {fileID: 0}
+  relicType: 1
+  description: "\uCE74\uB4DC\uB97C \uD569\uCE58\uB294 \uC7AC\uBBF8\uB97C \uC54C\uAC8C\uB41C
+    \uB2F9\uC2E0\uC744 \uC704\uD55C \uD5E4\uCE74\uC758 \uC120\uBB3C\uC785\uB2C8\uB2E4."
+  condition: 
+  effectIDs:
+  - RelicEffect_006
+--- !u!114 &7984751522390049919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_012
+  m_EditorClassIdentifier: 
+  rowID: Relic_012
+  isEnable: 1
+  displayName: "\uC815\uB839\uC758 \uD798"
+  displayImage: {fileID: 0}
+  relicType: 1
+  description: "(\uBE44\uC5B4\uC788\uC74C)"
+  condition: 
+  effectIDs:
+  - RelicEffect_012
+--- !u!114 &8733704653634582133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2150e63f57fb418fca31d1e5cb685, type: 3}
+  m_Name: Relic_003
+  m_EditorClassIdentifier: 
+  rowID: Relic_003
+  isEnable: 1
+  displayName: "\uAC00\uB514\uC5B8\uC758 \uC815\uC2E0 1"
+  displayImage: {fileID: 0}
+  relicType: 1
+  description: "\uAC00\uB514\uC5B8\uC774 \uB2F9\uC2E0\uC758 \uD798\uC744 \uB208\uC5EC\uACA8
+    \uBCF4\uACE0 \uC788\uC2B5\uB2C8\uB2E4. \uADF8\uC5D0\uAC8C \uC778\uC815\uBC1B\uAE30
+    \uC704\uD574 \uB354 \uB178\uB825\uD574\uBCF4\uC138\uC694."
+  condition: "1\uD68C\uC758 \uACF5\uACA9\uC73C\uB85C {0} \uC774\uC0C1\uC758 \uB370\uBBF8\uC9C0\uB97C
+    \uC785\uD78C \uD6C4 \uAC00\uB514\uC5B8\uC758 \uB3D9\uC0C1\uACFC\uC758 \uB300\uD654\uB97C
+    \uD1B5\uD574 \uD68D\uB4DD"
+  effectIDs:
+  - RelicEffect_003

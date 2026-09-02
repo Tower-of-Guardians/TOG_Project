@@ -2924,6 +2924,7 @@ MonoBehaviour:
   craftmanDomain: {fileID: 165631216}
   speechBubbleDomain: {fileID: 204024442}
   eventDomain: {fileID: 2036656973}
+  relicDomain: {fileID: 2071703043}
 --- !u!114 &1601849244 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7746541700865949885, guid: 161c60fc59de50a4d85bc1d97ed0980b, type: 3}
@@ -3344,6 +3345,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1928632934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2071703043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7128511458962333026, guid: 4c4f51e3843d03c4b9c59a9a30e21468, type: 3}
+  m_PrefabInstance: {fileID: 918446738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65321ab7108f5fb4eadab92d38c8a2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2119145326
 PrefabInstance:
   m_ObjectHideFlags: 0

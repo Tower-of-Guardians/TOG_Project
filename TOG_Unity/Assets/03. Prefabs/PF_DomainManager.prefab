@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 1695937485330053346}
   - component: {fileID: 9018627852006201758}
   - component: {fileID: 1285990846914638512}
+  - component: {fileID: 7128511458962333026}
   m_Layer: 0
   m_Name: PF_DomainManager
   m_TagString: Untagged
@@ -348,3 +349,15 @@ MonoBehaviour:
   regularDialogueSystem: {fileID: 0}
   eventConditionSystem: {fileID: 0}
   eventRewardSystem: {fileID: 0}
+--- !u!114 &7128511458962333026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674045155352673939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65321ab7108f5fb4eadab92d38c8a2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
