@@ -1,1 +1,4 @@
 rowID,isEnable,rewardType,targetID,amount,arguments
+Reward_001,TRUE,Relic,Relic_001,1,
+Reward_002,TRUE,Relic,Relic_002,1,
+Reward_003,TRUE,Relic,Relic_006,1,

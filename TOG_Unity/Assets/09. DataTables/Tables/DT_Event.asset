@@ -40,7 +40,8 @@ MonoBehaviour:
   priority: 0
   conditionIDs:
   - COND_GainedFiveTwoStarCards_Grade2
-  rewardIDs: []
+  rewardIDs:
+  - Reward_003
   isOnce: 1
 --- !u!114 &2018614478089265791
 MonoBehaviour:
@@ -61,7 +62,8 @@ MonoBehaviour:
   priority: 0
   conditionIDs:
   - COND_Krabian_AllShopPurchased
-  rewardIDs: []
+  rewardIDs:
+  - Reward_001
   isOnce: 1
 --- !u!114 &3638657564503073456
 MonoBehaviour:
@@ -82,5 +84,6 @@ MonoBehaviour:
   priority: 0
   conditionIDs:
   - COND_FirstReachedStage5
-  rewardIDs: []
+  rewardIDs:
+  - Reward_002
   isOnce: 1

@@ -16,6 +16,8 @@ namespace Jongmin
         [SerializeField] private EventConditionSystem eventConditionSystem;
         [SerializeField] private EventRewardSystem eventRewardSystem;
 
+        private RelicDomain _relicDomain;
+        
         private DataTable _eventDataTable;
         private DataTable _eventConditionDataTable;
         private DataTable _eventRewardDataTable;
@@ -32,8 +34,10 @@ namespace Jongmin
         public IEventProgress EventProgress => _progressCache?.Global;
         public IDialogueProgress DialogueProgress => _progressCache?.Global;
         
-        public void Construct()
+        public void Construct(RelicDomain relicDomain)
         {
+            _relicDomain = relicDomain;
+            
             _eventDataTable = DataTableManager.FindTable<EventDataTableRow>("DT_Event");
             _eventConditionDataTable = DataTableManager.FindTable<EventConditionDataTableRow>("DT_EventCondition");
             _eventRewardDataTable = DataTableManager.FindTable<EventRewardDataTableRow>("DT_EventReward");
@@ -48,7 +52,7 @@ namespace Jongmin
                 null,
                 _progressCache.Run,
                 _progressCache.Run,
-                null,
+                relicDomain,
                 _progressCache.CardInventory,
                 _progressCache.Run,
                 _progressCache.Run);
@@ -62,23 +66,15 @@ namespace Jongmin
         
         public void BindEvents()
         {
-            if (GameData.Instance == null)
-            {
-                return;
-            }
-
             GameData.Instance.SynergyChange += HandleSynergyChanged;
+            eventRewardSystem.OnRewardRelic += HandleOnRewardRelic;
             HandleSynergyChanged(GameData.Instance.synergyIDList);
         }
         
         public void ReleaseEvents()
         {
-            if (GameData.Instance == null)
-            {
-                return;
-            }
-
             GameData.Instance.SynergyChange -= HandleSynergyChanged;
+            eventRewardSystem.OnRewardRelic -= HandleOnRewardRelic;
         }
 
         /// <summary>
@@ -237,6 +233,13 @@ namespace Jongmin
         {
             _progressCache?.Run.RefreshSynergyRecords(synergyMap);
         }
+        
+#region Event Handlings
+        private void HandleOnRewardRelic(string relicID)
+        {
+            _relicDomain.TryAddRelic(relicID);
+        }
+#endregion
 
         private void OnDestroy()
         {

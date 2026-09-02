@@ -15,7 +15,7 @@ MonoBehaviour:
   rowID: Relic_005
   isEnable: 1
   displayName: "\uAC00\uB514\uC5B8\uC758 \uC815\uC2E0 3"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 0
   description: "\uB2F9\uC2E0\uC740 \uAC00\uB514\uC5B8\uC758 \uC758\uC9C0\uB97C \uC774\uC5B4\uBC1B\uC558\uC2B5\uB2C8\uB2E4."
   condition: 
@@ -36,7 +36,7 @@ MonoBehaviour:
   rowID: Relic_013
   isEnable: 1
   displayName: "\uC655\uC758 \uD798"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 1
   description: "(\uBE44\uC5B4\uC788\uC74C)"
   condition: 
@@ -57,7 +57,7 @@ MonoBehaviour:
   rowID: Relic_011
   isEnable: 1
   displayName: "\uB9C8\uB140\uC758 \uD798"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 1
   description: "(\uBE44\uC5B4\uC788\uC74C)"
   condition: 
@@ -78,7 +78,7 @@ MonoBehaviour:
   rowID: Relic_007
   isEnable: 1
   displayName: "\uC804\uC0AC\uC758 \uD798"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 1
   description: "(\uBE44\uC5B4\uC788\uC74C)"
   condition: 
@@ -99,7 +99,7 @@ MonoBehaviour:
   rowID: Relic_008
   isEnable: 1
   displayName: "\uBCF4\uD638\uC790\uC758 \uD798"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 1
   description: "(\uBE44\uC5B4\uC788\uC74C)"
   condition: 
@@ -120,7 +120,7 @@ MonoBehaviour:
   rowID: Relic_002
   isEnable: 1
   displayName: "\uC131\uC9C1\uC790\uC758 \uBCF4\uC8FC"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 0
   description: "\uD0DC\uC5B4\uB098\uC11C \uCC98\uC74C \uB290\uAEF4\uBCF4\uB294 \uC2E0\uBE44\uD55C
     \uB9C8\uB825\uC758 \uBCF4\uC8FC\uC785\uB2C8\uB2E4. \uB3C4\uB300\uCCB4 \uADF8\uB140\uB294
@@ -144,7 +144,7 @@ MonoBehaviour:
   rowID: Relic_010
   isEnable: 1
   displayName: "\uC57D\uD0C8\uAFBC\uC758 \uD798"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 1
   description: "(\uBE44\uC5B4\uC788\uC74C)"
   condition: 
@@ -165,7 +165,7 @@ MonoBehaviour:
   rowID: Relic_001
   isEnable: 1
   displayName: "\uD06C\uB77C\uBE44\uC548\uC758 \uC1A1\uACF3\uB2C8"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 0
   description: "\uD0D1\uC758 \uC0C1\uC778\uC778 \uB9C8\uC871 \uD06C\uB77C\uBE44\uC548\uC774
     \uACE0\uB9C8\uC6C0\uC758 \uD45C\uC2DC\uB85C \uC900 \uC120\uBB3C\uC785\uB2C8\uB2E4.
@@ -192,7 +192,7 @@ MonoBehaviour:
   rowID: Relic_004
   isEnable: 1
   displayName: "\uAC00\uB514\uC5B8\uC758 \uC815\uC2E0 2"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 0
   description: "\uAC00\uB514\uC5B8\uC774 \uB2F9\uC2E0\uC758 \uD798\uC744 \uB208\uC5EC\uACA8
     \uBCF4\uACE0 \uC788\uC2B5\uB2C8\uB2E4. \uADF8\uC5D0\uAC8C \uC778\uC815\uBC1B\uAE30
@@ -246,7 +246,7 @@ MonoBehaviour:
   rowID: Relic_009
   isEnable: 1
   displayName: "\uD761\uD608\uADC0\uC758 \uD798"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 1
   description: "(\uBE44\uC5B4\uC788\uC74C)"
   condition: 
@@ -267,7 +267,7 @@ MonoBehaviour:
   rowID: Relic_006
   isEnable: 1
   displayName: "\uD5E4\uCE74\uC758 \uBCF4\uC11D"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 1
   description: "\uCE74\uB4DC\uB97C \uD569\uCE58\uB294 \uC7AC\uBBF8\uB97C \uC54C\uAC8C\uB41C
     \uB2F9\uC2E0\uC744 \uC704\uD55C \uD5E4\uCE74\uC758 \uC120\uBB3C\uC785\uB2C8\uB2E4."
@@ -289,7 +289,7 @@ MonoBehaviour:
   rowID: Relic_012
   isEnable: 1
   displayName: "\uC815\uB839\uC758 \uD798"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 1
   description: "(\uBE44\uC5B4\uC788\uC74C)"
   condition: 
@@ -310,7 +310,7 @@ MonoBehaviour:
   rowID: Relic_003
   isEnable: 1
   displayName: "\uAC00\uB514\uC5B8\uC758 \uC815\uC2E0 1"
-  displayImage: 
+  displayImage: {fileID: 0}
   relicType: 1
   description: "\uAC00\uB514\uC5B8\uC774 \uB2F9\uC2E0\uC758 \uD798\uC744 \uB208\uC5EC\uACA8
     \uBCF4\uACE0 \uC788\uC2B5\uB2C8\uB2E4. \uADF8\uC5D0\uAC8C \uC778\uC815\uBC1B\uAE30

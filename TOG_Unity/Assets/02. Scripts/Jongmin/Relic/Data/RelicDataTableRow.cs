@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using JxModule.DataTable;
+using UnityEngine;
 
 namespace Jongmin
 {
     public class RelicDataTableRow : DataTableRowBase
     {
         public string displayName;
-        public string displayImage;
+        public Texture2D displayImage;
         public ERelicType relicType;
         public string description;
         public string condition;
