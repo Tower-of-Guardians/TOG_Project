@@ -11,15 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01. Scenes/Game.unity
     guid: d0e589bf960c7a84cb43b2d2a8a9907b
-  - enabled: 1
-    path: Assets/01. Scenes/Kwangmin/AreaEvent_Blacksmith.unity
-    guid: e0bacbc405a6dff4ab9d3580ab0779f5
-  - enabled: 1
-    path: Assets/01. Scenes/Kwangmin/AreaEvent_Blessing.unity
-    guid: df255673aab643f44befc8885e468d06
-  - enabled: 1
-    path: Assets/01. Scenes/Kwangmin/AreaEvent_Shop.unity
-    guid: bd2bd10cffc51ce468a51550fc77ac29
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 64874e1dfb77111448ee7dcc677836ad, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

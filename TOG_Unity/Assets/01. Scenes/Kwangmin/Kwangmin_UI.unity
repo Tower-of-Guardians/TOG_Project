@@ -278,7 +278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453056156}
-  - component: {fileID: 453056155}
+  - component: {fileID: 453056157}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -286,7 +286,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &453056155
+--- !u!4 &453056156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453056154}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &453056157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,21 +326,6 @@ MonoBehaviour:
   spatialAudioPoolSize: 0
   maxSoundPropagationDepth: 0
   engineLogging: 0
---- !u!4 &453056156
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453056154}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &657701697
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +356,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaEventUI: {fileID: 1599009232}
+  shopPrefab: {fileID: 4525384009715724649, guid: df981a005c47caa488637ec4e2a5e2ac, type: 3}
+  blacksmithPrefab: {fileID: 7833832246039579358, guid: b1e1925be7f048447be7f1127d753ea4, type: 3}
+  blessingPrefab: {fileID: 2191615193539565511, guid: 9dac84047397ea4499097e717ea2d89b, type: 3}
   currentAreaEventId: AreaEvent_01
   playerStatus:
     ShopCountInStage: 0

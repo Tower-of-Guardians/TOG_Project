@@ -323,6 +323,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaEventUI: {fileID: 0}
+  shopPrefab: {fileID: 4525384009715724649, guid: df981a005c47caa488637ec4e2a5e2ac, type: 3}
+  blacksmithPrefab: {fileID: 7833832246039579358, guid: b1e1925be7f048447be7f1127d753ea4, type: 3}
+  blessingPrefab: {fileID: 2191615193539565511, guid: 9dac84047397ea4499097e717ea2d89b, type: 3}
   currentAreaEventId: 310102
   playerStatus:
     ShopCountInStage: 0

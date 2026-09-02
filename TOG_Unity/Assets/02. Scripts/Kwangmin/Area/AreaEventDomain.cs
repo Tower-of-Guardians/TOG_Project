@@ -8,18 +8,20 @@ namespace Kwangmin
 {
     public class AreaEventDomain : MonoBehaviour
     {
-
-        private const string ShopSceneName = "AreaEvent_Shop";
-        private const string BlacksmithSceneName = "AreaEvent_Blacksmith";
-        private const string BlessingSceneName = "AreaEvent_Blessing";
-
         [SerializeField] private AreaEventUI areaEventUI;
+
+        [Header("Area Event Prefabs")]
+        [SerializeField] private GameObject shopPrefab;
+        [SerializeField] private GameObject blacksmithPrefab;
+        [SerializeField] private GameObject blessingPrefab;
 
         [Header("Runtime Status")]
         [SerializeField] private string currentAreaEventId = "AreaEvent_01";
         [SerializeField] private PlayerEventStatus playerStatus;
 
         public event Action<AreaEventType> OnAreaEventSelected;
+
+        private GameObject activeAreaEventInstance;
 
         private void Start()
         {
@@ -31,6 +33,8 @@ namespace Kwangmin
 
         public void OpenView(string areaEventId = null)
         {
+            CloseActiveEvent();
+
             if (!string.IsNullOrEmpty(areaEventId))
             {
                 currentAreaEventId = areaEventId;
@@ -115,16 +119,13 @@ namespace Kwangmin
             switch (type)
             {
                 case AreaEventType.Shop:
-                    LoadingManager.Instance?.LoadSceneAdditive(ShopSceneName);
-                    CloseView();
+                    OpenAreaEventPrefab(shopPrefab, type);
                     break;
                 case AreaEventType.Blacksmith:
-                    LoadingManager.Instance?.LoadSceneAdditive(BlacksmithSceneName);
-                    CloseView();
+                    OpenAreaEventPrefab(blacksmithPrefab, type);
                     break;
                 case AreaEventType.Blessing:
-                    LoadingManager.Instance?.LoadSceneAdditive(BlessingSceneName);
-                    CloseView();
+                    OpenAreaEventPrefab(blessingPrefab, type);
                     break;
                 case AreaEventType.Battle:
                     CloseView();
@@ -152,6 +153,46 @@ namespace Kwangmin
                     playerStatus.BlessingCooldownTurns = 3;
                     break;
             }
+        }
+
+        public void CloseActiveEvent()
+        {
+            if (activeAreaEventInstance == null)
+            {
+                return;
+            }
+
+            activeAreaEventInstance.SetActive(false);
+            Destroy(activeAreaEventInstance);
+            activeAreaEventInstance = null;
+        }
+
+        private void OpenAreaEventPrefab(GameObject prefab, AreaEventType type)
+        {
+            CloseView();
+            CloseActiveEvent();
+
+            if (prefab == null)
+            {
+                Debug.LogError($"[AreaEventDomain] {type} 프리팹이 할당되어 있지 않습니다.", this);
+                return;
+            }
+
+            AreaSceneBootstrapper.DisableGameBattleObjects(this);
+
+            activeAreaEventInstance = Instantiate(prefab);
+            activeAreaEventInstance.name = prefab.name;
+
+            Scene ownerScene = gameObject.scene;
+            if (ownerScene.IsValid() && ownerScene.isLoaded && activeAreaEventInstance.scene != ownerScene)
+            {
+                SceneManager.MoveGameObjectToScene(activeAreaEventInstance, ownerScene);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            CloseActiveEvent();
         }
 
         #region ContextMenu Test

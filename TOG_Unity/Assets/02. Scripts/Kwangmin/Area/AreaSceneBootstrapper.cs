@@ -9,17 +9,17 @@ public class AreaSceneBootstrapper : MonoBehaviour
 
     private void Awake()
     {
-        DisableGameBattleObjects();
+        DisableGameBattleObjects(this);
     }
 
-    private void DisableGameBattleObjects()
+    public static void DisableGameBattleObjects(Object context = null)
     {
         // TODO: Game 씬의 전투 종료/정리 시스템에 Player, Monster, Battle UI Clear API를 추가한 뒤 교체해야 한다.
 
         Scene gameScene = SceneManager.GetSceneByName(GameSceneName);
         if (!gameScene.IsValid() || !gameScene.isLoaded)
         {
-            Debug.LogWarning($"{GameSceneName} 씬이 로드되어 있지 않습니다.", this);
+            Debug.LogWarning($"{GameSceneName} 씬이 로드되어 있지 않습니다.", context);
             return;
         }
 
@@ -70,7 +70,7 @@ public class AreaSceneBootstrapper : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"{GameSceneName} 씬에서 {BattleCanvasName} 오브젝트를 찾지 못했습니다.", this);
+            Debug.LogWarning($"{GameSceneName} 씬에서 {BattleCanvasName} 오브젝트를 찾지 못했습니다.", context);
         }
     }
 }

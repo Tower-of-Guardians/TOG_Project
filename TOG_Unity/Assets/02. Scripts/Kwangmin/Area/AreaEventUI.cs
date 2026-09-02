@@ -53,24 +53,8 @@ public class AreaEventUI : ViewBase
 
     private void DefaultOnItemClicked(AreaEventType type)
     {
-        switch (type)
-        {
-            case AreaEventType.Shop:
-                LoadingManager.Instance?.LoadSceneAdditive("AreaEvent_Shop");
-                Hide();
-                break;
-            case AreaEventType.Blacksmith:
-                LoadingManager.Instance?.LoadSceneAdditive("AreaEvent_Blacksmith");
-                Hide();
-                break;
-            case AreaEventType.Blessing:
-                LoadingManager.Instance?.LoadSceneAdditive("AreaEvent_Blessing");
-                Hide();
-                break;
-            default:
-                Hide();
-                break;
-        }
+        Debug.LogError($"[AreaEventUI] {type} 선택 이벤트가 AreaEventDomain에 바인딩되어 있지 않습니다.", this);
+        Hide();
     }
 
     public IEnumerator Show()
