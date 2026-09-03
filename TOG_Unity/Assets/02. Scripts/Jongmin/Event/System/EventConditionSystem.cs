@@ -8,7 +8,6 @@ namespace Jongmin
     {
         private DataTable _eventConditionDataTable;
 
-        private IDialogueProgress _dialogueProgress;
         private IEventProgress _eventProgress;
         private IShopProgress _shopProgress;
         private IRunProgress _runProgress;
@@ -19,7 +18,6 @@ namespace Jongmin
         private ISynergyRecord _synergyRecord;
 
         public void Construct(DataTable eventConditionDataTable,
-                              IDialogueProgress dialogueProgress,
                               IEventProgress eventProgress,
                               IShopProgress shopProgress,
                               IRunProgress runProgress,
@@ -30,7 +28,6 @@ namespace Jongmin
                               ISynergyRecord synergyRecord)
         {
             _eventConditionDataTable = eventConditionDataTable;
-            _dialogueProgress =  dialogueProgress;
             _eventProgress = eventProgress;
             _shopProgress = shopProgress;
             _runProgress = runProgress;
@@ -79,11 +76,11 @@ namespace Jongmin
 
             return row.conditionType switch
             {
-                EEventConditionType.FirstNpcTalk
-                    => _dialogueProgress != null && _dialogueProgress.GetStep(npcID) == 0,
+                EEventConditionType.FirstNpcEncounter
+                    => _runProgress != null && _runProgress.GetNpcEncounterCount(npcID) == 1,
                     
-                EEventConditionType.NpcTalkCountAtLeast
-                    => _dialogueProgress != null && _dialogueProgress.GetStep(npcID) >= row.value,
+                EEventConditionType.NpcEncounterCountAtLeast
+                    => _runProgress != null && _runProgress.GetNpcEncounterCount(npcID) >= row.value,
                 
                 EEventConditionType.EventSeen
                     => _eventProgress != null && _eventProgress.HasSeen(row.targetID),

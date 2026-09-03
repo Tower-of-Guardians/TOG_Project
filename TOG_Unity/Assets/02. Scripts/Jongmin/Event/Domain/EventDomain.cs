@@ -12,7 +12,6 @@ namespace Jongmin
         [BigHeader("Inner References")]
         [SerializeField] private DialogueRunner dialogueRunner;
         [SerializeField] private EventDialogueSystem eventDialogueSystem;
-        [SerializeField] private RegularDialogueSystem regularDialogueSystem;
         [SerializeField] private EventConditionSystem eventConditionSystem;
         [SerializeField] private EventRewardSystem eventRewardSystem;
 
@@ -21,18 +20,16 @@ namespace Jongmin
         private DataTable _eventDataTable;
         private DataTable _eventConditionDataTable;
         private DataTable _eventRewardDataTable;
-        private DataTable _dialogueEntryDataTable;
 
         private EventProgressCache _progressCache;
+        private readonly NpcEncounterSession _npcEncounterSession = new();
 
         public EventDialogueSystem EventDialogueSystem => eventDialogueSystem;
-        public RegularDialogueSystem RegularDialogueSystem => regularDialogueSystem;
         public EventRewardSystem RewardSystem => eventRewardSystem;
         public EventProgressCache ProgressCache => _progressCache;
         public RunEventProgress RunProgress => _progressCache?.Run;
         public GlobalEventProgress GlobalProgress => _progressCache?.Global;
         public IEventProgress EventProgress => _progressCache?.Global;
-        public IDialogueProgress DialogueProgress => _progressCache?.Global;
         
         public void Construct(RelicDomain relicDomain)
         {
@@ -41,13 +38,11 @@ namespace Jongmin
             _eventDataTable = DataTableManager.FindTable<EventDataTableRow>("DT_Event");
             _eventConditionDataTable = DataTableManager.FindTable<EventConditionDataTableRow>("DT_EventCondition");
             _eventRewardDataTable = DataTableManager.FindTable<EventRewardDataTableRow>("DT_EventReward");
-            _dialogueEntryDataTable = DataTableManager.FindTable<DialogueEntryDataTableRow>("DT_DialogueEntry");
 
             _progressCache = new EventProgressCache();
 
             eventConditionSystem.Construct(
                 _eventConditionDataTable,
-                _progressCache.Global,
                 _progressCache.Global,
                 null,
                 _progressCache.Run,
@@ -58,7 +53,6 @@ namespace Jongmin
                 _progressCache.Run);
 
             eventDialogueSystem.Construct(dialogueRunner);
-            regularDialogueSystem.Construct(dialogueRunner, _progressCache.Global, _dialogueEntryDataTable);
             eventRewardSystem.Construct(_eventRewardDataTable);
 
             BindEvents();
@@ -84,6 +78,31 @@ namespace Jongmin
         public void ResetRunProgress()
         {
             _progressCache?.ResetRun();
+            _npcEncounterSession.Clear();
+        }
+
+        /// <summary>
+        /// NPC 조우 이벤트에 진입한 시점에 호출합니다.
+        /// TryInteract와 분리되어 있으며, 이번 런의 NPC 조우 횟수와 이번 조우 세션을 시작합니다.
+        /// </summary>
+        public void RecordNpcEncounter(string npcID)
+        {
+            if (string.IsNullOrWhiteSpace(npcID))
+            {
+                return;
+            }
+
+            _progressCache?.Run.RecordNpcEncounter(npcID);
+            _npcEncounterSession.Begin(npcID);
+        }
+
+        /// <summary>
+        /// NPC 조우 이벤트가 종료되는 시점에 호출합니다.
+        /// 이번 조우에서 사용한 특수 행동 플래그를 정리합니다.
+        /// </summary>
+        public void EndNpcEncounter(string npcID)
+        {
+            _npcEncounterSession.End(npcID);
         }
 
         /// <summary>
@@ -116,14 +135,13 @@ namespace Jongmin
 
         /// <summary>
         /// NPC 상호작용을 처리합니다.
-        /// 실행 가능한 이벤트 대화가 있으면 이벤트 대화를 우선 실행하고,
-        /// 이벤트 대화가 없으면 정규 대화를 시도합니다.
-        /// 실행 가능한 대화가 없을 때만 NPC 고유 행동을 실행합니다.
+        /// 실행 가능한 이벤트 대화가 있으면 이벤트 대화를 우선 실행합니다.
+        /// 이벤트 대화가 없을 때만 이번 조우에서 NPC 고유 행동을 1회 실행합니다.
         /// </summary>
-        /// <returns>이벤트 대화, 정규 대화, 고유 행동 중 하나라도 실행했다면 true입니다.</returns>
+        /// <returns>이벤트 대화 또는 고유 행동 중 하나라도 실행했다면 true입니다.</returns>
         public bool TryInteract(string npcID, Action specialAction = null)
         {
-            if (TryStartDialogue(npcID))
+            if (TryStartEventDialogue(npcID))
             {
                 return true;
             }
@@ -133,22 +151,31 @@ namespace Jongmin
                 return false;
             }
 
+            if (!_npcEncounterSession.CanUseSpecialAction(npcID))
+            {
+                return false;
+            }
+
+            _npcEncounterSession.MarkSpecialActionUsed(npcID);
             specialAction.Invoke();
             return true;
         }
 
         /// <summary>
-        /// NPC와 진행 가능한 대화를 시작합니다.
-        /// 이벤트 대화를 먼저 검사하고, 이벤트 대화가 없을 때만 정규 대화를 검사합니다.
+        /// NPC에게서 현재 실행 가능한 이벤트가 있는지 확인하고, 해당 이벤트의 대표 보상 타입을 반환합니다.
         /// </summary>
-        private bool TryStartDialogue(string npcID)
+        public bool TryGetEvent(string npcID, out EEventRewardType rewardType)
         {
-            if (TryStartEventDialogue(npcID))
+            rewardType = EEventRewardType.None;
+
+            var eventDataTableRow = FindRunnableEvent(npcID);
+            if (eventDataTableRow == null)
             {
-                return true;
+                return false;
             }
 
-            return TryStartRegularDialogue(npcID);
+            rewardType = GetEventRewardType(eventDataTableRow);
+            return true;
         }
 
         /// <summary>
@@ -173,15 +200,6 @@ namespace Jongmin
                 HandleBeginEventReward(eventDataTableRow);
                 MarkEventSeen(eventDataTableRow);
             });
-        }
-
-        /// <summary>
-        /// NPC와 진행 가능한 정규 대화를 시작합니다.
-        /// 현재 NPC 대화 step에 매칭되는 대화가 있을 때만 실행합니다.
-        /// </summary>
-        private bool TryStartRegularDialogue(string npcID)
-        {
-            return regularDialogueSystem != null && regularDialogueSystem.TryStartRegularDialogue(npcID);
         }
 
         /// <summary>
@@ -227,6 +245,32 @@ namespace Jongmin
             }
 
             eventRewardSystem.Execute(eventDataTableRow.rewardIDs, eventDataTableRow.npcID);
+        }
+
+        private EEventRewardType GetEventRewardType(EventDataTableRow eventDataTableRow)
+        {
+            if (eventDataTableRow?.rewardIDs == null || _eventRewardDataTable == null)
+            {
+                return EEventRewardType.None;
+            }
+
+            foreach (var rewardID in eventDataTableRow.rewardIDs)
+            {
+                if (string.IsNullOrWhiteSpace(rewardID))
+                {
+                    continue;
+                }
+
+                var rewardDataTableRow = _eventRewardDataTable.Find<EventRewardDataTableRow>(rewardID);
+                if (rewardDataTableRow == null || !rewardDataTableRow.isEnable)
+                {
+                    continue;
+                }
+
+                return rewardDataTableRow.rewardType;
+            }
+
+            return EEventRewardType.None;
         }
 
         private void HandleSynergyChanged(System.Collections.Generic.Dictionary<string, SynergyTotalData> synergyMap)

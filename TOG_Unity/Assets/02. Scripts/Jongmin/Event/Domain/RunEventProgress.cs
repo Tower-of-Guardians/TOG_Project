@@ -4,12 +4,19 @@ namespace Jongmin
 {
     public sealed class RunEventProgress : IRunProgress, IBattleRecord, IRunCardRecord, ISynergyRecord
     {
+        private readonly Dictionary<string, int> _npcEncounterCounts = new();
         private readonly HashSet<int> _reachedStages = new();
         private readonly Dictionary<int, int> _gainedCardCountByGrade = new();
         private readonly Dictionary<string, int> _activatedSynergyCounts = new();
         private readonly HashSet<string> _firstActivatedSynergyKeys = new();
 
         public int MaxSingleAttackDamage { get; private set; }
+
+        public int GetNpcEncounterCount(string npcID)
+        {
+            return !string.IsNullOrWhiteSpace(npcID) &&
+                   _npcEncounterCounts.TryGetValue(npcID, out var count) ? count : 0;
+        }
 
         public bool HasFirstReachedStage(int stage)
         {
@@ -54,6 +61,17 @@ namespace Jongmin
             }
 
             _reachedStages.Add(stage);
+        }
+
+        public void RecordNpcEncounter(string npcID)
+        {
+            if (string.IsNullOrWhiteSpace(npcID))
+            {
+                return;
+            }
+
+            _npcEncounterCounts.TryGetValue(npcID, out var count);
+            _npcEncounterCounts[npcID] = count + 1;
         }
 
         public void RecordSingleAttackDamage(int damage)
@@ -106,6 +124,7 @@ namespace Jongmin
 
         public void Reset()
         {
+            _npcEncounterCounts.Clear();
             _reachedStages.Clear();
             _gainedCardCountByGrade.Clear();
             _activatedSynergyCounts.Clear();
