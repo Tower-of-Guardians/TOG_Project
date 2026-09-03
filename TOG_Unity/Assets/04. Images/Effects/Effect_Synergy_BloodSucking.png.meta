@@ -1,0 +1,343 @@
+fileFormatVersion: 2
+guid: d2f4c0d0a092d224e8745d79a0e1ab90
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9113590246540921716
+    second: Effect_Synergy_BloodSucking_0
+  - first:
+      213: -7254093406487550838
+    second: Effect_Synergy_BloodSucking_1
+  - first:
+      213: -661201177851006876
+    second: Effect_Synergy_BloodSucking_2
+  - first:
+      213: 6840020203468903756
+    second: Effect_Synergy_BloodSucking_3
+  - first:
+      213: -6566255381872828936
+    second: Effect_Synergy_BloodSucking_4
+  - first:
+      213: 1719143208253139675
+    second: Effect_Synergy_BloodSucking_5
+  - first:
+      213: 2915213467361199842
+    second: Effect_Synergy_BloodSucking_6
+  - first:
+      213: -6518397338563363525
+    second: Effect_Synergy_BloodSucking_7
+  - first:
+      213: -4425814803958305801
+    second: Effect_Synergy_BloodSucking_8
+  - first:
+      213: -6145960796519992171
+    second: Effect_Synergy_BloodSucking_9
+  - first:
+      213: -4729813065363993554
+    second: Effect_Synergy_BloodSucking_10
+  - first:
+      213: -4803699923391707138
+    second: Effect_Synergy_BloodSucking_11
+  - first:
+      213: 4252133233719079685
+    second: Effect_Synergy_BloodSucking_12
+  - first:
+      213: 4780419760443718085
+    second: Effect_Synergy_BloodSucking_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_BloodSucking_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5acf4b22bd9bb241ab0bdb919923758
+      internalID: -2083681136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_BloodSucking_1
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fbeb9ba4e8e9084db704818c7f706d0
+      internalID: -1134283484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_BloodSucking_2
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 332b3332a2b738d448536618ff359e5d
+      internalID: -1425168890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_BloodSucking_3
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89798a04698c98e4b9e731ce8f4c8783
+      internalID: 2017972241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_BloodSucking_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 340ae7d103106d34aa00e6f0fe69c3a3
+      internalID: -1314218846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_BloodSucking_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92fedfd0cc1722f4eba256bf95bb90ab
+      internalID: -574624858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_BloodSucking_6
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f931975ec56cfd842ba61563934931cf
+      internalID: -155717564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_BloodSucking_7
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c78af0c94fbb2a449a38201c5c66a067
+      internalID: -441096584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 58232c59e08a6354d83ee8e47f49de36
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Player1_SynergyEffect_BloodSucking_0: -2083681136
+      Player1_SynergyEffect_BloodSucking_1: -1134283484
+      Player1_SynergyEffect_BloodSucking_2: -1425168890
+      Player1_SynergyEffect_BloodSucking_3: 2017972241
+      Player1_SynergyEffect_BloodSucking_4: -1314218846
+      Player1_SynergyEffect_BloodSucking_5: -574624858
+      Player1_SynergyEffect_BloodSucking_6: -155717564
+      Player1_SynergyEffect_BloodSucking_7: -441096584
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

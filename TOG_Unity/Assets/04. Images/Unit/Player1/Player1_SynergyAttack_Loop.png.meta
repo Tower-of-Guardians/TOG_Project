@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: 691d8f6b356a5ed46b7a1df5558e83e0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5769905737199509370
+    second: Player1_SynergyAttack_Loop_0
+  - first:
+      213: 3031283403566484888
+    second: Player1_SynergyAttack_Loop_1
+  - first:
+      213: 4561084021952003352
+    second: Player1_SynergyAttack_Loop_2
+  - first:
+      213: -5098877799413465872
+    second: Player1_SynergyAttack_Loop_3
+  - first:
+      213: 4613331901952293067
+    second: Player1_SynergyAttack_Loop_4
+  - first:
+      213: -341810114519874506
+    second: Player1_SynergyAttack_Loop_5
+  - first:
+      213: 5705435140773947888
+    second: Player1_SynergyAttack_Loop_6
+  - first:
+      213: 7954666172387274694
+    second: Player1_SynergyAttack_Loop_7
+  - first:
+      213: -3188241039609528989
+    second: Player1_SynergyAttack_Loop_8
+  - first:
+      213: -3703204819868664954
+    second: Player1_SynergyAttack_Loop_9
+  - first:
+      213: 7787682615135513145
+    second: Player1_SynergyAttack_Loop_10
+  - first:
+      213: -3008673211951798093
+    second: Player1_SynergyAttack_Loop_11
+  - first:
+      213: -1123312686501654955
+    second: Player1_SynergyAttack_Loop_12
+  - first:
+      213: -7472225653996933886
+    second: Player1_SynergyAttack_Loop_13
+  - first:
+      213: -8975972700281778152
+    second: Player1_SynergyAttack_Loop_14
+  - first:
+      213: 2202721754704148713
+    second: Player1_SynergyAttack_Loop_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 945
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7fd34d92b2d21050800000000000000
+      internalID: 5769905737199509370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_1
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 945
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89d0e13f138411a20800000000000000
+      internalID: 3031283403566484888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_2
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 945
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81db82790c93c4f30800000000000000
+      internalID: 4561084021952003352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_3
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 945
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fcb5dc08a52d39b0800000000000000
+      internalID: -5098877799413465872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 630
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc8f7de1ce8d50040800000000000000
+      internalID: 4613331901952293067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 630
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63448670385a14bf0800000000000000
+      internalID: -341810114519874506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_6
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 630
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f9acd62807cd2f40800000000000000
+      internalID: 5705435140773947888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_7
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 630
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cfa5f7fcb6a46e60800000000000000
+      internalID: 7954666172387274694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36d70cf9aa711c3d0800000000000000
+      internalID: -3188241039609528989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_9
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68bb63536d29b9cc0800000000000000
+      internalID: -3703204819868664954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_10
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a23aad318631c60800000000000000
+      internalID: 7787682615135513145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_11
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8216487ab0f36d0800000000000000
+      internalID: -3008673211951798093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55e016d20113960f0800000000000000
+      internalID: -1123312686501654955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_13
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20da3f37b525d4890800000000000000
+      internalID: -7472225653996933886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_14
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 810d916c260fe6380800000000000000
+      internalID: -8975972700281778152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Loop_15
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e87a20f3c3a19e10800000000000000
+      internalID: 2202721754704148713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c9b882f36f1228f4f92d00e2da0bca64
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Player1_SynergyAttack_Loop_0: 5769905737199509370
+      Player1_SynergyAttack_Loop_1: 3031283403566484888
+      Player1_SynergyAttack_Loop_10: 7787682615135513145
+      Player1_SynergyAttack_Loop_11: -3008673211951798093
+      Player1_SynergyAttack_Loop_12: -1123312686501654955
+      Player1_SynergyAttack_Loop_13: -7472225653996933886
+      Player1_SynergyAttack_Loop_14: -8975972700281778152
+      Player1_SynergyAttack_Loop_15: 2202721754704148713
+      Player1_SynergyAttack_Loop_2: 4561084021952003352
+      Player1_SynergyAttack_Loop_3: -5098877799413465872
+      Player1_SynergyAttack_Loop_4: 4613331901952293067
+      Player1_SynergyAttack_Loop_5: -341810114519874506
+      Player1_SynergyAttack_Loop_6: 5705435140773947888
+      Player1_SynergyAttack_Loop_7: 7954666172387274694
+      Player1_SynergyAttack_Loop_8: -3188241039609528989
+      Player1_SynergyAttack_Loop_9: -3703204819868664954
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

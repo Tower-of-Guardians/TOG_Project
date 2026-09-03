@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 6ac7470c292c12443be8e602094499fd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 529418467049659190
+    second: Player1_SynergyAttack_Intro_0
+  - first:
+      213: -1423696805912388673
+    second: Player1_SynergyAttack_Intro_1
+  - first:
+      213: -5097074696085171047
+    second: Player1_SynergyAttack_Intro_2
+  - first:
+      213: 7837291693435315366
+    second: Player1_SynergyAttack_Intro_3
+  - first:
+      213: 6133572442750846947
+    second: Player1_SynergyAttack_Intro_4
+  - first:
+      213: 1710825678007375529
+    second: Player1_SynergyAttack_Intro_5
+  - first:
+      213: 6011022047587165681
+    second: Player1_SynergyAttack_Intro_6
+  - first:
+      213: 6811026658983528500
+    second: Player1_SynergyAttack_Intro_7
+  - first:
+      213: -5359295967893262911
+    second: Player1_SynergyAttack_Intro_8
+  - first:
+      213: -56517705441489135
+    second: Player1_SynergyAttack_Intro_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Intro_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 630
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63bd6027a4fd85700800000000000000
+      internalID: 529418467049659190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Intro_1
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 630
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbbdbbf4c430e3ce0800000000000000
+      internalID: -1423696805912388673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Intro_2
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 630
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9941632c19d8349b0800000000000000
+      internalID: -5097074696085171047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Intro_3
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 630
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a4e45c7547a3cc60800000000000000
+      internalID: 7837291693435315366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Intro_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e70a4eb3a3de1550800000000000000
+      internalID: 6133572442750846947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Intro_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a61f3ac3e21eb710800000000000000
+      internalID: 1710825678007375529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Intro_6
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f5697b54b07b6350800000000000000
+      internalID: 6011022047587165681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Intro_7
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 438cd64f8a0a58e50800000000000000
+      internalID: 6811026658983528500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Intro_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cde98346b4ff95b0800000000000000
+      internalID: -5359295967893262911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAttack_Intro_9
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11fc3a34275373ff0800000000000000
+      internalID: -56517705441489135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: de4f55e751650c346910ad61d0010e35
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Player1_SynergyAttack_Intro_0: 529418467049659190
+      Player1_SynergyAttack_Intro_1: -1423696805912388673
+      Player1_SynergyAttack_Intro_2: -5097074696085171047
+      Player1_SynergyAttack_Intro_3: 7837291693435315366
+      Player1_SynergyAttack_Intro_4: 6133572442750846947
+      Player1_SynergyAttack_Intro_5: 1710825678007375529
+      Player1_SynergyAttack_Intro_6: 6011022047587165681
+      Player1_SynergyAttack_Intro_7: 6811026658983528500
+      Player1_SynergyAttack_Intro_8: -5359295967893262911
+      Player1_SynergyAttack_Intro_9: -56517705441489135
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

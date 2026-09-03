@@ -1,0 +1,364 @@
+fileFormatVersion: 2
+guid: 8c3a8eed9bc4e3243bd9446173846cf7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4313877709921519655
+    second: Effect_Synergy_Basic_0
+  - first:
+      213: 3427939534963077579
+    second: Effect_Synergy_Basic_1
+  - first:
+      213: -2861973922090475515
+    second: Effect_Synergy_Basic_2
+  - first:
+      213: 4232604694159093830
+    second: Effect_Synergy_Basic_3
+  - first:
+      213: 6870356053438612973
+    second: Effect_Synergy_Basic_4
+  - first:
+      213: 3314897547647803692
+    second: Effect_Synergy_Basic_5
+  - first:
+      213: -481941640582718174
+    second: Effect_Synergy_Basic_6
+  - first:
+      213: -7261096471317956008
+    second: Effect_Synergy_Basic_7
+  - first:
+      213: -7518944169632480881
+    second: Effect_Synergy_Basic_8
+  - first:
+      213: -577347160284844112
+    second: Effect_Synergy_Basic_9
+  - first:
+      213: 1359093011815230515
+    second: Effect_Synergy_Basic_10
+  - first:
+      213: -8731611380147596973
+    second: Effect_Synergy_Basic_11
+  - first:
+      213: 8863042122066080896
+    second: Effect_Synergy_Basic_12
+  - first:
+      213: 1274928845425448437
+    second: Effect_Synergy_Basic_13
+  - first:
+      213: -3740725024926880900
+    second: Effect_Synergy_Basic_14
+  - first:
+      213: 7565310529102597986
+    second: Effect_Synergy_Basic_15
+  - first:
+      213: 1213622908514314724
+    second: Effect_Synergy_Basic_16
+  - first:
+      213: 3619224556053411494
+    second: Effect_Synergy_Basic_17
+  - first:
+      213: -3008212623800325698
+    second: Effect_Synergy_Basic_18
+  - first:
+      213: -7804417425004836354
+    second: Effect_Synergy_Basic_19
+  - first:
+      213: -8898519687220799148
+    second: Effect_Synergy_Basic_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_Basic_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04c0ac300ee22b446a50d041fa1422c2
+      internalID: -19014047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_Basic_1
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c802beb7c18dfad4db27f444da56932d
+      internalID: -1903977036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_Basic_2
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a063ed7c31e7d354e9b7d5d59cadeea4
+      internalID: 2142296366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_Basic_3
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c260aac3026cf3a43a9150d6fcc0b3cb
+      internalID: 1868837836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_Basic_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2332c59c71fab3b46b1be4fd51672f5d
+      internalID: 509664790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_Basic_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3e3d657474d8d44c9f669781c1e9516
+      internalID: -1714435585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_Basic_6
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 010f33b0cba99434abd66d3cf4182936
+      internalID: -514933183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyEffect_Basic_7
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7daaa0ed3e70744fab4ce718625f734
+      internalID: -238724115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 179c18e2fe0ad574badc9d87da92421a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Player1_SynergyEffect_Basic_0: -19014047
+      Player1_SynergyEffect_Basic_1: -1903977036
+      Player1_SynergyEffect_Basic_2: 2142296366
+      Player1_SynergyEffect_Basic_3: 1868837836
+      Player1_SynergyEffect_Basic_4: 509664790
+      Player1_SynergyEffect_Basic_5: -1714435585
+      Player1_SynergyEffect_Basic_6: -514933183
+      Player1_SynergyEffect_Basic_7: -238724115
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

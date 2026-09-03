@@ -12,10 +12,14 @@ public class BattleWindowEditor : EditorWindow
     private const string GameSceneName = "Game";
     private const string EncounterDataFolder = "Assets/Datas/MonsterEncounterData";
     private const string MonsterDataFolder = "Assets/Datas/MonsterData";
+    private const string SynergyDataFolder = "Assets/Datas/SynergyData";
     private const string DefaultRegistryPath = "Assets/02. Scripts/Jihyo/Battle/MonsterPrefabRegistry.asset";
+    private const int DebugSynergyMaxCount = 5;
 
     private readonly List<MonsterEncounterData> encounterDatas = new List<MonsterEncounterData>();
     private readonly Dictionary<string, MonsterData> monsterDataCache = new Dictionary<string, MonsterData>();
+    private readonly List<SynergyData> synergyDatas = new List<SynergyData>();
+    private readonly Dictionary<string, int> debugSynergyCounts = new Dictionary<string, int>();
 
     private Vector2 scrollPosition;
     private int selectedEncounterIndex;
@@ -27,7 +31,7 @@ public class BattleWindowEditor : EditorWindow
     {
         BattleWindowEditor window = GetWindow<BattleWindowEditor>();
         window.titleContent = new GUIContent("IngameSetTools - Battle");
-        window.minSize = new Vector2(420f, 560f);
+        window.minSize = new Vector2(420f, 720f);
         window.Show();
     }
 
@@ -40,6 +44,7 @@ public class BattleWindowEditor : EditorWindow
     private void OnEnable()
     {
         ReloadEncounterDatas();
+        ReloadSynergyDatas();
         EditorApplication.update += OnEditorUpdate;
         EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
     }
@@ -98,6 +103,8 @@ public class BattleWindowEditor : EditorWindow
 
         DrawEncounterSection();
         EditorGUILayout.Space(8f);
+        DrawSynergyDebugSection();
+        EditorGUILayout.Space(8f);
         DrawPlayerHealthSection();
         EditorGUILayout.Space(8f);
         DrawMonsterHealthSection();
@@ -117,7 +124,7 @@ public class BattleWindowEditor : EditorWindow
     {
         EditorGUILayout.LabelField("IngameSetTools - Battle", EditorStyles.boldLabel);
         EditorGUILayout.HelpBox(
-            "Game 씬 플레이 모드에서 Encounter ID로 몬스터를 세팅하고, 플레이어/몬스터 체력을 실시간으로 조절합니다.",
+            "Game 씬 플레이 모드에서 Encounter 세팅, 시너지 발동 연출 확인, 플레이어/몬스터 체력 조절을 합니다.",
             MessageType.Info);
     }
 
@@ -210,6 +217,221 @@ public class BattleWindowEditor : EditorWindow
         }
 
         EditorGUILayout.LabelField(slotLabel, monsterId);
+    }
+
+    private void DrawSynergyDebugSection()
+    {
+        EditorGUILayout.LabelField("Synergy Debug", EditorStyles.boldLabel);
+
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            if (GUILayout.Button("Reload Synergies", GUILayout.Width(140f)))
+            {
+                ReloadSynergyDatas();
+            }
+
+            if (GUILayout.Button("기본기 3"))
+            {
+                SetDebugPreset(("210007", 3));
+            }
+
+            if (GUILayout.Button("흡혈 2"))
+            {
+                SetDebugPreset(("210004", 2));
+            }
+
+            if (GUILayout.Button("기본기+흡혈"))
+            {
+                SetDebugPreset(("210007", 3), ("210004", 2));
+            }
+        }
+
+        if (GUILayout.Button("정직+흡혈+기본기 (Loop 3회)"))
+        {
+            SetDebugPreset(("210001", 2), ("210004", 2), ("210007", 3));
+        }
+
+        if (synergyDatas.Count == 0)
+        {
+            EditorGUILayout.HelpBox($"시너지 데이터를 찾을 수 없습니다.\n경로: {SynergyDataFolder}", MessageType.Warning);
+            return;
+        }
+
+        EditorGUILayout.HelpBox(
+            "장수를 맞춘 뒤 Apply하면 디버그 카드가 필드에 들어갑니다. Play는 Intro 1회 + Loop N회로 시너지 연출을 재생합니다.",
+            MessageType.Info);
+
+        for (int i = 0; i < synergyDatas.Count; i++)
+        {
+            DrawSynergyCountRow(synergyDatas[i]);
+        }
+
+        DrawSynergyActivationPreview();
+
+        bool canApply = CanUseBattleTools() && GameData.Instance != null;
+        BattleManager battleManager = CanUseBattleTools() ? FindSceneObject<BattleManager>() : null;
+        bool canPlay = canApply && battleManager != null && !battleManager.IsProcessingAttack();
+
+        EditorGUI.BeginDisabledGroup(!canApply);
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            if (GUILayout.Button("Apply Synergies", GUILayout.Height(24f)))
+            {
+                ApplyDebugSynergies();
+            }
+
+            if (GUILayout.Button("Clear Synergy", GUILayout.Height(24f)))
+            {
+                ClearDebugSynergies();
+            }
+        }
+        EditorGUI.EndDisabledGroup();
+
+        EditorGUI.BeginDisabledGroup(!canPlay);
+        if (GUILayout.Button("Apply & Play Synergy Motion", GUILayout.Height(28f)))
+        {
+            ApplyDebugSynergies();
+            PlayDebugSynergyMotion(battleManager);
+        }
+        EditorGUI.EndDisabledGroup();
+
+        if (!CanUseBattleTools())
+        {
+            EditorGUILayout.HelpBox("Game 씬 플레이 모드에서만 시너지를 적용/재생할 수 있습니다.", MessageType.None);
+        }
+    }
+
+    private void DrawSynergyCountRow(SynergyData synergyData)
+    {
+        if (synergyData == null || string.IsNullOrEmpty(synergyData.ID))
+        {
+            return;
+        }
+
+        if (!debugSynergyCounts.TryGetValue(synergyData.ID, out int count))
+        {
+            count = 0;
+        }
+
+        int requiredCount = SynergyActivationSelector.GetMinimumActivationCount(synergyData);
+        bool willActivate = SynergyActivationSelector.IsActivated(new SynergyTotalData
+        {
+            synergyData = synergyData,
+            count = count
+        });
+
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            string label = string.IsNullOrEmpty(synergyData.Name)
+                ? synergyData.ID
+                : $"{synergyData.Name} ({synergyData.ID})";
+            count = EditorGUILayout.IntSlider(label, count, 0, DebugSynergyMaxCount);
+            string stateLabel = willActivate ? "발동" : (requiredCount > 0 ? $"필요 {requiredCount}" : "불가");
+            GUILayout.Label(stateLabel, GUILayout.Width(64f));
+        }
+
+        debugSynergyCounts[synergyData.ID] = count;
+    }
+
+    private void DrawSynergyActivationPreview()
+    {
+        List<SynergyTotalData> previewEntries = new List<SynergyTotalData>();
+        for (int i = 0; i < synergyDatas.Count; i++)
+        {
+            SynergyData synergyData = synergyDatas[i];
+            if (synergyData == null || !debugSynergyCounts.TryGetValue(synergyData.ID, out int count) || count <= 0)
+            {
+                continue;
+            }
+
+            previewEntries.Add(new SynergyTotalData
+            {
+                synergyData = synergyData,
+                count = count
+            });
+        }
+
+        List<SynergyTotalData> selected = SynergyActivationSelector.Select(previewEntries);
+        if (selected.Count == 0)
+        {
+            EditorGUILayout.LabelField("발동 예정", "없음");
+            return;
+        }
+
+        string names = string.Join(" → ", selected.Select(entry => entry.synergyData.Name));
+        EditorGUILayout.LabelField(
+            "발동 예정",
+            $"{names}  /  Loop {SynergyActivationSelector.GetLoopPlayCount(selected.Count)}회");
+    }
+
+    private void SetDebugPreset(params (string id, int count)[] presets)
+    {
+        List<string> keys = new List<string>(debugSynergyCounts.Keys);
+        for (int i = 0; i < keys.Count; i++)
+        {
+            debugSynergyCounts[keys[i]] = 0;
+        }
+
+        if (presets != null)
+        {
+            for (int i = 0; i < presets.Length; i++)
+            {
+                debugSynergyCounts[presets[i].id] = presets[i].count;
+            }
+        }
+
+        Repaint();
+    }
+
+    private void ApplyDebugSynergies()
+    {
+        if (!CanUseBattleTools() || GameData.Instance == null)
+        {
+            SetStatus("Game 씬 플레이 모드에서만 시너지를 적용할 수 있습니다.", MessageType.Warning);
+            return;
+        }
+
+        BattleSynergyDebugUtility.ApplyCounts(debugSynergyCounts);
+
+        List<SynergyTotalData> selected = SynergyActivationSelector.Select(GameData.Instance.synergyIDList?.Values);
+        if (selected.Count == 0)
+        {
+            SetStatus("디버그 시너지를 적용했습니다. 발동 조건을 충족한 시너지가 없습니다.", MessageType.Warning);
+            return;
+        }
+
+        string names = string.Join(", ", selected.Select(entry => entry.synergyData.Name));
+        SetStatus($"디버그 시너지 적용: {names} (Loop {selected.Count}회)", MessageType.Info);
+    }
+
+    private void ClearDebugSynergies()
+    {
+        if (!CanUseBattleTools() || GameData.Instance == null)
+        {
+            SetStatus("Game 씬 플레이 모드에서만 디버그 시너지를 지울 수 있습니다.", MessageType.Warning);
+            return;
+        }
+
+        BattleSynergyDebugUtility.RemoveDebugCards();
+        SetStatus("디버그 시너지 카드를 제거했습니다.", MessageType.Info);
+    }
+
+    private void PlayDebugSynergyMotion(BattleManager battleManager)
+    {
+        if (battleManager == null)
+        {
+            SetStatus("BattleManager가 없습니다.", MessageType.Error);
+            return;
+        }
+
+        if (battleManager.IsProcessingAttack())
+        {
+            SetStatus("전투 처리 중에는 시너지 연출을 재생할 수 없습니다.", MessageType.Warning);
+            return;
+        }
+
+        battleManager.PlaySynergyActivationForDebug();
+        SetStatus("시너지 발동 연출을 재생합니다.", MessageType.Info);
     }
 
     private void DrawPlayerHealthSection()
@@ -409,6 +631,31 @@ public class BattleWindowEditor : EditorWindow
 
         encounterDatas.Sort((left, right) => string.CompareOrdinal(left.Id, right.Id));
         selectedEncounterIndex = Mathf.Clamp(selectedEncounterIndex, 0, Mathf.Max(0, encounterDatas.Count - 1));
+        Repaint();
+    }
+
+    private void ReloadSynergyDatas()
+    {
+        synergyDatas.Clear();
+
+        string[] guids = AssetDatabase.FindAssets("t:SynergyData", new[] { SynergyDataFolder });
+        for (int i = 0; i < guids.Length; i++)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+            SynergyData data = AssetDatabase.LoadAssetAtPath<SynergyData>(path);
+            if (data == null || string.IsNullOrEmpty(data.ID))
+            {
+                continue;
+            }
+
+            synergyDatas.Add(data);
+            if (!debugSynergyCounts.ContainsKey(data.ID))
+            {
+                debugSynergyCounts[data.ID] = 0;
+            }
+        }
+
+        synergyDatas.Sort((left, right) => string.CompareOrdinal(left.ID, right.ID));
         Repaint();
     }
 

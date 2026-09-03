@@ -14,6 +14,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     private const string SynergyPlunderId = "210005";
     private const string SynergyMysteryId = "210006";
     private const string SynergyBasicId = "210007";
+    private const string SynergyDarknessId = "210008";
 
     [SerializeField] private bool playerAttackHitsAll;
     [SerializeField] private float statAnimationWaitTime = 1.0f;
@@ -24,10 +25,13 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     private int pendingOverwhelmingDamage;
     private int pendingBloodSuckingPercent;
     private int preparedAttackValue;
+    private int currentTurnAttackBonus;
     private EventDomain eventDomain;
+    private bool playedSynergyMotion;
 
     public float GetStatAnimationWaitTime() => statAnimationWaitTime;
     public bool GetPlayerAttackHitsAll() => playerAttackHitsAll;
+    public bool PlayedSynergyMotion => playedSynergyMotion;
     public bool IsInitialized => isInitialized;
 
     public void Initialize(BattleManager manager)
@@ -64,6 +68,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         isInitialized = false;
         battlePermanentAttackBonus = 0;
         preparedAttackValue = 0;
+        currentTurnAttackBonus = 0;
         ResetTurnScopedSynergyState();
     }
 
@@ -74,9 +79,12 @@ public class BattleCombatController : MonoBehaviour, IBattleController
 
     /// <summary>
     /// 공격 시작 전 시너지 연출 및 선행 효과를 모두 처리합니다.
+    /// Intro는 1회, Loop는 발동 시너지 수(최대 3)만큼 재생하며 각 Loop 히트 시점에 효과를 적용합니다.
     /// </summary>
-    public IEnumerator ExecutePreAttackSynergyPhase(Player player, SynergyUI synergyUI)
+    public IEnumerator ExecutePreAttackSynergyPhase(Player player, PlayerAnimation playerAnimation, SynergyUI synergyUI)
     {
+        playedSynergyMotion = false;
+
         if (player == null)
         {
             preparedAttackValue = 0;
@@ -88,13 +96,54 @@ public class BattleCombatController : MonoBehaviour, IBattleController
             GameData.Instance.GetSynergyData();
         }
 
-        if (synergyUI != null)
+        pendingOverwhelmingDamage = 0;
+        pendingBloodSuckingPercent = 0;
+        currentTurnAttackBonus = 0;
+        player.SetTurnSynergyAttackBonus(0);
+        player.ApplyAttackStats();
+
+        List<SynergyTotalData> activatedSynergies = SynergyActivationSelector.Select(GameData.Instance?.synergyIDList?.Values);
+        int loopCount = SynergyActivationSelector.GetLoopPlayCount(activatedSynergies.Count);
+        if (loopCount == 0)
         {
-            yield return synergyUI.PlaySynergyActivationSequence();
+            preparedAttackValue = player.AttackValue;
+            yield break;
         }
 
-        preparedAttackValue = CalculatePlayerAttack(player);
-        ApplyPreHitSynergies();
+        if (playerAnimation != null)
+        {
+            playedSynergyMotion = true;
+            PlayerSynergyVisual synergyVisual = player.GetComponent<PlayerSynergyVisual>();
+            synergyVisual?.PrepareIntro();
+
+            yield return playerAnimation.PlaySynergyIntro();
+            playerAnimation.StartSynergyLoop();
+
+            for (int i = 0; i < loopCount; i++)
+            {
+                synergyVisual?.Prepare(activatedSynergies[i].synergyData.ID);
+                synergyUI?.BeginSynergyHighlight(activatedSynergies[i]);
+                yield return playerAnimation.WaitForSynergyLoopHit(i);
+                synergyVisual?.PlayHit(activatedSynergies[i].synergyData.ID);
+                ApplyActivatedSynergy(player, activatedSynergies[i]);
+                yield return playerAnimation.WaitForSynergyLoopCycleEnd(i);
+            }
+
+            synergyVisual?.Clear();
+        }
+        else
+        {
+            for (int i = 0; i < loopCount; i++)
+            {
+                ApplyActivatedSynergy(player, activatedSynergies[i]);
+                if (synergyUI != null)
+                {
+                    yield return synergyUI.HighlightSynergyEntry(activatedSynergies[i]);
+                }
+            }
+        }
+
+        preparedAttackValue = player.AttackValue;
     }
 
     /// <summary>
@@ -182,16 +231,24 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     /// </summary>
     public int CalculatePlayerAttack(Player player)
     {
-        if (player == null) return 0;
+        if (player == null)
+        {
+            return 0;
+        }
 
+        pendingOverwhelmingDamage = 0;
+        pendingBloodSuckingPercent = 0;
+        currentTurnAttackBonus = 0;
         player.SetTurnSynergyAttackBonus(0);
-        ApplyBattleWideSynergies(player);
         player.ApplyAttackStats();
-        int attackValue = player.AttackValue;
-        attackValue = ApplyAttackCalculationSynergies(player, attackValue);
-        int extraTurnBonus = Mathf.Max(0, attackValue - player.AttackValue);
-        player.SetTurnSynergyAttackBonus(extraTurnBonus);
-        return attackValue;
+
+        List<SynergyTotalData> activatedSynergies = SynergyActivationSelector.Select(GameData.Instance?.synergyIDList?.Values);
+        for (int i = 0; i < activatedSynergies.Count; i++)
+        {
+            ApplyActivatedSynergy(player, activatedSynergies[i]);
+        }
+
+        return player.AttackValue;
     }
 
     /// <summary>
@@ -220,7 +277,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     {
         if (playerAnimation == null) yield break;
 
-        playerAnimation.TriggerAttackByValue(attackValue);
+        playerAnimation.PlayEnforce(attackValue);
         yield return playerAnimation.WaitForEnforceAnimationComplete(attackValue);
     }
 
@@ -276,6 +333,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
 
         int totalDealtDamage = 0;
+        List<IDamageable> damagedTargets = new List<IDamageable>();
         foreach (IDamageable target in targets)
         {
             if (target != null && target.IsAlive)
@@ -291,12 +349,13 @@ public class BattleCombatController : MonoBehaviour, IBattleController
                     target.TakeDamage(finalDamage);
                 }
                 totalDealtDamage += finalDamage;
+                damagedTargets.Add(target);
             }
         }
 
         eventDomain?.RecordSingleAttackDamage(totalDealtDamage);
 
-        ApplyOnHitSynergies(player, totalDealtDamage);
+        ApplyOnHitSynergies(player, currentAttack, damagedTargets);
 
         if (playerAnimation != null)
         {
@@ -312,82 +371,80 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
     }
 
-    private void ApplyBattleWideSynergies(Player player)
+    private void ApplyActivatedSynergy(Player player, SynergyTotalData entry)
     {
-        if (player == null)
+        if (player == null || entry?.synergyData == null || string.IsNullOrEmpty(entry.synergyData.ID))
         {
             return;
         }
 
-        if (TryGetSynergyData(SynergyHonestyId, out SynergyTotalData honestySynergy))
+        string synergyId = entry.synergyData.ID;
+        int effectValue = GetActiveEffectValue(GetEffect1Values(entry), entry.count);
+        if (effectValue <= 0)
         {
-            int honestyBonus = GetActiveEffectValue(GetEffect1Values(honestySynergy), honestySynergy.count);
-            if (honestyBonus > battlePermanentAttackBonus)
-            {
-                battlePermanentAttackBonus = honestyBonus;
-                player.SetBattleSynergyAttackBonus(battlePermanentAttackBonus);
-            }
-        }
-    }
-
-    private int ApplyAttackCalculationSynergies(Player player, int baseAttack)
-    {
-        int attackValue = baseAttack + battlePermanentAttackBonus;
-        pendingOverwhelmingDamage = 0;
-        pendingBloodSuckingPercent = 0;
-
-        if (player != null && TryGetSynergyData(SynergyShieldAttackId, out SynergyTotalData shieldAttackSynergy))
-        {
-            int shieldPercent = GetActiveEffectValue(GetEffect1Values(shieldAttackSynergy), shieldAttackSynergy.count);
-            int shieldBonus = Mathf.RoundToInt(player.ProtectionValue * (shieldPercent / 100f));
-            attackValue += shieldBonus;
+            return;
         }
 
-        if (TryGetSynergyData(SynergyBasicId, out SynergyTotalData basicSynergy))
+        switch (synergyId)
         {
-            int activeBasicValue = GetActiveEffectValue(GetEffect1Values(basicSynergy), basicSynergy.count);
-            if (activeBasicValue > 0)
-            {
+            case SynergyHonestyId:
+                if (effectValue > battlePermanentAttackBonus)
+                {
+                    battlePermanentAttackBonus = effectValue;
+                    player.SetBattleSynergyAttackBonus(battlePermanentAttackBonus);
+                }
+                break;
+
+            case SynergyShieldAttackId:
+                int shieldBonus = Mathf.RoundToInt(player.ProtectionValue * (effectValue / 100f));
+                AddTurnAttackBonus(player, shieldBonus);
+                break;
+
+            case SynergyBasicId:
                 int totalStars = GetTotalBattleCardStars();
-                attackValue += 5 + totalStars * 5;
-            }
-        }
+                AddTurnAttackBonus(player, 5 + totalStars * 5);
+                break;
 
-        if (TryGetSynergyData(SynergyOverwhelmingId, out SynergyTotalData overwhelmingSynergy))
-        {
-            pendingOverwhelmingDamage = GetActiveEffectValue(GetEffect1Values(overwhelmingSynergy), overwhelmingSynergy.count);
-        }
+            case SynergyOverwhelmingId:
+                pendingOverwhelmingDamage = effectValue;
+                ApplyOverwhelmingDamage(player);
+                break;
 
-        if (TryGetSynergyData(SynergyBloodSuckingId, out SynergyTotalData bloodSuckingSynergy))
-        {
-            pendingBloodSuckingPercent = GetActiveEffectValue(GetEffect1Values(bloodSuckingSynergy), bloodSuckingSynergy.count);
-        }
+            case SynergyBloodSuckingId:
+                pendingBloodSuckingPercent = effectValue;
+                break;
 
-        if (TryGetSynergyData(SynergyPlunderId, out SynergyTotalData plunderSynergy))
-        {
-            int plunderPerCard = GetActiveEffectValue(GetEffect1Values(plunderSynergy), plunderSynergy.count);
-            if (plunderPerCard > 0)
-            {
+            case SynergyPlunderId:
                 int plunderCardCount = CountAttackFieldSynergyCards(SynergyPlunderId);
-                int plunderGold = plunderCardCount * plunderPerCard;
+                int plunderGold = plunderCardCount * effectValue;
                 if (plunderGold > 0 && DataCenter.Instance != null)
                 {
                     DataCenter.Instance.SetMoney(plunderGold);
                 }
-            }
-        }
+                break;
 
-        if (TryGetSynergyData(SynergyMysteryId, out SynergyTotalData mysterySynergy))
-        {
-            int mysteryGrade = GetActiveEffectValue(GetEffect1Values(mysterySynergy), mysterySynergy.count);
-            // TODO: 마법 시스템 구현 후 Mystery(무작위 마법 생성) 연동
-            _ = mysteryGrade;
-        }
+            case SynergyMysteryId:
+                // TODO: 마법 시스템 구현 후 Mystery(무작위 마법 생성) 연동
+                break;
 
-        return attackValue;
+            case SynergyDarknessId:
+                ApplyDarknessCurse(effectValue);
+                break;
+        }
     }
 
-    private void ApplyPreHitSynergies()
+    private void AddTurnAttackBonus(Player player, int amount)
+    {
+        if (player == null || amount <= 0)
+        {
+            return;
+        }
+
+        currentTurnAttackBonus += amount;
+        player.SetTurnSynergyAttackBonus(currentTurnAttackBonus);
+    }
+
+    private void ApplyOverwhelmingDamage(Player player)
     {
         if (pendingOverwhelmingDamage <= 0 || battleManager == null)
         {
@@ -400,7 +457,6 @@ public class BattleCombatController : MonoBehaviour, IBattleController
             return;
         }
 
-        Player player = setupController.GetPlayer();
         IEnumerable<Monster> monsters = setupController.GetPrimaryMonsters();
         foreach (Monster monster in monsters)
         {
@@ -411,34 +467,49 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
     }
 
-    private void ApplyOnHitSynergies(Player player, int totalDealtDamage)
+    private void ApplyDarknessCurse(int curseStack)
     {
-        if (player == null || totalDealtDamage <= 0 || pendingBloodSuckingPercent <= 0)
+        if (curseStack <= 0 || battleManager == null)
         {
             return;
         }
 
-        int healAmount = Mathf.RoundToInt(totalDealtDamage * (pendingBloodSuckingPercent / 100f));
-        if (healAmount > 0)
+        BattleSetupController setupController = battleManager.GetSetupController();
+        if (setupController == null)
         {
-            player.Heal(healAmount);
+            return;
+        }
+
+        IEnumerable<Monster> monsters = setupController.GetPrimaryMonsters();
+        foreach (Monster monster in monsters)
+        {
+            if (monster == null || !monster.IsAlive)
+            {
+                continue;
+            }
+
+            StatusEffectController statusEffectController = StatusEffectController.Resolve(monster);
+            if (statusEffectController != null)
+            {
+                statusEffectController.TryApplyStatus(StatusEffectController.CurseStatusId, curseStack);
+            }
         }
     }
 
-    private bool TryGetSynergyData(string synergyId, out SynergyTotalData synergyData)
+    private void ApplyOnHitSynergies(Player player, int attackPower, List<IDamageable> hitTargets)
     {
-        synergyData = null;
-        if (GameData.Instance == null || GameData.Instance.synergyIDList == null || string.IsNullOrEmpty(synergyId))
+        if (player == null || pendingBloodSuckingPercent <= 0)
         {
-            return false;
+            return;
         }
 
-        if (!GameData.Instance.synergyIDList.TryGetValue(synergyId, out synergyData) || synergyData == null)
+        int healAmount = BloodSuckingEffectSpawner.CalculateHeal(attackPower, pendingBloodSuckingPercent);
+        if (BloodSuckingEffectSpawner.CanApplyHeal(player.CurrentHealth, player.MaxHealth, healAmount))
         {
-            return false;
+            player.Heal(healAmount);
         }
 
-        return synergyData.synergyData != null;
+        BloodSuckingEffectSpawner.SpawnFromTargets(player.transform, hitTargets);
     }
 
     private int GetActiveEffectValue(List<int> effectValues, int synergyCount)

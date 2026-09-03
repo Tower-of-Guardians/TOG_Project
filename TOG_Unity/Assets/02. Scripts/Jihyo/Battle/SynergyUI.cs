@@ -117,7 +117,7 @@ public class SynergyUI : MonoBehaviour
 
         List<SynergyTotalData> ordered = synergyMap.Values
                                                    .Where(s => s.synergyData != null)
-                                                   .OrderByDescending(IsSynergyActivated)
+                                                   .OrderByDescending(SynergyActivationSelector.IsActivated)
                                                    .ThenByDescending(s => s.count)
                                                    .ThenBy(s => s.synergyData.Tier)
                                                    .ToList();
@@ -337,32 +337,32 @@ public class SynergyUI : MonoBehaviour
         ResetAllSlotScales();
     }
 
-    private List<SynergyTotalData> GetActivatedSynergiesOrdered()
+    public void BeginSynergyHighlight(SynergyTotalData entry)
     {
-        if (GameData.Instance?.synergyIDList == null)
+        if (entry == null)
         {
-            return new List<SynergyTotalData>();
-        }
-
-        return GameData.Instance.synergyIDList.Values
-            .Where(entry => entry?.synergyData != null && IsSynergyActivated(entry))
-            .OrderByDescending(IsSynergyActivated)
-            .ThenByDescending(entry => entry.count)
-            .ThenBy(entry => entry.synergyData.Tier)
-            .ToList();
-    }
-
-    private IEnumerator HighlightSynergyEntry(SynergyTotalData entry)
-    {
-        Transform target = FindDisplayedSlotTransform(entry);
-        if (target == null)
-        {
-            yield break;
+            return;
         }
 
         if (_highlightCoroutine != null)
         {
             StopCoroutine(_highlightCoroutine);
+        }
+
+        _highlightCoroutine = StartCoroutine(HighlightSynergyEntry(entry));
+    }
+
+    private List<SynergyTotalData> GetActivatedSynergiesOrdered()
+    {
+        return SynergyActivationSelector.Select(GameData.Instance?.synergyIDList?.Values);
+    }
+
+    public IEnumerator HighlightSynergyEntry(SynergyTotalData entry)
+    {
+        Transform target = FindDisplayedSlotTransform(entry);
+        if (target == null)
+        {
+            yield break;
         }
 
         Vector3 originalScale = target.localScale;
@@ -524,37 +524,6 @@ public class SynergyUI : MonoBehaviour
         }
 
         return _visualById.TryGetValue(sd.ID.Trim(), out binding);
-    }
-
-    private bool IsSynergyActivated(SynergyTotalData entry)
-    {
-        if (entry?.synergyData == null)
-        {
-            return false;
-        }
-
-        int count = entry.count;
-        if (count <= 0)
-        {
-            return false;
-        }
-
-        bool effect1Active = GetEffectValueAtCount(entry.synergyData.Effect1Synergys, count) > 0;
-        bool effect2Active = GetEffectValueAtCount(entry.synergyData.Effect2Synergys, count) > 0;
-        bool effect3Active = GetEffectValueAtCount(entry.synergyData.Effect3Synergys, count) > 0;
-
-        return effect1Active || effect2Active || effect3Active;
-    }
-
-    private int GetEffectValueAtCount(List<int> values, int count)
-    {
-        if (values == null || values.Count == 0 || count <= 0)
-        {
-            return 0;
-        }
-
-        int index = Mathf.Clamp(count - 1, 0, values.Count - 1);
-        return values[index];
     }
 
     private void ApplyIcon(Image iconImage, SynergyVisualBinding visual)

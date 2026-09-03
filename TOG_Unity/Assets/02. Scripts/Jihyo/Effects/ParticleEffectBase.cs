@@ -47,18 +47,7 @@ public abstract class ParticleEffectBase : MonoBehaviour
         
         // 시작 위치로 이동
         transform.position = from.position;
-        
-        // ParticleSystem이 없으면 찾기 (자식 포함)
-        if (ps == null)
-        {
-            ps = GetComponentInChildren<ParticleSystem>();
-        }
-        
-        // 파티클 배열 초기화
-        if (ps != null && particles == null)
-        {
-            particles = new ParticleSystem.Particle[ps.main.maxParticles];
-        }
+        PrepareParticleSystem();
     }
 
     /// <summary>
@@ -70,20 +59,8 @@ public abstract class ParticleEffectBase : MonoBehaviour
         toPosition = to;
         useTransformTargets = false;
         
-        // 시작 위치로 이동
         transform.position = from;
-        
-        // ParticleSystem이 없으면 찾기 (자식 포함)
-        if (ps == null)
-        {
-            ps = GetComponentInChildren<ParticleSystem>();
-        }
-        
-        // 파티클 배열 초기화
-        if (ps != null && particles == null)
-        {
-            particles = new ParticleSystem.Particle[ps.main.maxParticles];
-        }
+        PrepareParticleSystem();
     }
 
     protected virtual void LateUpdate()
@@ -116,5 +93,26 @@ public abstract class ParticleEffectBase : MonoBehaviour
     protected Vector3 GetTargetPosition()
     {
         return useTransformTargets ? toTarget.position : toPosition;
+    }
+
+    private void PrepareParticleSystem()
+    {
+        if (ps == null)
+        {
+            ps = GetComponentInChildren<ParticleSystem>();
+        }
+
+        if (ps == null)
+        {
+            return;
+        }
+
+        if (particles == null || particles.Length < ps.main.maxParticles)
+        {
+            particles = new ParticleSystem.Particle[ps.main.maxParticles];
+        }
+
+        ParticleSystem.MainModule main = ps.main;
+        main.simulationSpace = ParticleSystemSimulationSpace.World;
     }
 }

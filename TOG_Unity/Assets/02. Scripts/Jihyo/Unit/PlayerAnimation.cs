@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     public const string AttackHitFunctionName = "OnAttackHit";
+    public const string SynergyHitFunctionName = "OnSynergyHit";
 
     [Header("Animation")]
     private Animator animator;
@@ -17,6 +18,7 @@ public class PlayerAnimation : MonoBehaviour
     private static readonly int HitHash = Animator.StringToHash("Hit");
     private static readonly int DeadHash = Animator.StringToHash("Dead");
     private static readonly int SetPositionHash = Animator.StringToHash("SetPosition");
+    private static readonly int SynergyHash = Animator.StringToHash("Synergy");
 
     [Header("Animation State Names")]
     [SerializeField] private string attack1StateName = "Player1_Attack1";
@@ -28,6 +30,9 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private string attack1MoveStateName = "Player1_Attack1_Move";
     [SerializeField] private string attack2MoveStateName = "Player1_Attack2_Move";
     [SerializeField] private string attack3MoveStateName = "Player1_Attack3_Move";
+    [SerializeField] private string synergyIntroStateName = "Player1_SynergyAttack_Intro";
+    [SerializeField] private string synergyLoopStateName = "Player1_SynergyAttack_Loop";
+    [SerializeField] private string idleStateName = "Player1_Idle";
 
     [Header("Animation Settings")]
     [SerializeField] private float fallbackMotionDuration = 0.3f;
@@ -40,6 +45,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private readonly Dictionary<string, AttackClipHitTiming> attackClipTimingCache = new Dictionary<string, AttackClipHitTiming>();
     private bool attackHitTriggered;
+    private bool synergyHitTriggered;
 
     private struct AttackClipHitTiming
     {
@@ -70,6 +76,14 @@ public class PlayerAnimation : MonoBehaviour
         attackHitTriggered = true;
     }
 
+    /// <summary>
+    /// Synergy Loop 클립 Animation Event에서 호출됩니다.
+    /// </summary>
+    public void OnSynergyHit()
+    {
+        synergyHitTriggered = true;
+    }
+
     public void TriggerAttack()
     {
         if (animator != null)
@@ -97,6 +111,23 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetTrigger(Attack3Hash);
         }
+    }
+
+    public void PlayEnforce(int attackValue)
+    {
+        if (animator == null)
+        {
+            return;
+        }
+
+        string stateName = GetEnforceStateName(attackValue);
+        if (string.IsNullOrEmpty(stateName))
+        {
+            return;
+        }
+
+        animator.Play(stateName, 0, 0f);
+        animator.Update(0f);
     }
 
     public void TriggerSetPosition()
@@ -133,9 +164,139 @@ public class PlayerAnimation : MonoBehaviour
             animator.ResetTrigger(Attack3Hash);
             animator.ResetTrigger(HitHash);
             animator.ResetTrigger(SetPositionHash);
+            animator.ResetTrigger(SynergyHash);
         }
 
         attackHitTriggered = false;
+        synergyHitTriggered = false;
+    }
+
+    public IEnumerator PlaySynergyIntro()
+    {
+        if (animator == null)
+        {
+            if (fallbackMotionDuration > 0f)
+            {
+                yield return new WaitForSeconds(fallbackMotionDuration);
+            }
+
+            yield break;
+        }
+
+        animator.ResetTrigger(SynergyHash);
+        animator.Play(synergyIntroStateName, 0, 0f);
+        animator.Update(0f);
+        yield return WaitForStateComplete(synergyIntroStateName);
+    }
+
+    public void StartSynergyLoop()
+    {
+        if (animator == null || string.IsNullOrEmpty(synergyLoopStateName))
+        {
+            return;
+        }
+
+        synergyHitTriggered = false;
+        animator.Play(synergyLoopStateName, 0, 0f);
+        animator.Update(0f);
+    }
+
+    public IEnumerator WaitForSynergyLoopHit(int cycleIndex)
+    {
+        synergyHitTriggered = false;
+
+        if (animator == null || string.IsNullOrEmpty(synergyLoopStateName))
+        {
+            if (fallbackHitDelaySeconds > 0f)
+            {
+                yield return new WaitForSeconds(fallbackHitDelaySeconds);
+            }
+
+            yield break;
+        }
+
+        int stateHash = Animator.StringToHash(synergyLoopStateName);
+        AttackClipHitTiming timing = ResolveClipHitTiming(synergyLoopStateName, SynergyHitFunctionName);
+        float hitThreshold = cycleIndex + timing.HitNormalizedTime;
+        float timeout = Mathf.Max(3f, timing.ClipLength + 1f);
+        float elapsed = 0f;
+
+        yield return WaitUntilState(synergyLoopStateName);
+
+        while (elapsed < timeout)
+        {
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.shortNameHash != stateHash)
+            {
+                break;
+            }
+
+            if (stateInfo.normalizedTime >= hitThreshold)
+            {
+                break;
+            }
+
+            if (synergyHitTriggered
+                && stateInfo.normalizedTime >= cycleIndex
+                && stateInfo.normalizedTime < cycleIndex + 1f)
+            {
+                break;
+            }
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public IEnumerator WaitForSynergyLoopCycleEnd(int cycleIndex)
+    {
+        if (animator == null || string.IsNullOrEmpty(synergyLoopStateName))
+        {
+            if (fallbackMotionDuration > 0f)
+            {
+                yield return new WaitForSeconds(fallbackMotionDuration);
+            }
+
+            yield break;
+        }
+
+        int stateHash = Animator.StringToHash(synergyLoopStateName);
+        float cycleEnd = cycleIndex + 1f;
+        AttackClipHitTiming timing = ResolveClipHitTiming(synergyLoopStateName, SynergyHitFunctionName);
+        float timeout = Mathf.Max(3f, timing.ClipLength + 1f);
+        float elapsed = 0f;
+
+        while (elapsed < timeout)
+        {
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.shortNameHash != stateHash)
+            {
+                break;
+            }
+
+            if (stateInfo.normalizedTime >= cycleEnd)
+            {
+                break;
+            }
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public void StopSynergyMotion()
+    {
+        if (animator == null)
+        {
+            return;
+        }
+
+        animator.ResetTrigger(SynergyHash);
+        if (!string.IsNullOrEmpty(idleStateName))
+        {
+            animator.Play(idleStateName, 0, 0f);
+            animator.Update(0f);
+        }
     }
 
     public IEnumerator WaitForEnforceAnimationComplete(int attackValue)
@@ -253,11 +414,11 @@ public class PlayerAnimation : MonoBehaviour
                 continue;
             }
 
-            attackClipTimingCache[clip.name] = BuildClipHitTiming(clip);
+            attackClipTimingCache[clip.name] = BuildClipHitTiming(clip, AttackHitFunctionName);
         }
     }
 
-    private AttackClipHitTiming BuildClipHitTiming(AnimationClip clip)
+    private AttackClipHitTiming BuildClipHitTiming(AnimationClip clip, string functionName)
     {
         AttackClipHitTiming timing = new AttackClipHitTiming
         {
@@ -269,7 +430,7 @@ public class PlayerAnimation : MonoBehaviour
         AnimationEvent[] events = clip.events;
         for (int i = 0; i < events.Length; i++)
         {
-            if (events[i].functionName != AttackHitFunctionName)
+            if (events[i].functionName != functionName)
             {
                 continue;
             }
@@ -277,7 +438,7 @@ public class PlayerAnimation : MonoBehaviour
             timing.HasHitEvent = true;
             timing.HitNormalizedTime = clip.length > 0f
                 ? Mathf.Clamp01(events[i].time / clip.length)
-                : 0.488f;
+                : fallbackHitNormalizedTime;
             break;
         }
 
@@ -286,18 +447,56 @@ public class PlayerAnimation : MonoBehaviour
 
     private AttackClipHitTiming ResolveAttackClipHitTiming(int attackValue)
     {
-        string stateName = GetAttackStateName(attackValue);
-        if (!string.IsNullOrEmpty(stateName) && attackClipTimingCache.TryGetValue(stateName, out AttackClipHitTiming cachedTiming))
+        return ResolveClipHitTiming(GetAttackStateName(attackValue), AttackHitFunctionName);
+    }
+
+    private AttackClipHitTiming ResolveClipHitTiming(string clipOrStateName, string functionName)
+    {
+        string cacheKey = clipOrStateName + "|" + functionName;
+        if (!string.IsNullOrEmpty(clipOrStateName) && attackClipTimingCache.TryGetValue(cacheKey, out AttackClipHitTiming cachedTiming))
         {
             return cachedTiming;
         }
 
-        RebuildAttackClipTimingCache();
-        if (!string.IsNullOrEmpty(stateName) && attackClipTimingCache.TryGetValue(stateName, out cachedTiming))
+        if (!string.IsNullOrEmpty(clipOrStateName) && attackClipTimingCache.TryGetValue(clipOrStateName, out cachedTiming)
+            && functionName == AttackHitFunctionName)
         {
             return cachedTiming;
         }
 
+        AttackClipHitTiming timing = FindClipHitTiming(clipOrStateName, functionName);
+        if (!string.IsNullOrEmpty(clipOrStateName))
+        {
+            attackClipTimingCache[cacheKey] = timing;
+        }
+
+        return timing;
+    }
+
+    private AttackClipHitTiming FindClipHitTiming(string clipOrStateName, string functionName)
+    {
+        if (animator == null || animator.runtimeAnimatorController == null || string.IsNullOrEmpty(clipOrStateName))
+        {
+            return CreateFallbackHitTiming();
+        }
+
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        for (int i = 0; i < clips.Length; i++)
+        {
+            AnimationClip clip = clips[i];
+            if (clip == null || clip.name != clipOrStateName)
+            {
+                continue;
+            }
+
+            return BuildClipHitTiming(clip, functionName);
+        }
+
+        return CreateFallbackHitTiming();
+    }
+
+    private AttackClipHitTiming CreateFallbackHitTiming()
+    {
         return new AttackClipHitTiming
         {
             HitNormalizedTime = fallbackHitNormalizedTime,
@@ -320,8 +519,10 @@ public class PlayerAnimation : MonoBehaviour
         }
 
         int stateHash = Animator.StringToHash(stateName);
+        float elapsed = 0f;
+        const float timeoutSeconds = 2f;
 
-        while (true)
+        while (elapsed < timeoutSeconds)
         {
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             if (stateInfo.shortNameHash == stateHash)
@@ -329,6 +530,7 @@ public class PlayerAnimation : MonoBehaviour
                 break;
             }
 
+            elapsed += Time.deltaTime;
             yield return null;
         }
     }

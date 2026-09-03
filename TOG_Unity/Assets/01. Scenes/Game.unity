@@ -2791,6 +2791,9 @@ MonoBehaviour:
   - effectId: Effect_LifeDrain
     prefab: {fileID: 6720001741172940176, guid: 5d6d4c1bfef70374d968b1bc4d675f9a, type: 3}
     effectType: 3
+  - effectId: Effect_BloodSucking
+    prefab: {fileID: 6720001741172940176, guid: 5d6d4c1bfef70374d968b1bc4d675f9a, type: 3}
+    effectType: 3
   defaultInitialPoolSize: 10
   defaultMaxPoolSize: 50
   defaultExpandable: 1

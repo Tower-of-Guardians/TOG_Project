@@ -314,6 +314,7 @@ public class Player : BaseUnit, ITooltipProvider
     public IEnumerator ReturnToOriginalPosition()
     {
         yield return StartCoroutine(MoveSpriteToPosition(initialSpriteLocalPosition, attackMoveDuration));
+        SetSortingOrder(NormalSortingOrder);
 
         if (playerAnimation != null)
         {

@@ -185,14 +185,21 @@ public class BattleManager : MonoBehaviour
             yield break;
         }
 
-        yield return combatController.ExecutePreAttackSynergyPhase(initResult.player, synergyUI);
-        yield return CloseSynergyOverlayUI();
+        yield return combatController.ExecutePreAttackSynergyPhase(initResult.player, initResult.playerAnimation, synergyUI);
 
-        // 공격력 애니메이션 대기
-        float statAnimationWaitTime = combatController.GetStatAnimationWaitTime();
-        if (statAnimationWaitTime > 0f)
+        if (combatController.PlayedSynergyMotion)
         {
-            yield return new WaitForSeconds(statAnimationWaitTime);
+            StartCoroutine(CloseSynergyOverlayUI());
+        }
+        else
+        {
+            yield return CloseSynergyOverlayUI();
+
+            float statAnimationWaitTime = combatController.GetStatAnimationWaitTime();
+            if (statAnimationWaitTime > 0f)
+            {
+                yield return new WaitForSeconds(statAnimationWaitTime);
+            }
         }
 
         int currentAttack = combatController.GetPreparedAttackValue();
@@ -479,6 +486,47 @@ public class BattleManager : MonoBehaviour
         }
 
         StartCoroutine(ForceVictoryRoutine());
+    }
+
+    public void PlaySynergyActivationForDebug()
+    {
+        if (!isInitialized || isProcessingAttack)
+        {
+            return;
+        }
+
+        StartCoroutine(PlaySynergyActivationForDebugRoutine());
+    }
+
+    private IEnumerator PlaySynergyActivationForDebugRoutine()
+    {
+        if (setupController == null || combatController == null)
+        {
+            yield break;
+        }
+
+        Player player = setupController.GetPlayer();
+        if (player == null)
+        {
+            yield break;
+        }
+
+        isProcessingAttack = true;
+
+        if (GameData.Instance != null)
+        {
+            GameData.Instance.GetSynergyData();
+        }
+
+        synergyUI?.SetVisible(true);
+
+        PlayerAnimation playerAnimation = player.GetComponent<PlayerAnimation>();
+        playerAnimation?.ResetAnimationState();
+
+        yield return combatController.ExecutePreAttackSynergyPhase(player, playerAnimation, synergyUI);
+        playerAnimation?.StopSynergyMotion();
+
+        isProcessingAttack = false;
     }
 
     private IEnumerator ForceVictoryRoutine()

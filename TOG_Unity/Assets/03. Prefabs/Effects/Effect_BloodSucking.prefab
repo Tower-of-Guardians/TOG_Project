@@ -4855,7 +4855,7 @@ GameObject:
   - component: {fileID: 7279601666183062594}
   - component: {fileID: 6840662989125757698}
   m_Layer: 0
-  m_Name: Effect_LifeDrain
+  m_Name: Effect_BloodSucking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

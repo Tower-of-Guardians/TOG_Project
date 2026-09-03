@@ -1,0 +1,613 @@
+fileFormatVersion: 2
+guid: 099a8c970d34d4340bb693b2e63c4c92
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2880868337374841657
+    second: Player1_SynergyAura_Intro_0
+  - first:
+      213: 1846529062141874165
+    second: Player1_SynergyAura_Intro_1
+  - first:
+      213: -4651254618121745623
+    second: Player1_SynergyAura_Intro_2
+  - first:
+      213: -3539495512418114940
+    second: Player1_SynergyAura_Intro_3
+  - first:
+      213: -8809446324956817028
+    second: Player1_SynergyAura_Intro_4
+  - first:
+      213: -9087364603097617326
+    second: Player1_SynergyAura_Intro_5
+  - first:
+      213: 1107055352847323164
+    second: Player1_SynergyAura_Intro_6
+  - first:
+      213: 3722831019045398718
+    second: Player1_SynergyAura_Intro_7
+  - first:
+      213: 8908297566804961001
+    second: Player1_SynergyAura_Intro_8
+  - first:
+      213: 6329744063750790441
+    second: Player1_SynergyAura_Intro_9
+  - first:
+      213: 7974911257449137532
+    second: Player1_SynergyAura_Intro_10
+  - first:
+      213: -931759596333965610
+    second: Player1_SynergyAura_Intro_11
+  - first:
+      213: 748748162455160912
+    second: Player1_SynergyAura_Intro_12
+  - first:
+      213: -7436594534994021078
+    second: Player1_SynergyAura_Intro_13
+  - first:
+      213: -7385677467201022702
+    second: Player1_SynergyAura_Intro_14
+  - first:
+      213: 4235849162385649436
+    second: Player1_SynergyAura_Intro_15
+  - first:
+      213: -8907900299686516567
+    second: Player1_SynergyAura_Intro_16
+  - first:
+      213: 306723498515237624
+    second: Player1_SynergyAura_Intro_17
+  - first:
+      213: -6412122372797213197
+    second: Player1_SynergyAura_Intro_18
+  - first:
+      213: -8660851786154149208
+    second: Player1_SynergyAura_Intro_19
+  - first:
+      213: -7767793484496512255
+    second: Player1_SynergyAura_Intro_20
+  - first:
+      213: -7093780091708831797
+    second: Player1_SynergyAura_Intro_21
+  - first:
+      213: -1011178412643923001
+    second: Player1_SynergyAura_Intro_22
+  - first:
+      213: 1745505690766526424
+    second: Player1_SynergyAura_Intro_23
+  - first:
+      213: -6452784979525210655
+    second: Player1_SynergyAura_Intro_24
+  - first:
+      213: -7895613937226151969
+    second: Player1_SynergyAura_Intro_25
+  - first:
+      213: -4951876528593894032
+    second: Player1_SynergyAura_Intro_26
+  - first:
+      213: -7971057971675484911
+    second: Player1_SynergyAura_Intro_27
+  - first:
+      213: 6803532351234395849
+    second: Player1_SynergyAura_Intro_28
+  - first:
+      213: -1230379318008489440
+    second: Player1_SynergyAura_Intro_29
+  - first:
+      213: 5689899770778863055
+    second: Player1_SynergyAura_Intro_30
+  - first:
+      213: -4794161136890866436
+    second: Player1_SynergyAura_Intro_31
+  - first:
+      213: 1446817317211837029
+    second: Player1_SynergyAura_Intro_32
+  - first:
+      213: -7878546824592451794
+    second: Player1_SynergyAura_Intro_33
+  - first:
+      213: 1976205713265042658
+    second: Player1_SynergyAura_Intro_34
+  - first:
+      213: 2837687246973516460
+    second: Player1_SynergyAura_Intro_35
+  - first:
+      213: 4247740906898627852
+    second: Player1_SynergyAura_Intro_36
+  - first:
+      213: 7882495346451404068
+    second: Player1_SynergyAura_Intro_37
+  - first:
+      213: -6658995397234631183
+    second: Player1_SynergyAura_Intro_38
+  - first:
+      213: 6429346695116283149
+    second: Player1_SynergyAura_Intro_39
+  - first:
+      213: -274942928157227258
+    second: Player1_SynergyAura_Intro_40
+  - first:
+      213: 8734559051806850387
+    second: Player1_SynergyAura_Intro_41
+  - first:
+      213: 5339217367691586300
+    second: Player1_SynergyAura_Intro_42
+  - first:
+      213: 5987814573276451739
+    second: Player1_SynergyAura_Intro_43
+  - first:
+      213: -2195681319023434425
+    second: Player1_SynergyAura_Intro_44
+  - first:
+      213: 7332046608451918080
+    second: Player1_SynergyAura_Intro_45
+  - first:
+      213: -4801613258962206367
+    second: Player1_SynergyAura_Intro_46
+  - first:
+      213: -7197152385142498257
+    second: Player1_SynergyAura_Intro_47
+  - first:
+      213: -1318109932067733731
+    second: Player1_SynergyAura_Intro_48
+  - first:
+      213: 8262315147253550060
+    second: Player1_SynergyAura_Intro_49
+  - first:
+      213: -5002762445332731552
+    second: Player1_SynergyAura_Intro_50
+  - first:
+      213: 7783709511105174198
+    second: Player1_SynergyAura_Intro_51
+  - first:
+      213: -4640478090192952748
+    second: Player1_SynergyAura_Intro_52
+  - first:
+      213: -4666388749896759551
+    second: Player1_SynergyAura_Intro_53
+  - first:
+      213: -7844668611115407696
+    second: Player1_SynergyAura_Intro_54
+  - first:
+      213: 8266639070446420544
+    second: Player1_SynergyAura_Intro_55
+  - first:
+      213: -4632466469459828609
+    second: Player1_SynergyAura_Intro_56
+  - first:
+      213: -3727702465258539218
+    second: Player1_SynergyAura_Intro_57
+  - first:
+      213: -9188808574109624757
+    second: Player1_SynergyAura_Intro_58
+  - first:
+      213: 62953300950210673
+    second: Player1_SynergyAura_Intro_59
+  - first:
+      213: 4421181242492932657
+    second: Player1_SynergyAura_Intro_60
+  - first:
+      213: -6384796692018202480
+    second: Player1_SynergyAura_Intro_61
+  - first:
+      213: 5772688724080979921
+    second: Player1_SynergyAura_Intro_62
+  - first:
+      213: -3004262504690121241
+    second: Player1_SynergyAura_Intro_63
+  - first:
+      213: -2319704289019176898
+    second: Player1_SynergyAura_Intro_64
+  - first:
+      213: 4234904864066905119
+    second: Player1_SynergyAura_Intro_65
+  - first:
+      213: -6639582426816076606
+    second: Player1_SynergyAura_Intro_66
+  - first:
+      213: 2476473813745396479
+    second: Player1_SynergyAura_Intro_67
+  - first:
+      213: 1583772891726805456
+    second: Player1_SynergyAura_Intro_68
+  - first:
+      213: 7386018935010258361
+    second: Player1_SynergyAura_Intro_69
+  - first:
+      213: 8829926621025519053
+    second: Player1_SynergyAura_Intro_70
+  - first:
+      213: -6900053388179434641
+    second: Player1_SynergyAura_Intro_71
+  - first:
+      213: -6986752366359059926
+    second: Player1_SynergyAura_Intro_72
+  - first:
+      213: 7964313210921221072
+    second: Player1_SynergyAura_Intro_73
+  - first:
+      213: 4595826838659381343
+    second: Player1_SynergyAura_Intro_74
+  - first:
+      213: -983030439983983882
+    second: Player1_SynergyAura_Intro_75
+  - first:
+      213: 3490233819190156048
+    second: Player1_SynergyAura_Intro_76
+  - first:
+      213: 7873882940411548764
+    second: Player1_SynergyAura_Intro_77
+  - first:
+      213: 9171106601990963692
+    second: Player1_SynergyAura_Intro_78
+  - first:
+      213: -2757681512150047828
+    second: Player1_SynergyAura_Intro_79
+  - first:
+      213: -499789709664540511
+    second: Player1_SynergyAura_Intro_80
+  - first:
+      213: -2849852717332688060
+    second: Player1_SynergyAura_Intro_81
+  - first:
+      213: 485914149282292331
+    second: Player1_SynergyAura_Intro_82
+  - first:
+      213: 2005285107090393584
+    second: Player1_SynergyAura_Intro_83
+  - first:
+      213: -491819189408863035
+    second: Player1_SynergyAura_Intro_84
+  - first:
+      213: 2327970411375677473
+    second: Player1_SynergyAura_Intro_85
+  - first:
+      213: 9029484504271996389
+    second: Player1_SynergyAura_Intro_86
+  - first:
+      213: 3853487820540127978
+    second: Player1_SynergyAura_Intro_87
+  - first:
+      213: 8468868545923337632
+    second: Player1_SynergyAura_Intro_88
+  - first:
+      213: 2209882436128838872
+    second: Player1_SynergyAura_Intro_89
+  - first:
+      213: 4420711783259133702
+    second: Player1_SynergyAura_Intro_90
+  - first:
+      213: 1496245626407577120
+    second: Player1_SynergyAura_Intro_91
+  - first:
+      213: -130099783991545482
+    second: Player1_SynergyAura_Intro_92
+  - first:
+      213: -6980795256870268132
+    second: Player1_SynergyAura_Intro_93
+  - first:
+      213: 9173544594697376143
+    second: Player1_SynergyAura_Intro_94
+  - first:
+      213: -3663958044163189771
+    second: Player1_SynergyAura_Intro_95
+  - first:
+      213: 2474014953156252915
+    second: Player1_SynergyAura_Intro_96
+  - first:
+      213: 3206999461306668774
+    second: Player1_SynergyAura_Intro_97
+  - first:
+      213: -6431767452098173929
+    second: Player1_SynergyAura_Intro_98
+  - first:
+      213: 4988653229498224798
+    second: Player1_SynergyAura_Intro_99
+  - first:
+      213: 1403524524714604752
+    second: Player1_SynergyAura_Intro_100
+  - first:
+      213: -1795131771220608255
+    second: Player1_SynergyAura_Intro_101
+  - first:
+      213: -4495378669990570970
+    second: Player1_SynergyAura_Intro_102
+  - first:
+      213: 7205443941101043721
+    second: Player1_SynergyAura_Intro_103
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Player1_SynergyAura_Intro_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c43a1ab2891508d0800000000000000
+      internalID: -2880868337374841657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAura_Intro_1
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ffc660166030a910800000000000000
+      internalID: 1846529062141874165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAura_Intro_2
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92b45f6719c637fb0800000000000000
+      internalID: -4651254618121745623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAura_Intro_3
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 482aa32a59f21eec0800000000000000
+      internalID: -3539495512418114940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAura_Intro_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c79141ded3f8eb580800000000000000
+      internalID: -8809446324956817028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAura_Intro_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25c68e75a0233e180800000000000000
+      internalID: -9087364603097617326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAura_Intro_6
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c10d82d5afc0d5f00800000000000000
+      internalID: 1107055352847323164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player1_SynergyAura_Intro_7
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb8a10166172aa330800000000000000
+      internalID: 3722831019045398718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 99e6b72e8449cf7488bb21e2ca15bcfe
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Player1_SynergyAura_Intro_0: -2880868337374841657
+      Player1_SynergyAura_Intro_1: 1846529062141874165
+      Player1_SynergyAura_Intro_2: -4651254618121745623
+      Player1_SynergyAura_Intro_3: -3539495512418114940
+      Player1_SynergyAura_Intro_4: -8809446324956817028
+      Player1_SynergyAura_Intro_5: -9087364603097617326
+      Player1_SynergyAura_Intro_6: 1107055352847323164
+      Player1_SynergyAura_Intro_7: 3722831019045398718
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
