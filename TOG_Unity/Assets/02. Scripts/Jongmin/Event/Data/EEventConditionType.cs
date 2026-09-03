@@ -4,8 +4,8 @@
     {
         None,                                   // 조건 없이 항상 통과
 
-        FirstNpcTalk,                           // 해당 NPC에게 처음 말을 거는가?
-        NpcTalkCountAtLeast,                    // 해당 NPC와 대화한 횟수가 N번 이상인가?
+        FirstNpcEncounter,                      // 이번 런에서 해당 NPC를 처음 조우했는가?
+        NpcEncounterCountAtLeast,               // 이번 런에서 해당 NPC를 조우한 횟수가 N번 이상인가?
         EventSeen,                              // 특정 이벤트를 이미 본 적이 있는가?
         EventNotSeen,                           // 특정 이벤트를 아직 본 적이 없는가?
         

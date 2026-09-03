@@ -10,16 +10,6 @@
         void MarkSeen(string eventID);
     }
 
-    public interface IDialogueProgress
-    {
-        int GetStep(string npcID);
-    }
-
-    public interface IMutableDialogueProgress : IDialogueProgress
-    {
-        void AdvanceStep(string npcID);
-    }
-    
     public interface IShopProgress
     {
         bool HasPurchasedAllItems();
@@ -27,6 +17,7 @@
 
     public interface IRunProgress
     {
+        int GetNpcEncounterCount(string npcID);
         bool HasFirstReachedStage(int stage);
         bool HasReachedStage(int stage);
     }
