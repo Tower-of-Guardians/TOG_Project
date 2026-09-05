@@ -106,6 +106,8 @@ public class AreaEventUI : ViewBase
 
     public void Hide(Action onComplete = null)
     {
+        CanvasGroup.interactable = false;
+        CanvasGroup.blocksRaycasts = false;
         _panel.raycastTarget = false;
         _toggleTween?.Kill();
         _toggleTween = CanvasGroup.DOFade(0f, 0.5f).OnComplete(() =>
@@ -113,6 +115,11 @@ public class AreaEventUI : ViewBase
             CanvasGroup.Hide();
             onComplete?.Invoke();
         });
+    }
+
+    private void OnDestroy()
+    {
+        _toggleTween?.Kill();
     }
 
     public void RefreshData(string title, List<AreaEventType> typeList)
@@ -145,6 +152,15 @@ public class AreaEventUI : ViewBase
                     break;
                 }
             }
+        }
+    }
+
+    public void SetEventAvailable(AreaEventType type, bool available)
+    {
+        if (_items == null) return;
+        foreach (var item in _items)
+        {
+            if (item != null && item.Type == type) item.SetAvailable(available);
         }
     }
 

@@ -15,6 +15,10 @@ namespace Jongmin
         [SerializeField] private SpeechBubbleDomain speechBubbleDomain;
 
         private DataTable _forgeDataTable;
+        private bool _isClosing;
+
+        public bool IsOpen { get; private set; }
+        public event Action ViewClosed;
 
         public void OnGUI()
         {
@@ -27,7 +31,29 @@ namespace Jongmin
         [Button("Test")]
         public void OpenView()
         {
+            if (IsOpen)
+            {
+                return;
+            }
+
+            IsOpen = true;
             craftmanSystem.OpenView();
+        }
+
+        public void CloseView()
+        {
+            if (!IsOpen || _isClosing)
+            {
+                return;
+            }
+
+            _isClosing = true;
+            craftmanSystem.CloseView(() =>
+            {
+                IsOpen = false;
+                _isClosing = false;
+                ViewClosed?.Invoke();
+            });
         }
         
         public void Construct()
@@ -42,6 +68,7 @@ namespace Jongmin
         
         public void BindEvents()
         {
+            craftmanView.Bind(this);
             forgeView.Bind(this);
             
             craftmanSystem.RequestOpenView += HandleRequestOpenView;
@@ -50,6 +77,10 @@ namespace Jongmin
         
         public void ReleaseEvents()
         {
+            if (craftmanView != null)
+            {
+                craftmanView.ReleaseEvents();
+            }
             craftmanSystem.RequestOpenView -= HandleRequestOpenView;
             craftmanSystem.RequestCloseView -= HandleRequestCloseView;
         }
@@ -106,7 +137,7 @@ namespace Jongmin
 
         public void HandleOnRequestClose()
         {
-            craftmanSystem.CloseView();
+            CloseView();
         }
 
         private void HandleOnSelectedSlot(CardData cardData)

@@ -12,6 +12,24 @@ public class AreaSceneBootstrapper : MonoBehaviour
         DisableGameBattleObjects(this);
     }
 
+    public static void EnableGameBattleObjects(Object context = null)
+    {
+        Scene gameScene = SceneManager.GetSceneByName(GameSceneName);
+        if (!gameScene.IsValid() || !gameScene.isLoaded) return;
+
+        foreach (GameObject root in gameScene.GetRootGameObjects())
+        {
+            foreach (Player player in root.GetComponentsInChildren<Player>(true))
+            {
+                player.gameObject.SetActive(true);
+            }
+            foreach (Transform child in root.GetComponentsInChildren<Transform>(true))
+            {
+                if (child.name == BattleCanvasName) child.gameObject.SetActive(true);
+            }
+        }
+    }
+
     public static void DisableGameBattleObjects(Object context = null)
     {
         // TODO: Game 씬의 전투 종료/정리 시스템에 Player, Monster, Battle UI Clear API를 추가한 뒤 교체해야 한다.
@@ -66,6 +84,18 @@ public class AreaSceneBootstrapper : MonoBehaviour
 
         if (battleCanvas != null)
         {
+            foreach (AreaEventUI selectionUI in battleCanvas.GetComponentsInChildren<AreaEventUI>(true))
+            {
+                Canvas selectionCanvas = selectionUI.GetComponent<Canvas>();
+                Canvas parentCanvas = battleCanvas.GetComponent<Canvas>();
+                if (selectionCanvas != null && parentCanvas != null && !selectionCanvas.overrideSorting)
+                {
+                    selectionCanvas.sortingLayerID = parentCanvas.sortingLayerID;
+                    selectionCanvas.sortingOrder = parentCanvas.sortingOrder;
+                }
+                selectionUI.transform.SetParent(battleCanvas.transform.parent, false);
+                selectionUI.transform.SetSiblingIndex(battleCanvas.transform.GetSiblingIndex() + 1);
+            }
             battleCanvas.SetActive(false);
         }
         else

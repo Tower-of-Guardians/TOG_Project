@@ -11,6 +11,10 @@ using UnityEngine.ResourceManagement.ResourceLocations;
 
 public class DataCenter : Singleton<DataCenter>
 {
+    private bool ownsData;
+    private bool loadCancelled;
+    private bool CanContinueLoading => this != null && ownsData && !loadCancelled;
+
     ////// 플레이어 관련 /////
     public PlayerState playerstate = new PlayerState();
     public event Action<PlayerState> playerStateEvent;
@@ -83,23 +87,39 @@ public class DataCenter : Singleton<DataCenter>
     protected override void Awake()
     {
         base.Awake();
+        if (Instance != this) return;
+        ownsData = true;
         DataLoad();
     }
 
     private async void DataLoad()
     {
-        LoadPlayerData();
+        try
+        {
+            LoadPlayerData();
 
-        await AllCardData();
-        StartCoroutine(SetStartDeck());
+            await AllCardData();
+            if (!CanContinueLoading) return;
+            StartCoroutine(SetStartDeck());
 
-        await AllResultPercentData();
-        await AllMonsterData();
-        await AllMonsterEncounterData();
-        await AllStatusEffectData();
-        await AllSynergyData();
-        await AllEffectData();
-        await AllAreaEventData();
+            await AllResultPercentData();
+            if (!CanContinueLoading) return;
+            await AllMonsterData();
+            if (!CanContinueLoading) return;
+            await AllMonsterEncounterData();
+            if (!CanContinueLoading) return;
+            await AllStatusEffectData();
+            if (!CanContinueLoading) return;
+            await AllSynergyData();
+            if (!CanContinueLoading) return;
+            await AllEffectData();
+            if (!CanContinueLoading) return;
+            await AllAreaEventData();
+        }
+        catch (Exception exception)
+        {
+            if (CanContinueLoading) UnityEngine.Debug.LogException(exception, this);
+        }
     }
 
     public void LoadPlayerData()
@@ -136,7 +156,7 @@ public class DataCenter : Singleton<DataCenter>
             keys,
             (item) =>
             {
-                if (item != null)
+                if (CanContinueLoading && item != null)
                 {
                     // 중복 방지 로직 추가
                     if (!card_datas.ContainsKey(item.id))
@@ -151,6 +171,7 @@ public class DataCenter : Singleton<DataCenter>
 
         // 3. 비동기 대기
         await carddata_loadHandle.Task;
+        if (!CanContinueLoading) return;
 
         // 4. 상태 확인
         if (carddata_loadHandle.Status == AsyncOperationStatus.Succeeded)
@@ -180,7 +201,7 @@ public class DataCenter : Singleton<DataCenter>
             // 로드된 각 Asset에 대한 콜백 (선택 사항)
             (item) =>
             {
-                if (item != null)
+                if (CanContinueLoading && item != null)
                 {
                     result_datas[item.level] = item;
                 }
@@ -189,6 +210,7 @@ public class DataCenter : Singleton<DataCenter>
 
         // 비동기 작업이 완료될 때까지 대기
         await resultdata_loadHandle.Task;
+        if (!CanContinueLoading) return;
 
         if (resultdata_loadHandle.Status == AsyncOperationStatus.Succeeded)
         {
@@ -206,7 +228,7 @@ public class DataCenter : Singleton<DataCenter>
             "MonsterData",
             (item) =>
             {
-                if (item != null)
+                if (CanContinueLoading && item != null)
                 {
                     monster_datas[item.Id] = item;
                 }
@@ -214,6 +236,7 @@ public class DataCenter : Singleton<DataCenter>
         );
 
         await monsterdata_loadHandle.Task;
+        if (!CanContinueLoading) return;
 
         if (monsterdata_loadHandle.Status == AsyncOperationStatus.Succeeded)
         {
@@ -231,7 +254,7 @@ public class DataCenter : Singleton<DataCenter>
             "MonsterEncounterData",
             (item) =>
             {
-                if (item != null)
+                if (CanContinueLoading && item != null)
                 {
                     monster_encounter_datas[item.Id] = item;
                 }
@@ -239,6 +262,7 @@ public class DataCenter : Singleton<DataCenter>
         );
 
         await monster_encounter_datas_loadHandle.Task;
+        if (!CanContinueLoading) return;
 
         if (monster_encounter_datas_loadHandle.Status == AsyncOperationStatus.Succeeded)
         {
@@ -256,7 +280,7 @@ public class DataCenter : Singleton<DataCenter>
             "StatusEffectData",
             (item) =>
             {
-                if (item != null)
+                if (CanContinueLoading && item != null)
                 {
                     status_effect_datas[item.Id] = item;
                 }
@@ -264,6 +288,7 @@ public class DataCenter : Singleton<DataCenter>
         );
 
         await status_effect_datas_loadHandle.Task;
+        if (!CanContinueLoading) return;
 
         if (status_effect_datas_loadHandle.Status == AsyncOperationStatus.Succeeded)
         {
@@ -281,7 +306,7 @@ public class DataCenter : Singleton<DataCenter>
             "SynergyData",
             (item) =>
             {
-                if (item != null)
+                if (CanContinueLoading && item != null)
                 {
                     synergy_datas[item.ID] = item;
                 }
@@ -289,6 +314,7 @@ public class DataCenter : Singleton<DataCenter>
         );
 
         await synergy_datas_loadHandle.Task;
+        if (!CanContinueLoading) return;
 
         if (synergy_datas_loadHandle.Status == AsyncOperationStatus.Succeeded)
         {
@@ -306,7 +332,7 @@ public class DataCenter : Singleton<DataCenter>
             "EffectData",
             (item) =>
             {
-                if (item != null)
+                if (CanContinueLoading && item != null)
                 {
                     effect_datas[item.Id] = item;
                 }
@@ -314,6 +340,7 @@ public class DataCenter : Singleton<DataCenter>
         );
 
         await effect_datas_loadHandle.Task;
+        if (!CanContinueLoading) return;
 
         if (effect_datas_loadHandle.Status == AsyncOperationStatus.Succeeded)
         {
@@ -331,7 +358,7 @@ public class DataCenter : Singleton<DataCenter>
             "AreaEventData",
             (item) =>
             {
-                if (item != null)
+                if (CanContinueLoading && item != null)
                 {
                     areaevent_datas[item.Id] = item;
                 }
@@ -339,6 +366,7 @@ public class DataCenter : Singleton<DataCenter>
         );
 
         await areaevent_datas_loadHandle.Task;
+        if (!CanContinueLoading) return;
 
         if (areaevent_datas_loadHandle.Status == AsyncOperationStatus.Succeeded)
         {
@@ -352,12 +380,15 @@ public class DataCenter : Singleton<DataCenter>
     }
     public void ReleaseDataHandle()
     {
-        Addressables.Release(carddata_loadHandle);
-        Addressables.Release(resultdata_loadHandle);
-        Addressables.Release(monsterdata_loadHandle);
-        Addressables.Release(monster_encounter_datas_loadHandle);
-        Addressables.Release(status_effect_datas_loadHandle);
-        Addressables.Release(synergy_datas_loadHandle);
+        if (!ownsData) return;
+        if (carddata_loadHandle.IsValid()) Addressables.Release(carddata_loadHandle);
+        if (resultdata_loadHandle.IsValid()) Addressables.Release(resultdata_loadHandle);
+        if (monsterdata_loadHandle.IsValid()) Addressables.Release(monsterdata_loadHandle);
+        if (monster_encounter_datas_loadHandle.IsValid()) Addressables.Release(monster_encounter_datas_loadHandle);
+        if (status_effect_datas_loadHandle.IsValid()) Addressables.Release(status_effect_datas_loadHandle);
+        if (synergy_datas_loadHandle.IsValid()) Addressables.Release(synergy_datas_loadHandle);
+        if (effect_datas_loadHandle.IsValid()) Addressables.Release(effect_datas_loadHandle);
+        if (areaevent_datas_loadHandle.IsValid()) Addressables.Release(areaevent_datas_loadHandle);
         UnityEngine.Debug.Log("Addressables 핸들 해제 완료.");
     }
 
@@ -659,6 +690,8 @@ public class DataCenter : Singleton<DataCenter>
 
     private void OnDisable()
     {
+        if (!ownsData) return;
+        loadCancelled = true;
         ReleaseDataHandle();
     }
 }

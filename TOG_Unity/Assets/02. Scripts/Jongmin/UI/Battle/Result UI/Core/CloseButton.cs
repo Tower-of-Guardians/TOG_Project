@@ -11,36 +11,37 @@ public class CloseButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     
     private bool _isMouseOver;
     private bool _isProcessingClick;
-    private Coroutine _preventDisabledAnimationCoroutine;
+    private bool _isReady;
+    private UnityAction _clickHandlers;
     
     private const string TriggerNormal = "Normal";
     private const string TriggerHighlighted = "Highlighted";
     private const string TriggerPressed = "Pressed";
     private const string TriggerSelected = "Selected";
     private const string TriggerDisabled = "Disabled";
+    private const string StateInit = "Init";
     private const string StateIntro = "Intro";
     private const string StateSelected = "Selected";
 
+    private void Awake()
+    {
+        buttonModel.onClick.AddListener(HandleClick);
+    }
+
     public void Bind(UnityAction action)
-        => buttonModel.onClick.AddListener(action);
+        => _clickHandlers += action;
 
     public void Unbind(UnityAction action)
-        => buttonModel.onClick.RemoveListener(action);
+        => _clickHandlers -= action;
     
     public void Show()
     {
-        if (animator == null)
+        ResetInteraction();
+        if (animator == null || !animator.isActiveAndEnabled || animator.runtimeAnimatorController == null)
         {
+            _isReady = true;
+            buttonModel.interactable = true;
             return;
-        }
-        
-        StopAllCoroutines();
-        _isProcessingClick = false;
-
-        if (_preventDisabledAnimationCoroutine != null)
-        {
-            StopCoroutine(_preventDisabledAnimationCoroutine);
-            _preventDisabledAnimationCoroutine = null;
         }
         
         ResetTrigger();
@@ -52,7 +53,36 @@ public class CloseButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void Hide()
     {
-        animator.SetTrigger(TriggerNormal);
+        ResetInteraction();
+        _isMouseOver = false;
+        buttonModel.interactable = false;
+        if (animator != null && animator.isActiveAndEnabled)
+        {
+            ResetTrigger();
+            animator.Play(StateInit, 0, 0f);
+        }
+    }
+
+    private void ResetInteraction()
+    {
+        StopAllCoroutines();
+        _isProcessingClick = false;
+        _isReady = false;
+    }
+
+    private void OnDisable()
+    {
+        ResetInteraction();
+        _isMouseOver = false;
+    }
+
+    private void OnDestroy()
+    {
+        if (buttonModel != null)
+        {
+            buttonModel.onClick.RemoveListener(HandleClick);
+        }
+        _clickHandlers = null;
     }
 
     private void ResetTrigger()
@@ -67,7 +97,7 @@ public class CloseButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         _isMouseOver = true;
-        if (!buttonModel.interactable || _isProcessingClick)
+        if (!_isReady || !buttonModel.interactable || _isProcessingClick)
         {
             return;
         }
@@ -81,7 +111,7 @@ public class CloseButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerExit(PointerEventData eventData)
     {
         _isMouseOver = false;
-        if (!buttonModel.interactable || _isProcessingClick)
+        if (!_isReady || !buttonModel.interactable || _isProcessingClick)
         {
             return;
         }
@@ -94,12 +124,12 @@ public class CloseButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!buttonModel.interactable || _isProcessingClick)
+        if (!_isReady || !buttonModel.interactable || _isProcessingClick)
         {
             return;
         }
 
-        if (_isMouseOver)
+        if (_isMouseOver && animator != null)
         {
             animator.SetTrigger(TriggerPressed);
         }
@@ -107,48 +137,54 @@ public class CloseButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!buttonModel.interactable || _isProcessingClick)
+        if (!_isReady || !buttonModel.interactable || _isProcessingClick)
         {
             return;
         }
 
-        if (_isMouseOver)
-        {
-            StartCoroutine(ClickRoutine());
-        }
-        else
+        if (!_isMouseOver && animator != null)
         {
             animator.SetTrigger(TriggerNormal);
         }
+    }
+
+    private void HandleClick()
+    {
+        if (!isActiveAndEnabled || !_isReady || _isProcessingClick || !buttonModel.IsInteractable())
+        {
+            return;
+        }
+
+        StartCoroutine(ClickRoutine());
     }
     
     private IEnumerator ClickRoutine()
     {
         _isProcessingClick = true;
-        
-        animator.SetTrigger(TriggerSelected);
-        
-        float elapsedTime = 0f;
-        while (elapsedTime < 0.5f && !animator.GetCurrentAnimatorStateInfo(0).IsName(StateSelected))
-        {
-            yield return null;
-            elapsedTime += Time.deltaTime;
-        }
-
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName(StateSelected))
-        {
-            float selectedLength = animator.GetCurrentAnimatorStateInfo(0).length;
-            yield return new WaitForSeconds(selectedLength);            
-        }
-        
-        if (_preventDisabledAnimationCoroutine != null)
-        {
-            StopCoroutine(_preventDisabledAnimationCoroutine);
-        }
-
-        _preventDisabledAnimationCoroutine = StartCoroutine(PreventDisableRoutine());
-        buttonModel.onClick.Invoke();
+        _isReady = false;
         buttonModel.interactable = false;
+
+        if (animator != null && animator.isActiveAndEnabled && animator.runtimeAnimatorController != null)
+        {
+            ResetTrigger();
+            animator.Play(StateSelected, 0, 0f);
+
+            float elapsedTime = 0f;
+            while (elapsedTime < 0.5f && !animator.GetCurrentAnimatorStateInfo(0).IsName(StateSelected))
+            {
+                yield return null;
+                elapsedTime += Time.deltaTime;
+            }
+
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(StateSelected))
+            {
+                float selectedLength = animator.GetCurrentAnimatorStateInfo(0).length;
+                yield return new WaitForSeconds(selectedLength);
+            }
+        }
+
+        buttonModel.interactable = false;
+        _clickHandlers?.Invoke();
     }
 
     private IEnumerator HandleIntroEnd()
@@ -181,6 +217,7 @@ public class CloseButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         yield return new WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName(StateIntro));
         
         animator.ResetTrigger(TriggerDisabled);
+        _isReady = true;
         buttonModel.interactable = true;
 
         if (_isMouseOver)
@@ -193,18 +230,4 @@ public class CloseButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    private IEnumerator PreventDisableRoutine()
-    {
-        while (buttonModel != null && !buttonModel.interactable)
-        {
-            if (animator != null)
-            {
-                animator.ResetTrigger(TriggerDisabled);
-            }
-
-            yield return null;
-        }
-
-        _preventDisabledAnimationCoroutine = null;
-    }
 }

@@ -18,15 +18,26 @@ public class ShopPresenter
     }
 
     public void OpenUI()
+        => TryOpenUI();
+
+    public bool TryOpenUI()
     {
+        if (!_shopDispenser.Initialize())
+        {
+            return false;
+        }
+
+        _merchantDeckInvenPresenter.CloseUI();
         _shopUI.ToggleSaleButton(true);
         _shopUI.OpenUI();
-        
-        _shopDispenser.Initialize();
+        return true;
     }
 
     public void CloseUI()
-        => _shopUI.CloseUI();
+    {
+        _merchantDeckInvenPresenter.CloseUI();
+        _shopUI.CloseUI();
+    }
 
     public void FadeUpUI()
         => _shopUI.OpenUI();

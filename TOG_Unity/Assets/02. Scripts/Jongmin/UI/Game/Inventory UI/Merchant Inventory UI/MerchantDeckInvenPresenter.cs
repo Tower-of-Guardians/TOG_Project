@@ -27,6 +27,7 @@ public sealed class MerchantDeckInvenPresenter : DeckInvenPresenter, ICardSelect
 
     public override void OpenUI()
     {
+        _selectedCardSet.Clear();
         _dialogueBubblePresenter.OpenUI(this);
         AlertUpdateSelectedCards();
         base.OpenUI();
@@ -34,6 +35,7 @@ public sealed class MerchantDeckInvenPresenter : DeckInvenPresenter, ICardSelect
 
     public override void CloseUI()
     {
+        _selectedCardSet.Clear();
         _dialogueBubblePresenter.CloseUI(this);
         base.CloseUI();
     }

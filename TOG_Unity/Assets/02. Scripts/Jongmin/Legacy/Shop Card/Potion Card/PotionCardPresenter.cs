@@ -25,13 +25,14 @@ public class PotionCardPresenter : IDisposable
     {
         Purchased = false;
 
+        _shopDispenser.OnPurchasedAnyItem -= UpdateUI;
         _shopDispenser.OnPurchasedAnyItem += UpdateUI;
         UpdateUI();
     }
 
     public void OnClickedPurchase()
     {
-        if(_playerState.money < Cost)
+        if(Purchased || _playerState.money < Cost)
             return;
 
         Purchased = true;

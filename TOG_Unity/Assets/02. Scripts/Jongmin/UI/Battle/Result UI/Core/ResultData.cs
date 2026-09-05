@@ -6,12 +6,14 @@ public class ResultData
     public int Gold { get; }
     public int Exp { get; }
     public bool IsLevelUp { get; }
+    public bool IsVictory { get; }
 
-    public ResultData(int gold, int exp, bool isLevelUp = false)
+    public ResultData(int gold, int exp, bool isLevelUp = false, bool isVictory = true)
     {
         Gold = gold;
         Exp = exp;
         IsLevelUp = isLevelUp;
+        IsVictory = isVictory;
     }
 
     public ResultData(ResultData resultData)
@@ -19,5 +21,6 @@ public class ResultData
         Gold = resultData.Gold;
         Exp = resultData.Exp;
         IsLevelUp = resultData.IsLevelUp;
+        IsVictory = resultData.IsVictory;
     }
 }

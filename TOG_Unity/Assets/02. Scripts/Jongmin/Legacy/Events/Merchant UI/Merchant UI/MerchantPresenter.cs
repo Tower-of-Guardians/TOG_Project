@@ -1,7 +1,12 @@
+using System;
+
 public class MerchantPresenter
 {
     private readonly IMerchantUI _merchantUI;
     private readonly ShopPresenter _shopPresenter;
+    private bool _isOpen;
+
+    public event Action Closed;
 
     public MerchantPresenter(IMerchantUI merchantUI,
                              ShopPresenter shopPresenter)
@@ -12,22 +17,35 @@ public class MerchantPresenter
         _merchantUI.Construct(this);
     }
     public void OpenUI()
+        => TryOpenUI();
+
+    public bool TryOpenUI()
     {
-        // TODO: 대화 이벤트 등록
-        OpenShop();
+        if (_isOpen)
+        {
+            return true;
+        }
+
+        if (!_shopPresenter.TryOpenUI())
+        {
+            return false;
+        }
+
+        _isOpen = true;
         _merchantUI.OpenUI();
+        return true;
     }
 
     public void CloseUI()
     {
-        // TODO: 대화 이벤트 해제
-        CloseShop();
-        _merchantUI.CloseUI();
-    }
-    
-    private void OpenShop()
-        => _shopPresenter.OpenUI();
+        if (!_isOpen)
+        {
+            return;
+        }
 
-    private void CloseShop()
-        => _shopPresenter.CloseUI();
+        _isOpen = false;
+        _shopPresenter.CloseUI();
+        _merchantUI.CloseUI();
+        Closed?.Invoke();
+    }
 }

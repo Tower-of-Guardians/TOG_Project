@@ -16,6 +16,12 @@ public static class AreaEventSelectorUtil
 
         var runtimeWeights = CalculateRuntimeWeights(data, status);
         var selectedEvents = new List<AreaEventType>();
+
+        if (runtimeWeights[AreaEventType.Battle] > 0)
+        {
+            selectedEvents.Add(AreaEventType.Battle);
+            runtimeWeights[AreaEventType.Battle] = 0;
+        }
         int safetyNet = 0;
 
         while (selectedEvents.Count < TargetChoiceCount && safetyNet < MaxSafetyLoopCount)
@@ -65,18 +71,26 @@ public static class AreaEventSelectorUtil
 
     private static Dictionary<AreaEventType, int> CalculateRuntimeWeights(AreaEventData data, PlayerEventStatus status)
     {
-        int shopWeight = status.ShopCountInStage >= 1 ? 0 : data.MerchantEvent;
-        int smithyWeight = status.SmithyCountInStage >= 2 ? 0 : data.SmithyEvent;
-        int blessingWeight = status.BlessingCooldownTurns > 0 ? 0 : data.BlessingEvent;
+        int configuredEvents = 0;
+        foreach (int weight in new[] { data.BossEvent, data.MerchantEvent, data.BattleEvent,
+            data.SmithyEvent, data.BlessingEvent, data.RandomEvent })
+        {
+            if (weight > 0) configuredEvents++;
+        }
+
+        bool forcedEvent = configuredEvents == 1;
+        int shopWeight = !forcedEvent && status.ShopCountInStage >= 1 ? 0 : data.MerchantEvent;
+        int smithyWeight = !forcedEvent && status.SmithyCountInStage >= 2 ? 0 : data.SmithyEvent;
+        int blessingWeight = !forcedEvent && status.BlessingCooldownTurns > 0 ? 0 : data.BlessingEvent;
 
         return new Dictionary<AreaEventType, int>
         {
-            { AreaEventType.Boss, data.BossEvent },
-            { AreaEventType.Shop, shopWeight },
-            { AreaEventType.Battle, data.BattleEvent },
-            { AreaEventType.Blacksmith, smithyWeight },
-            { AreaEventType.Blessing, blessingWeight },
-            { AreaEventType.Random, data.RandomEvent }
+            { AreaEventType.Boss, Mathf.Max(0, data.BossEvent) },
+            { AreaEventType.Shop, Mathf.Max(0, shopWeight) },
+            { AreaEventType.Battle, Mathf.Max(0, data.BattleEvent) },
+            { AreaEventType.Blacksmith, Mathf.Max(0, smithyWeight) },
+            { AreaEventType.Blessing, Mathf.Max(0, blessingWeight) },
+            { AreaEventType.Random, Mathf.Max(0, data.RandomEvent) }
         };
     }
 }

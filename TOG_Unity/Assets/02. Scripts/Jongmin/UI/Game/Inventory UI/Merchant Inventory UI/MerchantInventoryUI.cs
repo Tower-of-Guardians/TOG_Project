@@ -12,7 +12,7 @@ public class MerchantInventoryUI : MonoBehaviour, IDeckInvenUI
     [Header("Animation Duration")]
     [SerializeField] private float animationDuration;
 
-    private MerchantDeckInvenPresenter _merchantDeckInvenPresenter;
+    private Tween _moveTween;
 
     public void Construct(DeckInvenPresenter deckInvenPresenter)
     {
@@ -24,6 +24,15 @@ public class MerchantInventoryUI : MonoBehaviour, IDeckInvenUI
 
         saleButton.onClick.AddListener(merchantDeckInvenPresenter.OnClickedSale);
         backButton.onClick.AddListener(merchantDeckInvenPresenter.OnClickedBack);
+
+        Vector3 position = transform.localPosition;
+        position.x = -1960f;
+        transform.localPosition = position;
+        canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        saleButton.gameObject.SetActive(false);
+        backButton.gameObject.SetActive(false);
     }
 
     public void OpenUI()
@@ -34,7 +43,7 @@ public class MerchantInventoryUI : MonoBehaviour, IDeckInvenUI
 
     private void ToggleUI(bool isActive)
     {
-        transform.DOKill();
+        _moveTween?.Kill();
         
         saleButton.gameObject.SetActive(false);
         backButton.gameObject.SetActive(false);
@@ -44,10 +53,8 @@ public class MerchantInventoryUI : MonoBehaviour, IDeckInvenUI
 
         if (isActive)
         {
-            Sequence sequence = DOTween.Sequence();
-            
-            sequence.Append(transform.DOLocalMoveX(-480f, animationDuration));
-            sequence.AppendCallback(() =>
+            canvasGroup.alpha = 1f;
+            _moveTween = transform.DOLocalMoveX(-480f, animationDuration).OnComplete(() =>
             {
                 canvasGroup.interactable = true;
                 canvasGroup.blocksRaycasts = true;
@@ -58,7 +65,14 @@ public class MerchantInventoryUI : MonoBehaviour, IDeckInvenUI
         }
         else
         {
-            transform.DOLocalMoveX(-1960f, animationDuration);
+            _moveTween = transform.DOLocalMoveX(-1960f, animationDuration)
+                .OnComplete(() => canvasGroup.alpha = 0f);
         }
+    }
+
+    private void OnDisable()
+    {
+        _moveTween?.Kill();
+        _moveTween = null;
     }
 }
