@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Jongmin;
@@ -18,7 +19,11 @@ public class BattleManager : MonoBehaviour
 
     private bool isInitialized;
     private bool isProcessingAttack;
+    private bool isBattleFinished;
     private MonsterEncounterData currentEncounterData;
+
+    public bool CanInitializeBattle => setupController != null && actionController != null
+        && turnEndController != null && combatController != null && effectDomain != null;
 
     private void Awake()
     {
@@ -52,22 +57,105 @@ public class BattleManager : MonoBehaviour
 
     private void CleanupControllers()
     {
+        if (combatController != null)
+        {
+            combatController.StopAllCoroutines();
+            combatController.Cleanup();
+        }
         if (setupController != null)
         {
+            setupController.StopAllCoroutines();
             setupController.Cleanup();
         }
         if (actionController != null)
         {
+            actionController.StopAllCoroutines();
             actionController.Cleanup();
         }
         if (turnEndController != null)
         {
+            turnEndController.StopAllCoroutines();
             turnEndController.Cleanup();
         }
-        if (combatController != null)
+    }
+
+    public void PrepareForNextBattle()
+    {
+        StopAllCoroutines();
+        Player player = setupController != null ? setupController.GetPlayer() : null;
+        CleanupControllers();
+        ClearBattleCards();
+        isInitialized = false;
+        isProcessingAttack = false;
+        isBattleFinished = false;
+        currentEncounterData = null;
+
+        if (player != null)
         {
-            combatController.Cleanup();
+            player.ResetAttackToBase();
+            player.GetComponent<StatusEffectController>()?.ClearStatuses();
+            player.GetComponent<PlayerAnimation>()?.ResetAnimationState();
         }
+
+        InitializeControllers();
+        effectDomain?.EnableBattleView();
+    }
+
+    private static void ClearBattleCards()
+    {
+        if (DIContainer.IsRegistered<HandDomain>())
+        {
+            HandDomain hand = DIContainer.Resolve<HandDomain>();
+            if (hand != null && hand.Container != null)
+            {
+                foreach (Jongmin.Card card in new List<Jongmin.Card>(hand.Container.Cards))
+                    hand.System.RemoveCard(card, false);
+                hand.System.HoverCard = null;
+            }
+        }
+
+        if (DIContainer.IsRegistered<FieldDomain>())
+        {
+            FieldDomain field = DIContainer.Resolve<FieldDomain>();
+            if (field != null && field.AtkContainer != null && field.DefContainer != null)
+            {
+                foreach (Jongmin.Card card in new List<Jongmin.Card>(field.AtkContainer.Cards))
+                    field.AtkSystem.RemoveCard(card, false);
+                foreach (Jongmin.Card card in new List<Jongmin.Card>(field.DefContainer.Cards))
+                    field.DefSystem.RemoveCard(card, false);
+                field.AtkSystem.HoverCard = null;
+                field.DefSystem.HoverCard = null;
+            }
+        }
+
+        if (DIContainer.IsRegistered<DiscardDomain>())
+        {
+            DiscardDomain discard = DIContainer.Resolve<DiscardDomain>();
+            if (discard != null && discard.Container != null)
+            {
+                foreach (Jongmin.Card card in new List<Jongmin.Card>(discard.Container.Cards))
+                    discard.System.RemoveCard(card);
+                discard.System.HoverCard = null;
+                discard.System.CloseView();
+            }
+        }
+
+        if (GameData.Instance == null || DataCenter.Instance == null) return;
+
+        GameData gameData = GameData.Instance;
+        gameData.handDeck.Clear();
+        gameData.garbageDeck.Clear();
+        gameData.notuseDeck.Clear();
+        gameData.attackField.Clear();
+        gameData.defenseField.Clear();
+        foreach (CardData card in DataCenter.Instance.userDeck)
+        {
+            if (card != null) gameData.notuseDeck.Add(card.id);
+        }
+        gameData.Shuffle();
+        gameData.InvokeDeckCountChange(DeckType.Draw);
+        gameData.InvokeDeckCountChange(DeckType.Throw);
+        gameData.GetSynergyData();
     }
 
     public void Initialize(Player playerUnit, IEnumerable<Monster> monsters, Button attackBtn)
@@ -79,45 +167,81 @@ public class BattleManager : MonoBehaviour
         Player playerUnit,
         IEnumerable<Monster> monsters,
         Button attackBtn,
-        MonsterEncounterData encounterData)
+        MonsterEncounterData encounterData,
+        Action<bool> onComplete = null)
     {
         if (isInitialized)
         {
             Debug.LogWarning("BattleManager has already been initialized.");
+            onComplete?.Invoke(false);
             return;
         }
 
         if (setupController == null)
         {
             Debug.LogError("BattleSetupController is not assigned.");
+            onComplete?.Invoke(false);
             return;
         }
 
         currentEncounterData = encounterData;
         setupController.SetupBattle(playerUnit, monsters, attackBtn);
         isInitialized = true;
+        isBattleFinished = false;
 
-        StartCoroutine(StartFirstTurnDelayed());
+        StartCoroutine(StartFirstTurnDelayed(onComplete));
     }
 
-    private IEnumerator StartFirstTurnDelayed()
+    private IEnumerator StartFirstTurnDelayed(Action<bool> onComplete)
     {
-        yield return new WaitUntil(() => DIContainer.IsRegistered<TurnManager>());
+        yield return null;
+        float deadline = Time.realtimeSinceStartup + 30f;
+        while (!DIContainer.IsRegistered<TurnManager>() && Time.realtimeSinceStartup < deadline)
+        {
+            yield return null;
+        }
+
+        if (!DIContainer.IsRegistered<TurnManager>())
+        {
+            Debug.LogError("BattleManager: 첫 턴 초기화에 필요한 TurnManager가 준비되지 않았습니다.", this);
+            isInitialized = false;
+            onComplete?.Invoke(false);
+            yield break;
+        }
 
         var turnManager = DIContainer.Resolve<TurnManager>();
         if (turnManager != null)
         {
+            while ((GameData.Instance == null ||
+                GameData.Instance.notuseDeck.Count + GameData.Instance.garbageDeck.Count < turnManager.MaxHandCount)
+                && Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+            if (GameData.Instance == null ||
+                GameData.Instance.notuseDeck.Count + GameData.Instance.garbageDeck.Count < turnManager.MaxHandCount)
+            {
+                Debug.LogError("BattleManager: 첫 턴을 시작할 카드 덱이 준비되지 않았습니다.", this);
+                isInitialized = false;
+                onComplete?.Invoke(false);
+                yield break;
+            }
             turnManager.Initialize();
             turnManager.ResetTurnNumber();
             turnManager.StartTurn();
             InvokeStatusEffectTurnStart();
             ShowSynergyUIForTurnStart();
+            onComplete?.Invoke(true);
+            yield break;
         }
+
+        isInitialized = false;
+        onComplete?.Invoke(false);
     }
 
     public void OnAttackButtonClicked()
     {
-        if (isProcessingAttack) return;
+        if (!isInitialized || isProcessingAttack || isBattleFinished) return;
 
         // 턴 시작 처리
         if (actionController != null)
@@ -373,6 +497,8 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator HandleVictory()
     {
+        if (isBattleFinished) yield break;
+        isBattleFinished = true;
         int totalGold = CalculateTotalGold();
         int totalExp = CalculateTotalExp();
         bool isLevelUp = WillLevelUp(totalExp);
@@ -388,12 +514,14 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator HandleDefeat()
     {
+        if (isBattleFinished) yield break;
+        isBattleFinished = true;
         // ResultPresenter가 등록될 때까지 대기
         yield return new WaitUntil(() => DIContainer.IsRegistered<ResultDomain>());
 
         // Result 창 열기
         var resultDomain = DIContainer.Resolve<ResultDomain>();
-        var resultData = new ResultData(0, 0);
+        var resultData = new ResultData(0, 0, isVictory: false);
         resultDomain.Show(resultData);
     }
 
@@ -480,7 +608,7 @@ public class BattleManager : MonoBehaviour
 
     public void ForceVictoryForDebug()
     {
-        if (!isInitialized || isProcessingAttack)
+        if (!isInitialized || isProcessingAttack || isBattleFinished)
         {
             return;
         }

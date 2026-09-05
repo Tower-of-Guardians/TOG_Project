@@ -24,12 +24,18 @@ public class ShopCardPresenter : CardPresenter, IDisposable
         BattleCardData = battleCardData;
         Purchased = false;
 
+        _shopDispenser.OnPurchasedAnyItem -= UpdateUI;
         _shopDispenser.OnPurchasedAnyItem += UpdateUI;
         UpdateUI();
     }
 
     public void OnClickedPurchase()
     {
+        if (Purchased)
+        {
+            return;
+        }
+
         int cardCost = BattleCardData.data.price;
         bool canPurchase = _playerState.money >= cardCost;
 

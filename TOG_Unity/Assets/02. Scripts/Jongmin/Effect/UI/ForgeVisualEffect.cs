@@ -61,6 +61,7 @@ namespace Jongmin
                                     float originAnchoredPositionX)
         {
             _toggleTween?.Kill();
+            _upgradeTween?.Kill(true);
 
             var sequence = DOTween.Sequence();
             sequence.Join(closeButtonGroup.DOFade(0f, hideButtonFadeOutDuration).OnComplete(closeButtonGroup.Hide));

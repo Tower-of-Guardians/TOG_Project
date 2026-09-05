@@ -19,6 +19,11 @@ public class AreaEventItemUI : MonoBehaviour
 
     public AreaEventType Type => _type;
 
+    public void SetAvailable(bool available)
+    {
+        _btn.interactable = available;
+    }
+
 
     public void Init(Action<AreaEventType> clickAction)
     {

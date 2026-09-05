@@ -16,9 +16,12 @@ public class ShopDispenser : MonoBehaviour
         _potionCardPresenter = potionCardPresenter;
     }
 
-    public void Initialize()
+    public bool Initialize()
     {
-        List<BattleCardData> battleCardDataList = GetRandomCards();
+        if (!TryGetRandomCards(out List<BattleCardData> battleCardDataList))
+        {
+            return false;
+        }
 
         for (int i = 0; i < _shopCardPresenterList.Count; i++)
         {
@@ -26,59 +29,88 @@ public class ShopDispenser : MonoBehaviour
         }
 
         _potionCardPresenter?.Initialize();
+        return true;
     }
 
     public void Alert()
         => OnPurchasedAnyItem?.Invoke();
 
-    private List<BattleCardData> GetRandomCards()
+    private bool TryGetRandomCards(out List<BattleCardData> results)
     {
-        ResultPercentData resultPercent = ScriptableObject.CreateInstance<ResultPercentData>();
+        results = new List<BattleCardData>(_shopCardPresenterList.Count);
+        ResultPercentData resultPercent = null;
         DataCenter.Instance.GetResultPercentData(DataCenter.Instance.playerstate.level + 2, (data) =>
         {
-            resultPercent = Instantiate(data);
+            resultPercent = data;
         });
-        
-        List<BattleCardData> results = new List<BattleCardData>();
 
-        for (int i = 0; i < 5; i++)
+        if (resultPercent == null || resultPercent.percent == null || _shopCardPresenterList.Count == 0)
         {
-            float roll = UnityEngine.Random.Range(0, 100);
-            float accumulatedChance = 0;
+            Debug.LogError("상점의 카드 확률 데이터 또는 판매 슬롯이 준비되어 있지 않습니다.", this);
+            return false;
+        }
 
-            for (int n = 0; n < resultPercent.percent.Count; n++)
+        var cardsByGrade = new List<CardData>[resultPercent.percent.Count];
+        foreach (string cardId in DataCenter.random_card_datas)
+        {
+            if (!DataCenter.card_datas.TryGetValue(cardId, out CardData cardData) || cardData == null)
             {
-                accumulatedChance += resultPercent.percent[n];
+                continue;
+            }
 
-                if (roll <= accumulatedChance)
+            int gradeIndex = cardData.grade - 1;
+            if (gradeIndex < 0 || gradeIndex >= cardsByGrade.Length || resultPercent.percent[gradeIndex] <= 0f)
+            {
+                continue;
+            }
+
+            cardsByGrade[gradeIndex] ??= new List<CardData>();
+            cardsByGrade[gradeIndex].Add(cardData);
+        }
+
+        float totalWeight = 0f;
+        int lastAvailableGrade = -1;
+        for (int i = 0; i < cardsByGrade.Length; i++)
+        {
+            if (cardsByGrade[i] == null)
+            {
+                continue;
+            }
+
+            totalWeight += resultPercent.percent[i];
+            lastAvailableGrade = i;
+        }
+
+        if (lastAvailableGrade < 0 || totalWeight <= 0f)
+        {
+            Debug.LogError("상점 확률에 맞는 판매 가능 카드가 없습니다.", this);
+            return false;
+        }
+
+        for (int i = 0; i < _shopCardPresenterList.Count; i++)
+        {
+            float roll = UnityEngine.Random.Range(0f, totalWeight);
+            int selectedGrade = lastAvailableGrade;
+            for (int gradeIndex = 0; gradeIndex < cardsByGrade.Length; gradeIndex++)
+            {
+                if (cardsByGrade[gradeIndex] == null)
                 {
-                    results.Add(GetRandomCardData(n + 1));
+                    continue;
+                }
+
+                roll -= resultPercent.percent[gradeIndex];
+                if (roll < 0f)
+                {
+                    selectedGrade = gradeIndex;
                     break;
                 }
             }
+
+            List<CardData> candidates = cardsByGrade[selectedGrade];
+            CardData selectedCard = candidates[UnityEngine.Random.Range(0, candidates.Count)];
+            results.Add(new BattleCardData { data = Instantiate(selectedCard) });
         }
 
-        return results;
-    }
-
-    private BattleCardData GetRandomCardData(int cut)
-    {
-        BattleCardData cardData = new BattleCardData();
-        cardData.data = null;
-        while (cardData.data == null)
-        {
-            string randomID = DataCenter.random_card_datas[UnityEngine.Random.Range(0, DataCenter.random_card_datas.Count - 1)].ToString();
-            DataCenter.Instance.GetCardData(randomID, (data) =>
-            {
-                cardData.data = Instantiate(data);
-            });
-            
-            if (cardData.data.grade != cut)
-            {
-                cardData.data = null;
-            }
-        }
-
-        return cardData;
+        return true;
     }
 }

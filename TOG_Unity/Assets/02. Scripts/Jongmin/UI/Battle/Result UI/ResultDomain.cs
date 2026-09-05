@@ -18,6 +18,9 @@ namespace Jongmin
         [SerializeField] private Kwangmin.AreaEventDomain areaEventDomain;
 
         private GachaSlotFactory _slotFactory;
+        private bool resultOpen;
+        private bool isVictory;
+        private Coroutine showRoutine;
 
         public void OnGUI()
         {
@@ -82,11 +85,21 @@ namespace Jongmin
 
         public void Show(ResultData resultData)
         {
-            StartCoroutine(ShowRoutine(resultData));
+            if (resultOpen || resultData == null) return;
+            resultOpen = true;
+            isVictory = resultData.IsVictory;
+            showRoutine = StartCoroutine(ShowRoutine(resultData));
         }
 
         public void Hide()
         {
+            if (!resultOpen) return;
+            resultOpen = false;
+            if (showRoutine != null)
+            {
+                StopCoroutine(showRoutine);
+                showRoutine = null;
+            }
             rewardView.Hide();
             gachaSystem.CloseView();
             resultView.Hide();
@@ -94,7 +107,7 @@ namespace Jongmin
 
             if (areaEventDomain != null)
             {
-                areaEventDomain.OpenView();
+                areaEventDomain.CompleteBattleResult(isVictory);
             }
         }
 

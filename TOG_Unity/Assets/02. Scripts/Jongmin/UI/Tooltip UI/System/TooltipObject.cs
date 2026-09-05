@@ -60,7 +60,7 @@ namespace Jongmin
         public void OnPointerExit(PointerEventData eventData)
         {
             _isPointerOver = false;
-            TooltipSystem.Instance?.Hide();
+            TooltipSystem.HideIfExists();
         }
 
         private void Show()
@@ -90,7 +90,7 @@ namespace Jongmin
         private void OnDisable()
         {
             _isPointerOver = false;
-            TooltipSystem.Instance?.Hide();
+            TooltipSystem.HideIfExists();
         }
     }
 }

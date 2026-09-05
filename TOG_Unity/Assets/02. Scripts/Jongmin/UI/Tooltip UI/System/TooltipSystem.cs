@@ -16,6 +16,15 @@ namespace Jongmin
         private RectTransform _canvasRectTransform;
         private TooltipViewBase _currentTooltipView;
 
+        public static void HideIfExists()
+        {
+            var tooltipSystem = FindFirstObjectByType<TooltipSystem>();
+            if (tooltipSystem != null)
+            {
+                tooltipSystem.Hide();
+            }
+        }
+
         protected override void Awake()
         {
             base.Awake();

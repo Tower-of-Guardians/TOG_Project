@@ -5,6 +5,21 @@ public static class BattleEncounterSpawner
 {
     private const float DefaultSpawnY = 0.8f;
 
+    public static bool CanSpawnEncounter(MonsterEncounterData encounterData, MonsterPrefabRegistry prefabRegistry)
+    {
+        if (encounterData == null || prefabRegistry == null) return false;
+
+        bool hasMonster = false;
+        foreach (string id in new[] { encounterData.Mon1ID, encounterData.Mon2ID, encounterData.Mon3ID, encounterData.Mon4ID })
+        {
+            if (string.IsNullOrWhiteSpace(id)) continue;
+            hasMonster = true;
+            if (!prefabRegistry.TryGetPrefab(id, out Monster prefab) || prefab == null) return false;
+        }
+
+        return hasMonster;
+    }
+
     public static List<Monster> SpawnEncounter(
         MonsterEncounterData encounterData,
         Transform globalRoot,
@@ -27,6 +42,12 @@ public static class BattleEncounterSpawner
         if (prefabRegistry == null)
         {
             Debug.LogError("BattleEncounterSpawner: MonsterPrefabRegistry가 할당되지 않았습니다.");
+            return spawnedMonsters;
+        }
+
+        if (!CanSpawnEncounter(encounterData, prefabRegistry))
+        {
+            Debug.LogError($"BattleEncounterSpawner: Encounter {encounterData.Id}의 몬스터 프리팹 구성이 유효하지 않습니다.");
             return spawnedMonsters;
         }
 
@@ -75,6 +96,7 @@ public static class BattleEncounterSpawner
             Monster monster = existingMonsters[i];
             if (monster != null)
             {
+                monster.gameObject.SetActive(false);
                 Object.Destroy(monster.gameObject);
             }
         }
