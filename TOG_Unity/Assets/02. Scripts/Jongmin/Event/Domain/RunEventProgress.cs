@@ -74,6 +74,16 @@ namespace Jongmin
             _npcEncounterCounts[npcID] = count + 1;
         }
 
+        public void SetNpcEncounter(string npcID, int count)
+        {
+            if (string.IsNullOrWhiteSpace(npcID))
+            {
+                return;
+            }
+            
+            _npcEncounterCounts[npcID] = count;
+        }
+
         public void RecordSingleAttackDamage(int damage)
         {
             if (damage > MaxSingleAttackDamage)

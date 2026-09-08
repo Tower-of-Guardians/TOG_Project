@@ -95,6 +95,19 @@ namespace Jongmin
             _progressCache?.Run.RecordNpcEncounter(npcID);
             _npcEncounterSession.Begin(npcID);
         }
+        
+        /// <summary>
+        /// [Debug] NPC 만남 횟수를 설정합니다.
+        /// </summary>
+        public void SetNpcEncounter(string npcID, int count)
+        {
+            if (string.IsNullOrWhiteSpace(npcID))
+            {
+                return;
+            }
+
+            _progressCache?.Run.SetNpcEncounter(npcID, count);
+        }
 
         /// <summary>
         /// NPC 조우 이벤트가 종료되는 시점에 호출합니다.
