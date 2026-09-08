@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JxModule.Terminal;
+using UnityEngine;
 
 namespace Jongmin
 {
@@ -8,11 +9,13 @@ namespace Jongmin
     {
         private readonly HandDomain _handDomain;
         private readonly FieldDomain _fieldDomain;
+        private readonly EventDomain _eventDomain;
 
-        public CardCommands(HandDomain handDomain, FieldDomain fieldDomain)
+        public CardCommands(HandDomain handDomain, FieldDomain fieldDomain, EventDomain eventDomain)
         {
             _handDomain = handDomain;
             _fieldDomain = fieldDomain;
+            _eventDomain = eventDomain;
         }
 
         [JxCommand("Card List")]
@@ -31,6 +34,8 @@ namespace Jongmin
             };
             
             _handDomain.System.CreateCard(battleCardData);
+            _eventDomain.RecordGainedCard(battleCardData.data);
+            Debug.Log($"핸드에 {battleCardData.data.name}을 추가했습니다.");
         }
 
         [JxCommand("Remove Hand")]
@@ -38,6 +43,11 @@ namespace Jongmin
         {
             var targetCard = _handDomain.Container.Cards.FirstOrDefault(card => card.CardData.id == cardId);
             _handDomain.System.RemoveCard(targetCard);
+            
+            if (targetCard != null)
+            {
+                Debug.Log($"핸드에서 {targetCard.CardData.name}를 제거했습니다.");
+            }
         }
 
         [JxCommand("Add ATK Field")]
@@ -50,6 +60,8 @@ namespace Jongmin
             };
 
             _fieldDomain.AtkSystem.CreateCard(battleCardData);
+            _eventDomain.RecordGainedCard(battleCardData.data);
+            Debug.Log($"공격 필드에 {battleCardData.data.name}을 추가했습니다.");
         }
 
         [JxCommand("Remove ATK Field")]
@@ -57,6 +69,11 @@ namespace Jongmin
         {
             var targetCard = _fieldDomain.AtkContainer.Cards.FirstOrDefault(card => card.CardData.id == cardId);
             _fieldDomain.AtkSystem.RemoveCard(targetCard);
+            
+            if (targetCard != null)
+            {
+                Debug.Log($"공격 필드에서 {targetCard.CardData.name}를 제거했습니다.");
+            }
         }
 
         [JxCommand("Add DEF Field")]
@@ -69,6 +86,8 @@ namespace Jongmin
             };
 
             _fieldDomain.DefSystem.CreateCard(battleCardData);
+            _eventDomain.RecordGainedCard(battleCardData.data);
+            Debug.Log($"방어 필드에 {battleCardData.data.name}을 추가했습니다.");
         }
 
         [JxCommand("Remove DEF Field")]
@@ -76,6 +95,11 @@ namespace Jongmin
         {
             var targetCard = _fieldDomain.DefContainer.Cards.FirstOrDefault(card => card.CardData.id == cardId);
             _fieldDomain.DefSystem.RemoveCard(targetCard);
+
+            if (targetCard != null)
+            {
+                Debug.Log($"방어 필드에서 {targetCard.CardData.name}를 제거했습니다.");
+            }
         }
     }
 }

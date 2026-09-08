@@ -8,17 +8,21 @@ namespace Jongmin
         [SerializeField] private RelicDomain relicDomain;
         [SerializeField] private HandDomain handDomain;
         [SerializeField] private FieldDomain fieldDomain;
+        [SerializeField] private EventDomain eventDomain;
         
         public override void Install(JxTerminal terminal)
         {
             var relicCommands = new RelicCommands(relicDomain);
             JxCommandAttributeRegistrar.RegisterCommands(terminal, relicCommands);
             
-            var cardCommands = new CardCommands(handDomain, fieldDomain);
+            var cardCommands = new CardCommands(handDomain, fieldDomain, eventDomain);
             JxCommandAttributeRegistrar.RegisterCommands(terminal, cardCommands);
 
             var playCommands = new PlayerCommands();
             JxCommandAttributeRegistrar.RegisterCommands(terminal, playCommands);
+            
+            var eventCommands = new EventCommands(eventDomain);
+            JxCommandAttributeRegistrar.RegisterCommands(terminal, eventCommands);
         }
     }
 }
