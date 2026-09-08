@@ -4,7 +4,7 @@ using JxModule.Terminal;
 
 namespace Jongmin
 {
-    public class CardCommands
+    public sealed class CardCommands
     {
         private readonly HandDomain _handDomain;
         private readonly FieldDomain _fieldDomain;

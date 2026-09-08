@@ -16,6 +16,9 @@ namespace Jongmin
             
             var cardCommands = new CardCommands(handDomain, fieldDomain);
             JxCommandAttributeRegistrar.RegisterCommands(terminal, cardCommands);
+
+            var playCommands = new PlayerCommands();
+            JxCommandAttributeRegistrar.RegisterCommands(terminal, playCommands);
         }
     }
 }
