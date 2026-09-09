@@ -19,6 +19,14 @@ namespace Jongmin
             Debug.Log($"플레이어의 체력을 {amount}만큼 변경합니다.");
         }
 
+        [JxCommand("Update Max Hp")]
+        private void UpdateMaxHp(int amount)
+        {
+            var player = Object.FindAnyObjectByType<Player>(FindObjectsInactive.Exclude);
+            player.SetMaxHealth(amount);
+            Debug.Log($"플레이어의 최대 체력을 {amount}로 설정합니다.");
+        }
+
         [JxCommand("Update Exp")]
         private void UpdateExp(int amount)
         {
