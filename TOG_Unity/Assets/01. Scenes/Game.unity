@@ -375,6 +375,7 @@ MonoBehaviour:
   handDomain: {fileID: 918446745}
   fieldDomain: {fileID: 918446744}
   eventDomain: {fileID: 2036656973}
+  battleManager: {fileID: 808734222}
 --- !u!224 &234759131 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2994645254183949768, guid: 5e1e71167bbc29c4ca492cdd2678ac42, type: 3}

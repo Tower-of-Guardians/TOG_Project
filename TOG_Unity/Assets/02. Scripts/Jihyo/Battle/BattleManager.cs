@@ -667,6 +667,15 @@ public class BattleManager : MonoBehaviour
         {
             setupController.RemoveDeadMonsters();
         }
+        
+        yield return effectDomain.DiscardHandCards();
+        
+        yield return new WaitForSeconds(0.5f);
+        yield return effectDomain.DiscardFieldCards(FieldType.Attack);
+        yield return effectDomain.DiscardFieldCards(FieldType.Defense);
+        RefreshFieldSynergyState();
+        yield return new WaitForSeconds(1f);
+        effectDomain.EnableBattleView();
 
         yield return HandleVictory();
         isProcessingAttack = false;

@@ -9,6 +9,7 @@ namespace Jongmin
         [SerializeField] private HandDomain handDomain;
         [SerializeField] private FieldDomain fieldDomain;
         [SerializeField] private EventDomain eventDomain;
+        [SerializeField] private BattleManager battleManager;
         
         public override void Install(JxTerminal terminal)
         {
@@ -23,6 +24,9 @@ namespace Jongmin
             
             var eventCommands = new EventCommands(eventDomain);
             JxCommandAttributeRegistrar.RegisterCommands(terminal, eventCommands);
+            
+            var sequenceCommands = new SequenceCommands(battleManager);
+            JxCommandAttributeRegistrar.RegisterCommands(terminal, sequenceCommands);
         }
     }
 }
