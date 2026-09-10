@@ -10,12 +10,24 @@ namespace Jongmin
         private ShopSlot[] _shopSlots;
         private PotionSlot _potionSlot;
 
+        public event Action<CardData> OnPurchasedCard;
+        public event Action OnPurchasedHpPotion;
         public event Action OnPurchasedAnyItem;
 
         private void Awake()
         {
             _shopSlots = GetComponentsInChildren<ShopSlot>();
             _potionSlot = GetComponentInChildren<PotionSlot>();
+
+            foreach (var shopSlot in _shopSlots)
+            {
+                shopSlot.Purchased += HandlePurchasedCard;
+            }
+
+            if (_potionSlot != null)
+            {
+                _potionSlot.Purchased += HandlePurchasedHpPotion;
+            }
         }
 
         public bool Initialize()
@@ -35,6 +47,50 @@ namespace Jongmin
             _potionSlot.Initialize(currentGold);
 
             return true;
+        }
+
+        public void RefreshPurchaseStates()
+        {
+            UpdateSlots();
+        }
+
+        private void HandlePurchasedCard(CardData cardData)
+        {
+            UpdateSlots();
+            OnPurchasedCard?.Invoke(cardData);
+            OnPurchasedAnyItem?.Invoke();
+        }
+
+        private void HandlePurchasedHpPotion()
+        {
+            UpdateSlots();
+            OnPurchasedHpPotion?.Invoke();
+            OnPurchasedAnyItem?.Invoke();
+        }
+
+        private void UpdateSlots()
+        {
+            var currentGold = DataCenter.Instance.playerstate.money;
+
+            foreach (var shopSlot in _shopSlots)
+            {
+                shopSlot.UpdateState(currentGold);
+            }
+
+            _potionSlot?.UpdateState(currentGold);
+        }
+
+        private void OnDestroy()
+        {
+            foreach (var shopSlot in _shopSlots)
+            {
+                shopSlot.Purchased -= HandlePurchasedCard;
+            }
+
+            if (_potionSlot != null)
+            {
+                _potionSlot.Purchased -= HandlePurchasedHpPotion;
+            }
         }
 
         private bool TryGetRandomCards(out List<CardData> results)

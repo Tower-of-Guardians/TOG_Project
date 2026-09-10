@@ -21,7 +21,7 @@ namespace Jongmin
             View.Show();
         }
 
-        public void RefreshView()
+        public virtual void RefreshView()
         {
             RemoveAllSlots();
             DataCenter.Instance.SortUserCards(SortType.Grade, true);

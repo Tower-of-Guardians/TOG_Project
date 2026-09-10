@@ -22,6 +22,7 @@ namespace Jongmin
             
             CanvasGroup.Show();
             selectedImage.CanvasGroup.Hide();
+            selectedImage.CanvasGroup.blocksRaycasts = false;
         }
 
         public void SetSlotBehaviour(CompactInvenSlotBehaviourBase slotBehaviour)
@@ -31,7 +32,9 @@ namespace Jongmin
 
         public void SetSelected(bool isSelected)
         {
-            selectedImage.CanvasGroup.SetVisible(isSelected);
+            selectedImage.CanvasGroup.alpha = isSelected ? 1f : 0f;
+            selectedImage.CanvasGroup.SetInteractable(false);
+            selectedImage.CanvasGroup.blocksRaycasts = false;
         }
 
         public override void OnPointerDown(PointerEventData eventData)

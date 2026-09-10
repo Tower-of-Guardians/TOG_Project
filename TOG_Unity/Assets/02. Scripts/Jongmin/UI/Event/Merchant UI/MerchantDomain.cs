@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Jongmin
@@ -65,6 +66,47 @@ namespace Jongmin
             shopSystem.CloseView();
             compactInvenDomain.OpenView(CompactInvenType.Merchant);
             BindMerchantInvenSystem();
+            merchantSystem.OpenSaleButtons();
+        }
+
+        public void HandleOnCanceledSale()
+        {
+            if (compactInvenDomain.System is MerchantInvenSystem merchantInvenSystem)
+            {
+                merchantInvenSystem.OnSelectionChanged -= HandleOnSelectedSlots;
+            }
+
+            compactInvenDomain.CloseView();
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.OpenMerchantView);
+            shopSystem.OpenView();
+            merchantSystem.CloseSaleButtons();
+        }
+
+        public void HandleOnClickedSell()
+        {
+            if (compactInvenDomain.System is not MerchantInvenSystem merchantInvenSystem ||
+                merchantInvenSystem.SelectedCards.Count <= 0)
+            {
+                return;
+            }
+
+            var selectedCards = merchantInvenSystem.SelectedCards.ToArray();
+            var totalPrice = selectedCards.Sum(selectedCard => selectedCard.price);
+
+            DataCenter.Instance.SetMoney(totalPrice);
+            shopDispenser.RefreshPurchaseStates();
+
+            foreach (var selectedCard in selectedCards)
+            {
+                DataCenter.Instance.userDeck.Remove(selectedCard);
+            }
+
+            merchantInvenSystem.OnSelectionChanged -= HandleOnSelectedSlots;
+            compactInvenDomain.CloseView();
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.CompletedSellCards);
+            shopSystem.SetSaleButtonState(false);
+            shopSystem.OpenView();
+            merchantSystem.CloseSaleButtons();
         }
 
         private void BindEvents()
@@ -74,6 +116,8 @@ namespace Jongmin
 
             merchantSystem.RequestOpenView += HandleRequestOpenView;
             merchantSystem.RequestCloseView += HandleRequestCloseView;
+            shopDispenser.OnPurchasedCard += HandleOnPurchasedCard;
+            shopDispenser.OnPurchasedHpPotion += HandleOnPurchasedHpPotion;
         }
 
         private void ReleaseEvents()
@@ -90,6 +134,8 @@ namespace Jongmin
 
             merchantSystem.RequestOpenView -= HandleRequestOpenView;
             merchantSystem.RequestCloseView -= HandleRequestCloseView;
+            shopDispenser.OnPurchasedCard -= HandleOnPurchasedCard;
+            shopDispenser.OnPurchasedHpPotion -= HandleOnPurchasedHpPotion;
         }
 
         private void HandleRequestOpenView()
@@ -124,10 +170,39 @@ namespace Jongmin
 
         private void HandleOnSelectedSlots(IReadOnlyList<CardData> selectedCards)
         {
-            if (selectedCards.Count > 0)
+            if (selectedCards.Count <= 0)
             {
-                speechBubbleDomain.SetBubbleText(BubbleTriggerType.SelectedMerchantSlot);
+                merchantSystem.SetSellButtonInteractable(false);
+                speechBubbleDomain.SetBubbleText(BubbleTriggerType.ClickedSellCard);
+                return;
             }
+
+            merchantSystem.SetSellButtonInteractable(true);
+
+            if (selectedCards.Count == 1 && selectedCards[0].grade == 0)
+            {
+                speechBubbleDomain.SetBubbleText(BubbleTriggerType.SelectedMerchantSlot, false, 1);
+                return;
+            }
+
+            var totalPrice = selectedCards.Sum(selectedCard => selectedCard.price);
+
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.SelectedMerchantSlot, false, 0, totalPrice);
+        }
+
+        private void HandleOnPurchasedCard(CardData cardData)
+        {
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.PurchasedCard);
+            DataCenter.Instance.userDeck.Add(cardData);
+        }
+
+        private void HandleOnPurchasedHpPotion()
+        {
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.PurchasedHpPotion);
+
+            var maxHp = DataCenter.Instance.playerstate.maxhp;
+            var targetHp = maxHp * 0.2f;
+            DataCenter.Instance.SetPlayerHP((int)targetHp);
         }
 
         private void OnDestroy()

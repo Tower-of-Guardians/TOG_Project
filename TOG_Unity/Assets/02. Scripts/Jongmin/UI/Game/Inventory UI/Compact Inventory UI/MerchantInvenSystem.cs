@@ -5,6 +5,8 @@ namespace Jongmin
 {
     public class MerchantInvenSystem : CompactInvenSystem, IMultiSelectableCompactInvenSystem
     {
+        private const int MaxSelectableCount = 3;
+
         private readonly List<CardData> _selectedCards = new();
         private readonly HashSet<CompactInvenSlot> _selectedSlots = new();
 
@@ -33,6 +35,11 @@ namespace Jongmin
             }
             else
             {
+                if (_selectedSlots.Count >= MaxSelectableCount)
+                {
+                    return;
+                }
+
                 SelectSlot(invenSlot);
             }
 
@@ -41,6 +48,24 @@ namespace Jongmin
 
         public void ClearSelection()
         {
+            ClearSelectionWithoutNotify();
+            OnSelectionChanged?.Invoke(SelectedCards);
+        }
+
+        public override void CloseView()
+        {
+            ClearSelectionWithoutNotify();
+            base.CloseView();
+        }
+
+        public override void RefreshView()
+        {
+            ClearSelectionWithoutNotify();
+            base.RefreshView();
+        }
+
+        private void ClearSelectionWithoutNotify()
+        {
             foreach (var slot in _selectedSlots)
             {
                 slot.SetSelected(false);
@@ -48,13 +73,6 @@ namespace Jongmin
 
             _selectedSlots.Clear();
             _selectedCards.Clear();
-            OnSelectionChanged?.Invoke(SelectedCards);
-        }
-
-        public override void CloseView()
-        {
-            ClearSelection();
-            base.CloseView();
         }
 
         private void SelectSlot(CompactInvenSlot invenSlot)

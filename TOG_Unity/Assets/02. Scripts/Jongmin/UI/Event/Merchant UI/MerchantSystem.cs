@@ -26,5 +26,20 @@ namespace Jongmin
             _view.Hide(onClosed);
             RequestCloseView?.Invoke();
         }
+
+        public void OpenSaleButtons()
+        {
+            _view.ShowSaleButtons();
+        }
+
+        public void CloseSaleButtons(Action onClosed = null)
+        {
+            _view.HideSaleButtons(onClosed);
+        }
+
+        public void SetSellButtonInteractable(bool isInteractable)
+        {
+            _view.SetSellButtonInteractable(isInteractable);
+        }
     }
 }

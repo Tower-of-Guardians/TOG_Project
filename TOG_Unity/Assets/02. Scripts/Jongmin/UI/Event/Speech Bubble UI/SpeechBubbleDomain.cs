@@ -1,4 +1,5 @@
 ﻿using JxModule.DataTable;
+using JxModule;
 using UnityEngine;
 
 namespace Jongmin
@@ -23,12 +24,14 @@ namespace Jongmin
         public void OpenView(SpeechBubbleType bubbleType)
         {
             View = GetTargetView(bubbleType);
+            craftmanBubbleView?.CanvasGroup.SetVisible(View == craftmanBubbleView);
+            merchantBubbleView?.CanvasGroup.SetVisible(View == merchantBubbleView);
             speechBubbleSystem.SetView(View);
         }
 
-        public void SetBubbleText(BubbleTriggerType triggerType, bool isRandom = true, int optIndex = 0)
+        public void SetBubbleText(BubbleTriggerType triggerType, bool isRandom = true, int optIndex = 0, params object[] formatArgs)
         {
-            speechBubbleSystem.ShowLine(triggerType, isRandom, optIndex);
+            speechBubbleSystem.ShowLine(triggerType, isRandom, optIndex, formatArgs);
         }
 
         private SpeechBubbleView GetTargetView(SpeechBubbleType bubbleType)

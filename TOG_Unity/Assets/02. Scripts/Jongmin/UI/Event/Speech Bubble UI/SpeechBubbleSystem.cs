@@ -19,11 +19,17 @@ namespace Jongmin
             _view = view;
         }
 
-        public void ShowLine(BubbleTriggerType triggerType, bool isRandom = true, int optIndex = 0)
+        public void ShowLine(BubbleTriggerType triggerType, bool isRandom = true, int optIndex = 0, params object[] formatArgs)
         {
             var lineRow = _speechLineTable.Find<SpeechBubbleDataTableRow>(x => x.triggerType == triggerType);
             
-            var targetDialogueLine = isRandom ? RandomUtility.GetRandom(lineRow.lines) : lineRow.lines[optIndex]; 
+            var targetDialogueLine = isRandom ? RandomUtility.GetRandom(lineRow.lines) : lineRow.lines[optIndex];
+
+            if (formatArgs is { Length: > 0 })
+            {
+                targetDialogueLine = string.Format(targetDialogueLine, formatArgs);
+            }
+
             _view?.SetLineLabel(targetDialogueLine);
         }
     }
