@@ -1,9 +1,8 @@
-using UnityEngine;
-using VContainer;
+using Jongmin;
 
 public class AreaEventUI_Shop : AreaEventSubUI
 {
-    private MerchantPresenter _merchantPresenter;
+    private MerchantDomain _merchantDomain;
 
     public override void Open()
     {
@@ -12,21 +11,11 @@ public class AreaEventUI_Shop : AreaEventSubUI
             return;
         }
 
-        GameLifetimeScope lifetimeScope = FindAnyObjectByType<GameLifetimeScope>(FindObjectsInactive.Include);
-        if (lifetimeScope == null || lifetimeScope.Container == null ||
-            !lifetimeScope.Container.TryResolve(out MerchantPresenter merchantPresenter))
-        {
-            Debug.LogError("상인 UI가 GameLifetimeScope에 준비되어 있지 않습니다.", this);
-            return;
-        }
+        _merchantDomain = DIContainer.Resolve<MerchantDomain>();
+        _merchantDomain?.OpenView();
+        
+        _merchantDomain.ViewClosed += Close;
 
-        if (!merchantPresenter.TryOpenUI())
-        {
-            return;
-        }
-
-        _merchantPresenter = merchantPresenter;
-        _merchantPresenter.Closed += Close;
         base.Open(false);
     }
 
@@ -43,14 +32,12 @@ public class AreaEventUI_Shop : AreaEventSubUI
 
     private void ReleaseMerchant()
     {
-        if (_merchantPresenter == null)
+        if (_merchantDomain == null)
         {
             return;
         }
 
-        MerchantPresenter merchantPresenter = _merchantPresenter;
-        _merchantPresenter = null;
-        merchantPresenter.Closed -= Close;
-        merchantPresenter.CloseUI();
+        _merchantDomain.ViewClosed -= Close;
+        _merchantDomain.CloseView();
     }
 }

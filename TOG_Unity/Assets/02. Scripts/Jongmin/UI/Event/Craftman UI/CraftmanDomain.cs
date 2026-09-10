@@ -19,16 +19,17 @@ namespace Jongmin
 
         public bool IsOpen { get; private set; }
         public event Action ViewClosed;
-
-        public void OnGUI()
+        
+        public void Construct()
         {
-            if (GUI.Button(new Rect(new Vector2(1800, 100), new Vector2(100, 50)), "Smithy"))
-            {
-                OpenView();
-            }
-        }
+            _forgeDataTable = DataTableManager.FindTable<ForgeDataTableRow>("DT_Forge");
+            
+            craftmanSystem.Construct(craftmanView);
+            forgeSystem.Construct(forgeView, _forgeDataTable);
 
-        [Button("Test")]
+            BindEvents();
+        }
+        
         public void OpenView()
         {
             if (IsOpen)
@@ -56,17 +57,7 @@ namespace Jongmin
             });
         }
         
-        public void Construct()
-        {
-            _forgeDataTable = DataTableManager.FindTable<ForgeDataTableRow>("DT_Forge");
-            
-            craftmanSystem.Construct(craftmanView);
-            forgeSystem.Construct(forgeView, _forgeDataTable);
-
-            BindEvents();
-        }
-        
-        public void BindEvents()
+        private void BindEvents()
         {
             craftmanView.Bind(this);
             forgeView.Bind(this);
@@ -75,7 +66,7 @@ namespace Jongmin
             craftmanSystem.RequestCloseView += HandleRequestCloseView;
         }
         
-        public void ReleaseEvents()
+        private void ReleaseEvents()
         {
             if (craftmanView != null)
             {

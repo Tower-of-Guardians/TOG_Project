@@ -37,12 +37,7 @@ namespace Jongmin
             craftmanVisualEffect.PlayShowEffect(CanvasGroup, CanvasGroup.Show);
         }
 
-        public void Hide()
-        {
-            Hide(null);
-        }
-
-        public void Hide(Action onClosed)
+        public void Hide(Action onClosed = null)
         {
             CanvasGroup.interactable = false;
             CanvasGroup.blocksRaycasts = false;

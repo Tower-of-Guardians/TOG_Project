@@ -21,12 +21,7 @@ namespace Jongmin
             RequestOpenView?.Invoke();
         }
 
-        public void CloseView()
-        {
-            CloseView(null);
-        }
-
-        public void CloseView(Action onClosed)
+        public void CloseView(Action onClosed = null)
         {
             _view.Hide(onClosed);
             RequestCloseView?.Invoke();

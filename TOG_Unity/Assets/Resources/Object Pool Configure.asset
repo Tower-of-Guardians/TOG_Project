@@ -32,22 +32,6 @@ MonoBehaviour:
   initialPoolSize: 10
   maxPoolSize: 30
   isExpandable: 1
---- !u!114 &-1372580029320835892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f6ddfd734745b387ca5b21e91a3132, type: 3}
-  m_Name: Deck Inven Card Config
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 4632322973663511511, guid: dbd7f46ea38a709479fd256370def9a3, type: 3}
-  initialPoolSize: 10
-  maxPoolSize: 10
-  isExpandable: 1
 --- !u!114 &-686806640366933914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +64,6 @@ MonoBehaviour:
   - {fileID: -4736569137033593769}
   - {fileID: -4954802132380530291}
   - {fileID: -686806640366933914}
-  - {fileID: -1372580029320835892}
   - {fileID: 7413472698984366559}
 --- !u!114 &7413472698984366559
 MonoBehaviour:
