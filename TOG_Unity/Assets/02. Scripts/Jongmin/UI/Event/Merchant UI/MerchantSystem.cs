@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace Jongmin
 {
-    public class CraftmanSystem : MonoBehaviour
+    public class MerchantSystem : MonoBehaviour
     {
-        private CraftmanView _view;
+        private MerchantView _view;
 
         public event Action RequestOpenView;
         public event Action RequestCloseView;
 
-        public void Construct(CraftmanView view)
+        public void Construct(MerchantView view)
         {
             _view = view;
         }

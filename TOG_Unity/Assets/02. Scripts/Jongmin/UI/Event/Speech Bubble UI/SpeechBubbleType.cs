@@ -4,5 +4,6 @@
     {
         None = 0,
         Craftman = 1,
+        Merchant = 2,
     }
 }

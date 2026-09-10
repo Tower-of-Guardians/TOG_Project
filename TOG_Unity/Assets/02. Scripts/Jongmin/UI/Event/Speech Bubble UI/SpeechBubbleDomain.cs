@@ -6,6 +6,7 @@ namespace Jongmin
     public class SpeechBubbleDomain : MonoBehaviour
     {
         [SerializeField] private SpeechBubbleView craftmanBubbleView;
+        [SerializeField] private SpeechBubbleView merchantBubbleView;
         [SerializeField] private SpeechBubbleSystem speechBubbleSystem;
 
         private DataTable _speechBubbleTable;
@@ -35,6 +36,7 @@ namespace Jongmin
             return bubbleType switch
             {
                 SpeechBubbleType.Craftman => craftmanBubbleView,
+                SpeechBubbleType.Merchant => merchantBubbleView,
                 _ => null
             };
         }

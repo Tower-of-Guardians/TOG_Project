@@ -1,19 +1,19 @@
-﻿using JxModule;
-using UnityEngine;
 using System;
+using JxModule;
+using UnityEngine;
 
 namespace Jongmin
 {
-    public class CraftmanView : ViewBase
+    public class MerchantView : ViewBase
     {
         [SerializeField] private ButtonView exitButton;
-
+        
         [BigHeader("Effect")]
-        [SerializeField] private CraftmanVisualEffect craftmanVisualEffect;
+        [SerializeField] private MerchantVisualEffect merchantVisualEffect;
 
-        private CraftmanDomain _domain;
+        private MerchantDomain _domain;
 
-        public void Bind(CraftmanDomain domain)
+        public void Bind(MerchantDomain domain)
         {
             ReleaseEvents();
             _domain = domain;
@@ -31,17 +31,17 @@ namespace Jongmin
             }
             _domain = null;
         }
-        
+
         public void Show()
         {
-            craftmanVisualEffect.PlayShowEffect(CanvasGroup, CanvasGroup.Show);
+            merchantVisualEffect.PlayShowEffect(CanvasGroup, CanvasGroup.Show);
         }
 
         public void Hide(Action onClosed = null)
         {
             CanvasGroup.interactable = false;
             CanvasGroup.blocksRaycasts = false;
-            craftmanVisualEffect.PlayHideEffect(CanvasGroup, () =>
+            merchantVisualEffect.PlayHideEffect(CanvasGroup, () =>
             {
                 CanvasGroup.Hide();
                 onClosed?.Invoke();
@@ -54,3 +54,4 @@ namespace Jongmin
         }
     }
 }
+
