@@ -6,6 +6,7 @@ namespace Jongmin
     {
         [SerializeField] private CompactInvenView invenView;
         [SerializeField] private ResultInvenSystem resultInvenSystem;
+        [SerializeField] private MerchantInvenSystem merchantInvenSystem;
         [SerializeField] private CraftmanInvenSystem craftmanInvenSystem;
         
         private CompactInvenSlotFactory _slotFactory;
@@ -15,8 +16,19 @@ namespace Jongmin
         public void Construct()
         {
             _slotFactory = new CompactInvenSlotFactory(invenView);
-            
+
+            if (merchantInvenSystem == null)
+            {
+                merchantInvenSystem = GetComponent<MerchantInvenSystem>();
+            }
+
+            if (merchantInvenSystem == null)
+            {
+                merchantInvenSystem = gameObject.AddComponent<MerchantInvenSystem>();
+            }
+
             resultInvenSystem.Construct(invenView, _slotFactory);
+            merchantInvenSystem.Construct(invenView, _slotFactory);
             craftmanInvenSystem.Construct(invenView, _slotFactory);
 
             BindEvents();
@@ -68,6 +80,7 @@ namespace Jongmin
             return inventoryType switch
             {
                 CompactInvenType.Result => resultInvenSystem,
+                CompactInvenType.Merchant => merchantInvenSystem,
                 CompactInvenType.Craftman => craftmanInvenSystem,
                 _ => null
             };

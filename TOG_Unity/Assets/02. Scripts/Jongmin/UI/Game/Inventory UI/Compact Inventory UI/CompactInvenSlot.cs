@@ -29,9 +29,13 @@ namespace Jongmin
             _slotBehaviour = slotBehaviour;
         }
 
+        public void SetSelected(bool isSelected)
+        {
+            selectedImage.CanvasGroup.SetVisible(isSelected);
+        }
+
         public override void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("들어옴");
             _slotBehaviour?.OnPointerDown(this);
         }
 

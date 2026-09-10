@@ -2422,7 +2422,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -5934,7 +5934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -32}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1602926851734817989
@@ -6308,7 +6308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1f050b7f544e24b5bbbee97280d098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saleButton: {fileID: 0}
+  saleButton: {fileID: 8193350910772499402}
   shopVisualEffect: {fileID: 8355129014125073247}
 --- !u!114 &3392178933465396116
 MonoBehaviour:

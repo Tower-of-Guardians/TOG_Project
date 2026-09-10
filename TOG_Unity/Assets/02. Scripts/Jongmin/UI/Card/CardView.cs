@@ -18,7 +18,6 @@ namespace Jongmin
         [SerializeField] private Image[] starObjectArray;
         [SerializeField] private Image[] synergyFrameArray;
         [SerializeField] private Image[] synergyImageArray;
-        [SerializeField] private GameObject selectImage;
         [SerializeField] private Image atkLockImage;
         [SerializeField] private Image defLockImage;
 
@@ -54,7 +53,6 @@ namespace Jongmin
             InitCardInfo(cardData);
             InitCardStars(cardData);
             InitCardSynergies(cardData);
-            UpdateSelect(false);
         }
 
         public void ToggleLock()
@@ -73,11 +71,6 @@ namespace Jongmin
         {
             atkLockImage.gameObject.SetActive(false);
             defLockImage.gameObject.SetActive(true);
-        }
-
-        public void UpdateSelect(bool isSelect)
-        {
-            selectImage.gameObject.SetActive(isSelect);
         }
 
         private void InitCardInfo(CardData cardData)

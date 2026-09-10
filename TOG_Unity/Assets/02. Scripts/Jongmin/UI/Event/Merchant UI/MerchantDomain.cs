@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Jongmin
@@ -39,11 +40,7 @@ namespace Jongmin
             }
             
             IsOpen = true;
-            
-            compactInvenDomain.CloseView();
             merchantSystem.OpenView();
-            shopSystem.SetSaleButtonState(true);
-            shopSystem.OpenView();
         }
 
         public void CloseView()
@@ -54,9 +51,6 @@ namespace Jongmin
             }
             
             _isClosing = true;
-            
-            compactInvenDomain.CloseView();
-            shopSystem.CloseView();
             merchantSystem.CloseView(() =>
             {
                 IsOpen = false;
@@ -67,14 +61,19 @@ namespace Jongmin
         
         public void HandleOnClickedSale()
         {
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.ClickedSellCard);
             shopSystem.CloseView();
             compactInvenDomain.OpenView(CompactInvenType.Merchant);
+            BindMerchantInvenSystem();
         }
 
         private void BindEvents()
         {
             merchantView.Bind(this);
             shopView.Bind(this);
+
+            merchantSystem.RequestOpenView += HandleRequestOpenView;
+            merchantSystem.RequestCloseView += HandleRequestCloseView;
         }
 
         private void ReleaseEvents()
@@ -87,6 +86,47 @@ namespace Jongmin
             if (shopView != null)
             {
                 shopView.ReleaseEvents();
+            }
+
+            merchantSystem.RequestOpenView -= HandleRequestOpenView;
+            merchantSystem.RequestCloseView -= HandleRequestCloseView;
+        }
+
+        private void HandleRequestOpenView()
+        {
+            speechBubbleDomain.OpenView(SpeechBubbleType.Merchant);
+            speechBubbleDomain.SetBubbleText(BubbleTriggerType.OpenMerchantView);
+
+            compactInvenDomain.CloseView();
+            shopSystem.SetSaleButtonState(true);
+            shopSystem.OpenView();
+        }
+
+        private void HandleRequestCloseView()
+        {
+            if (compactInvenDomain.System is MerchantInvenSystem merchantInvenSystem)
+            {
+                merchantInvenSystem.OnSelectionChanged -= HandleOnSelectedSlots;
+            }
+
+            compactInvenDomain.CloseView();
+            shopSystem.CloseView();
+        }
+
+        private void BindMerchantInvenSystem()
+        {
+            if (compactInvenDomain.System is MerchantInvenSystem merchantInvenSystem)
+            {
+                merchantInvenSystem.OnSelectionChanged -= HandleOnSelectedSlots;
+                merchantInvenSystem.OnSelectionChanged += HandleOnSelectedSlots;
+            }
+        }
+
+        private void HandleOnSelectedSlots(IReadOnlyList<CardData> selectedCards)
+        {
+            if (selectedCards.Count > 0)
+            {
+                speechBubbleDomain.SetBubbleText(BubbleTriggerType.SelectedMerchantSlot);
             }
         }
 

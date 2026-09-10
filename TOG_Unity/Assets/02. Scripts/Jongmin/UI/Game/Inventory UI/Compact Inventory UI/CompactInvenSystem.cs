@@ -32,7 +32,7 @@ namespace Jongmin
             }
         }
 
-        public void CloseView()
+        public virtual void CloseView()
         {
             View.Hide(RemoveAllSlots);
         }
