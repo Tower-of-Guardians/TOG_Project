@@ -74,13 +74,15 @@ namespace Jongmin
                 return false;
             }
 
+            var targetNpcID = GetTargetID(row.targetID, npcID);
+
             return row.conditionType switch
             {
                 EEventConditionType.FirstNpcEncounter
-                    => _runProgress != null && _runProgress.GetNpcEncounterCount(npcID) == 1,
+                    => _runProgress != null && _runProgress.GetNpcEncounterCount(targetNpcID) == 1,
                     
                 EEventConditionType.NpcEncounterCountAtLeast
-                    => _runProgress != null && _runProgress.GetNpcEncounterCount(npcID) >= row.value,
+                    => _runProgress != null && _runProgress.GetNpcEncounterCount(targetNpcID) >= row.value,
                 
                 EEventConditionType.EventSeen
                     => _eventProgress != null && _eventProgress.HasSeen(row.targetID),
@@ -123,6 +125,11 @@ namespace Jongmin
                 
                 _ => false
             };
+        }
+
+        private static string GetTargetID(string targetID, string fallbackID)
+        {
+            return string.IsNullOrWhiteSpace(targetID) ? fallbackID : targetID;
         }
 
         private static int ParseInt(IReadOnlyList<string> values, int index)

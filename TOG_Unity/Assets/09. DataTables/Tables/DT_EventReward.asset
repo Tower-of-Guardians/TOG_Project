@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7409229098542786215
+--- !u!114 &-5040460535274807835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
-  m_Name: Reward_003
+  m_Name: Reward_Relic_SoulOfGuardian1
   m_EditorClassIdentifier: 
-  rowID: Reward_003
+  rowID: Reward_Relic_SoulOfGuardian1
   isEnable: 1
   rewardType: 1
-  targetID: Relic_006
+  targetID: Relic_SoulOfGuardian1
   amount: 1
   arguments: []
---- !u!114 &-1381236280537753527
+--- !u!114 &-3814858609962319110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,12 +28,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
-  m_Name: Reward_001
+  m_Name: Reward_Relic_Krabian'sCanine
   m_EditorClassIdentifier: 
-  rowID: Reward_001
+  rowID: Reward_Relic_Krabian'sCanine
   isEnable: 1
   rewardType: 1
-  targetID: Relic_001
+  targetID: Relic_Krabian'sCanine
+  amount: 1
+  arguments: []
+--- !u!114 &-3656371541405855346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_Relic_PowerOfVampire
+  m_EditorClassIdentifier: 
+  rowID: Reward_Relic_PowerOfVampire
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_PowerOfVampire
+  amount: 1
+  arguments: []
+--- !u!114 &-793957122834043566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_Relic_PowerOfKing
+  m_EditorClassIdentifier: 
+  rowID: Reward_Relic_PowerOfKing
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_PowerOfKing
   amount: 1
   arguments: []
 --- !u!114 &11400000
@@ -53,11 +89,21 @@ MonoBehaviour:
     Culture=neutral, PublicKeyToken=null
   remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=356024588
   dataTableRows:
-  - {fileID: -1381236280537753527}
-  - {fileID: 8042986678861217810}
-  - {fileID: -7409229098542786215}
+  - {fileID: -3814858609962319110}
+  - {fileID: 3122643672508635893}
+  - {fileID: -5040460535274807835}
+  - {fileID: 489716631642931181}
+  - {fileID: 3162828046728965072}
+  - {fileID: 5538564576426677322}
+  - {fileID: 9061703902600251299}
+  - {fileID: 2446174775258495824}
+  - {fileID: -3656371541405855346}
+  - {fileID: 2169069435401963207}
+  - {fileID: 4303610152739622459}
+  - {fileID: 2519037004918654867}
+  - {fileID: -793957122834043566}
   dataTableRowScript: {fileID: 0}
---- !u!114 &8042986678861217810
+--- !u!114 &489716631642931181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,11 +113,155 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
-  m_Name: Reward_002
+  m_Name: Reward_Relic_SoulOfGuardian2
   m_EditorClassIdentifier: 
-  rowID: Reward_002
+  rowID: Reward_Relic_SoulOfGuardian2
   isEnable: 1
   rewardType: 1
-  targetID: Relic_002
+  targetID: Relic_SoulOfGuardian2
+  amount: 1
+  arguments: []
+--- !u!114 &2169069435401963207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_Relic_PowerOfPlunderer
+  m_EditorClassIdentifier: 
+  rowID: Reward_Relic_PowerOfPlunderer
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_PowerOfPlunderer
+  amount: 1
+  arguments: []
+--- !u!114 &2446174775258495824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_Relic_PowerOfProtector
+  m_EditorClassIdentifier: 
+  rowID: Reward_Relic_PowerOfProtector
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_PowerOfProtector
+  amount: 1
+  arguments: []
+--- !u!114 &2519037004918654867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_Relic_PowerOfElemental
+  m_EditorClassIdentifier: 
+  rowID: Reward_Relic_PowerOfElemental
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_PowerOfElemental
+  amount: 1
+  arguments: []
+--- !u!114 &3122643672508635893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_Relic_Priest_Priest'sOrb
+  m_EditorClassIdentifier: 
+  rowID: Reward_Relic_Priest_Priest'sOrb
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_Priest_Priest'sOrb
+  amount: 1
+  arguments: []
+--- !u!114 &3162828046728965072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_Relic_SoulOfGuardian3
+  m_EditorClassIdentifier: 
+  rowID: Reward_Relic_SoulOfGuardian3
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_SoulOfGuardian3
+  amount: 1
+  arguments: []
+--- !u!114 &4303610152739622459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_Relic_PowerOfWitch
+  m_EditorClassIdentifier: 
+  rowID: Reward_Relic_PowerOfWitch
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_PowerOfWitch
+  amount: 1
+  arguments: []
+--- !u!114 &5538564576426677322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_Relic_Heca'sGemstone
+  m_EditorClassIdentifier: 
+  rowID: Reward_Relic_Heca'sGemstone
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_Heca'sGemstone
+  amount: 1
+  arguments: []
+--- !u!114 &9061703902600251299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e539f6d0364f4b8ae4a3860ef9dd8c, type: 3}
+  m_Name: Reward_Relic_PowerOfKnight
+  m_EditorClassIdentifier: 
+  rowID: Reward_Relic_PowerOfKnight
+  isEnable: 1
+  rewardType: 1
+  targetID: Relic_PowerOfKnight
   amount: 1
   arguments: []

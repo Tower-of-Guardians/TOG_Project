@@ -17,6 +17,40 @@ MonoBehaviour:
   characterID: Clown
   displayName: "\uC5B4\uB9BF\uAD11\uB300"
   defaultPortraitKey: Default
+--- !u!114 &-4046783191926694103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a13c2dc7b342cb9b812f7f2fcf9701, type: 3}
+  m_Name: EventPriest
+  m_EditorClassIdentifier: 
+  rowID: EventPriest
+  isEnable: 1
+  characterID: EventPriest
+  displayName: "\uC131\uC9C1\uC790"
+  defaultPortraitKey: Default
+--- !u!114 &-2496362151886650679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a13c2dc7b342cb9b812f7f2fcf9701, type: 3}
+  m_Name: BossPriest
+  m_EditorClassIdentifier: 
+  rowID: BossPriest
+  isEnable: 1
+  characterID: BossPriest
+  displayName: "\uC131\uC9C1\uC790"
+  defaultPortraitKey: Default
 --- !u!114 &-2100233085485426980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,6 +67,23 @@ MonoBehaviour:
   isEnable: 1
   characterID: Krabian
   displayName: "\uD06C\uB77C\uBE44\uC548"
+  defaultPortraitKey: Default
+--- !u!114 &-1924497135285133472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a13c2dc7b342cb9b812f7f2fcf9701, type: 3}
+  m_Name: Elemental
+  m_EditorClassIdentifier: 
+  rowID: Elemental
+  isEnable: 1
+  characterID: Elemental
+  displayName: "\uC815\uB839"
   defaultPortraitKey: Default
 --- !u!114 &11400000
 MonoBehaviour:
@@ -52,12 +103,32 @@ MonoBehaviour:
   remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=0
   dataTableRows:
   - {fileID: 5037684656135469630}
-  - {fileID: 5817677608219015459}
+  - {fileID: 616430672538415470}
+  - {fileID: -4046783191926694103}
+  - {fileID: -2496362151886650679}
   - {fileID: 8491658845690452265}
   - {fileID: -2100233085485426980}
   - {fileID: -6605982059642899975}
   - {fileID: 1587136380054519324}
+  - {fileID: -1924497135285133472}
   dataTableRowScript: {fileID: 0}
+--- !u!114 &616430672538415470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a13c2dc7b342cb9b812f7f2fcf9701, type: 3}
+  m_Name: LobbyPriest
+  m_EditorClassIdentifier: 
+  rowID: LobbyPriest
+  isEnable: 1
+  characterID: LobbyPriest
+  displayName: "\uC131\uC9C1\uC790"
+  defaultPortraitKey: Default
 --- !u!114 &1587136380054519324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,23 +162,6 @@ MonoBehaviour:
   isEnable: 1
   characterID: Eclis
   displayName: "\uC774\uD074\uB9AC\uC2A4"
-  defaultPortraitKey: Default
---- !u!114 &5817677608219015459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a13c2dc7b342cb9b812f7f2fcf9701, type: 3}
-  m_Name: Priest
-  m_EditorClassIdentifier: 
-  rowID: Priest
-  isEnable: 1
-  characterID: Priest
-  displayName: "\uC131\uC9C1\uC790"
   defaultPortraitKey: Default
 --- !u!114 &8491658845690452265
 MonoBehaviour:

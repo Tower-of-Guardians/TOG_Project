@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rowID: Priest_Talk
   isEnable: 1
-  characterID: Prieist
+  characterID: Priest
   portraitKey: Talk
   portraitTexture: {fileID: 2800000, guid: b578daf83d1cb364587fed684d2a630c, type: 3}
 --- !u!114 &11400000
@@ -159,6 +159,8 @@ MonoBehaviour:
   - {fileID: 1723445576394246797}
   - {fileID: 733057667372450613}
   - {fileID: -3287797823960673408}
+  - {fileID: 192924722942399513}
+  - {fileID: 3160334360026696670}
   - {fileID: -4961596101903300005}
   - {fileID: 4376356219945013966}
   - {fileID: -4248654438604861216}
@@ -171,6 +173,23 @@ MonoBehaviour:
   - {fileID: 4783137584462649185}
   - {fileID: 6234478614861830009}
   dataTableRowScript: {fileID: 0}
+--- !u!114 &192924722942399513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Priest_OpenEyes
+  m_EditorClassIdentifier: 
+  rowID: Priest_OpenEyes
+  isEnable: 1
+  characterID: Priest
+  portraitKey: OpenEyes
+  portraitTexture: {fileID: 0}
 --- !u!114 &733057667372450613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +258,23 @@ MonoBehaviour:
   characterID: Clown
   portraitKey: Talk
   portraitTexture: {fileID: 2800000, guid: 36b8f5770c51e3b4eace2596aa953e53, type: 3}
+--- !u!114 &3160334360026696670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d5603acf884bba9fb8991cfa256b35, type: 3}
+  m_Name: Priest_OpenEyesTalk
+  m_EditorClassIdentifier: 
+  rowID: Priest_OpenEyesTalk
+  isEnable: 1
+  characterID: Priest
+  portraitKey: OpenEyesTalk
+  portraitTexture: {fileID: 0}
 --- !u!114 &4376356219945013966
 MonoBehaviour:
   m_ObjectHideFlags: 0

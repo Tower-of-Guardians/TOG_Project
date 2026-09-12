@@ -4,7 +4,9 @@ Eclis_Talk,Eclis,Talk,Portraits/Eclis_Talk.png,TRUE
 Eclis_SickOf,Eclis,SickOf,Portraits/Eclis_SickOf.png,TRUE
 Eclis_Bored,Eclis,Bored,Portraits/Eclis_Bored.png,TRUE
 Priest_Default,Priest,Default,Portraits/Priest_Default.png,TRUE
-Priest_Talk,Prieist,Talk,Portraits/Priest_Talk.png,TRUE
+Priest_Talk,Priest,Talk,Portraits/Priest_Talk.png,TRUE
+Priest_OpenEyes,Priest,OpenEyes,Portraits/Priest_OpenEyes.png,TRUE
+Priest_OpenEyesTalk,Priest,OpenEyesTalk,Portraits/Priest_OpenEyesTalk.png,TRUE
 Heca_Default,Heca,Default,Portraits/Heca_Default.png,TRUE
 Heca_Talk,Heca,Talk,Portraits/Heca_Talk.png,TRUE
 Heca_Laugh,Heca,Laugh,Portraits/Heca_Laugh.png,TRUE
