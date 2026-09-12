@@ -36,6 +36,60 @@ MonoBehaviour:
   targetID: 210004
   value: 5
   arguments: []
+--- !u!114 &-8259909994511806287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_LobbyPriest_FirstEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_LobbyPriest_FirstEncounter
+  isEnable: 1
+  conditionType: 1
+  targetID: LobbyPriest
+  value: 0
+  arguments: []
+--- !u!114 &-8170174443207768845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_Krabian_FirstEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_Krabian_FirstEncounter
+  isEnable: 1
+  conditionType: 1
+  targetID: Krabian
+  value: 0
+  arguments: []
+--- !u!114 &-7657973668694128378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_Heca_FifthEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_Heca_FifthEncounter
+  isEnable: 1
+  conditionType: 2
+  targetID: Heca
+  value: 5
+  arguments: []
 --- !u!114 &-7161714647883434051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,6 +107,24 @@ MonoBehaviour:
   conditionType: 15
   targetID: 210013
   value: 5
+  arguments: []
+--- !u!114 &-5847446750390390377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_Elemental_First
+  m_EditorClassIdentifier: 
+  rowID: COND_Elemental_First
+  isEnable: 1
+  conditionType: 1
+  targetID: Elemental
+  value: 0
   arguments: []
 --- !u!114 &-5044269268936877351
 MonoBehaviour:
@@ -89,6 +161,24 @@ MonoBehaviour:
   conditionType: 15
   targetID: 210006
   value: 5
+  arguments: []
+--- !u!114 &-4243695601458233131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_Lucien_SecondEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_Lucien_SecondEncounter
+  isEnable: 1
+  conditionType: 2
+  targetID: Lucien
+  value: 2
   arguments: []
 --- !u!114 &-765418215393355187
 MonoBehaviour:
@@ -156,6 +246,22 @@ MonoBehaviour:
   - {fileID: 1166860020110916215}
   - {fileID: -4805367378693023813}
   - {fileID: -7161714647883434051}
+  - {fileID: 5227312576323771935}
+  - {fileID: -8259909994511806287}
+  - {fileID: 1435164979746358014}
+  - {fileID: 4139808860162766811}
+  - {fileID: 6287838009440456549}
+  - {fileID: 3644372359115220008}
+  - {fileID: 7631747306605634052}
+  - {fileID: 2109485965614959780}
+  - {fileID: 1206491325530610150}
+  - {fileID: -7657973668694128378}
+  - {fileID: -8170174443207768845}
+  - {fileID: 5422471282289220056}
+  - {fileID: 1165652910871059838}
+  - {fileID: -4243695601458233131}
+  - {fileID: -5847446750390390377}
+  - {fileID: 309369812311644254}
   dataTableRowScript: {fileID: 0}
 --- !u!114 &268834371332338557
 MonoBehaviour:
@@ -176,6 +282,42 @@ MonoBehaviour:
   value: 5
   arguments:
   - 2
+--- !u!114 &309369812311644254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_Clown_FirstEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_Clown_FirstEncounter
+  isEnable: 1
+  conditionType: 1
+  targetID: Clown
+  value: 0
+  arguments: []
+--- !u!114 &1165652910871059838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_Lucien_FirstEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_Lucien_FirstEncounter
+  isEnable: 1
+  conditionType: 1
+  targetID: Lucien
+  value: 0
+  arguments: []
 --- !u!114 &1166860020110916215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +335,24 @@ MonoBehaviour:
   conditionType: 15
   targetID: 210008
   value: 5
+  arguments: []
+--- !u!114 &1206491325530610150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_Heca_FourthEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_Heca_FourthEncounter
+  isEnable: 1
+  conditionType: 2
+  targetID: Heca
+  value: 4
   arguments: []
 --- !u!114 &1221350892787915737
 MonoBehaviour:
@@ -212,6 +372,42 @@ MonoBehaviour:
   targetID: 
   value: 5
   arguments: []
+--- !u!114 &1435164979746358014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_LobbyPriest_SecondEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_LobbyPriest_SecondEncounter
+  isEnable: 1
+  conditionType: 2
+  targetID: LobbyPriest
+  value: 2
+  arguments: []
+--- !u!114 &2109485965614959780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_Heca_SecondEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_Heca_SecondEncounter
+  isEnable: 1
+  conditionType: 2
+  targetID: Heca
+  value: 2
+  arguments: []
 --- !u!114 &3625479841140140143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +426,96 @@ MonoBehaviour:
   targetID: 
   value: 0
   arguments: []
+--- !u!114 &3644372359115220008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_LobbyPriest_ElementalEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_LobbyPriest_ElementalEncounter
+  isEnable: 1
+  conditionType: 2
+  targetID: Elemental
+  value: 1
+  arguments: []
+--- !u!114 &4139808860162766811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_LobbyPriest_FourthEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_LobbyPriest_FourthEncounter
+  isEnable: 1
+  conditionType: 2
+  targetID: LobbyPriest
+  value: 4
+  arguments: []
+--- !u!114 &5227312576323771935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_EventPriest_FirstEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_EventPriest_FirstEncounter
+  isEnable: 1
+  conditionType: 1
+  targetID: EventPriest
+  value: 0
+  arguments: []
+--- !u!114 &5422471282289220056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_Krabian_SecondEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_Krabian_SecondEncounter
+  isEnable: 1
+  conditionType: 2
+  targetID: Krabian
+  value: 2
+  arguments: []
+--- !u!114 &6287838009440456549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_LobbyPriest_SeventhEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_LobbyPriest_SeventhEncounter
+  isEnable: 1
+  conditionType: 2
+  targetID: LobbyPriest
+  value: 7
+  arguments: []
 --- !u!114 &6807009537390933220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +533,24 @@ MonoBehaviour:
   conditionType: 15
   targetID: 210005
   value: 5
+  arguments: []
+--- !u!114 &7631747306605634052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1423a00ba497fa444522e9c58dde4, type: 3}
+  m_Name: COND_Heca_FirstEncounter
+  m_EditorClassIdentifier: 
+  rowID: COND_Heca_FirstEncounter
+  isEnable: 1
+  conditionType: 1
+  targetID: Heca
+  value: 0
   arguments: []
 --- !u!114 &9115571296142070779
 MonoBehaviour:
