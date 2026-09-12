@@ -37,13 +37,41 @@ namespace Jongmin
             Debug.Log($"{npcId}와의 만남 횟수를 {count}로 설정했습니다.");
         }
 
+        [JxCommand("Begin Npc Encounter")]
+        private string BeginNpcEncounter([JxOptionValue("NPC List")] string npcId)
+        {
+            _eventDomain.RecordNpcEncounter(npcId);
+            return $"{npcId}과(와) 조우했습니다.";
+        }
+
+        [JxCommand("End Npc Encounter")]
+        private string EndNpcEncounter([JxOptionValue("NPC List")] string npcId)
+        {
+            _eventDomain.EndNpcEncounter(npcId);
+            return $"{npcId}과(와) 헤어졌습니다.";
+        }
+
+        [JxCommand("Try Interact")]
+        private string TryInteract([JxOptionValue("NPC List")] string npcId)
+        {
+
+
+            var isSuccess = _eventDomain.TryInteract(npcId, () =>
+            {
+                Debug.Log($"{npcId}의 고유 행동을 실행합니다.");
+            });
+
+            return $"TryInteract({npcId}) => {isSuccess}";
+        }
+
         [JxCommand("NPC List")]
         private IEnumerable<string> ListNpc()
         {
             return DataTableManager
                 .FindAllRows<CharacterDataTableRow>()
                 .Where(x => x.isEnable)
-                .Select(x => x.rowID);
+                .Select(x => x.rowID)
+                .OrderBy(x => x);
         }
     }
 }
