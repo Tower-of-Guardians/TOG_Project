@@ -4,17 +4,35 @@ using UnityEngine;
 public class AreaEventSubUI : MonoBehaviour
 {
     [SerializeField] private GameObject _obPanel;
+    [SerializeField] private UnityEngine.UI.Button _nextButton;
 
-    private Action _onClosed;
+    private Action _onNext;
     private GameObject[] _npcRoots;
     private bool[] _npcWasActive;
 
     public bool IsOpen { get; private set; }
 
-    public void Bind(Action onClosed, GameObject[] npcRoots)
+    public bool IsUIOpen()
     {
-        _onClosed = onClosed;
+        return isActiveAndEnabled && IsOpen;
+    }
+
+    public void Bind(Action onNext, GameObject[] npcRoots)
+    {
+        _onNext = onNext;
         _npcRoots = npcRoots;
+        if (_nextButton != null)
+        {
+            _nextButton.onClick.RemoveListener(Next);
+            _nextButton.onClick.AddListener(Next);
+            _nextButton.gameObject.SetActive(!IsOpen && _onNext != null);
+        }
+    }
+
+    public void Next()
+    {
+        if (IsOpen || !isActiveAndEnabled) return;
+        _onNext?.Invoke();
     }
 
     public virtual void Open()
@@ -26,6 +44,7 @@ public class AreaEventSubUI : MonoBehaviour
     {
         if (IsOpen) return;
         IsOpen = true;
+        if (_nextButton != null) _nextButton.gameObject.SetActive(false);
 
         if (_npcRoots != null)
         {
@@ -62,6 +81,6 @@ public class AreaEventSubUI : MonoBehaviour
             }
         }
 
-        _onClosed?.Invoke();
+        if (_nextButton != null) _nextButton.gameObject.SetActive(_onNext != null);
     }
 }

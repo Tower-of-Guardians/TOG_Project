@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   craftmanBubbleView: {fileID: 0}
+  merchantBubbleView: {fileID: 0}
   speechBubbleSystem: {fileID: 0}
 --- !u!114 &1207552728969784614
 MonoBehaviour:
@@ -272,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invenView: {fileID: 0}
   resultInvenSystem: {fileID: 0}
+  merchantInvenSystem: {fileID: 0}
   craftmanInvenSystem: {fileID: 0}
 --- !u!114 &7353947813304814526
 MonoBehaviour:
@@ -327,6 +329,7 @@ MonoBehaviour:
   shopPrefab: {fileID: 4525384009715724649, guid: df981a005c47caa488637ec4e2a5e2ac, type: 3}
   blacksmithPrefab: {fileID: 7833832246039579358, guid: b1e1925be7f048447be7f1127d753ea4, type: 3}
   blessingPrefab: {fileID: 2191615193539565511, guid: 9dac84047397ea4499097e717ea2d89b, type: 3}
+  randomPrefab: {fileID: 5370112731751860112, guid: 55b4395bdf6465b4683ee2b6338ea3e8, type: 3}
   currentAreaEventId: 310102
   playerStatus:
     ShopCountInStage: 0
@@ -346,7 +349,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 0}
   eventDialogueSystem: {fileID: 0}
-  regularDialogueSystem: {fileID: 0}
   eventConditionSystem: {fileID: 0}
   eventRewardSystem: {fileID: 0}
 --- !u!114 &7128511458962333026

@@ -14,14 +14,17 @@ namespace Kwangmin
         [SerializeField] private GameObject shopPrefab;
         [SerializeField] private GameObject blacksmithPrefab;
         [SerializeField] private GameObject blessingPrefab;
+        [SerializeField] private GameObject randomPrefab;
 
         [Header("Runtime Status")]
         [SerializeField] private string currentAreaEventId = "310102";
         [SerializeField] private PlayerEventStatus playerStatus;
 
         public event Action<AreaEventType> OnAreaEventSelected;
+        public event Action<RandomAreaEventType> OnRandomAreaEventSelected;
 
         private GameObject activeAreaEventInstance;
+        private Jongmin.EventDomain npcEncounterDomain;
         private List<AreaEventType> currentChoices;
         private bool selectionOpen;
         private bool transitioning;
@@ -30,6 +33,26 @@ namespace Kwangmin
 
         public bool IsRunCompleted => progress.IsCompleted;
         public string CurrentAreaEventId => currentAreaEventId;
+        public RandomAreaEventType? CurrentRandomEvent { get; private set; }
+        public string CurrentNpcID { get; private set; }
+
+        public bool IsUIOpen()
+        {
+            if (areaEventUI != null && areaEventUI.IsUIOpen()) return true;
+            return IsEventUIOpen();
+        }
+
+        public bool IsEventUIOpen()
+        {
+            if (activeAreaEventInstance == null) return false;
+            var randomUI = activeAreaEventInstance.GetComponentInChildren<AreaEventUI_Random>(true);
+            if (randomUI != null && randomUI.IsUIOpen()) return true;
+            foreach (var subUI in activeAreaEventInstance.GetComponentsInChildren<AreaEventSubUI>(true))
+            {
+                if (subUI.IsUIOpen()) return true;
+            }
+            return false;
+        }
 
         private void Awake()
         {
@@ -139,7 +162,7 @@ namespace Kwangmin
                 yield return areaEventUI.Show(GetAreaTitle(), currentChoices);
                 foreach (AreaEventType type in currentChoices)
                 {
-                    bool implemented = type != AreaEventType.Random && type != AreaEventType.Blessing;
+                    bool implemented = type != AreaEventType.Blessing;
                     areaEventUI.SetEventAvailable(type, implemented && !visitedEvents.Contains(type));
                 }
             }
@@ -219,7 +242,7 @@ namespace Kwangmin
                     StartAreaBattle(type);
                     break;
                 case AreaEventType.Random:
-                    Debug.LogWarning("[AreaEventDomain] 랜덤 이벤트 처리가 아직 구현되지 않았습니다.", this);
+                    OpenAreaEventPrefab(randomPrefab, type);
                     break;
             }
         }
@@ -242,6 +265,8 @@ namespace Kwangmin
 
         public void CloseActiveEvent()
         {
+            EndNpcEncounter();
+            CurrentRandomEvent = null;
             if (activeAreaEventInstance == null)
             {
                 return;
@@ -258,7 +283,9 @@ namespace Kwangmin
 
         private void OpenAreaEventPrefab(GameObject prefab, AreaEventType type)
         {
-            if (prefab == null || prefab.GetComponentInChildren<AreaEventSubUI>(true) == null)
+            if (prefab == null || (type == AreaEventType.Random
+                    ? prefab.GetComponentInChildren<AreaEventUI_Random>(true) == null
+                    : prefab.GetComponentInChildren<AreaEventSubUI>(true) == null))
             {
                 Debug.LogError($"[AreaEventDomain] {type} 프리팹 또는 하위 UI가 할당되어 있지 않습니다.", this);
                 return;
@@ -285,23 +312,83 @@ namespace Kwangmin
                 for (int i = 0; i < npcs.Length; i++) npcRoots[i] = npcs[i].gameObject;
                 foreach (var subUI in activeAreaEventInstance.GetComponentsInChildren<AreaEventSubUI>(true))
                 {
-                    subUI.Bind(ReturnFromAreaEvent, npcRoots);
+                    subUI.Bind(CompleteActiveEvent, npcRoots);
                 }
 
                 UpdateStatusOnEventSelected(type);
                 visitedEvents.Add(type);
                 progress.TryBeginEvent(type);
+                if (type == AreaEventType.Random)
+                {
+                    CurrentRandomEvent = RandomAreaEventSelector.Select();
+                    activeAreaEventInstance.GetComponentInChildren<AreaEventUI_Random>(true)
+                        .Show(CurrentRandomEvent.Value, CompleteActiveEvent);
+                }
+                BeginNpcEncounter(type);
                 transitioning = false;
                 OnAreaEventSelected?.Invoke(type);
+                if (CurrentRandomEvent.HasValue)
+                {
+                    OnRandomAreaEventSelected?.Invoke(CurrentRandomEvent.Value);
+                }
             });
         }
 
-        private void ReturnFromAreaEvent()
+        public void CompleteActiveEvent()
         {
-            if (transitioning) return;
+            if (transitioning || activeAreaEventInstance == null) return;
             AreaEventType? type = progress.PendingEvent;
-            if (type != AreaEventType.Shop && type != AreaEventType.Blacksmith) return;
+            if (type != AreaEventType.Random && IsEventUIOpen()) return;
+            if (type != AreaEventType.Shop && type != AreaEventType.Blacksmith && type != AreaEventType.Random) return;
             CompleteAreaEvent(type.Value, true);
+        }
+
+        private string GetNpcID(AreaEventType type)
+        {
+            return type switch
+            {
+                AreaEventType.Shop => "Krabian",
+                AreaEventType.Blacksmith => "Heca",
+                AreaEventType.Random => CurrentRandomEvent switch
+                {
+                    RandomAreaEventType.Vampire => "Lucien",
+                    RandomAreaEventType.Spirit => "Elemental",
+                    RandomAreaEventType.Cleric => "EventPriest",
+                    RandomAreaEventType.Jester => "Clown",
+                    RandomAreaEventType.TrainingDummy => "TrainingDoll",
+                    _ => null
+                },
+                _ => null
+            };
+        }
+
+        private void BeginNpcEncounter(AreaEventType type)
+        {
+            string npcID = GetNpcID(type);
+            if (string.IsNullOrEmpty(npcID) || CurrentNpcID == npcID) return;
+
+            EndNpcEncounter();
+            if (!DIContainer.IsRegistered<Jongmin.EventDomain>())
+            {
+                Debug.LogWarning($"[AreaEventDomain] NPC 조우를 기록할 EventDomain이 없습니다: {npcID}", this);
+                return;
+            }
+
+            npcEncounterDomain = DIContainer.Resolve<Jongmin.EventDomain>();
+            if (npcEncounterDomain == null) return;
+
+            npcEncounterDomain.RecordNpcEncounter(npcID);
+            CurrentNpcID = npcID;
+        }
+
+        private void EndNpcEncounter()
+        {
+            if (npcEncounterDomain != null && !string.IsNullOrEmpty(CurrentNpcID))
+            {
+                npcEncounterDomain.EndNpcEncounter(CurrentNpcID);
+            }
+            CurrentNpcID = null;
+            npcEncounterDomain = null;
         }
 
         private void StartAreaBattle(AreaEventType type)

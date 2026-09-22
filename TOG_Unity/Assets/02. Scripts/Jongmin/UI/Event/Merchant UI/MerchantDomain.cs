@@ -30,14 +30,24 @@ namespace Jongmin
 
         public void OpenView()
         {
+            OpenView(true);
+        }
+
+        public void OpenView(bool refreshStock)
+        {
             if (IsOpen)
             {
                 return;
             }
 
-            if (!shopDispenser.Initialize())
+            if (refreshStock && !shopDispenser.Initialize())
             {
                 return;
+            }
+
+            if (!refreshStock)
+            {
+                shopDispenser.RefreshPurchaseStates();
             }
             
             IsOpen = true;

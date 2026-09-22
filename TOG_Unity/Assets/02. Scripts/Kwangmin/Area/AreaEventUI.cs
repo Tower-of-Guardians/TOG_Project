@@ -16,6 +16,13 @@ public class AreaEventUI : ViewBase
     private Action<AreaEventType> _onEventSelected;
     private Tween _toggleTween;
 
+    public bool IsOpen { get; private set; }
+
+    public bool IsUIOpen()
+    {
+        return isActiveAndEnabled && IsOpen;
+    }
+
     private void Awake()
     {
         InitializeItems();
@@ -59,6 +66,7 @@ public class AreaEventUI : ViewBase
 
     public IEnumerator Show()
     {
+        IsOpen = true;
         CanvasGroup.Hide();
 
         _panel.raycastTarget = true;
@@ -106,6 +114,7 @@ public class AreaEventUI : ViewBase
 
     public void Hide(Action onComplete = null)
     {
+        IsOpen = false;
         CanvasGroup.interactable = false;
         CanvasGroup.blocksRaycasts = false;
         _panel.raycastTarget = false;
