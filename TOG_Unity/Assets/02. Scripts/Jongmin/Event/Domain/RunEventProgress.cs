@@ -9,8 +9,10 @@ namespace Jongmin
         private readonly Dictionary<int, int> _gainedCardCountByGrade = new();
         private readonly Dictionary<string, int> _activatedSynergyCounts = new();
         private readonly HashSet<string> _firstActivatedSynergyKeys = new();
+        private readonly ExperienceRecordStore _experience = new();
 
         public int MaxSingleAttackDamage { get; private set; }
+        public IExperienceRecord Experience => _experience;
 
         public int GetNpcEncounterCount(string npcID)
         {
@@ -61,6 +63,7 @@ namespace Jongmin
             }
 
             _reachedStages.Add(stage);
+            _experience.Max(EExperienceRecordType.StageReached, stage.ToString(), 1);
         }
 
         public void RecordNpcEncounter(string npcID)
@@ -72,6 +75,7 @@ namespace Jongmin
 
             _npcEncounterCounts.TryGetValue(npcID, out var count);
             _npcEncounterCounts[npcID] = count + 1;
+            _experience.Add(EExperienceRecordType.NpcEncounter, npcID);
         }
 
         public void SetNpcEncounter(string npcID, int count)
@@ -82,6 +86,7 @@ namespace Jongmin
             }
             
             _npcEncounterCounts[npcID] = count;
+            _experience.Set(EExperienceRecordType.NpcEncounter, npcID, null, count);
         }
 
         public void RecordSingleAttackDamage(int damage)
@@ -90,6 +95,7 @@ namespace Jongmin
             {
                 MaxSingleAttackDamage = damage;
             }
+            _experience.Max(EExperienceRecordType.HighestValue, "SingleAttackDamage", damage);
         }
 
         public void RecordGainedCard(CardData cardData)
@@ -102,6 +108,9 @@ namespace Jongmin
             var grade = cardData.grade;
             _gainedCardCountByGrade.TryGetValue(grade, out var count);
             _gainedCardCountByGrade[grade] = count + 1;
+            _experience.Add(EExperienceRecordType.CardGained, cardData.id);
+            _experience.Add(EExperienceRecordType.CardGained, "Grade", grade.ToString());
+            _experience.Add(EExperienceRecordType.CardGained, "Star", cardData.star.ToString());
         }
 
         public void RefreshSynergyRecords(Dictionary<string, SynergyTotalData> synergyMap)
@@ -128,6 +137,7 @@ namespace Jongmin
                 for (var count = previousCount + 1; count <= currentCount; count++)
                 {
                     _firstActivatedSynergyKeys.Add(GetSynergyThresholdKey(pair.Key, count));
+                    _experience.Max(EExperienceRecordType.SynergyActivated, pair.Key, 1, count.ToString());
                 }
             }
         }
@@ -139,7 +149,52 @@ namespace Jongmin
             _gainedCardCountByGrade.Clear();
             _activatedSynergyCounts.Clear();
             _firstActivatedSynergyKeys.Clear();
+            _experience.Clear();
             MaxSingleAttackDamage = 0;
+        }
+
+        public List<ExperienceRecordData> Capture() => _experience.Capture();
+
+        public void ExperienceRecordAdd(EExperienceRecordType type, string targetID, string detailID = null, int amount = 1)
+            => _experience.Add(type, targetID, detailID, amount);
+
+        public void Restore(IEnumerable<ExperienceRecordData> records)
+        {
+            Reset();
+            _experience.Restore(records);
+            if (records != null)
+            {
+                foreach (ExperienceRecordData record in records)
+                {
+                    if (record == null)
+                    {
+                        continue;
+                    }
+                    switch (record.type)
+                    {
+                        case EExperienceRecordType.NpcEncounter:
+                            _npcEncounterCounts[record.targetID] = record.value;
+                            break;
+                        case EExperienceRecordType.StageReached when int.TryParse(record.targetID, out int stage):
+                            if (record.value > 0)
+                            {
+                                _reachedStages.Add(stage);
+                            }
+                            break;
+                        case EExperienceRecordType.CardGained when record.targetID == "Grade"
+                                                                 && int.TryParse(record.detailID, out int grade):
+                            _gainedCardCountByGrade[grade] = record.value;
+                            break;
+                        case EExperienceRecordType.SynergyActivated when int.TryParse(record.detailID, out int count):
+                            if (record.value > 0)
+                            {
+                                _firstActivatedSynergyKeys.Add(GetSynergyThresholdKey(record.targetID, count));
+                            }
+                            break;
+                    }
+                }
+            }
+            MaxSingleAttackDamage = _experience.Get(EExperienceRecordType.HighestValue, "SingleAttackDamage");
         }
 
         private static string GetSynergyThresholdKey(string synergyID, int count)

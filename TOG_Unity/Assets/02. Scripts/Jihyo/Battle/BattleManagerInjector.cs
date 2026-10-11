@@ -59,20 +59,37 @@ public class BattleManagerInjector : MonoBehaviour, IInjector
     private IEnumerator InitializeBattleRoutine()
     {
         float deadline = Time.realtimeSinceStartup + DataLoadTimeoutSeconds;
-        while (!HasBattleData() && Time.realtimeSinceStartup < deadline)
+        while ((!HasBattleData() || !DataCenter.IsAreaEventLoaded) && Time.realtimeSinceStartup < deadline)
         {
             yield return null;
         }
 
-        if (!HasBattleData())
+        if (!HasBattleData() || !DataCenter.IsAreaEventLoaded)
         {
-            Debug.LogError("BattleManagerInjector: 전투 데이터 로드 제한 시간을 초과했습니다.", this);
+            Debug.LogError("BattleManagerInjector: 전투 또는 지역 데이터 로드 제한 시간을 초과했습니다.", this);
             Complete(false);
             yield break;
         }
 
         if (!ValidateReferences())
         {
+            Complete(false);
+            yield break;
+        }
+        if (!DIContainer.IsRegistered<BattleManager>())
+        {
+            DIContainer.Register<BattleManager>(battleManager);
+        }
+
+        Kwangmin.AreaEventDomain areaEventDomain = FindFirstObjectByType<Kwangmin.AreaEventDomain>();
+        if (areaEventDomain != null && areaEventDomain.TryResumeSavedArea())
+        {
+            Complete(true);
+            yield break;
+        }
+        if (areaEventDomain != null && !areaEventDomain.EnsureInitialAreaCheckpoint())
+        {
+            Debug.LogError("BattleManagerInjector: 최초 지역 체크포인트를 만들지 못했습니다.", this);
             Complete(false);
             yield break;
         }
@@ -129,7 +146,7 @@ public class BattleManagerInjector : MonoBehaviour, IInjector
             return null;
         }
 
-        return candidates[UnityEngine.Random.Range(0, candidates.Count)];
+        return candidates[Jongmin.RunRandom.Range(Jongmin.RunRandom.EnemyAction, 0, candidates.Count)];
     }
 
     private bool ValidateReferences()

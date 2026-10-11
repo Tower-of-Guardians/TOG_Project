@@ -23,7 +23,7 @@ namespace Jongmin
         {
             var lineRow = _speechLineTable.Find<SpeechBubbleDataTableRow>(x => x.triggerType == triggerType);
             
-            var targetDialogueLine = isRandom ? RandomUtility.GetRandom(lineRow.lines) : lineRow.lines[optIndex];
+            var targetDialogueLine = isRandom ? lineRow.lines[RunRandom.Range(RunRandom.Event, 0, lineRow.lines.Count)] : lineRow.lines[optIndex];
 
             if (formatArgs is { Length: > 0 })
             {

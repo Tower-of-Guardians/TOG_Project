@@ -27,6 +27,9 @@ namespace Jongmin
             
             var sequenceCommands = new SequenceCommands(battleManager);
             JxCommandAttributeRegistrar.RegisterCommands(terminal, sequenceCommands);
+
+            var runCommands = new RunCommands(eventDomain);
+            JxCommandAttributeRegistrar.RegisterCommands(terminal, runCommands);
         }
     }
 }

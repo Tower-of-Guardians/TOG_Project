@@ -486,7 +486,7 @@ public class Monster : BaseUnit
             return cycleAction;
         }
 
-        int randomIndex = UnityEngine.Random.Range(0, actionDefinitions.Count);
+        int randomIndex = Jongmin.RunRandom.Range(Jongmin.RunRandom.EnemyAction, 0, actionDefinitions.Count);
         return actionDefinitions[randomIndex];
     }
 
@@ -769,7 +769,7 @@ public class Monster : BaseUnit
             return;
         }
 
-        int index = UnityEngine.Random.Range(0, candidates.Count);
+        int index = Jongmin.RunRandom.Range(Jongmin.RunRandom.EnemyAction, 0, candidates.Count);
         output.Add(candidates[index]);
     }
 
@@ -782,7 +782,7 @@ public class Monster : BaseUnit
             return normalizedMin;
         }
 
-        return UnityEngine.Random.Range(normalizedMin, normalizedMax + 1);
+        return Jongmin.RunRandom.Range(Jongmin.RunRandom.EnemyAction, normalizedMin, normalizedMax + 1);
     }
 
     private Vector3 GetTargetAttackPosition(IDamageable target)
@@ -1035,6 +1035,10 @@ public class Monster : BaseUnit
     private void HandleDeath()
     {
         isMarkedForDeath = true;
+        if (DIContainer.IsRegistered<Jongmin.EventDomain>())
+        {
+            DIContainer.Resolve<Jongmin.EventDomain>()?.RecordMonsterKill(monsterDataId);
+        }
         if (monsterAnimation != null)
         {
             monsterAnimation.PlayDeadAnimation();

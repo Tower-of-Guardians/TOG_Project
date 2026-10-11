@@ -25,5 +25,6 @@
         
         ActivatedSynergyAtLeast,                // 특정 시너지가 N 단계 이상 활성화된 적이 있는가?
         FirstActivatedSynergyAtLeast,           // 특정 시너지가 N 단계 이상 최초로 활성화되었는가?
+        ExperienceAtLeast,                      // 지정 범위의 경험 기록이 N 이상인가?
     }
 }

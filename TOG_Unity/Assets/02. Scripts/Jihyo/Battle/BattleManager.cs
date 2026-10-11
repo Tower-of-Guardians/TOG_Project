@@ -516,6 +516,7 @@ public class BattleManager : MonoBehaviour
     {
         if (isBattleFinished) yield break;
         isBattleFinished = true;
+        RunSaveService.EndRun(ERunEndReason.Death);
         // ResultPresenter가 등록될 때까지 대기
         yield return new WaitUntil(() => DIContainer.IsRegistered<ResultDomain>());
 

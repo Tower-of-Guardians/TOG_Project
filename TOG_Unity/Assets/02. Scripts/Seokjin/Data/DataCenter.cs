@@ -11,6 +11,11 @@ using UnityEngine.ResourceManagement.ResourceLocations;
 
 public class DataCenter : Singleton<DataCenter>
 {
+    private static readonly string[] StartDeckIDs =
+    {
+        "11000001", "11000002", "11010003", "11010004", "11010005",
+        "11010006", "11010007", "11010008", "11010009", "11010025"
+    };
     private bool ownsData;
     private bool loadCancelled;
     private bool CanContinueLoading => this != null && ownsData && !loadCancelled;
@@ -100,6 +105,7 @@ public class DataCenter : Singleton<DataCenter>
 
             await AllCardData();
             if (!CanContinueLoading) return;
+            Jongmin.RunSaveService.RestoreAfterCardDataLoad();
             StartCoroutine(SetStartDeck());
 
             await AllResultPercentData();
@@ -139,8 +145,26 @@ public class DataCenter : Singleton<DataCenter>
     IEnumerator SetStartDeck()
     {
         yield return new WaitUntil(() => IsCardDataLoaded == true);
-        string[] startdecks = { "11000001", "11000002", "11010003", "11010004", "11010005", "11010006", "11010007", "11010008", "11010009", "11010025" };
-        foreach (string id in startdecks)
+        if (userDeck.Count == 0)
+        {
+            ApplyStartDeck();
+        }
+    }
+
+    public void ResetForNewRun()
+    {
+        playerstate = new PlayerState();
+        LoadPlayerData();
+        userDeck.Clear();
+        if (IsCardDataLoaded)
+        {
+            ApplyStartDeck();
+        }
+    }
+
+    private void ApplyStartDeck()
+    {
+        foreach (string id in StartDeckIDs)
         {
             GetCardData(id, (data) => userDeck.Add(Instantiate(data)));
         }

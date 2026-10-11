@@ -54,7 +54,7 @@ public static class AreaEventSelectorUtil
             return (AreaEventType)(-1);
         }
 
-        int roll = Random.Range(1, totalWeight + 1);
+        int roll = Jongmin.RunRandom.Range(Jongmin.RunRandom.Area, 1, totalWeight + 1);
         int processedWeight = 0;
 
         foreach (var kvp in weights)

@@ -16,6 +16,7 @@ public class TestStageGate : ClickableObject
 
     private void TryEnterStage()
     {
+        Jongmin.RunSaveService.BeginRun();
         LoadingManager.Instance.LoadScene("Game");
     }
 }

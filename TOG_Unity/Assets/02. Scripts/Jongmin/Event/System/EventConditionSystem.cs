@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using JxModule.DataTable;
 using UnityEngine;
 
@@ -16,6 +16,8 @@ namespace Jongmin
         private ICardInventory _cardInventory;
         private IRunCardRecord _runCardRecord;
         private ISynergyRecord _synergyRecord;
+        private IExperienceRecord _globalExperience;
+        private IExperienceRecord _runExperience;
 
         public void Construct(DataTable eventConditionDataTable,
                               IEventProgress eventProgress,
@@ -25,7 +27,9 @@ namespace Jongmin
                               IRelicInventory relicInventory,
                               ICardInventory cardInventory,
                               IRunCardRecord runCardRecord,
-                              ISynergyRecord synergyRecord)
+                              ISynergyRecord synergyRecord,
+                              IExperienceRecord globalExperience,
+                              IExperienceRecord runExperience)
         {
             _eventConditionDataTable = eventConditionDataTable;
             _eventProgress = eventProgress;
@@ -36,6 +40,8 @@ namespace Jongmin
             _cardInventory = cardInventory;
             _runCardRecord = runCardRecord;
             _synergyRecord = synergyRecord;
+            _globalExperience = globalExperience;
+            _runExperience = runExperience;
         }
         
         public bool IsSatisfied(List<string> conditionIDs, string npcID)
@@ -122,6 +128,9 @@ namespace Jongmin
                 
                 EEventConditionType.ActivatedSynergyAtLeast 
                     => _synergyRecord != null && _synergyRecord.HasActivatedAtLeast(row.targetID, row.value),
+
+                EEventConditionType.ExperienceAtLeast
+                    => GetExperience(row.recordScope)?.Get(row.recordType, row.targetID, GetArgument(row.arguments, 0)) >= row.value,
                 
                 _ => false
             };
@@ -141,5 +150,11 @@ namespace Jongmin
 
             return int.TryParse(values[index], out var result) ? result : 0;
         }
+
+        private IExperienceRecord GetExperience(EExperienceRecordScope scope)
+            => scope == EExperienceRecordScope.Global ? _globalExperience : _runExperience;
+
+        private static string GetArgument(IReadOnlyList<string> values, int index)
+            => values != null && index >= 0 && index < values.Count ? values[index] : null;
     }
 }
