@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Jongmin;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class BattleCombatController : MonoBehaviour, IBattleController
 {
@@ -200,7 +199,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         {
             Monster target = selectedTarget != null && selectedTarget.IsAlive 
                 ? selectedTarget 
-                : aliveMonsters[Random.Range(0, aliveMonsters.Count)];
+                : aliveMonsters[RunRandom.Range(RunRandom.EnemyAction, 0, aliveMonsters.Count)];
             primaryMonsterTarget = target;
             playerTargets.Add(target);
         }

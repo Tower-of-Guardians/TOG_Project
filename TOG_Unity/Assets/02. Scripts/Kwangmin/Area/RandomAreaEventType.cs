@@ -20,7 +20,12 @@ public static class RandomAreaEventSelector
 
     public static RandomAreaEventType Select()
     {
-        return Types[UnityEngine.Random.Range(0, Types.Length)];
+        var available = Array.FindAll(Types, type => !Jongmin.RunSaveService.HasExperiencedRandomEvent(type.ToString()));
+        if (available.Length == 0)
+        {
+            available = Types;
+        }
+        return available[Jongmin.RunRandom.Range(Jongmin.RunRandom.Event, 0, available.Length)];
     }
 
     public static string GetName(RandomAreaEventType type)

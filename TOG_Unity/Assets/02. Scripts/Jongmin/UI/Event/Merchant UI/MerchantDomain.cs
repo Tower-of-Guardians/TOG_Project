@@ -204,6 +204,10 @@ namespace Jongmin
         {
             speechBubbleDomain.SetBubbleText(BubbleTriggerType.PurchasedCard);
             DataCenter.Instance.userDeck.Add(cardData);
+            if (DIContainer.IsRegistered<EventDomain>())
+            {
+                DIContainer.Resolve<EventDomain>()?.RecordGainedCard(cardData);
+            }
         }
 
         private void HandleOnPurchasedHpPotion()

@@ -44,6 +44,12 @@ public class GameData : Singleton<GameData>
         Debug.Log("GameData 카드 세팅 대기");
         yield return new WaitUntil(() => DataCenter.Instance.userDeck.Count > 0);
         Debug.Log("GameData 카드 세팅 완료");
+        if (Jongmin.RunSaveService.TryRestoreBattleDeckState())
+        {
+            InvokeDeckCountChange(DeckType.Draw);
+            InvokeDeckCountChange(DeckType.Throw);
+            yield break;
+        }
         foreach (CardData id in DataCenter.Instance.userDeck)
         {
             notuseDeck.Add(id.id);
@@ -115,7 +121,7 @@ public class GameData : Singleton<GameData>
     {
         for (int i = notuseDeck.Count - 1; i > 0; i--)
         {
-            int j = UnityEngine.Random.Range(0, i + 1);
+            int j = Jongmin.RunRandom.Range(Jongmin.RunRandom.CardDraw, 0, i + 1);
 
             string temp = notuseDeck[i];
             notuseDeck[i] = notuseDeck[j];
@@ -223,7 +229,7 @@ public class GameData : Singleton<GameData>
 
         for (int i = 0; i < count; i++)
         {
-            float roll = UnityEngine.Random.Range(0, 100);
+            float roll = Jongmin.RunRandom.Range(Jongmin.RunRandom.Reward, 0f, 100f);
             float accumulatedChance = 0;
 
             for (int n = 0; n < resultPercent.percent.Count; n++)
@@ -252,7 +258,7 @@ public class GameData : Singleton<GameData>
         cardData.data = null;
         while (cardData.data == null)
         {
-            string radom_id = DataCenter.random_card_datas[UnityEngine.Random.Range(0, DataCenter.random_card_datas.Count - 1)].ToString();
+            string radom_id = DataCenter.random_card_datas[Jongmin.RunRandom.Range(Jongmin.RunRandom.Reward, 0, DataCenter.random_card_datas.Count)].ToString();
             DataCenter.Instance.GetCardData(radom_id, (data) =>
             {
                 cardData.data = Instantiate(data);

@@ -28,6 +28,7 @@ namespace Jongmin
         private void AddCard([JxOptionValue("Card List")] string cardId)
         {
             DataCenter.Instance.userDeck.Add(DataCenter.card_datas[cardId]);
+            _eventDomain.RecordGainedCard(DataCenter.card_datas[cardId]);
             // TODO: 이벤트를 통해 인벤토리 갱신을 해야함.
             Debug.Log($"인벤토리에 {DataCenter.card_datas[cardId].name}을 추가했습니다.");
         }

@@ -24,12 +24,17 @@ namespace Kwangmin
         public event Action<RandomAreaEventType> OnRandomAreaEventSelected;
 
         private GameObject activeAreaEventInstance;
-        private Jongmin.EventDomain npcEncounterDomain;
+        private Jongmin.EventDomain eventDomain;
+        private BattleManager battleManager;
+        private BattleManagerInjector battleManagerInjector;
         private List<AreaEventType> currentChoices;
         private bool selectionOpen;
         private bool transitioning;
         private readonly HashSet<AreaEventType> visitedEvents = new();
         private readonly AreaEventProgress progress = new();
+        private bool restoredCheckpoint;
+        private Jongmin.ERunCheckpointType restoredCheckpointType;
+        private AreaEventType? restoredEventType;
 
         public bool IsRunCompleted => progress.IsCompleted;
         public string CurrentAreaEventId => currentAreaEventId;
@@ -67,7 +72,51 @@ namespace Kwangmin
             if (transitioning || progress.IsCompleted) return;
             if (!EnsureProgress(false, areaEventId)) return;
             CloseActiveEvent();
-            StartCoroutine(OpenViewRoutine(true));
+            bool refreshChoices = !restoredCheckpoint || restoredCheckpointType != Jongmin.ERunCheckpointType.AreaSelection || currentChoices == null;
+            StartCoroutine(OpenViewRoutine(refreshChoices));
+        }
+
+        public bool TryResumeSavedArea()
+        {
+            if (!Jongmin.RunSaveService.HasAreaCheckpoint)
+            {
+                return false;
+            }
+            if (!EnsureProgress(false))
+            {
+                return false;
+            }
+
+            CloseActiveEvent();
+            if (restoredCheckpointType == Jongmin.ERunCheckpointType.EventEntry && restoredEventType.HasValue)
+            {
+                StartCoroutine(ResumeEventRoutine(restoredEventType.Value));
+                return true;
+            }
+            bool refreshChoices = restoredCheckpointType != Jongmin.ERunCheckpointType.AreaSelection || currentChoices == null;
+            StartCoroutine(OpenViewRoutine(refreshChoices));
+            return true;
+        }
+
+        public bool EnsureInitialAreaCheckpoint()
+        {
+            if (!EnsureProgress(true))
+            {
+                return false;
+            }
+            if (progress.PendingEvent == AreaEventType.Battle)
+            {
+                Jongmin.RunSaveService.SaveEventEntry(currentAreaEventId, playerStatus, currentChoices, AreaEventType.Battle);
+                return true;
+            }
+
+            if (!progress.TryBeginEvent(AreaEventType.Battle))
+            {
+                return false;
+            }
+
+            Jongmin.RunSaveService.SaveEventEntry(currentAreaEventId, playerStatus, currentChoices, AreaEventType.Battle);
+            return true;
         }
 
         public void CompleteBattleResult(bool isVictory)
@@ -90,6 +139,18 @@ namespace Kwangmin
 
             int previousStage = progress.Current != null ? progress.Current.Stage : -1;
             string initialId = firstBattle ? null : (string.IsNullOrEmpty(areaEventId) ? currentAreaEventId : areaEventId);
+            if (!restoredCheckpoint && Jongmin.RunSaveService.TryGetAreaResume(out string savedAreaID, out PlayerEventStatus savedStatus, out Jongmin.ERunCheckpointType checkpointType, out List<AreaEventType> savedChoices, out AreaEventType? savedEventType))
+            {
+                initialId = savedAreaID;
+                playerStatus = savedStatus;
+                if ((checkpointType == Jongmin.ERunCheckpointType.AreaSelection || checkpointType == Jongmin.ERunCheckpointType.EventEntry) && savedChoices is { Count: > 0 })
+                {
+                    currentChoices = savedChoices;
+                }
+                restoredCheckpointType = checkpointType;
+                restoredEventType = savedEventType;
+                restoredCheckpoint = true;
+            }
             if (!progress.TryInitialize(DataCenter.areaevent_datas?.Values, initialId))
             {
                 Debug.LogError($"[AreaEventDomain] 지역 진행 데이터를 찾을 수 없습니다: {initialId}", this);
@@ -99,14 +160,19 @@ namespace Kwangmin
             currentAreaEventId = progress.Current.Id;
             if (previousStage >= 0 && previousStage != progress.Current.Stage) ResetStageCounts();
             RecordReachedStage();
+            if (currentChoices == null && !restoredCheckpoint)
+            {
+                Jongmin.RunSaveService.SaveAreaEntry(currentAreaEventId, playerStatus);
+            }
             return true;
         }
 
         private void RecordReachedStage()
         {
-            if (progress.Current != null && DIContainer.IsRegistered<Jongmin.EventDomain>())
+            Jongmin.EventDomain cachedEventDomain = GetEventDomain();
+            if (progress.Current != null && cachedEventDomain != null)
             {
-                DIContainer.Resolve<Jongmin.EventDomain>()?.RecordReachedStage(progress.Current.Stage);
+                cachedEventDomain.RecordReachedStage(progress.Current.Stage);
             }
         }
 
@@ -115,16 +181,24 @@ namespace Kwangmin
             int previousStage = progress.Current.Stage;
             if (!progress.TryCompleteEvent(type, succeeded)) return;
 
+            if (succeeded && type == AreaEventType.Boss)
+            {
+                GetEventDomain()?.RecordRunResult(Jongmin.ERunEndReason.BossDefeated);
+            }
+
             CloseActiveEvent();
             if (!succeeded)
             {
-                StartCoroutine(OpenViewRoutine(false));
+                Jongmin.RunSaveService.EndRun(Jongmin.ERunEndReason.Death);
+                transitioning = true;
+                LoadingManager.Instance.LoadScene("Lobby");
                 return;
             }
 
             currentAreaEventId = progress.Current.Id;
             if (progress.IsCompleted)
             {
+                Jongmin.RunSaveService.EndRun(Jongmin.ERunEndReason.Clear);
                 selectionOpen = false;
                 transitioning = true;
                 areaEventUI?.Hide();
@@ -155,6 +229,7 @@ namespace Kwangmin
             {
                 currentChoices = GetChoices();
                 visitedEvents.Clear();
+                Jongmin.RunSaveService.SaveAreaSelection(currentAreaEventId, playerStatus, currentChoices);
             }
 
             if (areaEventUI != null)
@@ -226,6 +301,18 @@ namespace Kwangmin
             if (!selectionOpen || transitioning || progress.IsCompleted || progress.PendingEvent.HasValue
                 || visitedEvents.Contains(type)) return;
 
+            if (type == AreaEventType.Blessing)
+            {
+                Debug.LogWarning("[AreaEventDomain] 축복 보상 처리가 아직 구현되지 않았습니다.", this);
+                return;
+            }
+
+            Jongmin.RunSaveService.SaveEventEntry(currentAreaEventId, playerStatus, currentChoices, type);
+            StartSelectedEvent(type);
+        }
+
+        private void StartSelectedEvent(AreaEventType type)
+        {
             switch (type)
             {
                 case AreaEventType.Shop:
@@ -233,9 +320,6 @@ namespace Kwangmin
                     break;
                 case AreaEventType.Blacksmith:
                     OpenAreaEventPrefab(blacksmithPrefab, type);
-                    break;
-                case AreaEventType.Blessing:
-                    Debug.LogWarning("[AreaEventDomain] 축복 보상 처리가 아직 구현되지 않았습니다.", this);
                     break;
                 case AreaEventType.Battle:
                 case AreaEventType.Boss:
@@ -245,6 +329,15 @@ namespace Kwangmin
                     OpenAreaEventPrefab(randomPrefab, type);
                     break;
             }
+        }
+
+        private IEnumerator ResumeEventRoutine(AreaEventType type)
+        {
+            transitioning = true;
+            selectionOpen = false;
+            yield return null;
+            transitioning = false;
+            StartSelectedEvent(type);
         }
 
         private void UpdateStatusOnEventSelected(AreaEventType type)
@@ -340,6 +433,12 @@ namespace Kwangmin
             AreaEventType? type = progress.PendingEvent;
             if (type != AreaEventType.Random && IsEventUIOpen()) return;
             if (type != AreaEventType.Shop && type != AreaEventType.Blacksmith && type != AreaEventType.Random) return;
+            if (type == AreaEventType.Random && CurrentRandomEvent.HasValue)
+            {
+                string eventID = CurrentRandomEvent.Value.ToString();
+                Jongmin.RunSaveService.MarkRandomEventExperienced(eventID);
+                GetEventDomain()?.RecordEventExperience(eventID);
+            }
             CompleteAreaEvent(type.Value, true);
         }
 
@@ -368,39 +467,35 @@ namespace Kwangmin
             if (string.IsNullOrEmpty(npcID) || CurrentNpcID == npcID) return;
 
             EndNpcEncounter();
-            if (!DIContainer.IsRegistered<Jongmin.EventDomain>())
+            Jongmin.EventDomain cachedEventDomain = GetEventDomain();
+            if (cachedEventDomain == null)
             {
                 Debug.LogWarning($"[AreaEventDomain] NPC 조우를 기록할 EventDomain이 없습니다: {npcID}", this);
                 return;
             }
 
-            npcEncounterDomain = DIContainer.Resolve<Jongmin.EventDomain>();
-            if (npcEncounterDomain == null) return;
-
-            npcEncounterDomain.RecordNpcEncounter(npcID);
+            cachedEventDomain.RecordNpcEncounter(npcID);
             CurrentNpcID = npcID;
         }
 
         private void EndNpcEncounter()
         {
-            if (npcEncounterDomain != null && !string.IsNullOrEmpty(CurrentNpcID))
+            if (eventDomain != null && !string.IsNullOrEmpty(CurrentNpcID))
             {
-                npcEncounterDomain.EndNpcEncounter(CurrentNpcID);
+                eventDomain.EndNpcEncounter(CurrentNpcID);
             }
             CurrentNpcID = null;
-            npcEncounterDomain = null;
         }
 
         private void StartAreaBattle(AreaEventType type)
         {
-            if (!DIContainer.IsRegistered<BattleManager>())
+            if (GetBattleManager() == null)
             {
                 Debug.LogError("[AreaEventDomain] BattleManager가 등록되어 있지 않습니다.", this);
                 return;
             }
 
-            var injector = DIContainer.IsRegistered<BattleManagerInjector>()
-                ? DIContainer.Resolve<BattleManagerInjector>() : null;
+            BattleManagerInjector injector = GetBattleManagerInjector();
             if (injector == null)
             {
                 Debug.LogError("[AreaEventDomain] BattleManagerInjector가 없습니다.", this);
@@ -436,6 +531,51 @@ namespace Kwangmin
                     StartCoroutine(OpenViewRoutine(false));
                 }
             });
+        }
+
+        private Jongmin.EventDomain GetEventDomain()
+        {
+            if (eventDomain != null)
+            {
+                return eventDomain;
+            }
+            if (!DIContainer.IsRegistered<Jongmin.EventDomain>())
+            {
+                return null;
+            }
+
+            eventDomain = DIContainer.Resolve<Jongmin.EventDomain>();
+            return eventDomain;
+        }
+
+        private BattleManager GetBattleManager()
+        {
+            if (battleManager != null)
+            {
+                return battleManager;
+            }
+            if (!DIContainer.IsRegistered<BattleManager>())
+            {
+                return null;
+            }
+
+            battleManager = DIContainer.Resolve<BattleManager>();
+            return battleManager;
+        }
+
+        private BattleManagerInjector GetBattleManagerInjector()
+        {
+            if (battleManagerInjector != null)
+            {
+                return battleManagerInjector;
+            }
+            if (!DIContainer.IsRegistered<BattleManagerInjector>())
+            {
+                return null;
+            }
+
+            battleManagerInjector = DIContainer.Resolve<BattleManagerInjector>();
+            return battleManagerInjector;
         }
 
         private void OnDestroy()

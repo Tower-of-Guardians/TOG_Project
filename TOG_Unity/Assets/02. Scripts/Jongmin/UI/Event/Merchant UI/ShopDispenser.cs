@@ -142,17 +142,46 @@ namespace Jongmin
 
             for (var i = 0; i < _shopSlots.Length; i++)
             {
-                if (!RandomUtility.TryGetWeightedRandom(availableGrades, grade => resultPercent.percent[grade], out var selectedGrade))
+                if (!TryGetWeightedGrade(availableGrades, resultPercent.percent, out var selectedGrade))
                 {
                     Debug.LogError("카드 등급 추첨에 실패했습니다.", this);
                     return false;
                 }
 
-                var selectedCard = RandomUtility.GetRandom(cardsByGrade[selectedGrade]);
+                var selectedCards = cardsByGrade[selectedGrade];
+                var selectedCard = selectedCards[RunRandom.Range(RunRandom.Shop, 0, selectedCards.Count)];
 
                 results.Add(Instantiate(selectedCard));
             }
 
+            return true;
+        }
+
+        private static bool TryGetWeightedGrade(IReadOnlyList<int> grades, IReadOnlyList<float> weights, out int result)
+        {
+            result = default;
+            float total = 0f;
+            foreach (int grade in grades)
+            {
+                total += Mathf.Max(0f, weights[grade]);
+            }
+            if (total <= 0f)
+            {
+                return false;
+            }
+
+            float roll = RunRandom.Range(RunRandom.Shop, 0f, total);
+            float current = 0f;
+            foreach (int grade in grades)
+            {
+                current += Mathf.Max(0f, weights[grade]);
+                if (roll <= current)
+                {
+                    result = grade;
+                    return true;
+                }
+            }
+            result = grades[^1];
             return true;
         }
     }

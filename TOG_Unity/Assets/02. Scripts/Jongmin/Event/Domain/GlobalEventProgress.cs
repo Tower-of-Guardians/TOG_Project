@@ -5,8 +5,10 @@ namespace Jongmin
     public sealed class GlobalEventProgress : IMutableEventProgress
     {
         private readonly HashSet<string> _seenEventIDSet = new();
+        private readonly ExperienceRecordStore _experience = new();
 
         public int MaxSingleAttackDamage { get; private set; }
+        public IExperienceRecord Experience => _experience;
 
         public bool HasSeen(string eventID)
         {
@@ -29,6 +31,40 @@ namespace Jongmin
             {
                 MaxSingleAttackDamage = damage;
             }
+            _experience.Max(EExperienceRecordType.HighestValue, "SingleAttackDamage", damage);
+        }
+
+        public void AddExperience(EExperienceRecordType type, string targetID = null, string detailID = null, int amount = 1)
+            => _experience.Add(type, targetID, detailID, amount);
+
+        public void MarkExperience(EExperienceRecordType type, string targetID, string detailID = null)
+            => _experience.Max(type, targetID, 1, detailID);
+
+        public PersistentProgressSaveData Capture(IEnumerable<string> relicIDs)
+        {
+            return new PersistentProgressSaveData
+            {
+                relicIDs = relicIDs != null ? new List<string>(relicIDs) : new List<string>(),
+                seenEventIDs = new List<string>(_seenEventIDSet),
+                experienceRecords = _experience.Capture()
+            };
+        }
+
+        public void Restore(PersistentProgressSaveData data)
+        {
+            _seenEventIDSet.Clear();
+            if (data?.seenEventIDs != null)
+            {
+                foreach (string eventID in data.seenEventIDs)
+                {
+                    if (!string.IsNullOrWhiteSpace(eventID))
+                    {
+                        _seenEventIDSet.Add(eventID);
+                    }
+                }
+            }
+            _experience.Restore(data?.experienceRecords);
+            MaxSingleAttackDamage = _experience.Get(EExperienceRecordType.HighestValue, "SingleAttackDamage");
         }
     }
 }

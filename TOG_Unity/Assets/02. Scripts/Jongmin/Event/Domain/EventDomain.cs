@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using JxDialogueBox;
 using JxModule;
@@ -50,18 +51,25 @@ namespace Jongmin
                 relicDomain,
                 _progressCache.CardInventory,
                 _progressCache.Run,
-                _progressCache.Run);
+                _progressCache.Run,
+                _progressCache.Global.Experience,
+                _progressCache.Run.Experience);
 
             eventDialogueSystem.Construct(dialogueRunner);
             eventRewardSystem.Construct(_eventRewardDataTable);
 
             BindEvents();
+            RunSaveService.Bind(this, relicDomain);
         }
         
         public void BindEvents()
         {
             GameData.Instance.SynergyChange += HandleSynergyChanged;
             eventRewardSystem.OnRewardRelic += HandleOnRewardRelic;
+            if (_relicDomain != null)
+            {
+                _relicDomain.OnRelicAdded += HandleRelicAdded;
+            }
             HandleSynergyChanged(GameData.Instance.synergyIDList);
         }
         
@@ -69,6 +77,10 @@ namespace Jongmin
         {
             GameData.Instance.SynergyChange -= HandleSynergyChanged;
             eventRewardSystem.OnRewardRelic -= HandleOnRewardRelic;
+            if (_relicDomain != null)
+            {
+                _relicDomain.OnRelicAdded -= HandleRelicAdded;
+            }
         }
 
         /// <summary>
@@ -93,6 +105,8 @@ namespace Jongmin
             }
 
             _progressCache?.Run.RecordNpcEncounter(npcID);
+            _progressCache?.Global.AddExperience(EExperienceRecordType.NpcEncounter, npcID);
+            SavePersistentIfOutsideRun();
             _npcEncounterSession.Begin(npcID);
         }
         
@@ -125,6 +139,7 @@ namespace Jongmin
         public void RecordReachedStage(int stage)
         {
             _progressCache?.Run.RecordReachedStage(stage);
+            _progressCache?.Global.MarkExperience(EExperienceRecordType.StageReached, stage.ToString());
         }
 
         /// <summary>
@@ -144,6 +159,54 @@ namespace Jongmin
         public void RecordGainedCard(CardData cardData)
         {
             _progressCache?.Run.RecordGainedCard(cardData);
+            if (cardData != null)
+            {
+                _progressCache?.Global.AddExperience(EExperienceRecordType.CardGained, cardData.id);
+                _progressCache?.Global.AddExperience(EExperienceRecordType.CardGained, "Grade", cardData.grade.ToString());
+                _progressCache?.Global.AddExperience(EExperienceRecordType.CardGained, "Star", cardData.star.ToString());
+            }
+        }
+
+        public void RecordRunResult(ERunEndReason reason)
+        {
+            _progressCache?.Global.AddExperience(EExperienceRecordType.RunResult, reason.ToString());
+            if (reason == ERunEndReason.Abandon)
+            {
+                _progressCache?.Global.AddExperience(EExperienceRecordType.RunResult, ERunEndReason.Death.ToString());
+            }
+        }
+
+        public void RecordMonsterKill(string monsterID)
+        {
+            if (string.IsNullOrWhiteSpace(monsterID))
+            {
+                return;
+            }
+            _progressCache?.Run.ExperienceRecordAdd(EExperienceRecordType.MonsterKill, monsterID);
+            _progressCache?.Global.AddExperience(EExperienceRecordType.MonsterKill, monsterID);
+        }
+
+        public void RecordEventExperience(string eventID, string choiceID = null)
+        {
+            if (string.IsNullOrWhiteSpace(eventID))
+            {
+                return;
+            }
+            _progressCache?.Run.ExperienceRecordAdd(EExperienceRecordType.EventExperienced, eventID, choiceID);
+            _progressCache?.Global.AddExperience(EExperienceRecordType.EventExperienced, eventID, choiceID);
+        }
+
+        public PersistentProgressSaveData CapturePersistentProgress()
+            => _progressCache?.Global.Capture(_relicDomain?.OwnedRelicIDs) ?? new PersistentProgressSaveData();
+
+        public List<ExperienceRecordData> CaptureRunProgress()
+            => _progressCache?.Run.Capture() ?? new System.Collections.Generic.List<ExperienceRecordData>();
+
+        public void RestoreProgress(PersistentProgressSaveData persistent, System.Collections.Generic.IEnumerable<ExperienceRecordData> run)
+        {
+            _progressCache?.Global.Restore(persistent);
+            _progressCache?.Run.Restore(run);
+            _relicDomain?.RestoreOwnedRelics(persistent?.relicIDs);
         }
 
         /// <summary>
@@ -248,6 +311,7 @@ namespace Jongmin
             }
 
             _progressCache?.Global.MarkSeen(eventDataTableRow.rowID);
+            SavePersistentIfOutsideRun();
         }
 
         private void HandleBeginEventReward(EventDataTableRow eventDataTableRow)
@@ -289,12 +353,46 @@ namespace Jongmin
         private void HandleSynergyChanged(System.Collections.Generic.Dictionary<string, SynergyTotalData> synergyMap)
         {
             _progressCache?.Run.RefreshSynergyRecords(synergyMap);
+            if (synergyMap == null)
+            {
+                return;
+            }
+            foreach (var pair in synergyMap)
+            {
+                if (string.IsNullOrWhiteSpace(pair.Key) || pair.Value == null)
+                {
+                    continue;
+                }
+                for (int count = 1; count <= pair.Value.count; count++)
+                {
+                    _progressCache?.Global.MarkExperience(EExperienceRecordType.SynergyActivated, pair.Key, count.ToString());
+                }
+            }
         }
         
 #region Event Handlings
         private void HandleOnRewardRelic(string relicID)
         {
             _relicDomain.TryAddRelic(relicID);
+        }
+
+        private void HandleRelicAdded(RelicDataTableRow relic)
+        {
+            if (relic == null)
+            {
+                return;
+            }
+            _progressCache?.Run.ExperienceRecordAdd(EExperienceRecordType.RelicGained, relic.rowID);
+            _progressCache?.Global.AddExperience(EExperienceRecordType.RelicGained, relic.rowID);
+            SavePersistentIfOutsideRun();
+        }
+
+        private static void SavePersistentIfOutsideRun()
+        {
+            if (!RunSaveService.HasActiveRun)
+            {
+                RunSaveService.SavePersistentProgress();
+            }
         }
 #endregion
 
