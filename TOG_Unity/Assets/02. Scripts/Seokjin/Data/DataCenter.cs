@@ -87,6 +87,10 @@ public class DataCenter : Singleton<DataCenter>
 
     public static bool IsAreaEventLoaded { get; private set; } = false;
     //////////////////////////
+
+    public static Dictionary<string, RandomEventData> randomevent_datas = new Dictionary<string, RandomEventData>();
+    private static AsyncOperationHandle<IList<RandomEventData>> randomevent_datas_loadHandle;
+    public static bool IsRandomEventLoaded { get; private set; } = false;
     /// </summary>
 
     protected override void Awake()
@@ -121,6 +125,8 @@ public class DataCenter : Singleton<DataCenter>
             await AllEffectData();
             if (!CanContinueLoading) return;
             await AllAreaEventData();
+            if (!CanContinueLoading) return;
+            await AllRandomEventData();
         }
         catch (Exception exception)
         {
@@ -402,6 +408,32 @@ public class DataCenter : Singleton<DataCenter>
             UnityEngine.Debug.LogError($"AreaEventData 로드 실패: {areaevent_datas_loadHandle.OperationException}");
         }
     }
+    public async Task AllRandomEventData()
+    {
+        randomevent_datas_loadHandle = Addressables.LoadAssetsAsync<RandomEventData>(
+            "RandomEventData",
+            (item) =>
+            {
+                if (CanContinueLoading && item != null)
+                {
+                    randomevent_datas[item.Id] = item;
+                }
+            }
+        );
+
+        await randomevent_datas_loadHandle.Task;
+        if (!CanContinueLoading) return;
+
+        if (randomevent_datas_loadHandle.Status == AsyncOperationStatus.Succeeded)
+        {
+            IsRandomEventLoaded = true;
+            UnityEngine.Debug.Log($"RandomEventData 로드 완료: {randomevent_datas.Count}");
+        }
+        else
+        {
+            UnityEngine.Debug.LogError($"RandomEventData 로드 실패: {randomevent_datas_loadHandle.OperationException}");
+        }
+    }
     public void ReleaseDataHandle()
     {
         if (!ownsData) return;
@@ -413,6 +445,7 @@ public class DataCenter : Singleton<DataCenter>
         if (synergy_datas_loadHandle.IsValid()) Addressables.Release(synergy_datas_loadHandle);
         if (effect_datas_loadHandle.IsValid()) Addressables.Release(effect_datas_loadHandle);
         if (areaevent_datas_loadHandle.IsValid()) Addressables.Release(areaevent_datas_loadHandle);
+        if (randomevent_datas_loadHandle.IsValid()) Addressables.Release(randomevent_datas_loadHandle);
         UnityEngine.Debug.Log("Addressables 핸들 해제 완료.");
     }
 

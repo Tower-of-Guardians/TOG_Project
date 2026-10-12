@@ -16,7 +16,8 @@ enum CSVData
     StatusEffectData,
     SynergyData,
     EffectData,
-    AreaEventData
+    AreaEventData,
+    RandomEventData
 }
 
 #if UNITY_EDITOR
@@ -97,6 +98,14 @@ public class CSVToScriptableObject
         soFolderPath = "Assets/Datas/" + csv_name;
         GenerateItemSOs();
     }
+    [MenuItem("Tools/Generate Data/RandomEventData")]
+    public static void RandomEventDataCreate()
+    {
+        csv_data = CSVData.RandomEventData;
+        csv_name = "RandomEventData";
+        soFolderPath = "Assets/Datas/" + csv_name;
+        GenerateItemSOs();
+    }
 #endif
 
 #if UNITY_EDITOR
@@ -153,6 +162,9 @@ public class CSVToScriptableObject
                 break;
             case CSVData.AreaEventData:
                 AreaEventDataCreate(allLines);
+                break;
+            case CSVData.RandomEventData:
+                RandomEventDataCreate(allLines);
                 break;
         }
 
@@ -616,6 +628,60 @@ public class CSVToScriptableObject
             string fileName = newItem.Id + ".asset";
 
             AssetDatabase.CreateAsset(newItem, soFolderPath + "/" + fileName);
+        }
+    }
+    private static void RandomEventDataCreate(string[] allLines)
+    {
+        if (allLines == null || allLines.Length <= 1)
+        {
+            return;
+        }
+
+        string[] headers = allLines[0].Split(',');
+        Dictionary<string, int> columnMap = new Dictionary<string, int>();
+        for (int i = 0; i < headers.Length; i++)
+        {
+            string header = headers[i].Trim().Trim('"').TrimStart('﻿');
+            if (!string.IsNullOrEmpty(header) && !columnMap.ContainsKey(header))
+            {
+                columnMap.Add(header, i);
+            }
+        }
+
+        foreach (string line in allLines.Skip(1))
+        {
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            string[] values = line.Split(',');
+            for (int i = 0; i < values.Length; i++)
+            {
+                values[i] = values[i].Trim().Trim('"');
+            }
+
+            string id = GetCsvString(columnMap, values, "ID");
+            if (string.IsNullOrEmpty(id))
+            {
+                continue;
+            }
+
+            string assetPath = soFolderPath + "/" + id + ".asset";
+            RandomEventData item = AssetDatabase.LoadAssetAtPath<RandomEventData>(assetPath);
+            if (item == null)
+            {
+                item = ScriptableObject.CreateInstance<RandomEventData>();
+                AssetDatabase.CreateAsset(item, assetPath);
+            }
+
+            item.Id = id;
+            item.Name = GetCsvString(columnMap, values, "Name");
+
+            item.Sections = new List<int>();
+            foreach (string section in GetCsvString(columnMap, values, "Section").Split('|'))
+            {
+                if (int.TryParse(section.Trim(), out int parsed)) item.Sections.Add(parsed);
+            }
+
+            EditorUtility.SetDirty(item);
         }
     }
     private static Sprite FindSprite(string spriteNameInSheet, string address, string spritename)

@@ -74,6 +74,14 @@ public class AddressableAutoConfigurator : Editor
         ConfigureItemSOsAsAddressable();
     }
 
+    [MenuItem("Tools/Addressables/RandomEventData for Addressables")]
+    public static void SetRandomEventData()
+    {
+        GROUP_NAME = "RandomEventData";
+        class_name = typeof(RandomEventData);
+        ConfigureItemSOsAsAddressable();
+    }
+
     public static void ConfigureItemSOsAsAddressable()
     {
         string SO_FOLDER_PATH = "Assets/Datas"+ "/" + GROUP_NAME;
