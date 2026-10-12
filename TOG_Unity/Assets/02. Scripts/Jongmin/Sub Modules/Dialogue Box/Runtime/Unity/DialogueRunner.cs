@@ -16,6 +16,13 @@ namespace JxDialogueBox
         private Coroutine _startCoroutine;
         private Coroutine _endCoroutine;
 
+        public bool IsRunning =>
+            _startCoroutine != null ||
+            _endCoroutine != null ||
+            (_dialogueEngine != null &&
+             (_dialogueEngine.State == DialogueEngine.EngineState.ShowingLine ||
+              _dialogueEngine.State == DialogueEngine.EngineState.AwaitingChoice));
+
         private void Awake()
         {
             if(dialogueView == null)

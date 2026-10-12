@@ -405,7 +405,7 @@ namespace Kwangmin
                 for (int i = 0; i < npcs.Length; i++) npcRoots[i] = npcs[i].gameObject;
                 foreach (var subUI in activeAreaEventInstance.GetComponentsInChildren<AreaEventSubUI>(true))
                 {
-                    subUI.Bind(CompleteActiveEvent, npcRoots);
+                    subUI.Bind(CompleteActiveEvent, npcRoots, TryInteractNpc);
                 }
 
                 UpdateStatusOnEventSelected(type);
@@ -418,6 +418,10 @@ namespace Kwangmin
                         .Show(CurrentRandomEvent.Value, CompleteActiveEvent);
                 }
                 BeginNpcEncounter(type);
+                if (type == AreaEventType.Random)
+                {
+                    TryInteractNpc();
+                }
                 transitioning = false;
                 OnAreaEventSelected?.Invoke(type);
                 if (CurrentRandomEvent.HasValue)
@@ -429,7 +433,7 @@ namespace Kwangmin
 
         public void CompleteActiveEvent()
         {
-            if (transitioning || activeAreaEventInstance == null) return;
+            if (transitioning || activeAreaEventInstance == null || IsDialoguePlaying()) return;
             AreaEventType? type = progress.PendingEvent;
             if (type != AreaEventType.Random && IsEventUIOpen()) return;
             if (type != AreaEventType.Shop && type != AreaEventType.Blacksmith && type != AreaEventType.Random) return;
@@ -476,6 +480,20 @@ namespace Kwangmin
 
             cachedEventDomain.RecordNpcEncounter(npcID);
             CurrentNpcID = npcID;
+        }
+
+        private bool TryInteractNpc()
+        {
+            if (IsDialoguePlaying()) return true;
+
+            Jongmin.EventDomain cachedEventDomain = GetEventDomain();
+            return cachedEventDomain != null && cachedEventDomain.TryInteract(CurrentNpcID);
+        }
+
+        private bool IsDialoguePlaying()
+        {
+            Jongmin.EventDomain cachedEventDomain = GetEventDomain();
+            return cachedEventDomain != null && cachedEventDomain.IsDialoguePlaying;
         }
 
         private void EndNpcEncounter()

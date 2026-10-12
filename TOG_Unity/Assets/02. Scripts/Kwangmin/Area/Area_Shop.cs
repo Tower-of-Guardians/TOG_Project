@@ -21,7 +21,7 @@ public class Area_Shop : ClickableObject
     {
         if (_shopUI != null)
         {
-            _shopUI.Open();
+            _shopUI.Interact();
         }
     }
 }

@@ -31,7 +31,8 @@ namespace Jongmin
         public RunEventProgress RunProgress => _progressCache?.Run;
         public GlobalEventProgress GlobalProgress => _progressCache?.Global;
         public IEventProgress EventProgress => _progressCache?.Global;
-        
+        public bool IsDialoguePlaying => eventDialogueSystem != null && eventDialogueSystem.IsPlaying;
+
         public void Construct(RelicDomain relicDomain)
         {
             _relicDomain = relicDomain;

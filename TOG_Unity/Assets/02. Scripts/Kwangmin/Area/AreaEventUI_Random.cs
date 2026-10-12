@@ -29,10 +29,7 @@ public sealed class AreaEventUI_Random : MonoBehaviour
     private void Next()
     {
         if (!IsUIOpen() || onNext == null) return;
-        var callback = onNext;
-        onNext = null;
-        nextButton.interactable = false;
-        callback.Invoke();
+        onNext.Invoke();
     }
 
     private void OnDestroy()

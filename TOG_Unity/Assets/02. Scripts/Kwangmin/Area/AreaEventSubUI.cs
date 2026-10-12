@@ -7,6 +7,7 @@ public class AreaEventSubUI : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Button _nextButton;
 
     private Action _onNext;
+    private Func<bool> _onInteract;
     private GameObject[] _npcRoots;
     private bool[] _npcWasActive;
 
@@ -17,9 +18,10 @@ public class AreaEventSubUI : MonoBehaviour
         return isActiveAndEnabled && IsOpen;
     }
 
-    public void Bind(Action onNext, GameObject[] npcRoots)
+    public void Bind(Action onNext, GameObject[] npcRoots, Func<bool> onInteract = null)
     {
         _onNext = onNext;
+        _onInteract = onInteract;
         _npcRoots = npcRoots;
         if (_nextButton != null)
         {
@@ -33,6 +35,13 @@ public class AreaEventSubUI : MonoBehaviour
     {
         if (IsOpen || !isActiveAndEnabled) return;
         _onNext?.Invoke();
+    }
+
+    public void Interact()
+    {
+        if (IsOpen || !isActiveAndEnabled) return;
+        if (_onInteract != null && _onInteract.Invoke()) return;
+        Open();
     }
 
     public virtual void Open()
