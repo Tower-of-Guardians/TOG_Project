@@ -10,9 +10,10 @@ using UnityEngine.UI;
 public class UIImageFrameAnimator : MonoBehaviour
 {
     [SerializeField] private Image targetImage;
+    [SerializeField] private Sprite[] frames;
     [SerializeField] private float playDuration = 1f;
+    [SerializeField] private bool playOnEnable;
 
-    private Sprite[] frames;
     private Coroutine playCoroutine;
     private bool isPlayRequested;
     private int lastAppliedFrameIndex = -1;
@@ -112,6 +113,12 @@ public class UIImageFrameAnimator : MonoBehaviour
 
     private void OnEnable()
     {
+        if (playOnEnable && !isPlayRequested)
+        {
+            Play();
+            return;
+        }
+
         if (isPlayRequested)
         {
             ApplyCurrentFrame(force: true);
