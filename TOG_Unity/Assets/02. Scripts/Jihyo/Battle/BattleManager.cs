@@ -310,15 +310,10 @@ public class BattleManager : MonoBehaviour
         }
 
         yield return combatController.ExecutePreAttackSynergyPhase(initResult.player, initResult.playerAnimation, synergyUI);
+        yield return CloseSynergyOverlayUI();
 
-        if (combatController.PlayedSynergyMotion)
+        if (!combatController.PlayedSynergyMotion)
         {
-            StartCoroutine(CloseSynergyOverlayUI());
-        }
-        else
-        {
-            yield return CloseSynergyOverlayUI();
-
             float statAnimationWaitTime = combatController.GetStatAnimationWaitTime();
             if (statAnimationWaitTime > 0f)
             {

@@ -1,8 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterAnimation : MonoBehaviour
 {
+    public const string AttackHitFunctionName = "OnAttackHit";
+    public const string ActionApplyFunctionName = "OnActionApply";
+
     [Header("Animation")]
     private Animator animator;
 
@@ -30,9 +34,20 @@ public class MonsterAnimation : MonoBehaviour
         "Dead", "WhiteDog_Dead", "Clonier_Dead", "ClonierClone_Dead", "Grounder_Dead", "Flightmare_Dead", "Uranodon_Death"
     };
 
+    private readonly Dictionary<string, AttackClipHitTiming> attackClipTimingCache = new Dictionary<string, AttackClipHitTiming>();
+    private bool applyFrameTriggered;
+
+    private struct AttackClipHitTiming
+    {
+        public float HitNormalizedTime;
+        public bool HasHitEvent;
+        public float ClipLength;
+    }
+
     private void Awake()
     {
         InitializeAnimator();
+        RebuildAttackClipTimingCache();
     }
 
     private void InitializeAnimator()
@@ -41,6 +56,22 @@ public class MonsterAnimation : MonoBehaviour
         {
             animator = GetComponent<Animator>();
         }
+    }
+
+    /// <summary>
+    /// Attack 클립 Animation Event에서 호출됩니다.
+    /// </summary>
+    public void OnAttackHit()
+    {
+        applyFrameTriggered = true;
+    }
+
+    /// <summary>
+    /// 비공격 행동 클립 Animation Event에서 호출됩니다.
+    /// </summary>
+    public void OnActionApply()
+    {
+        applyFrameTriggered = true;
     }
 
     public void PlayAttackAnimation()
@@ -111,6 +142,86 @@ public class MonsterAnimation : MonoBehaviour
             animator.ResetTrigger(DefenseHash);
             animator.ResetTrigger(SummonHash);
         }
+
+        applyFrameTriggered = false;
+    }
+
+    /// <summary>
+    /// 행동 클립의 적용 이벤트(OnAttackHit / OnActionApply)까지 대기합니다.
+    /// </summary>
+    public IEnumerator WaitUntilActionApplyFrame(MonsterActionType actionType)
+    {
+        string eventName = GetApplyEventName(actionType);
+        string[] stateNames = GetApplyWaitStateNames(actionType);
+        if (string.IsNullOrEmpty(eventName) || stateNames == null || stateNames.Length == 0)
+        {
+            yield break;
+        }
+
+        applyFrameTriggered = false;
+
+        if (animator == null)
+        {
+            yield break;
+        }
+
+        string stateName = null;
+        float elapsedTime = 0f;
+        const float transitionTimeout = 1f;
+
+        while (elapsedTime < transitionTimeout)
+        {
+            stateName = FindMatchingStateName(animator.GetCurrentAnimatorStateInfo(0), stateNames);
+            if (stateName != null)
+            {
+                break;
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        if (string.IsNullOrEmpty(stateName))
+        {
+            yield break;
+        }
+
+        AttackClipHitTiming timing = ResolveClipHitTiming(stateName, eventName);
+        if (!timing.HasHitEvent)
+        {
+            yield break;
+        }
+
+        int stateHash = Animator.StringToHash(stateName);
+        if (HasReachedHitFrame(stateHash, timing.HitNormalizedTime))
+        {
+            yield break;
+        }
+
+        float timeout = timing.ClipLength + 0.5f;
+        float waitElapsed = 0f;
+
+        while (waitElapsed < timeout)
+        {
+            if (applyFrameTriggered)
+            {
+                break;
+            }
+
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.shortNameHash != stateHash)
+            {
+                break;
+            }
+
+            if (stateInfo.normalizedTime >= timing.HitNormalizedTime)
+            {
+                break;
+            }
+
+            waitElapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 
     /// <summary>
@@ -140,6 +251,32 @@ public class MonsterAnimation : MonoBehaviour
         }
 
         yield return WaitForAnimationComplete(stateNames);
+    }
+
+    private static string GetApplyEventName(MonsterActionType actionType)
+    {
+        switch (actionType)
+        {
+            case MonsterActionType.Attack:
+            case MonsterActionType.Heal:
+                return AttackHitFunctionName;
+            case MonsterActionType.Guard:
+            case MonsterActionType.ApplyStatus:
+            case MonsterActionType.Summon:
+                return ActionApplyFunctionName;
+            default:
+                return null;
+        }
+    }
+
+    private static string[] GetApplyWaitStateNames(MonsterActionType actionType)
+    {
+        if (actionType == MonsterActionType.Heal)
+        {
+            return AttackStateNames;
+        }
+
+        return GetStateNamesByActionType(actionType);
     }
 
     private static string[] GetStateNamesByActionType(MonsterActionType actionType)
@@ -216,20 +353,140 @@ public class MonsterAnimation : MonoBehaviour
 
     private static bool IsAnyStateName(AnimatorStateInfo stateInfo, string[] stateNames)
     {
+        return FindMatchingStateName(stateInfo, stateNames) != null;
+    }
+
+    private static string FindMatchingStateName(AnimatorStateInfo stateInfo, string[] stateNames)
+    {
         if (stateNames == null)
         {
-            return false;
+            return null;
         }
 
         for (int i = 0; i < stateNames.Length; i++)
         {
             if (stateInfo.IsName(stateNames[i]))
             {
-                return true;
+                return stateNames[i];
             }
         }
 
-        return false;
+        return null;
+    }
+
+    private void RebuildAttackClipTimingCache()
+    {
+        attackClipTimingCache.Clear();
+
+        if (animator == null || animator.runtimeAnimatorController == null)
+        {
+            return;
+        }
+
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        for (int i = 0; i < clips.Length; i++)
+        {
+            AnimationClip clip = clips[i];
+            if (clip == null)
+            {
+                continue;
+            }
+
+            CacheClipEventTiming(clip, AttackHitFunctionName);
+            CacheClipEventTiming(clip, ActionApplyFunctionName);
+        }
+    }
+
+    private void CacheClipEventTiming(AnimationClip clip, string functionName)
+    {
+        attackClipTimingCache[BuildTimingCacheKey(clip.name, functionName)] = BuildClipHitTiming(clip, functionName);
+    }
+
+    private AttackClipHitTiming ResolveClipHitTiming(string clipOrStateName, string functionName)
+    {
+        string cacheKey = BuildTimingCacheKey(clipOrStateName, functionName);
+        if (!string.IsNullOrEmpty(clipOrStateName) && attackClipTimingCache.TryGetValue(cacheKey, out AttackClipHitTiming cachedTiming))
+        {
+            return cachedTiming;
+        }
+
+        AttackClipHitTiming timing = FindClipHitTiming(clipOrStateName, functionName);
+        if (!string.IsNullOrEmpty(clipOrStateName))
+        {
+            attackClipTimingCache[cacheKey] = timing;
+        }
+
+        return timing;
+    }
+
+    private AttackClipHitTiming FindClipHitTiming(string clipOrStateName, string functionName)
+    {
+        if (animator == null || animator.runtimeAnimatorController == null || string.IsNullOrEmpty(clipOrStateName))
+        {
+            return CreateFallbackHitTiming();
+        }
+
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        for (int i = 0; i < clips.Length; i++)
+        {
+            AnimationClip clip = clips[i];
+            if (clip == null || clip.name != clipOrStateName)
+            {
+                continue;
+            }
+
+            return BuildClipHitTiming(clip, functionName);
+        }
+
+        return CreateFallbackHitTiming();
+    }
+
+    private static AttackClipHitTiming BuildClipHitTiming(AnimationClip clip, string functionName)
+    {
+        AttackClipHitTiming timing = new AttackClipHitTiming
+        {
+            ClipLength = clip.length,
+            HitNormalizedTime = 1f,
+            HasHitEvent = false
+        };
+
+        AnimationEvent[] events = clip.events;
+        for (int i = 0; i < events.Length; i++)
+        {
+            if (events[i].functionName != functionName)
+            {
+                continue;
+            }
+
+            timing.HasHitEvent = true;
+            timing.HitNormalizedTime = clip.length > 0f
+                ? Mathf.Clamp01(events[i].time / clip.length)
+                : 1f;
+            break;
+        }
+
+        return timing;
+    }
+
+    private static string BuildTimingCacheKey(string clipName, string functionName)
+    {
+        return clipName + "|" + functionName;
+    }
+
+    private static AttackClipHitTiming CreateFallbackHitTiming()
+    {
+        return new AttackClipHitTiming
+        {
+            HitNormalizedTime = 1f,
+            HasHitEvent = false,
+            ClipLength = 0f
+        };
+    }
+
+    private bool HasReachedHitFrame(int stateHash, float hitNormalizedTime)
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.shortNameHash == stateHash && stateInfo.normalizedTime >= hitNormalizedTime;
     }
 }
 

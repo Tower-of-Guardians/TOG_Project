@@ -24,7 +24,7 @@ public class Player : BaseUnit, ITooltipProvider
 
     [Header("Movement")]
     [SerializeField] private float singleTargetAttackOffset = 3.5f;
-    [SerializeField] private float attackMoveDuration = 0.2f;
+    [SerializeField] private float attackMoveDuration = 0.3f;
 
     private Vector3 initialSpriteLocalPosition;
     private bool hasCachedSpriteOrigin;

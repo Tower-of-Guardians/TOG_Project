@@ -237,7 +237,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4842365065420270011}
   attackMoveOffset: 5
   attackMoveDuration: 0.3
-  damageApplyDelay: 0.5
   monsterId: 41001001
 --- !u!114 &4344606365010817277
 MonoBehaviour:

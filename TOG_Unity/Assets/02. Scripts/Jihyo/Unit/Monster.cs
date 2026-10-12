@@ -72,9 +72,6 @@ public class Monster : BaseUnit
     [SerializeField] private float attackMoveOffset = 0f;
     [SerializeField] private float attackMoveDuration = 0.2f;
     
-    [Header("Attack Timing")]
-    [SerializeField] private float damageApplyDelay = 0.5f;
-
     private Vector3 initialSpriteLocalPosition;
     private bool hasSavedInitialPosition;
     private const int NormalSortingOrder = 5;
@@ -245,8 +242,11 @@ public class Monster : BaseUnit
 
         PlayActionAnimation(selectedAction);
 
-        // 공격 중 체력이 감소하는 타이밍
-        yield return new WaitForSeconds(damageApplyDelay);
+        if (monsterAnimation != null)
+        {
+            MonsterActionType applyActionType = selectedAction != null ? selectedAction.ActionType : MonsterActionType.Attack;
+            yield return StartCoroutine(monsterAnimation.WaitUntilActionApplyFrame(applyActionType));
+        }
 
         ExecuteSelectedAction(selectedAction, target, actionValue);
 

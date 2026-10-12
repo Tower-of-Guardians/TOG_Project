@@ -270,7 +270,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1007284656383057088}
   effectShield: {fileID: 6611640540282078252}
   singleTargetAttackOffset: 3.5
-  attackMoveDuration: 0.2
+  attackMoveDuration: 0.3
   statAnimationDuration: 0.5
   statAnimationEase: 6
   weaknessStatusSprite: {fileID: 4035860371971368088, guid: 34bb51b54453114419ec29327fc29b9f, type: 3}

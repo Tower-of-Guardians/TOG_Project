@@ -129,6 +129,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
             }
 
             synergyVisual?.Clear();
+            playerAnimation.StopSynergyMotion();
         }
         else
         {
