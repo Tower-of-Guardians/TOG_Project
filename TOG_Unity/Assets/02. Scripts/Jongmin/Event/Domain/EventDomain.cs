@@ -203,11 +203,11 @@ namespace Jongmin
         public List<ExperienceRecordData> CaptureRunProgress()
             => _progressCache?.Run.Capture() ?? new System.Collections.Generic.List<ExperienceRecordData>();
 
-        public void RestoreProgress(SlotProgressSaveData persistent, System.Collections.Generic.IEnumerable<ExperienceRecordData> run)
+        public void RestoreProgress(SlotProgressSaveData slotProgress, System.Collections.Generic.IEnumerable<ExperienceRecordData> run)
         {
-            _progressCache?.Slot.Restore(persistent);
+            _progressCache?.Slot.Restore(slotProgress);
             _progressCache?.Run.Restore(run);
-            _relicDomain?.RestoreOwnedRelics(persistent?.relicIDs);
+            _relicDomain?.RestoreOwnedRelics(slotProgress?.relicIDs);
         }
 
         /// <summary>

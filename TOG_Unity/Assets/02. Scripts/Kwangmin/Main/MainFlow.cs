@@ -53,7 +53,7 @@ public class MainFlow : MonoBehaviour
 
     public static bool TryReturnToLobby()
     {
-        MainFlow flow = FindFirstObjectByType<MainFlow>(FindObjectsInactive.Include);
+        var flow = FindFirstObjectByType<MainFlow>(FindObjectsInactive.Include);
         if (flow == null)
         {
             return false;
@@ -61,7 +61,7 @@ public class MainFlow : MonoBehaviour
 
         _startInLobby = true;
         DIContainer.Clear();
-        Scene scene = flow.gameObject.scene;
+        var scene = flow.gameObject.scene;
 #if UNITY_EDITOR
         if (scene.buildIndex < 0)
         {
@@ -148,7 +148,7 @@ public class MainFlow : MonoBehaviour
         }
 
         _state = EMainState.Logo;
-        bool logoDone = false;
+        var logoDone = false;
         _logoView.Play(() => logoDone = true);
         yield return new WaitUntil(() => logoDone);
 
@@ -156,10 +156,10 @@ public class MainFlow : MonoBehaviour
         _loadingView.ResetState();
         _loadingView.Show();
 
-        float elapsed = 0f;
+        var elapsed = 0f;
         while (true)
         {
-            float progress = GetLoadProgress();
+            var progress = GetLoadProgress();
             _loadingView.SetProgress(progress);
 
             if (progress >= 1f && elapsed >= LoadingMinDuration)
@@ -187,8 +187,8 @@ public class MainFlow : MonoBehaviour
 
     private static float GetLoadProgress()
     {
-        int loaded = 0;
-        foreach (Func<bool> check in LoadChecks)
+        var loaded = 0;
+        foreach (var check in LoadChecks)
         {
             if (check())
             {
@@ -200,8 +200,8 @@ public class MainFlow : MonoBehaviour
 
     private static bool IsAnyInputPressed()
     {
-        bool keyPressed = Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame;
-        bool mousePressed = Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
+        var keyPressed = Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame;
+        var mousePressed = Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
         return keyPressed || mousePressed;
     }
 
@@ -261,7 +261,7 @@ public class MainFlow : MonoBehaviour
 
     private void HandleContinue()
     {
-        if (_state == EMainState.Title && SlotPreviewSource.TryGetContinueSlot(out int slot))
+        if (_state == EMainState.Title && SlotPreviewSource.TryGetContinueSlot(out var slot))
         {
             EnterGame(slot);
         }
@@ -287,15 +287,16 @@ public class MainFlow : MonoBehaviour
             return;
         }
 
+        Jongmin.RunSaveService.SelectSlot(slot);
         _state = EMainState.Entering;
-        StartCoroutine(EnterLobbyRoutine());
+        StartCoroutine(EnterLobbyRoutine(Jongmin.RunSaveService.HasAreaCheckpoint));
     }
 
-    private IEnumerator EnterLobbyRoutine()
+    private IEnumerator EnterLobbyRoutine(bool resumeArea = false)
     {
         if (_lobbySceneView != null)
         {
-            _lobbySceneView.SetLobbyVisible(true);
+            _lobbySceneView.SetLobbyVisible(!resumeArea);
         }
 
         _rootGroup.interactable = false;
