@@ -1,14 +1,14 @@
 using UnityEngine;
 
-[ExecuteAlways]
 [DefaultExecutionOrder(-99)]
 public sealed class LobbySceneView : MonoBehaviour
 {
-    [SerializeField, InspectorName("로비씬 보기")] private bool showLobby;
+    [SerializeField] private bool showLobby;
     [SerializeField] private GameObject lobbyRoot;
     [SerializeField] private GameObject[] gameRoots;
-    [SerializeField, HideInInspector] private bool[] previousActiveStates;
-    [SerializeField, HideInInspector] private bool hasSnapshot;
+
+    private bool[] previousActiveStates;
+    private bool hasSnapshot;
 
     public bool IsLobbyVisible => lobbyRoot != null && lobbyRoot.activeInHierarchy;
 
@@ -23,25 +23,9 @@ public sealed class LobbySceneView : MonoBehaviour
         ApplyVisibility();
     }
 
-    private void Update()
-    {
-        if (showLobby != hasSnapshot || (lobbyRoot != null && lobbyRoot.activeSelf != showLobby))
-        {
-            ApplyVisibility();
-        }
-    }
-
-    private void OnValidate()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.delayCall -= ApplyVisibility;
-        UnityEditor.EditorApplication.delayCall += ApplyVisibility;
-#endif
-    }
-
     private void ApplyVisibility()
     {
-        if (this == null || !isActiveAndEnabled || lobbyRoot == null) return;
+        if (!isActiveAndEnabled || lobbyRoot == null) return;
 
         if (showLobby)
         {
@@ -67,7 +51,7 @@ public sealed class LobbySceneView : MonoBehaviour
 
     private void RestoreGame()
     {
-        if (lobbyRoot != null) lobbyRoot.SetActive(false);
+        lobbyRoot.SetActive(false);
         if (!hasSnapshot) return;
 
         if (gameRoots != null && previousActiveStates != null)
@@ -80,13 +64,5 @@ public sealed class LobbySceneView : MonoBehaviour
         }
         hasSnapshot = false;
         previousActiveStates = null;
-    }
-
-    private void OnDisable()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.delayCall -= ApplyVisibility;
-#endif
-        RestoreGame();
     }
 }

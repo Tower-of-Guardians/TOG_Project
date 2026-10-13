@@ -401,20 +401,21 @@ namespace Kwangmin
 
             transitioning = true;
             selectionOpen = false;
+
+            CloseActiveEvent();
+            AreaSceneBootstrapper.DisableGameBattleObjects(this);
+
+            activeAreaEventInstance = Instantiate(prefab);
+            activeAreaEventInstance.name = prefab.name;
+
+            Scene ownerScene = gameObject.scene;
+            if (ownerScene.IsValid() && ownerScene.isLoaded && activeAreaEventInstance.scene != ownerScene)
+            {
+                SceneManager.MoveGameObjectToScene(activeAreaEventInstance, ownerScene);
+            }
+
             areaEventUI.Hide(() =>
             {
-                CloseActiveEvent();
-                AreaSceneBootstrapper.DisableGameBattleObjects(this);
-
-                activeAreaEventInstance = Instantiate(prefab);
-                activeAreaEventInstance.name = prefab.name;
-
-                Scene ownerScene = gameObject.scene;
-                if (ownerScene.IsValid() && ownerScene.isLoaded && activeAreaEventInstance.scene != ownerScene)
-                {
-                    SceneManager.MoveGameObjectToScene(activeAreaEventInstance, ownerScene);
-                }
-
                 var npcs = activeAreaEventInstance.GetComponentsInChildren<ClickableObject>(true);
                 var npcRoots = new GameObject[npcs.Length];
                 for (int i = 0; i < npcs.Length; i++) npcRoots[i] = npcs[i].gameObject;
