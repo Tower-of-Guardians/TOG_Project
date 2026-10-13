@@ -17,6 +17,14 @@ public class TestStageGate : ClickableObject
     private void TryEnterStage()
     {
         Jongmin.RunSaveService.BeginRun();
+
+        LobbySceneView lobbySceneView = FindFirstObjectByType<LobbySceneView>();
+        if (lobbySceneView != null)
+        {
+            lobbySceneView.SetLobbyVisible(false);
+            return;
+        }
+
         LoadingManager.Instance.LoadScene("Game");
     }
 }

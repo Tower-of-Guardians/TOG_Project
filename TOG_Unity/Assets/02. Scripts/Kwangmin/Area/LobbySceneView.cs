@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [ExecuteAlways]
+[DefaultExecutionOrder(-99)]
 public sealed class LobbySceneView : MonoBehaviour
 {
     [SerializeField, InspectorName("로비씬 보기")] private bool showLobby;

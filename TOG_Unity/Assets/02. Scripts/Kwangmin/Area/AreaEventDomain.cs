@@ -198,7 +198,10 @@ namespace Kwangmin
             {
                 Jongmin.RunSaveService.EndRun(Jongmin.ERunEndReason.Death);
                 transitioning = true;
-                LoadingManager.Instance.LoadScene("Lobby");
+                if (!MainFlow.TryReturnToLobby())
+                {
+                    LoadingManager.Instance.LoadScene("Lobby");
+                }
                 return;
             }
 
@@ -209,7 +212,10 @@ namespace Kwangmin
                 selectionOpen = false;
                 transitioning = true;
                 areaEventUI?.Hide();
-                LoadingManager.Instance.LoadScene("Lobby");
+                if (!MainFlow.TryReturnToLobby())
+                {
+                    LoadingManager.Instance.LoadScene("Lobby");
+                }
                 return;
             }
 

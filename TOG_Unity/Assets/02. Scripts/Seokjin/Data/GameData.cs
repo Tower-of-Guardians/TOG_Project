@@ -129,6 +129,23 @@ public class GameData : Singleton<GameData>
         }
     }
 
+    public void ResetBattleDeck()
+    {
+        handDeck.Clear();
+        garbageDeck.Clear();
+        notuseDeck.Clear();
+        attackField.Clear();
+        defenseField.Clear();
+        foreach (CardData card in DataCenter.Instance.userDeck)
+        {
+            if (card != null) notuseDeck.Add(card.id);
+        }
+        Shuffle();
+        InvokeDeckCountChange(DeckType.Draw);
+        InvokeDeckCountChange(DeckType.Throw);
+        GetSynergyData();
+    }
+
     public float AttackField()
     {
         float damege = 0f;

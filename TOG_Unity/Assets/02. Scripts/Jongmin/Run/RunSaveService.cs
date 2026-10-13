@@ -78,6 +78,10 @@ namespace Jongmin
             _eventDomain?.ResetRunProgress();
             RunRandom.Initialize(runSeed);
             _restoredRandomRunID = _data.activeRun.runID;
+            if (DataCenter.IsCardDataLoaded)
+            {
+                GameData.Instance?.ResetBattleDeck();
+            }
             CaptureRuntime(_data.activeRun);
             Save();
             _restoredRunID = _data.activeRun.runID;
