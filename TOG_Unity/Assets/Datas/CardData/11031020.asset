@@ -23,7 +23,7 @@ MonoBehaviour:
   cardimage: {fileID: 21300000, guid: d98fa1cb5673539499f8789acb960c13, type: 3}
   synergy1Icon: {fileID: 21300000, guid: be18281d3e741ef4f99b4d783307d047, type: 3}
   synergy2Icon: {fileID: 21300000, guid: 4fe2cda9a9165df4a8b2d0aface8a758, type: 3}
-  synergy3Icon: {fileID: 0}
+  synergy3Icon: {fileID: 21300000, guid: 0d60002a71fdc954bae8d184665e2038, type: 3}
   synergy1ID: 210004
   synergy2ID: 210004
   synergy3ID: 210013
