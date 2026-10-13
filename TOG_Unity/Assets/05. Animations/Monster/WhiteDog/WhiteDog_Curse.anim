@@ -26,7 +26,7 @@ AnimationClip:
       value: {fileID: 8068615636927698528, guid: bfd8d35f250aff349b869f23504bd147, type: 3}
     - time: 0.33333334
       value: {fileID: 1202509459, guid: bfd8d35f250aff349b869f23504bd147, type: 3}
-    - time: 0.5833333
+    - time: 0.5
       value: {fileID: -8362729033239161689, guid: bfd8d35f250aff349b869f23504bd147, type: 3}
     attribute: m_Sprite
     path: Img_Monster
@@ -59,7 +59,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.59999996
+    m_StopTime: 0.51666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
