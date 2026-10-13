@@ -87,7 +87,7 @@ public class MainFlow : MonoBehaviour
         }
 
         _titleView.Bind(OpenSlotSelect, HandleContinue, OpenSettings, QuitGame);
-        _slotSelectView.Bind(EnterGame, CloseSlotSelect);
+        _slotSelectView.Bind(EnterGame, DeleteSlot, CloseSlotSelect);
         _settingsView.Bind(CloseSettings);
         _loadingView.Bind(QuitGame);
 
@@ -234,6 +234,17 @@ public class MainFlow : MonoBehaviour
 
         _slotSelectView.Hide();
         OpenTitle();
+    }
+
+    private void DeleteSlot(int slot)
+    {
+        if (_state != EMainState.SlotSelect)
+        {
+            return;
+        }
+
+        Jongmin.RunSaveService.ClearSlot(slot);
+        _slotSelectView.Refresh(SlotPreviewSource.GetSlots());
     }
 
     private void OpenSettings()
