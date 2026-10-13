@@ -28,13 +28,15 @@ public static class RunSaveMenu
     [MenuItem(Root + "Delete All Save Data", false, 120)]
     private static void DeleteAll()
     {
-        bool confirmed = EditorUtility.DisplayDialog("Delete All Save Data", "세 개의 저장 슬롯을 모두 삭제합니다. 이 작업은 되돌릴 수 없습니다.", "Delete All", "Cancel");
+        var confirmed = EditorUtility.DisplayDialog("Delete All Save Data", "세 개의 저장 슬롯을 모두 삭제합니다. 이 작업은 되돌릴 수 없습니다.", "Delete All", "Cancel");
         if (!confirmed)
         {
             return;
         }
-        SaveSlotSystem.RemoveAll();
-        RunSaveService.SelectSlot(0);
+        foreach (var slot in SaveSlotSystem.GetSlots())
+        {
+            RunSaveService.ClearSlot(slot);
+        }
         Debug.Log("모든 세이브 데이터를 삭제했습니다.");
     }
 
@@ -49,17 +51,13 @@ public static class RunSaveMenu
 
     private static void DeleteSlot(int slot)
     {
-        string label = $"Slot {slot + 1}";
-        bool confirmed = EditorUtility.DisplayDialog($"Delete {label}", $"{label}의 세이브 데이터를 삭제합니다. 이 작업은 되돌릴 수 없습니다.", "Delete", "Cancel");
+        var label = $"Slot {slot + 1}";
+        var confirmed = EditorUtility.DisplayDialog($"Delete {label}", $"{label}의 세이브 데이터를 삭제합니다. 이 작업은 되돌릴 수 없습니다.", "Delete", "Cancel");
         if (!confirmed)
         {
             return;
         }
-        SaveSlotSystem.Remove(slot);
-        if (RunSaveService.SelectedSlot == slot)
-        {
-            RunSaveService.SelectSlot(slot);
-        }
+        RunSaveService.ClearSlot(slot);
         Debug.Log($"{label} 세이브 데이터를 삭제했습니다.");
     }
 }

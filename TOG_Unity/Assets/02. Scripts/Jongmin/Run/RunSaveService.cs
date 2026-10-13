@@ -14,6 +14,7 @@ namespace Jongmin
         private static string _restoredRandomRunID;
         private static readonly SlotPlayClock PlayClock = new();
         private static SlotSessionLifetime _sessionLifetime;
+        private static bool _selectedSlotCleared;
 
         public static int SelectedSlot { get; private set; }
         public static bool HasActiveRun => Data.activeRun != null;
@@ -40,6 +41,7 @@ namespace Jongmin
             PlayClock.Stop();
             _sessionLifetime = null;
             SelectedSlot = 0;
+            _selectedSlotCleared = false;
             EnsureLoaded();
             RestoreRandomState();
         }
@@ -77,6 +79,39 @@ namespace Jongmin
             RestoreBoundDomains();
         }
 
+        public static void ClearSlot(int slot)
+        {
+            if (slot < 0 || slot >= SaveSlotSystem.MaxSlotCount)
+            {
+                throw new ArgumentOutOfRangeException(nameof(slot));
+            }
+
+            SaveSlotSystem.Remove(slot);
+            if (SelectedSlot != slot)
+            {
+                return;
+            }
+
+            _selectedSlotCleared = true;
+            PlayClock.Stop();
+            _data = new TogSaveData();
+            _data.slotInfo.slot = slot;
+            _restoredRunID = null;
+            _restoredRandomRunID = null;
+            _eventDomain?.ResetRunProgress();
+            RestoreRandomState();
+            RestoreBoundDomains();
+            
+            if (Application.isPlaying)
+            {
+                DataCenter.Instance?.ResetForNewRun();
+                if (DataCenter.IsCardDataLoaded)
+                {
+                    GameData.Instance?.ResetBattleDeck();
+                }
+            }
+        }
+
         public static void StartSession()
         {
             if (PlayClock.IsRunning)
@@ -86,6 +121,7 @@ namespace Jongmin
             
             EnsureLoaded();
             PlayClock.Start(Time.realtimeSinceStartupAsDouble);
+            _selectedSlotCleared = false;
             Save();
             
             if (Application.isPlaying && _sessionLifetime == null)
@@ -503,6 +539,10 @@ namespace Jongmin
 
         private static void Save()
         {
+            if (_selectedSlotCleared)
+            {
+                return;
+            }
             _data.slotInfo.playTime += PlayClock.CollectSeconds(Time.realtimeSinceStartupAsDouble);
             SaveSlotSystem.Save(SelectedSlot, _data, true);
         }
