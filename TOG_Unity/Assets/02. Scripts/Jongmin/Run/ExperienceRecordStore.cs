@@ -23,6 +23,7 @@ namespace Jongmin
             {
                 return;
             }
+            
             var key = new RecordKey(type, targetID, detailID);
             _values[key] = Get(type, targetID, detailID) + amount;
         }
@@ -30,6 +31,7 @@ namespace Jongmin
         public void Max(EExperienceRecordType type, string targetID, int value, string detailID = null)
         {
             var key = new RecordKey(type, targetID, detailID);
+            
             if (value > Get(type, targetID, detailID))
             {
                 _values[key] = value;
@@ -54,27 +56,34 @@ namespace Jongmin
                     value = pair.Value
                 });
             }
+            
             return result;
         }
 
         public void Restore(IEnumerable<ExperienceRecordData> records)
         {
             _values.Clear();
+            
             if (records == null)
             {
                 return;
             }
+            
             foreach (var record in records)
             {
                 if (record == null)
                 {
                     continue;
                 }
+                
                 Set(record.type, record.targetID, record.detailID, record.value);
             }
         }
 
-        public void Clear() => _values.Clear();
+        public void Clear()
+        {
+            _values.Clear();   
+        }
 
         private readonly struct RecordKey : IEquatable<RecordKey>
         {

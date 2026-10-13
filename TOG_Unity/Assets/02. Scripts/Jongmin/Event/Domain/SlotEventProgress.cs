@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Jongmin
 {
-    public sealed class GlobalEventProgress : IMutableEventProgress
+    public sealed class SlotEventProgress : IMutableEventProgress
     {
         private readonly HashSet<string> _seenEventIDSet = new();
         private readonly ExperienceRecordStore _experience = new();
@@ -40,9 +40,9 @@ namespace Jongmin
         public void MarkExperience(EExperienceRecordType type, string targetID, string detailID = null)
             => _experience.Max(type, targetID, 1, detailID);
 
-        public PersistentProgressSaveData Capture(IEnumerable<string> relicIDs)
+        public SlotProgressSaveData Capture(IEnumerable<string> relicIDs)
         {
-            return new PersistentProgressSaveData
+            return new SlotProgressSaveData
             {
                 relicIDs = relicIDs != null ? new List<string>(relicIDs) : new List<string>(),
                 seenEventIDs = new List<string>(_seenEventIDSet),
@@ -50,7 +50,7 @@ namespace Jongmin
             };
         }
 
-        public void Restore(PersistentProgressSaveData data)
+        public void Restore(SlotProgressSaveData data)
         {
             _seenEventIDSet.Clear();
             if (data?.seenEventIDs != null)

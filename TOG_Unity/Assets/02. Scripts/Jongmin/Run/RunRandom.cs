@@ -41,7 +41,7 @@ namespace Jongmin
                 return minInclusive;
             }
             var random = CreateAtCurrentPosition(streamID);
-            int result = random.Next(minInclusive, maxExclusive);
+            var result = random.Next(minInclusive, maxExclusive);
             ConsumedByStream[Normalize(streamID)] = GetConsumed(streamID) + 1;
             return result;
         }
@@ -53,7 +53,7 @@ namespace Jongmin
                 return minInclusive;
             }
             var random = CreateAtCurrentPosition(streamID);
-            float result = minInclusive + (float)random.NextDouble() * (maxInclusive - minInclusive);
+            var result = minInclusive + (float)random.NextDouble() * (maxInclusive - minInclusive);
             ConsumedByStream[Normalize(streamID)] = GetConsumed(streamID) + 1;
             return result;
         }
@@ -74,10 +74,10 @@ namespace Jongmin
             {
                 Initialize(Environment.TickCount);
             }
-            string normalized = Normalize(streamID);
+            var normalized = Normalize(streamID);
             var random = new Random(CombineSeed(_runSeed, normalized));
-            int consumed = GetConsumed(normalized);
-            for (int i = 0; i < consumed; i++)
+            var consumed = GetConsumed(normalized);
+            for (var i = 0; i < consumed; i++)
             {
                 random.NextDouble();
             }
@@ -91,8 +91,8 @@ namespace Jongmin
         {
             unchecked
             {
-                uint hash = 2166136261;
-                foreach (char character in streamID)
+                var hash = 2166136261;
+                foreach (var character in streamID)
                 {
                     hash ^= character;
                     hash *= 16777619;

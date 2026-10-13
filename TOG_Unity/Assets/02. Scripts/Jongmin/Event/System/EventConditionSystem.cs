@@ -16,7 +16,7 @@ namespace Jongmin
         private ICardInventory _cardInventory;
         private IRunCardRecord _runCardRecord;
         private ISynergyRecord _synergyRecord;
-        private IExperienceRecord _globalExperience;
+        private IExperienceRecord _slotExperience;
         private IExperienceRecord _runExperience;
 
         public void Construct(DataTable eventConditionDataTable,
@@ -28,7 +28,7 @@ namespace Jongmin
                               ICardInventory cardInventory,
                               IRunCardRecord runCardRecord,
                               ISynergyRecord synergyRecord,
-                              IExperienceRecord globalExperience,
+                              IExperienceRecord slotExperience,
                               IExperienceRecord runExperience)
         {
             _eventConditionDataTable = eventConditionDataTable;
@@ -40,7 +40,7 @@ namespace Jongmin
             _cardInventory = cardInventory;
             _runCardRecord = runCardRecord;
             _synergyRecord = synergyRecord;
-            _globalExperience = globalExperience;
+            _slotExperience = slotExperience;
             _runExperience = runExperience;
         }
         
@@ -152,7 +152,7 @@ namespace Jongmin
         }
 
         private IExperienceRecord GetExperience(EExperienceRecordScope scope)
-            => scope == EExperienceRecordScope.Global ? _globalExperience : _runExperience;
+            => scope == EExperienceRecordScope.Slot ? _slotExperience : _runExperience;
 
         private static string GetArgument(IReadOnlyList<string> values, int index)
             => values != null && index >= 0 && index < values.Count ? values[index] : null;

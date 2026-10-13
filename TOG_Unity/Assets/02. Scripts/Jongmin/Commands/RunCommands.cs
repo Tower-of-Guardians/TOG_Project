@@ -82,15 +82,15 @@ namespace Jongmin
             return JxCommandResult.Success($"런을 {reason} 사유로 종료했습니다.");
         }
 
-        [JxCommand("Save Persistent", Description = "런 밖에서 변경된 유물과 누적 경험 기록을 즉시 저장합니다.")]
-        private JxCommandResult SavePersistent()
+        [JxCommand("Save Slot Progress", Description = "런 밖에서 변경된 유물과 누적 경험 기록을 즉시 저장합니다.")]
+        private JxCommandResult SaveSlotProgress()
         {
             if (RunSaveService.HasActiveRun)
             {
                 return JxCommandResult.Failure("진행 중인 런에서는 지역 진입 저장을 사용해야 합니다.");
             }
 
-            RunSaveService.SavePersistentProgress();
+            RunSaveService.SaveSlotProgress();
             return JxCommandResult.Success($"슬롯 {RunSaveService.SelectedSlot + 1}의 영구 진행도를 저장했습니다.");
         }
 
@@ -109,7 +109,7 @@ namespace Jongmin
         [JxCommand("Experience Get", Description = "범위, 종류, 대상, 세부 대상으로 경험 기록 값을 조회합니다.")]
         private JxCommandResult GetExperience([JxOptionValue("Experience Scope List")] EExperienceRecordScope scope, [JxOptionValue("Experience Type List")] EExperienceRecordType type, string targetID, string detailID = "")
         {
-            IExperienceRecord records = scope == EExperienceRecordScope.Global ? _eventDomain?.GlobalProgress?.Experience : _eventDomain?.RunProgress?.Experience;
+            IExperienceRecord records = scope == EExperienceRecordScope.Slot ? _eventDomain?.SlotProgress?.Experience : _eventDomain?.RunProgress?.Experience;
             if (records == null)
             {
                 return JxCommandResult.Failure("EventDomain이 아직 초기화되지 않았습니다.");
@@ -123,7 +123,7 @@ namespace Jongmin
         [JxCommand("Experience List", Description = "선택한 범위에 기록된 모든 경험 값을 표시합니다.")]
         private IEnumerable<string> ListExperience([JxOptionValue("Experience Scope List")] EExperienceRecordScope scope)
         {
-            IEnumerable<ExperienceRecordData> records = scope == EExperienceRecordScope.Global ? _eventDomain?.CapturePersistentProgress()?.experienceRecords : _eventDomain?.CaptureRunProgress();
+            IEnumerable<ExperienceRecordData> records = scope == EExperienceRecordScope.Slot ? _eventDomain?.CaptureSlotProgress()?.experienceRecords : _eventDomain?.CaptureRunProgress();
             if (records == null)
             {
                 return new[] { "EventDomain이 아직 초기화되지 않았습니다." };

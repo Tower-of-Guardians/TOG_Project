@@ -34,8 +34,8 @@ namespace Jongmin
 
     public enum EExperienceRecordScope
     {
-        Run,
-        Global
+        Run = 0,
+        Slot = 1
     }
 
     [Serializable]
@@ -81,7 +81,7 @@ namespace Jongmin
     }
 
     [Serializable]
-    public sealed class PersistentProgressSaveData
+    public sealed class SlotProgressSaveData
     {
         public List<string> relicIDs = new();
         public List<string> seenEventIDs = new();
@@ -113,8 +113,9 @@ namespace Jongmin
     public sealed class TogSaveData : ISaveSlotData
     {
         public int version = 1;
+        public int runCount;
         public SaveSlotInfo slotInfo = new();
-        public PersistentProgressSaveData persistent = new();
+        public SlotProgressSaveData slotProgress = new();
         public ActiveRunSaveData activeRun;
 
         public SaveSlotInfo SlotInfo => slotInfo;
