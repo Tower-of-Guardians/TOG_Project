@@ -34,8 +34,8 @@ namespace Jongmin
 
     public enum EExperienceRecordScope
     {
-        Run,
-        Global
+        Run = 0,
+        Slot = 1
     }
 
     [Serializable]
@@ -81,7 +81,8 @@ namespace Jongmin
     }
 
     [Serializable]
-    public sealed class PersistentProgressSaveData
+    // 런 종료 후에도 해당 슬롯에 남는 누적 진행도입니다. 다른 슬롯과 공유하지 않습니다.
+    public sealed class SlotProgressSaveData
     {
         public List<string> relicIDs = new();
         public List<string> seenEventIDs = new();
@@ -114,7 +115,8 @@ namespace Jongmin
     {
         public int version = 1;
         public SaveSlotInfo slotInfo = new();
-        public PersistentProgressSaveData persistent = new();
+        // 기존 저장 파일과의 호환을 위해 JSON 필드명 persistent를 유지합니다.
+        public SlotProgressSaveData persistent = new();
         public ActiveRunSaveData activeRun;
 
         public SaveSlotInfo SlotInfo => slotInfo;

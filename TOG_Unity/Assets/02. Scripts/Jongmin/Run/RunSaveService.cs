@@ -54,6 +54,8 @@ namespace Jongmin
             Normalize();
             _restoredRunID = null;
             _restoredRandomRunID = null;
+            _eventDomain?.ResetRunProgress();
+            RestoreRandomState();
             RestoreBoundDomains();
         }
 
@@ -171,7 +173,7 @@ namespace Jongmin
                 return;
             }
             _eventDomain?.RecordRunResult(reason);
-            _data.persistent = CapturePersistent();
+            _data.persistent = CaptureSlotProgress();
             _data.activeRun = null;
             _restoredRunID = null;
             _restoredRandomRunID = null;
@@ -205,10 +207,10 @@ namespace Jongmin
         public static bool HasExperiencedRandomEvent(string eventID)
             => HasActiveRun && Data.activeRun.experiencedRandomEventIDs.Contains(eventID);
 
-        public static void SavePersistentProgress()
+        public static void SaveSlotProgress()
         {
             EnsureLoaded();
-            _data.persistent = CapturePersistent();
+            _data.persistent = CaptureSlotProgress();
             Save();
         }
 
@@ -251,7 +253,7 @@ namespace Jongmin
             {
                 return;
             }
-            _data.persistent = CapturePersistent();
+            _data.persistent = CaptureSlotProgress();
             run.experienceRecords = _eventDomain?.CaptureRunProgress() ?? new List<ExperienceRecordData>();
             run.randomStreams = RunRandom.Capture();
             run.deck = CaptureDeck();
@@ -277,13 +279,13 @@ namespace Jongmin
             run.discardDeck = new List<string>(gameData.garbageDeck);
         }
 
-        private static PersistentProgressSaveData CapturePersistent()
+        private static SlotProgressSaveData CaptureSlotProgress()
         {
             if (_eventDomain != null)
             {
-                return _eventDomain.CapturePersistentProgress();
+                return _eventDomain.CaptureSlotProgress();
             }
-            var persistent = _data?.persistent ?? new PersistentProgressSaveData();
+            var persistent = _data?.persistent ?? new SlotProgressSaveData();
             if (_relicDomain != null)
             {
                 persistent.relicIDs = new List<string>(_relicDomain.OwnedRelicIDs);
@@ -439,7 +441,7 @@ namespace Jongmin
         {
             _data ??= new TogSaveData();
             _data.slotInfo ??= new SaveSlotInfo();
-            _data.persistent ??= new PersistentProgressSaveData();
+            _data.persistent ??= new SlotProgressSaveData();
             if (_data.activeRun != null)
             {
                 _data.activeRun.deck ??= new List<CardRunSaveData>();

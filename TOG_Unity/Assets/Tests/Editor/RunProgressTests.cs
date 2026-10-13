@@ -55,7 +55,7 @@ public sealed class RunProgressTests
     {
         var source = new TogSaveData
         {
-            persistent = new PersistentProgressSaveData
+            persistent = new SlotProgressSaveData
             {
                 relicIDs = new List<string> { "RelicA" },
                 seenEventIDs = new List<string> { "EventA" }
@@ -92,12 +92,64 @@ public sealed class RunProgressTests
     }
 
     [Test]
+    public void TogSaveData_LegacyPersistentJsonPreservesSlotProgress()
+    {
+        const string json = "{\"version\":1,\"persistent\":{\"relicIDs\":[\"RelicA\"],\"seenEventIDs\":[\"EventA\"],\"experienceRecords\":[{\"type\":0,\"targetID\":\"Slime\",\"value\":3}]}}";
+        TogSaveData saved = JsonUtility.FromJson<TogSaveData>(json);
+        var progress = new SlotEventProgress();
+        progress.Restore(saved.persistent);
+
+        Assert.IsTrue(progress.HasSeen("EventA"));
+        Assert.AreEqual(3, progress.Experience.Get(EExperienceRecordType.MonsterKill, "Slime"));
+        CollectionAssert.AreEqual(new[] { "RelicA" }, saved.persistent.relicIDs);
+        Assert.AreEqual(1, (int)EExperienceRecordScope.Slot);
+    }
+
+    [Test]
+    public void SlotProgress_RestoreReplacesPreviousSlotAndKeepsSnapshotsIndependent()
+    {
+        var progress = new SlotEventProgress();
+        progress.MarkSeen("EventA");
+        progress.AddExperience(EExperienceRecordType.MonsterKill, "Slime", amount: 3);
+        progress.RecordSingleAttackDamage(20);
+        SlotProgressSaveData firstSlot = progress.Capture(new[] { "RelicA" });
+
+        progress.Restore(new SlotProgressSaveData());
+        Assert.IsFalse(progress.HasSeen("EventA"));
+        Assert.AreEqual(0, progress.Experience.Get(EExperienceRecordType.MonsterKill, "Slime"));
+        Assert.AreEqual(0, progress.MaxSingleAttackDamage);
+        progress.MarkSeen("EventB");
+
+        progress.Restore(firstSlot);
+        Assert.IsTrue(progress.HasSeen("EventA"));
+        Assert.IsFalse(progress.HasSeen("EventB"));
+        Assert.AreEqual(3, progress.Experience.Get(EExperienceRecordType.MonsterKill, "Slime"));
+        Assert.AreEqual(20, progress.MaxSingleAttackDamage);
+    }
+
+    [Test]
+    public void EventProgressCache_ResetRunKeepsSlotProgress()
+    {
+        var cache = new EventProgressCache();
+        cache.Slot.MarkSeen("EventA");
+        cache.Slot.AddExperience(EExperienceRecordType.MonsterKill, "Slime", amount: 3);
+        cache.Run.ExperienceRecordAdd(EExperienceRecordType.MonsterKill, "Slime");
+
+        cache.ResetRun();
+
+        Assert.AreEqual(0, cache.Run.Experience.Get(EExperienceRecordType.MonsterKill, "Slime"));
+        Assert.AreEqual(3, cache.Slot.Experience.Get(EExperienceRecordType.MonsterKill, "Slime"));
+        Assert.IsTrue(cache.Slot.HasSeen("EventA"));
+    }
+
+    [Test]
     public void RunCommands_RegisterCommandsAndSlotCompletionOptions()
     {
         var terminal = new JxTerminal();
         JxCommandAttributeRegistrar.RegisterCommands(terminal, new RunCommands(null));
 
         Assert.Contains("Save Status", terminal.GetCommandKeys().ToList());
+        Assert.Contains("Save Slot Progress", terminal.GetCommandKeys().ToList());
         Assert.Contains("Experience Get", terminal.GetCommandKeys().ToList());
         Assert.Contains("Experience List", terminal.GetCommandKeys().ToList());
         CollectionAssert.AreEquivalent(new[] { "1", "2", "3" }, terminal.Complete("Select Save Slot ").Candidates);
