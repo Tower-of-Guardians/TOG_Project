@@ -79,8 +79,9 @@ namespace Jongmin
             cardItemImage.sprite = cardData.iconimage;
 
             cardNameLabel.text = cardData.itemName;
-            cardDescriptionLabel.text = cardData.effectDescription;
-            cardAtkLabel.Label.text = $"{cardData.ATK}";
+            cardDescriptionLabel.text = cardData.GetFormattedEffectDescription();
+            float displayedAttack = GameData.Instance != null ? GameData.Instance.GetCardAttack(cardData) : cardData.ATK;
+            cardAtkLabel.Label.text = $"{displayedAttack}";
             cardDefLabel.Label.text = $"{cardData.DEF}";
         }
 

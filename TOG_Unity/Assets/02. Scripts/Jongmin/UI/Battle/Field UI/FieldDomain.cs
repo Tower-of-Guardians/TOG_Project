@@ -222,13 +222,16 @@ namespace Jongmin
 
             if (sourceFieldType == FieldType.Attack)
             {
+                GameData.Instance.CancelCardTemporaryAttackModifiers(hoverCard.CardData);
                 hoverCard.SetBattleCardData(hoverCard.BattleCardData, CardType.DefField);
                 hoverCard.View.LockAtk();
+                CardEffectExecutor.RefreshVisibleCardAttackLabels();
             }
             else
             {
                 hoverCard.SetBattleCardData(hoverCard.BattleCardData, CardType.AtkField);
                 hoverCard.View.LockDef();
+                CardEffectExecutor.PreviewAttackBonusesOnPlace(hoverCard.CardData, FieldType.Attack);
             }
         }
 

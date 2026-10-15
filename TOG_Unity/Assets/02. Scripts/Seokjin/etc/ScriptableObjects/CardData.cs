@@ -25,4 +25,22 @@ public class CardData : ScriptableObject
     public string effect1Value, effect2Value;
 
     public long time;
+
+    public string GetFormattedEffectDescription()
+    {
+        if (string.IsNullOrEmpty(effectDescription))
+        {
+            return string.Empty;
+        }
+
+        string description = effectDescription.Replace("\\n", "\n").Replace("/n", "\n");
+        try
+        {
+            return string.Format(description, effect1Value ?? string.Empty, effect2Value ?? string.Empty);
+        }
+        catch (FormatException)
+        {
+            return description;
+        }
+    }
 }

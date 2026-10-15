@@ -84,6 +84,8 @@ public abstract class BaseUnit : MonoBehaviour, IDamageable
             amount = incomingDamageContext.FinalDamage;
         }
 
+        TryRecordPlayerSingleAttackDamage(source, amount);
+
         // 보호력이 있으면 보호력부터 감소
         if (protectionValue > 0)
         {
@@ -114,6 +116,21 @@ public abstract class BaseUnit : MonoBehaviour, IDamageable
 
     protected virtual void OnAfterIncomingDamageApplied()
     {
+    }
+
+    private static void TryRecordPlayerSingleAttackDamage(BaseUnit source, int damage)
+    {
+        if (source is not Player || damage <= 0)
+        {
+            return;
+        }
+
+        if (!DIContainer.IsRegistered<Jongmin.EventDomain>())
+        {
+            return;
+        }
+
+        DIContainer.Resolve<Jongmin.EventDomain>()?.RecordSingleAttackDamage(damage);
     }
 
     /// <summary>

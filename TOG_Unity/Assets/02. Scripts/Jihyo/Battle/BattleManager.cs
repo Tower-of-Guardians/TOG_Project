@@ -156,6 +156,7 @@ public class BattleManager : MonoBehaviour
         gameData.InvokeDeckCountChange(DeckType.Draw);
         gameData.InvokeDeckCountChange(DeckType.Throw);
         gameData.GetSynergyData();
+        gameData.ClearBattleCardStatBonuses();
     }
 
     public void Initialize(Player playerUnit, IEnumerable<Monster> monsters, Button attackBtn)
@@ -228,6 +229,7 @@ public class BattleManager : MonoBehaviour
             }
             turnManager.Initialize();
             turnManager.ResetTurnNumber();
+            GameData.Instance?.BeginCombatTurns();
             turnManager.StartTurn();
             InvokeStatusEffectTurnStart();
             ShowSynergyUIForTurnStart();
@@ -442,6 +444,7 @@ public class BattleManager : MonoBehaviour
             {
                 InvokeStatusEffectTurnEnd();
                 turnManager.EndTurn();
+                GameData.Instance?.AdvanceCombatTurn();
                 turnManager.StartTurn();
                 InvokeStatusEffectTurnStart();
                 ShowSynergyUIForTurnStart();
@@ -499,6 +502,8 @@ public class BattleManager : MonoBehaviour
         bool isLevelUp = WillLevelUp(totalExp);
 
         ApplyEncounterRewards(totalGold, totalExp);
+        GameData.Instance?.ClearBattleCardStatBonuses();
+        CardEffectExecutor.RefreshVisibleCardAttackLabels();
 
         yield return new WaitUntil(() => DIContainer.IsRegistered<ResultDomain>());
 
@@ -511,6 +516,8 @@ public class BattleManager : MonoBehaviour
     {
         if (isBattleFinished) yield break;
         isBattleFinished = true;
+        GameData.Instance?.ClearBattleCardStatBonuses();
+        CardEffectExecutor.RefreshVisibleCardAttackLabels();
         RunSaveService.EndRun(ERunEndReason.Death);
         // ResultPresenter가 등록될 때까지 대기
         yield return new WaitUntil(() => DIContainer.IsRegistered<ResultDomain>());

@@ -17,14 +17,17 @@
             Container.Add(card);
             Layout.UpdateLayout(FieldPreviewMode.None, isAnime:false);
             GameData.Instance.attackField.Add(card.CardData);
+            PreviewPlacedCardAttackBonuses(battleCardData);
             UpdateFieldStatus();
             RequestUpdateActionCountEvent(1);
         }
         
         public override void RemoveCard(Card card, bool isUpdateLayout = true)
         {
+            GameData.Instance.CommitNamedCardAttackBonus(card.CardData);
             GameData.Instance.attackField.Remove(card.CardData);
             UpdateFieldStatus();
+            CardEffectExecutor.RefreshVisibleCardAttackLabels();
             base.RemoveCard(card, isUpdateLayout);
         }
 

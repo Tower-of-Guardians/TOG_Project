@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class StatusEffectIcon : MonoBehaviour
 {
     public const string AmountTextName = "BuffDebuff_Text";
+    public const string IconBuffDebuffPrefabPath = "Assets/03. Prefabs/Battle/Icon_BuffDebuff.prefab";
 
     [SerializeField] private SpriteRenderer iconRenderer;
     [SerializeField] private TMP_Text amountText;
@@ -17,6 +18,7 @@ public class StatusEffectIcon : MonoBehaviour
 
     public TMP_Text AmountText => amountText;
 
+    private static GameObject sharedPrefab;
     private bool hasCapturedAutoSize;
 
     private void Awake()
@@ -29,6 +31,46 @@ public class StatusEffectIcon : MonoBehaviour
     private void OnEnable()
     {
         RestoreAutoSize();
+    }
+
+    public static void RegisterPrefab(GameObject prefab)
+    {
+        if (prefab != null)
+        {
+            sharedPrefab = prefab;
+        }
+    }
+
+    public static GameObject ResolvePrefab(GameObject preferred)
+    {
+        if (preferred != null)
+        {
+            return preferred;
+        }
+
+        if (sharedPrefab != null)
+        {
+            return sharedPrefab;
+        }
+
+#if UNITY_EDITOR
+        sharedPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(IconBuffDebuffPrefabPath);
+#endif
+        return sharedPrefab;
+    }
+
+    public static StatusEffectIcon Create(Transform parent, string objectName, Sprite iconSprite, GameObject prefab)
+    {
+        GameObject resolvedPrefab = ResolvePrefab(prefab);
+        GameObject root = resolvedPrefab != null
+            ? Object.Instantiate(resolvedPrefab, parent)
+            : CreateFallbackRoot(parent);
+        root.name = objectName;
+
+        StatusEffectIcon icon = Resolve(root);
+        icon.SetIcon(iconSprite);
+        icon.SetAmount(string.Empty);
+        return icon;
     }
 
     public void SetIcon(Sprite sprite)
@@ -102,6 +144,51 @@ public class StatusEffectIcon : MonoBehaviour
         {
             iconRenderer = GetComponent<SpriteRenderer>();
         }
+
+        if (amountText == null)
+        {
+            Transform textTransform = transform.Find(AmountTextName);
+            if (textTransform != null)
+            {
+                amountText = textTransform.GetComponent<TMP_Text>();
+            }
+        }
+
+        if (amountText == null)
+        {
+            amountText = GetComponentInChildren<TMP_Text>(true);
+        }
+    }
+
+    private static GameObject CreateFallbackRoot(Transform parent)
+    {
+        GameObject root = new GameObject("StatusEffectIcon", typeof(RectTransform), typeof(Image));
+        RectTransform rootRect = root.GetComponent<RectTransform>();
+        rootRect.SetParent(parent, false);
+        rootRect.localScale = Vector3.one;
+        rootRect.sizeDelta = new Vector2(0.3f, 0.3f);
+
+        GameObject textObject = new GameObject(AmountTextName, typeof(RectTransform), typeof(TextMeshProUGUI));
+        RectTransform textRect = textObject.GetComponent<RectTransform>();
+        textRect.SetParent(rootRect, false);
+        textRect.anchorMin = new Vector2(1f, 0f);
+        textRect.anchorMax = new Vector2(1f, 0f);
+        textRect.pivot = new Vector2(1f, 0f);
+        textRect.anchoredPosition = Vector2.zero;
+        textRect.sizeDelta = new Vector2(0.3f, 0.3f);
+
+        TextMeshProUGUI amount = textObject.GetComponent<TextMeshProUGUI>();
+        amount.font = TMP_Settings.defaultFontAsset;
+        amount.color = Color.white;
+        amount.alignment = TextAlignmentOptions.BottomRight;
+        amount.enableAutoSizing = true;
+        amount.fontSizeMin = 0.1f;
+        amount.fontSizeMax = 0.2f;
+        amount.raycastTarget = false;
+
+        StatusEffectIcon icon = root.AddComponent<StatusEffectIcon>();
+        icon.AssignAmountText(amount);
+        return root;
     }
 
     private void CaptureAutoSizeFromText()

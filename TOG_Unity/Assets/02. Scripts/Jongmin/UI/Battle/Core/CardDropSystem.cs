@@ -35,17 +35,21 @@ public class CardDropSystem
         switch (card.CardType)
         {
             case CardType.AtkField:
+                GameData.Instance.CancelCardTemporaryAttackModifiers(card.CardData);
                 GameData.Instance.attackField.Remove(card.CardData);
                 GameData.Instance.FieldToHandMove(card.BattleCardData);
                 _handDropTarget.CreateCard(card.BattleCardData);
                 _atkFieldDropTarget.RemoveCard(card);
+                CardEffectExecutor.RefreshVisibleCardAttackLabels();
                 break;
             
             case CardType.DefField:
+                GameData.Instance.CancelCardTemporaryAttackModifiers(card.CardData);
                 GameData.Instance.defenseField.Remove(card.CardData);
                 GameData.Instance.FieldToHandMove(card.BattleCardData);
                 _handDropTarget.CreateCard(card.BattleCardData);
                 _defFieldDropTarget.RemoveCard(card);
+                CardEffectExecutor.RefreshVisibleCardAttackLabels();
                 break;
             
             case CardType.None:

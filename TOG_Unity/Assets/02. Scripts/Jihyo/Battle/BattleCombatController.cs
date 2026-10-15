@@ -25,7 +25,6 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     private int pendingBloodSuckingPercent;
     private int preparedAttackValue;
     private int currentTurnAttackBonus;
-    private EventDomain eventDomain;
     private bool playedSynergyMotion;
 
     public float GetStatAnimationWaitTime() => statAnimationWaitTime;
@@ -42,7 +41,6 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
 
         battleManager = manager;
-        eventDomain = DIContainer.IsRegistered<EventDomain>() ? DIContainer.Resolve<EventDomain>() : null;
         isInitialized = true;
     }
 
@@ -63,7 +61,6 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
 
         battleManager = null;
-        eventDomain = null;
         isInitialized = false;
         battlePermanentAttackBonus = 0;
         preparedAttackValue = 0;
@@ -99,6 +96,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         pendingBloodSuckingPercent = 0;
         currentTurnAttackBonus = 0;
         player.SetTurnSynergyAttackBonus(0);
+        ApplyBeforeAttackCardEffects(player);
         player.ApplyAttackStats();
 
         List<SynergyTotalData> activatedSynergies = SynergyActivationSelector.Select(GameData.Instance?.synergyIDList?.Values);
@@ -332,28 +330,31 @@ public class BattleCombatController : MonoBehaviour, IBattleController
             AttackEffectSpawner.SpawnOnTargets(currentAttack, targets);
         }
 
-        int totalDealtDamage = 0;
         List<IDamageable> damagedTargets = new List<IDamageable>();
         foreach (IDamageable target in targets)
         {
-            if (target != null && target.IsAlive)
+            if (target == null || !target.IsAlive)
             {
-                BaseUnit targetUnit = target as BaseUnit;
-                int finalDamage = player.ApplyOutgoingStatusEffects(currentAttack, targetUnit);
-                if (targetUnit != null)
-                {
-                    targetUnit.TakeDamage(finalDamage, player);
-                }
-                else
-                {
-                    target.TakeDamage(finalDamage);
-                }
-                totalDealtDamage += finalDamage;
-                damagedTargets.Add(target);
+                continue;
+            }
+
+            BaseUnit targetUnit = target as BaseUnit;
+            int finalDamage = player.ApplyOutgoingStatusEffects(currentAttack, targetUnit);
+            if (targetUnit != null)
+            {
+                targetUnit.TakeDamage(finalDamage, player);
+            }
+            else
+            {
+                target.TakeDamage(finalDamage);
+            }
+            damagedTargets.Add(target);
+
+            if (targetUnit != null)
+            {
+                ApplyAfterAttackCardEffects(player, new List<IDamageable> { targetUnit }, !targetUnit.IsAlive);
             }
         }
-
-        eventDomain?.RecordSingleAttackDamage(totalDealtDamage);
 
         ApplyOnHitSynergies(player, currentAttack, damagedTargets);
 
@@ -510,6 +511,79 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
 
         BloodSuckingEffectSpawner.SpawnFromTargets(player.transform, hitTargets);
+    }
+
+    private void ApplyBeforeAttackCardEffects(Player player)
+    {
+        if (player == null || GameData.Instance == null)
+        {
+            return;
+        }
+
+        List<BaseUnit> enemies = GetAliveEnemyUnits();
+        CardEffectExecutor.ExecuteFieldCards(CardWhen.BeforeAttack, new CardEffectContext
+        {
+            Source = player,
+            HitTargets = enemies,
+            AllEnemies = enemies,
+            IsFirstTurn = CardEffectExecutor.IsBattleFirstTurn()
+        });
+        CardEffectExecutor.RefreshVisibleCardAttackLabels();
+    }
+
+    private void ApplyAfterAttackCardEffects(Player player, List<IDamageable> hitTargets, bool hasKilled)
+    {
+        if (player == null || GameData.Instance == null)
+        {
+            return;
+        }
+
+        List<BaseUnit> hitUnits = new List<BaseUnit>();
+        if (hitTargets != null)
+        {
+            for (int i = 0; i < hitTargets.Count; i++)
+            {
+                if (hitTargets[i] is BaseUnit unit)
+                {
+                    hitUnits.Add(unit);
+                }
+            }
+        }
+
+        CardEffectExecutor.ExecuteFieldCards(CardWhen.AfterAttack, new CardEffectContext
+        {
+            Source = player,
+            HitTargets = hitUnits,
+            AllEnemies = GetAliveEnemyUnits(),
+            IsFirstTurn = CardEffectExecutor.IsBattleFirstTurn(),
+            HasKilled = hasKilled
+        });
+    }
+
+    private List<BaseUnit> GetAliveEnemyUnits()
+    {
+        List<BaseUnit> enemies = new List<BaseUnit>();
+        BattleSetupController setupController = battleManager != null ? battleManager.GetSetupController() : null;
+        if (setupController == null)
+        {
+            return enemies;
+        }
+
+        List<Monster> monsters = setupController.GetPrimaryMonsters();
+        if (monsters == null)
+        {
+            return enemies;
+        }
+
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            if (monsters[i] != null && monsters[i].IsAlive)
+            {
+                enemies.Add(monsters[i]);
+            }
+        }
+
+        return enemies;
     }
 
     private int GetActiveEffectValue(List<int> effectValues, int synergyCount)

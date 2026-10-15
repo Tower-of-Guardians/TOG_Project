@@ -19,6 +19,10 @@ public class GameData : Singleton<GameData>
 
     public Dictionary<string, SynergyTotalData> synergyIDList = new Dictionary<string, SynergyTotalData>();
     public Dictionary<string, int> effectIDList = new Dictionary<string, int>();
+    private readonly Dictionary<string, float> battleCardNameAttackBonus = new Dictionary<string, float>();
+    private readonly Dictionary<CardData, int> pendingNamedAttackBonusByCard = new Dictionary<CardData, int>();
+    private readonly Dictionary<CardData, float> thisTurnCardAttackBonus = new Dictionary<CardData, float>();
+    private int combatTurnIndex;
     private void Start()
     {
         StartCoroutine(FirstDeckSet());
@@ -144,6 +148,7 @@ public class GameData : Singleton<GameData>
         InvokeDeckCountChange(DeckType.Draw);
         InvokeDeckCountChange(DeckType.Throw);
         GetSynergyData();
+        ClearBattleCardStatBonuses();
     }
 
     public float AttackField()
@@ -151,9 +156,125 @@ public class GameData : Singleton<GameData>
         float damege = 0f;
         foreach (CardData data in attackField)
         {
-            damege += data.ATK;
+            damege += GetCardAttack(data);
         }
         return damege;
+    }
+
+    public float GetCardAttack(CardData data)
+    {
+        if (data == null)
+        {
+            return 0f;
+        }
+
+        battleCardNameAttackBonus.TryGetValue(data.itemName, out float nameBonus);
+        float pendingBonus = GetPendingNamedAttackBonus(data.itemName);
+        float turnBonus = 0f;
+        if (combatTurnIndex == 1)
+        {
+            thisTurnCardAttackBonus.TryGetValue(data, out turnBonus);
+        }
+
+        return data.ATK + nameBonus + pendingBonus + turnBonus;
+    }
+
+    public void BeginCombatTurns()
+    {
+        combatTurnIndex = 1;
+    }
+
+    public void AdvanceCombatTurn()
+    {
+        combatTurnIndex++;
+        ClearThisTurnCardAttackBonuses();
+    }
+
+    public bool IsCombatFirstTurn => combatTurnIndex == 1;
+
+    private void AddBattleCardNameAttackBonus(string itemName, float amount)
+    {
+        if (string.IsNullOrEmpty(itemName) || amount == 0f)
+        {
+            return;
+        }
+
+        battleCardNameAttackBonus.TryGetValue(itemName, out float current);
+        battleCardNameAttackBonus[itemName] = current + amount;
+    }
+
+    public void QueueNamedCardAttackBonus(CardData sourceCard, int amount)
+    {
+        if (sourceCard == null || amount == 0)
+        {
+            return;
+        }
+
+        pendingNamedAttackBonusByCard[sourceCard] = amount;
+    }
+
+    public void AddThisTurnCardAttackBonus(CardData sourceCard, int amount)
+    {
+        if (sourceCard == null || amount == 0 || thisTurnCardAttackBonus.ContainsKey(sourceCard))
+        {
+            return;
+        }
+
+        thisTurnCardAttackBonus[sourceCard] = amount;
+    }
+
+    public void CancelCardTemporaryAttackModifiers(CardData sourceCard)
+    {
+        if (sourceCard == null)
+        {
+            return;
+        }
+
+        pendingNamedAttackBonusByCard.Remove(sourceCard);
+        thisTurnCardAttackBonus.Remove(sourceCard);
+    }
+
+    public void CommitNamedCardAttackBonus(CardData sourceCard)
+    {
+        if (sourceCard == null || !pendingNamedAttackBonusByCard.TryGetValue(sourceCard, out int amount))
+        {
+            return;
+        }
+
+        pendingNamedAttackBonusByCard.Remove(sourceCard);
+        AddBattleCardNameAttackBonus(sourceCard.itemName, amount);
+    }
+
+    private float GetPendingNamedAttackBonus(string itemName)
+    {
+        if (string.IsNullOrEmpty(itemName))
+        {
+            return 0f;
+        }
+
+        float pendingBonus = 0f;
+        foreach (KeyValuePair<CardData, int> entry in pendingNamedAttackBonusByCard)
+        {
+            if (entry.Key != null && entry.Key.itemName == itemName)
+            {
+                pendingBonus += entry.Value;
+            }
+        }
+
+        return pendingBonus;
+    }
+
+    public void ClearThisTurnCardAttackBonuses()
+    {
+        thisTurnCardAttackBonus.Clear();
+    }
+
+    public void ClearBattleCardStatBonuses()
+    {
+        battleCardNameAttackBonus.Clear();
+        pendingNamedAttackBonusByCard.Clear();
+        thisTurnCardAttackBonus.Clear();
+        combatTurnIndex = 0;
     }
 
     public float DefenseField()

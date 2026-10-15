@@ -36,6 +36,11 @@ namespace Jongmin
         public abstract void CreateCard(BattleCardData battleCardData);
         public abstract void UpdateFieldStatus();
 
+        protected void PreviewPlacedCardAttackBonuses(BattleCardData battleCardData)
+        {
+            CardEffectExecutor.PreviewAttackBonusesOnPlace(battleCardData?.data, FieldType);
+        }
+
         public void RequestUpdateActionCountEvent(int count)
         {
             RequestUpdateActionCount?.Invoke(count);

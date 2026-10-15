@@ -53,6 +53,12 @@ public class BattleTurnEndController : MonoBehaviour, IBattleController
 
     private void OnStartNewTurn()
     {
+        if (GameData.Instance != null)
+        {
+            GameData.Instance.ClearThisTurnCardAttackBonuses();
+            CardEffectExecutor.RefreshVisibleCardAttackLabels();
+        }
+
         // 새 턴 시작 시 카드 드로우
         DrawCards();
 
@@ -74,6 +80,9 @@ public class BattleTurnEndController : MonoBehaviour, IBattleController
                 currentTurnNumber = turnManager.CurrentTurnNumber;
             }
         }
+
+        GameData.Instance?.ClearThisTurnCardAttackBonuses();
+        CardEffectExecutor.RefreshVisibleCardAttackLabels();
 
         // 턴 종료 시 플레이어의 공격력을 기본 공격력으로 되돌림
         if (battleManager != null)

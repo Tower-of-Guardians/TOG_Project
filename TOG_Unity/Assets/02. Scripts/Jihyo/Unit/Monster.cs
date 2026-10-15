@@ -55,6 +55,9 @@ public class Monster : BaseUnit
     [SerializeField] private List<MonsterActionDefinition> actionDefinitions = new List<MonsterActionDefinition>();
 
     [Header("Status UI")]
+    [SerializeField] private Transform statusBottomRoot;
+    [SerializeField] private GameObject buffDebuffIconPrefab;
+    [SerializeField] private Sprite weaknessStatusSprite;
     [SerializeField] private Transform attackAnchor;
     [SerializeField] private GameObject targetIndicator;
     [SerializeField] private SpriteRenderer actionIndicatorRenderer;
@@ -91,6 +94,8 @@ public class Monster : BaseUnit
     private int guardShieldAppliedTurnNumber = -1;
     private GameObject attackStatusRoot;
     private Coroutine monsterDataRoutine;
+    private StatusEffectController appliedStatusController;
+    private GameObject appliedWeaknessRoot;
 
     protected override void Awake()
     {
@@ -104,6 +109,7 @@ public class Monster : BaseUnit
         SaveInitialPosition();
         SetTargeted(false);
         RegisterBattleManager();
+        SubscribeAppliedStatusUi();
     }
 
     private void InitializeAnimation()
@@ -142,6 +148,8 @@ public class Monster : BaseUnit
             StopCoroutine(monsterDataRoutine);
             monsterDataRoutine = null;
         }
+
+        UnsubscribeAppliedStatusUi();
     }
 
     public void SetTargeted(bool isTargeted)
@@ -311,6 +319,15 @@ public class Monster : BaseUnit
     public virtual void PrepareActionForTurn()
     {
         preparedAction = AdjustPreparedAction(SelectNextAction());
+        if (HasStunStatus())
+        {
+            preparedAction = new MonsterActionDefinition
+            {
+                ActionType = MonsterActionType.Stun,
+                TargetType = MonsterActionTargetType.None
+            };
+        }
+
         preparedActionValue = preparedAction != null ? ResolveActionValue(preparedAction.MinValue, preparedAction.MaxValue) : defaultAttack;
         hasPreparedAction = true;
         RefreshUI();
@@ -319,6 +336,12 @@ public class Monster : BaseUnit
     protected virtual MonsterActionDefinition AdjustPreparedAction(MonsterActionDefinition action)
     {
         return action;
+    }
+
+    private bool HasStunStatus()
+    {
+        StatusEffectController controller = StatusEffectController.Resolve(this);
+        return controller != null && controller.TryGetStatusStack(StatusEffectController.StunStatusId, out int stack) && stack > 0;
     }
 
     private void ApplyMonsterDataIfConfigured()
@@ -1116,6 +1139,106 @@ public class Monster : BaseUnit
     protected virtual int GetPreparedAttackDisplayValue(int baseValue)
     {
         return baseValue;
+    }
+
+    private void SubscribeAppliedStatusUi()
+    {
+        appliedStatusController = StatusEffectController.Resolve(this);
+        if (appliedStatusController == null)
+        {
+            return;
+        }
+
+        appliedStatusController.OnStatusAdded += OnAppliedStatusChanged;
+        appliedStatusController.OnStatusRemoved += OnAppliedStatusChanged;
+        appliedStatusController.OnStatusChanged += OnAppliedStatusChanged;
+        RefreshAppliedWeaknessUi();
+    }
+
+    private void UnsubscribeAppliedStatusUi()
+    {
+        if (appliedStatusController == null)
+        {
+            return;
+        }
+
+        appliedStatusController.OnStatusAdded -= OnAppliedStatusChanged;
+        appliedStatusController.OnStatusRemoved -= OnAppliedStatusChanged;
+        appliedStatusController.OnStatusChanged -= OnAppliedStatusChanged;
+        appliedStatusController = null;
+    }
+
+    private void OnAppliedStatusChanged(StatusEffectRuntime runtime)
+    {
+        RefreshAppliedWeaknessUi();
+    }
+
+    private void RefreshAppliedWeaknessUi()
+    {
+        EnsureAppliedWeaknessUi();
+        if (appliedWeaknessRoot == null || appliedStatusController == null)
+        {
+            return;
+        }
+
+        StatusEffectRuntime weaknessRuntime = null;
+        foreach (StatusEffectRuntime runtime in appliedStatusController.ActiveStatuses)
+        {
+            if (runtime != null && runtime.StatusEffectId == StatusEffectController.WeaknessExposureStatusId && !runtime.IsExpired)
+            {
+                weaknessRuntime = runtime;
+                break;
+            }
+        }
+
+        bool shouldShow = weaknessRuntime != null;
+        appliedWeaknessRoot.SetActive(shouldShow);
+        if (!shouldShow)
+        {
+            StatusEffectIcon.Resolve(appliedWeaknessRoot).SetAmount(string.Empty);
+            return;
+        }
+
+        StatusEffectIcon.Resolve(appliedWeaknessRoot).SetAmount(
+            StatusEffectDurationUtility.ResolveDisplayAmount(weaknessRuntime));
+    }
+
+    private void EnsureAppliedWeaknessUi()
+    {
+        if (appliedWeaknessRoot != null)
+        {
+            return;
+        }
+
+        Transform parent = statusBottomRoot != null ? statusBottomRoot : FindChildByName(transform, "Status_Bottom");
+        if (parent == null)
+        {
+            return;
+        }
+
+        Sprite iconSprite = weaknessStatusSprite != null ? weaknessStatusSprite : actionDebuffSprite;
+        StatusEffectIcon icon = StatusEffectIcon.Create(parent, "Weakness", iconSprite, buffDebuffIconPrefab);
+        appliedWeaknessRoot = icon.gameObject;
+        appliedWeaknessRoot.SetActive(false);
+    }
+
+    private static Transform FindChildByName(Transform root, string childName)
+    {
+        if (root == null)
+        {
+            return null;
+        }
+
+        Transform[] children = root.GetComponentsInChildren<Transform>(true);
+        for (int i = 0; i < children.Length; i++)
+        {
+            if (children[i] != null && children[i].name == childName)
+            {
+                return children[i];
+            }
+        }
+
+        return null;
     }
 
     private void BindAttackStatusRoot()

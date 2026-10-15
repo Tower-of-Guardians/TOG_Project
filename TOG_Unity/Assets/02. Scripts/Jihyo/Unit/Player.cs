@@ -571,6 +571,8 @@ public class Player : BaseUnit, ITooltipProvider
             return;
         }
 
+        StatusEffectIcon.RegisterPrefab(buffDebuffIconPrefab);
+
         if (weaknessStatusRoot == null)
         {
             weaknessStatusRoot = CreateStatusIconNode(statusBottomRoot, WeaknessStatusNodeName, weaknessStatusSprite);
@@ -726,8 +728,8 @@ public class Player : BaseUnit, ITooltipProvider
             return;
         }
 
-        int turnValue = weaknessRuntime.RemainingTurns == int.MaxValue ? 0 : Mathf.Max(0, weaknessRuntime.RemainingTurns);
-        StatusEffectIcon.Resolve(weaknessStatusRoot).SetAmount(turnValue.ToString());
+        StatusEffectIcon.Resolve(weaknessStatusRoot).SetAmount(
+            StatusEffectDurationUtility.ResolveDisplayAmount(weaknessRuntime));
     }
 
     private void RefreshCurseStatusUI()

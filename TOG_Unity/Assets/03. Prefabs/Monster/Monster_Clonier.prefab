@@ -314,6 +314,9 @@ MonoBehaviour:
   useMonsterDataActions: 1
   actionPatternType: 2
   actionDefinitions: []
+  statusBottomRoot: {fileID: 0}
+  buffDebuffIconPrefab: {fileID: 540952265996419494, guid: 32477f2e8b1f76c47be21c6113af8989, type: 3}
+  weaknessStatusSprite: {fileID: 4035860371971368088, guid: 34bb51b54453114419ec29327fc29b9f, type: 3}
   attackAnchor: {fileID: 1158091095933760972}
   targetIndicator: {fileID: 8759010155118555184}
   actionIndicatorRenderer: {fileID: 5319485221904104236}

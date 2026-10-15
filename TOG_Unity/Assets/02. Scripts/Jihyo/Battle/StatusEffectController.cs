@@ -10,6 +10,20 @@ public enum StatusEffectStackPolicy
     StrongestValue
 }
 
+public enum StatusEffectDurationType
+{
+    OneTurn = 1,
+    ValueTurns = 2,
+    Permanent = 3
+}
+
+public enum StatusEffectReleaseCondition
+{
+    None = 0,
+    OnHit = 1,
+    OnHpLoss = 2
+}
+
 /// <summary>
 /// 피해 계산 시 상태효과가 수정할 수 있는 컨텍스트입니다.
 /// </summary>
@@ -89,7 +103,6 @@ public interface IStatusEffectHandler
     string StatusEffectId { get; }
     StatusEffectStackPolicy StackPolicy { get; }
     int ResolveInitialStack(StatusEffectData data, int requestedStack);
-    int ResolveInitialDuration(StatusEffectData data);
     int ResolveInitialValue(StatusEffectData data, int requestedValue);
     void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew);
     void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime);
@@ -99,33 +112,58 @@ public interface IStatusEffectHandler
     void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context);
 }
 
-internal static class StatusEffectDurationUtility
+public static class StatusEffectDurationUtility
 {
     /// <summary>
     /// DurationType 분류(1=1턴, 2=수치, 3=영구)에 따라 남은 턴 수를 반환합니다.
     /// </summary>
-    public static int ResolveDurationFromData(StatusEffectData data, int defaultTurns)
+    public static int ResolveDurationFromData(StatusEffectData data, int requestedValue)
     {
-        if (data == null)
+        int durationType = data != null ? data.DurationType : (int)StatusEffectDurationType.Permanent;
+        switch ((StatusEffectDurationType)durationType)
         {
-            return defaultTurns;
+            case StatusEffectDurationType.OneTurn:
+                return 1;
+            case StatusEffectDurationType.ValueTurns:
+                return Mathf.Max(1, requestedValue);
+            case StatusEffectDurationType.Permanent:
+                return int.MaxValue;
+            default:
+                return Mathf.Max(1, requestedValue);
+        }
+    }
+
+    public static bool ShouldDecreaseTurn(StatusEffectRuntime runtime)
+    {
+        if (runtime == null || runtime.RemainingTurns == int.MaxValue)
+        {
+            return false;
         }
 
-        switch (data.DurationType)
+        return runtime.DurationType == (int)StatusEffectDurationType.OneTurn
+            || runtime.DurationType == (int)StatusEffectDurationType.ValueTurns;
+    }
+
+    public static string ResolveDisplayAmount(StatusEffectRuntime runtime)
+    {
+        if (runtime == null)
         {
-            case 3:
-                return int.MaxValue;
-            case 1:
-                return 1;
-            default:
-                return defaultTurns;
+            return string.Empty;
         }
+
+        if (runtime.DurationType == (int)StatusEffectDurationType.Permanent
+            || runtime.RemainingTurns == int.MaxValue)
+        {
+            return Mathf.Max(0, runtime.Stack).ToString();
+        }
+
+        return Mathf.Max(0, runtime.RemainingTurns).ToString();
     }
 }
 
 /// <summary>
 /// 약점노출(51001001) 핸들러.
-/// 다음 피격 1회 피해를 50% 증가시키고 소모됩니다.
+/// DurationType=영구이며, 피격 시 피해 50% 증가 후 ReleaseCondition으로 해제됩니다.
 /// </summary>
 public sealed class WeaknessExposureHandler : IStatusEffectHandler
 {
@@ -135,12 +173,6 @@ public sealed class WeaknessExposureHandler : IStatusEffectHandler
     public int ResolveInitialStack(StatusEffectData data, int requestedStack)
     {
         return Mathf.Max(1, requestedStack);
-    }
-
-    public int ResolveInitialDuration(StatusEffectData data)
-    {
-        // 약점노출은 최대 3턴 유지되며, 그 전에 피격 1회가 발생하면 소모됩니다.
-        return 3;
     }
 
     public int ResolveInitialValue(StatusEffectData data, int requestedValue)
@@ -161,13 +193,6 @@ public sealed class WeaknessExposureHandler : IStatusEffectHandler
         }
 
         context.MultiplyFinalDamage(1.5f);
-        runtime.ConsumeStack(1);
-        controller.NotifyStatusChanged(runtime);
-
-        if (runtime.IsExpired)
-        {
-            controller.RemoveStatus(runtime.StatusEffectId);
-        }
     }
 
     public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
@@ -185,11 +210,6 @@ public sealed class CurseHandler : IStatusEffectHandler
     public int ResolveInitialStack(StatusEffectData data, int requestedStack)
     {
         return Mathf.Max(1, requestedStack);
-    }
-
-    public int ResolveInitialDuration(StatusEffectData data)
-    {
-        return StatusEffectDurationUtility.ResolveDurationFromData(data, defaultTurns: int.MaxValue);
     }
 
     public int ResolveInitialValue(StatusEffectData data, int requestedValue)
@@ -235,11 +255,6 @@ public sealed class CurseThornsHandler : IStatusEffectHandler
     public int ResolveInitialStack(StatusEffectData data, int requestedStack)
     {
         return Mathf.Max(1, requestedStack);
-    }
-
-    public int ResolveInitialDuration(StatusEffectData data)
-    {
-        return StatusEffectDurationUtility.ResolveDurationFromData(data, defaultTurns: 1);
     }
 
     public int ResolveInitialValue(StatusEffectData data, int requestedValue)
@@ -290,11 +305,6 @@ public sealed class EnemyStrengthBuffHandler : IStatusEffectHandler
         return Mathf.Max(1, requestedStack);
     }
 
-    public int ResolveInitialDuration(StatusEffectData data)
-    {
-        return StatusEffectDurationUtility.ResolveDurationFromData(data, defaultTurns: int.MaxValue);
-    }
-
     public int ResolveInitialValue(StatusEffectData data, int requestedValue)
     {
         return Mathf.Max(0, requestedValue);
@@ -318,6 +328,210 @@ public sealed class EnemyStrengthBuffHandler : IStatusEffectHandler
     public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
 }
 
+public sealed class TableDrivenStatusEffectHandler : IStatusEffectHandler
+{
+    public static readonly TableDrivenStatusEffectHandler Instance = new TableDrivenStatusEffectHandler();
+
+    public string StatusEffectId => string.Empty;
+    public StatusEffectStackPolicy StackPolicy => StatusEffectStackPolicy.RefreshDuration;
+
+    public int ResolveInitialStack(StatusEffectData data, int requestedStack)
+    {
+        return Mathf.Max(1, requestedStack);
+    }
+
+    public int ResolveInitialValue(StatusEffectData data, int requestedValue)
+    {
+        return Mathf.Max(0, requestedValue);
+    }
+
+    public void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew) { }
+    public void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnTurnEnd(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnBeforeDealDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+    public void OnBeforeTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+    public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+}
+
+public sealed class SacredShieldHandler : IStatusEffectHandler
+{
+    public string StatusEffectId => StatusEffectController.SacredShieldStatusId;
+    public StatusEffectStackPolicy StackPolicy => StatusEffectStackPolicy.RefreshDuration;
+
+    public int ResolveInitialStack(StatusEffectData data, int requestedStack) => Mathf.Max(1, requestedStack);
+    public int ResolveInitialValue(StatusEffectData data, int requestedValue) => Mathf.Max(0, requestedValue);
+
+    public void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew) { }
+
+    public void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime)
+    {
+        int damage = runtime != null && runtime.Value > 0 ? runtime.Value : runtime != null ? runtime.Stack : 0;
+        if (damage <= 0)
+        {
+            return;
+        }
+
+        BaseUnit owner = controller != null ? controller.GetComponent<BaseUnit>() : null;
+        if (!DIContainer.IsRegistered<BattleManager>())
+        {
+            return;
+        }
+
+        List<Monster> monsters = DIContainer.Resolve<BattleManager>()?.GetSetupController()?.GetPrimaryMonsters();
+        if (monsters == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            if (monsters[i] != null && monsters[i].IsAlive)
+            {
+                monsters[i].TakeDamage(damage, owner);
+            }
+        }
+    }
+
+    public void OnTurnEnd(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnBeforeDealDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+    public void OnBeforeTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+    public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+}
+
+public sealed class FrenzyHandler : IStatusEffectHandler
+{
+    public string StatusEffectId => StatusEffectController.FrenzyStatusId;
+    public StatusEffectStackPolicy StackPolicy => StatusEffectStackPolicy.RefreshDuration;
+
+    public int ResolveInitialStack(StatusEffectData data, int requestedStack) => Mathf.Max(1, requestedStack);
+    public int ResolveInitialValue(StatusEffectData data, int requestedValue) => Mathf.Max(0, requestedValue);
+
+    public void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew) { }
+    public void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnTurnEnd(StatusEffectController controller, StatusEffectRuntime runtime) { }
+
+    public void OnBeforeDealDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context)
+    {
+        context?.MultiplyFinalDamage(2f);
+    }
+
+    public void OnBeforeTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context)
+    {
+        context?.MultiplyFinalDamage(2f);
+    }
+
+    public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+}
+
+public sealed class SuperFrenzyHandler : IStatusEffectHandler
+{
+    public string StatusEffectId => StatusEffectController.SuperFrenzyStatusId;
+    public StatusEffectStackPolicy StackPolicy => StatusEffectStackPolicy.RefreshDuration;
+
+    public int ResolveInitialStack(StatusEffectData data, int requestedStack) => Mathf.Max(1, requestedStack);
+    public int ResolveInitialValue(StatusEffectData data, int requestedValue) => Mathf.Max(0, requestedValue);
+
+    public void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew) { }
+    public void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnTurnEnd(StatusEffectController controller, StatusEffectRuntime runtime) { }
+
+    public void OnBeforeDealDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context)
+    {
+        context?.MultiplyFinalDamage(3f);
+    }
+
+    public void OnBeforeTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context)
+    {
+        context?.MultiplyFinalDamage(2f);
+    }
+
+    public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+}
+
+public sealed class ImmortalityHandler : IStatusEffectHandler
+{
+    public string StatusEffectId => StatusEffectController.ImmortalityStatusId;
+    public StatusEffectStackPolicy StackPolicy => StatusEffectStackPolicy.RefreshDuration;
+
+    public int ResolveInitialStack(StatusEffectData data, int requestedStack) => Mathf.Max(1, requestedStack);
+    public int ResolveInitialValue(StatusEffectData data, int requestedValue) => Mathf.Max(0, requestedValue);
+
+    public void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew) { }
+    public void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnTurnEnd(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnBeforeDealDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+
+    public void OnBeforeTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context)
+    {
+        BaseUnit owner = controller != null ? controller.GetComponent<BaseUnit>() : null;
+        if (owner == null || context == null)
+        {
+            return;
+        }
+
+        int maxLoss = Mathf.Max(0, owner.CurrentHealth - 1);
+        if (context.FinalDamage > maxLoss)
+        {
+            context.SetFinalDamage(maxLoss);
+        }
+    }
+
+    public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+}
+
+public sealed class EvasionHandler : IStatusEffectHandler
+{
+    public string StatusEffectId => StatusEffectController.EvasionStatusId;
+    public StatusEffectStackPolicy StackPolicy => StatusEffectStackPolicy.RefreshDuration;
+
+    public int ResolveInitialStack(StatusEffectData data, int requestedStack) => Mathf.Max(1, requestedStack);
+    public int ResolveInitialValue(StatusEffectData data, int requestedValue) => Mathf.Max(0, requestedValue);
+
+    public void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew) { }
+    public void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnTurnEnd(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnBeforeDealDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+
+    public void OnBeforeTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context)
+    {
+        context?.SetFinalDamage(0);
+    }
+
+    public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+}
+
+public sealed class NextTurnWeaknessApplyHandler : IStatusEffectHandler
+{
+    public NextTurnWeaknessApplyHandler(string statusEffectId)
+    {
+        StatusEffectId = statusEffectId;
+    }
+
+    public string StatusEffectId { get; }
+    public StatusEffectStackPolicy StackPolicy => StatusEffectStackPolicy.RefreshDuration;
+
+    public int ResolveInitialStack(StatusEffectData data, int requestedStack) => Mathf.Max(1, requestedStack);
+    public int ResolveInitialValue(StatusEffectData data, int requestedValue) => Mathf.Max(0, requestedValue);
+
+    public void OnApplied(StatusEffectController controller, StatusEffectRuntime runtime, bool isNew) { }
+
+    public void OnTurnStart(StatusEffectController controller, StatusEffectRuntime runtime)
+    {
+        if (controller == null)
+        {
+            return;
+        }
+
+        controller.TryApplyStatus(StatusEffectController.WeaknessExposureStatusId, 1);
+        controller.RemoveStatus(StatusEffectId);
+    }
+
+    public void OnTurnEnd(StatusEffectController controller, StatusEffectRuntime runtime) { }
+    public void OnBeforeDealDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+    public void OnBeforeTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+    public void OnAfterTakeDamage(StatusEffectController controller, StatusEffectRuntime runtime, DamageContext context) { }
+}
+
 /// <summary>
 /// 상태효과의 부여/해제/훅 실행을 담당하는 컨트롤러입니다.
 /// 상태 정의는 DataCenter(StatusEffectData)에서 조회합니다.
@@ -325,8 +539,16 @@ public sealed class EnemyStrengthBuffHandler : IStatusEffectHandler
 public class StatusEffectController : MonoBehaviour
 {
     public const string WeaknessExposureStatusId = "51001001";
+    public const string SacredShieldStatusId = "51001002";
+    public const string FrenzyStatusId = "51001003";
     public const string CurseThornsStatusId = "51001004";
     public const string CurseStatusId = "51001005";
+    public const string ImmortalityStatusId = "51001006";
+    public const string EvasionStatusId = "51001007";
+    public const string SuperFrenzyStatusId = "51001033";
+    public const string ConfusionStatusId = "51001034";
+    public const string StunStatusId = "51003028";
+    public const string NextTurnWeaknessStatusId = "51003030";
     public const string EnemyStrengthStatusId = "51003029";
 
     [SerializeField] private bool enableDebugLog;
@@ -375,6 +597,8 @@ public class StatusEffectController : MonoBehaviour
 
     public bool TryApplyStatus(string statusEffectId, int requestedStack = 1, int requestedValue = 0)
     {
+        RegisterDefaultHandlers();
+
         if (string.IsNullOrEmpty(statusEffectId))
         {
             return false;
@@ -387,12 +611,12 @@ public class StatusEffectController : MonoBehaviour
 
         if (!HandlerMap.TryGetValue(statusEffectId, out IStatusEffectHandler handler))
         {
-            Log($"핸들러가 등록되지 않은 상태효과입니다. id={statusEffectId}");
-            return false;
+            handler = TableDrivenStatusEffectHandler.Instance;
         }
 
         int incomingStack = handler.ResolveInitialStack(data, requestedStack);
-        int incomingDuration = handler.ResolveInitialDuration(data);
+        int durationRequest = requestedValue > 0 ? requestedValue : requestedStack;
+        int incomingDuration = StatusEffectDurationUtility.ResolveDurationFromData(data, durationRequest);
         int incomingValue = handler.ResolveInitialValue(data, requestedValue);
 
         bool created = !activeStatusMap.TryGetValue(statusEffectId, out StatusEffectRuntime runtime);
@@ -422,11 +646,6 @@ public class StatusEffectController : MonoBehaviour
         handler.OnApplied(this, runtime, created);
         CleanupExpiredStatuses();
         return true;
-    }
-
-    public bool TryApplyFromStatusEffectId(string statusEffectId, int requestedStack = 1, int requestedValue = 0)
-    {
-        return TryApplyStatus(statusEffectId, requestedStack, requestedValue);
     }
 
     public bool TryGetStatusStack(string statusEffectId, out int stack)
@@ -512,7 +731,7 @@ public class StatusEffectController : MonoBehaviour
             {
                 runtime.SuppressNextDurationTick = false;
             }
-            else if (ShouldDecreaseTurn(runtime))
+            else if (StatusEffectDurationUtility.ShouldDecreaseTurn(runtime))
             {
                 runtime.DecreaseTurn();
                 OnStatusChanged?.Invoke(runtime);
@@ -589,6 +808,8 @@ public class StatusEffectController : MonoBehaviour
             {
                 handler.OnAfterTakeDamage(this, runtime, context);
             }
+
+            TryReleaseByCondition(runtime, context);
         }
 
         CleanupExpiredStatuses();
@@ -612,8 +833,15 @@ public class StatusEffectController : MonoBehaviour
         }
 
         RegisterHandler(new WeaknessExposureHandler());
+        RegisterHandler(new SacredShieldHandler());
+        RegisterHandler(new FrenzyHandler());
+        RegisterHandler(new SuperFrenzyHandler());
         RegisterHandler(new CurseThornsHandler());
         RegisterHandler(new CurseHandler());
+        RegisterHandler(new ImmortalityHandler());
+        RegisterHandler(new EvasionHandler());
+        RegisterHandler(new NextTurnWeaknessApplyHandler(ConfusionStatusId));
+        RegisterHandler(new NextTurnWeaknessApplyHandler(NextTurnWeaknessStatusId));
         RegisterHandler(new EnemyStrengthBuffHandler());
         isDefaultHandlerRegistered = true;
     }
@@ -665,24 +893,39 @@ public class StatusEffectController : MonoBehaviour
 
     private static void MarkTurnDurationSkip(StatusEffectRuntime runtime, StatusEffectData data)
     {
-        if (runtime == null || data == null || data.DurationType != 1)
+        if (runtime == null || data == null)
         {
             return;
         }
 
-        // 몬스터 행동 직후 같은 턴 종료에서 1턴 효과가 바로 만료되지 않도록, 부여된 턴의 감소는 건너뜁니다.
+        if (data.DurationType != (int)StatusEffectDurationType.OneTurn
+            && data.DurationType != (int)StatusEffectDurationType.ValueTurns)
+        {
+            return;
+        }
+
         runtime.SuppressNextDurationTick = true;
     }
 
-    private static bool ShouldDecreaseTurn(StatusEffectRuntime runtime)
+    private void TryReleaseByCondition(StatusEffectRuntime runtime, DamageContext context)
     {
-        if (runtime == null)
+        if (runtime == null || context == null || !activeStatusMap.ContainsKey(runtime.StatusEffectId))
         {
-            return false;
+            return;
         }
 
-        // 턴 기반으로 관리되는 효과는 남은 턴이 유한한 값일 때 감소시킵니다.
-        return runtime.RemainingTurns != int.MaxValue;
+        bool wasHitByOther = context.Source != null && context.Source != context.Target;
+        bool hpDecreased = context.FinalDamage > 0;
+        if (runtime.ReleaseCondition == (int)StatusEffectReleaseCondition.OnHit && wasHitByOther)
+        {
+            RemoveStatus(runtime.StatusEffectId);
+            return;
+        }
+
+        if (runtime.ReleaseCondition == (int)StatusEffectReleaseCondition.OnHpLoss && hpDecreased)
+        {
+            RemoveStatus(runtime.StatusEffectId);
+        }
     }
 
     private void CleanupExpiredStatuses()

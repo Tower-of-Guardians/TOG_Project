@@ -17,6 +17,7 @@
             Container.Add(card);
             Layout.UpdateLayout(FieldPreviewMode.None, isAnime:false);
             GameData.Instance.defenseField.Add(card.CardData);
+            PreviewPlacedCardAttackBonuses(battleCardData);
             UpdateFieldStatus();
             RequestUpdateActionCountEvent(1);
         }
