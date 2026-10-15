@@ -21,7 +21,7 @@ public class Area_Blacksmith : ClickableObject
     {
         if (_blacksmithUI != null)
         {
-            _blacksmithUI.Open();
+            _blacksmithUI.Interact();
         }
     }
 }

@@ -29,9 +29,10 @@ namespace Jongmin
         public EventRewardSystem RewardSystem => eventRewardSystem;
         public EventProgressCache ProgressCache => _progressCache;
         public RunEventProgress RunProgress => _progressCache?.Run;
-        public GlobalEventProgress GlobalProgress => _progressCache?.Global;
-        public IEventProgress EventProgress => _progressCache?.Global;
-        
+        public SlotEventProgress SlotProgress => _progressCache?.Slot;
+        public IEventProgress EventProgress => _progressCache?.Slot;
+        public bool IsDialoguePlaying => eventDialogueSystem != null && eventDialogueSystem.IsPlaying;
+
         public void Construct(RelicDomain relicDomain)
         {
             _relicDomain = relicDomain;
@@ -44,7 +45,7 @@ namespace Jongmin
 
             eventConditionSystem.Construct(
                 _eventConditionDataTable,
-                _progressCache.Global,
+                _progressCache.Slot,
                 null,
                 _progressCache.Run,
                 _progressCache.Run,
@@ -52,7 +53,7 @@ namespace Jongmin
                 _progressCache.CardInventory,
                 _progressCache.Run,
                 _progressCache.Run,
-                _progressCache.Global.Experience,
+                _progressCache.Slot.Experience,
                 _progressCache.Run.Experience);
 
             eventDialogueSystem.Construct(dialogueRunner);
@@ -105,8 +106,8 @@ namespace Jongmin
             }
 
             _progressCache?.Run.RecordNpcEncounter(npcID);
-            _progressCache?.Global.AddExperience(EExperienceRecordType.NpcEncounter, npcID);
-            SavePersistentIfOutsideRun();
+            _progressCache?.Slot.AddExperience(EExperienceRecordType.NpcEncounter, npcID);
+            SaveSlotProgressIfOutsideRun();
             _npcEncounterSession.Begin(npcID);
         }
         
@@ -139,17 +140,17 @@ namespace Jongmin
         public void RecordReachedStage(int stage)
         {
             _progressCache?.Run.RecordReachedStage(stage);
-            _progressCache?.Global.MarkExperience(EExperienceRecordType.StageReached, stage.ToString());
+            _progressCache?.Slot.MarkExperience(EExperienceRecordType.StageReached, stage.ToString());
         }
 
         /// <summary>
         /// 현재 런에서 한 번의 공격으로 준 최대 피해량을 기록합니다.
-        /// 글로벌 최대 피해량도 함께 갱신합니다.
+        /// 슬롯 최대 피해량도 함께 갱신합니다.
         /// </summary>
         public void RecordSingleAttackDamage(int damage)
         {
             _progressCache?.Run.RecordSingleAttackDamage(damage);
-            _progressCache?.Global.RecordSingleAttackDamage(damage);
+            _progressCache?.Slot.RecordSingleAttackDamage(damage);
         }
 
         /// <summary>
@@ -161,18 +162,18 @@ namespace Jongmin
             _progressCache?.Run.RecordGainedCard(cardData);
             if (cardData != null)
             {
-                _progressCache?.Global.AddExperience(EExperienceRecordType.CardGained, cardData.id);
-                _progressCache?.Global.AddExperience(EExperienceRecordType.CardGained, "Grade", cardData.grade.ToString());
-                _progressCache?.Global.AddExperience(EExperienceRecordType.CardGained, "Star", cardData.star.ToString());
+                _progressCache?.Slot.AddExperience(EExperienceRecordType.CardGained, cardData.id);
+                _progressCache?.Slot.AddExperience(EExperienceRecordType.CardGained, "Grade", cardData.grade.ToString());
+                _progressCache?.Slot.AddExperience(EExperienceRecordType.CardGained, "Star", cardData.star.ToString());
             }
         }
 
         public void RecordRunResult(ERunEndReason reason)
         {
-            _progressCache?.Global.AddExperience(EExperienceRecordType.RunResult, reason.ToString());
+            _progressCache?.Slot.AddExperience(EExperienceRecordType.RunResult, reason.ToString());
             if (reason == ERunEndReason.Abandon)
             {
-                _progressCache?.Global.AddExperience(EExperienceRecordType.RunResult, ERunEndReason.Death.ToString());
+                _progressCache?.Slot.AddExperience(EExperienceRecordType.RunResult, ERunEndReason.Death.ToString());
             }
         }
 
@@ -183,7 +184,7 @@ namespace Jongmin
                 return;
             }
             _progressCache?.Run.ExperienceRecordAdd(EExperienceRecordType.MonsterKill, monsterID);
-            _progressCache?.Global.AddExperience(EExperienceRecordType.MonsterKill, monsterID);
+            _progressCache?.Slot.AddExperience(EExperienceRecordType.MonsterKill, monsterID);
         }
 
         public void RecordEventExperience(string eventID, string choiceID = null)
@@ -193,20 +194,20 @@ namespace Jongmin
                 return;
             }
             _progressCache?.Run.ExperienceRecordAdd(EExperienceRecordType.EventExperienced, eventID, choiceID);
-            _progressCache?.Global.AddExperience(EExperienceRecordType.EventExperienced, eventID, choiceID);
+            _progressCache?.Slot.AddExperience(EExperienceRecordType.EventExperienced, eventID, choiceID);
         }
 
-        public PersistentProgressSaveData CapturePersistentProgress()
-            => _progressCache?.Global.Capture(_relicDomain?.OwnedRelicIDs) ?? new PersistentProgressSaveData();
+        public SlotProgressSaveData CaptureSlotProgress()
+            => _progressCache?.Slot.Capture(_relicDomain?.OwnedRelicIDs) ?? new SlotProgressSaveData();
 
         public List<ExperienceRecordData> CaptureRunProgress()
             => _progressCache?.Run.Capture() ?? new System.Collections.Generic.List<ExperienceRecordData>();
 
-        public void RestoreProgress(PersistentProgressSaveData persistent, System.Collections.Generic.IEnumerable<ExperienceRecordData> run)
+        public void RestoreProgress(SlotProgressSaveData slotProgress, System.Collections.Generic.IEnumerable<ExperienceRecordData> run)
         {
-            _progressCache?.Global.Restore(persistent);
+            _progressCache?.Slot.Restore(slotProgress);
             _progressCache?.Run.Restore(run);
-            _relicDomain?.RestoreOwnedRelics(persistent?.relicIDs);
+            _relicDomain?.RestoreOwnedRelics(slotProgress?.relicIDs);
         }
 
         /// <summary>
@@ -293,7 +294,7 @@ namespace Jongmin
                 .FindAll<EventDataTableRow>()
                 .Where(row => row.npcID == npcID)
                 .Where(row => row.isEnable)
-                .Where(row => !row.isOnce || _progressCache == null || !_progressCache.Global.HasSeen(row.rowID))
+                .Where(row => !row.isOnce || _progressCache == null || !_progressCache.Slot.HasSeen(row.rowID))
                 .Where(row => eventConditionSystem == null || eventConditionSystem.IsSatisfied(row.conditionIDs, npcID))
                 .OrderBy(row => row.priority)
                 .FirstOrDefault();
@@ -310,8 +311,8 @@ namespace Jongmin
                 return;
             }
 
-            _progressCache?.Global.MarkSeen(eventDataTableRow.rowID);
-            SavePersistentIfOutsideRun();
+            _progressCache?.Slot.MarkSeen(eventDataTableRow.rowID);
+            SaveSlotProgressIfOutsideRun();
         }
 
         private void HandleBeginEventReward(EventDataTableRow eventDataTableRow)
@@ -365,7 +366,7 @@ namespace Jongmin
                 }
                 for (int count = 1; count <= pair.Value.count; count++)
                 {
-                    _progressCache?.Global.MarkExperience(EExperienceRecordType.SynergyActivated, pair.Key, count.ToString());
+                    _progressCache?.Slot.MarkExperience(EExperienceRecordType.SynergyActivated, pair.Key, count.ToString());
                 }
             }
         }
@@ -383,15 +384,15 @@ namespace Jongmin
                 return;
             }
             _progressCache?.Run.ExperienceRecordAdd(EExperienceRecordType.RelicGained, relic.rowID);
-            _progressCache?.Global.AddExperience(EExperienceRecordType.RelicGained, relic.rowID);
-            SavePersistentIfOutsideRun();
+            _progressCache?.Slot.AddExperience(EExperienceRecordType.RelicGained, relic.rowID);
+            SaveSlotProgressIfOutsideRun();
         }
 
-        private static void SavePersistentIfOutsideRun()
+        private static void SaveSlotProgressIfOutsideRun()
         {
             if (!RunSaveService.HasActiveRun)
             {
-                RunSaveService.SavePersistentProgress();
+                RunSaveService.SaveSlotProgress();
             }
         }
 #endregion

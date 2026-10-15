@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace Kwangmin
 {
-    public class AreaEventDomain : MonoBehaviour
+    public class AreaEventDomain : MonoBehaviour, IRandomAreaEventHost
     {
         [SerializeField] private AreaEventUI areaEventUI;
 
@@ -21,7 +21,7 @@ namespace Kwangmin
         [SerializeField] private PlayerEventStatus playerStatus;
 
         public event Action<AreaEventType> OnAreaEventSelected;
-        public event Action<RandomAreaEventType> OnRandomAreaEventSelected;
+        public event Action<RandomEventData> OnRandomAreaEventSelected;
 
         private GameObject activeAreaEventInstance;
         private Jongmin.EventDomain eventDomain;
@@ -35,10 +35,12 @@ namespace Kwangmin
         private bool restoredCheckpoint;
         private Jongmin.ERunCheckpointType restoredCheckpointType;
         private AreaEventType? restoredEventType;
+        private AreaEventUI_Random activeRandomUI;
+        private bool randomEventBattleActive;
 
         public bool IsRunCompleted => progress.IsCompleted;
         public string CurrentAreaEventId => currentAreaEventId;
-        public RandomAreaEventType? CurrentRandomEvent { get; private set; }
+        public RandomEventData CurrentRandomEvent { get; private set; }
         public string CurrentNpcID { get; private set; }
 
         public bool IsUIOpen()
@@ -129,6 +131,11 @@ namespace Kwangmin
             }
 
             AreaEventType? type = progress.PendingEvent;
+            if (type == AreaEventType.Random && randomEventBattleActive)
+            {
+                CompleteRandomEventBattle(isVictory);
+                return;
+            }
             if (type != AreaEventType.Battle && type != AreaEventType.Boss) return;
             CompleteAreaEvent(type.Value, isVictory);
         }
@@ -191,7 +198,10 @@ namespace Kwangmin
             {
                 Jongmin.RunSaveService.EndRun(Jongmin.ERunEndReason.Death);
                 transitioning = true;
-                LoadingManager.Instance.LoadScene("Lobby");
+                if (!MainFlow.TryReturnToLobby())
+                {
+                    LoadingManager.Instance.LoadScene("Lobby");
+                }
                 return;
             }
 
@@ -202,7 +212,10 @@ namespace Kwangmin
                 selectionOpen = false;
                 transitioning = true;
                 areaEventUI?.Hide();
-                LoadingManager.Instance.LoadScene("Lobby");
+                if (!MainFlow.TryReturnToLobby())
+                {
+                    LoadingManager.Instance.LoadScene("Lobby");
+                }
                 return;
             }
 
@@ -360,6 +373,8 @@ namespace Kwangmin
         {
             EndNpcEncounter();
             CurrentRandomEvent = null;
+            activeRandomUI = null;
+            randomEventBattleActive = false;
             if (activeAreaEventInstance == null)
             {
                 return;
@@ -386,26 +401,27 @@ namespace Kwangmin
 
             transitioning = true;
             selectionOpen = false;
+
+            CloseActiveEvent();
+            AreaSceneBootstrapper.DisableGameBattleObjects(this);
+
+            activeAreaEventInstance = Instantiate(prefab);
+            activeAreaEventInstance.name = prefab.name;
+
+            Scene ownerScene = gameObject.scene;
+            if (ownerScene.IsValid() && ownerScene.isLoaded && activeAreaEventInstance.scene != ownerScene)
+            {
+                SceneManager.MoveGameObjectToScene(activeAreaEventInstance, ownerScene);
+            }
+
             areaEventUI.Hide(() =>
             {
-                CloseActiveEvent();
-                AreaSceneBootstrapper.DisableGameBattleObjects(this);
-
-                activeAreaEventInstance = Instantiate(prefab);
-                activeAreaEventInstance.name = prefab.name;
-
-                Scene ownerScene = gameObject.scene;
-                if (ownerScene.IsValid() && ownerScene.isLoaded && activeAreaEventInstance.scene != ownerScene)
-                {
-                    SceneManager.MoveGameObjectToScene(activeAreaEventInstance, ownerScene);
-                }
-
                 var npcs = activeAreaEventInstance.GetComponentsInChildren<ClickableObject>(true);
                 var npcRoots = new GameObject[npcs.Length];
                 for (int i = 0; i < npcs.Length; i++) npcRoots[i] = npcs[i].gameObject;
                 foreach (var subUI in activeAreaEventInstance.GetComponentsInChildren<AreaEventSubUI>(true))
                 {
-                    subUI.Bind(CompleteActiveEvent, npcRoots);
+                    subUI.Bind(CompleteActiveEvent, npcRoots, TryInteractNpc);
                 }
 
                 UpdateStatusOnEventSelected(type);
@@ -413,33 +429,87 @@ namespace Kwangmin
                 progress.TryBeginEvent(type);
                 if (type == AreaEventType.Random)
                 {
-                    CurrentRandomEvent = RandomAreaEventSelector.Select();
-                    activeAreaEventInstance.GetComponentInChildren<AreaEventUI_Random>(true)
-                        .Show(CurrentRandomEvent.Value, CompleteActiveEvent);
+                    AreaEventData areaData = GetCurrentOrFirstData();
+                    CurrentRandomEvent = RandomAreaEventSelector.Select(areaData != null ? areaData.Section : 0);
+                    activeRandomUI = activeAreaEventInstance.GetComponentInChildren<AreaEventUI_Random>(true);
+                    activeRandomUI.Show(CurrentRandomEvent, this);
                 }
                 BeginNpcEncounter(type);
                 transitioning = false;
                 OnAreaEventSelected?.Invoke(type);
-                if (CurrentRandomEvent.HasValue)
+                if (CurrentRandomEvent != null)
                 {
-                    OnRandomAreaEventSelected?.Invoke(CurrentRandomEvent.Value);
+                    OnRandomAreaEventSelected?.Invoke(CurrentRandomEvent);
                 }
             });
         }
 
         public void CompleteActiveEvent()
         {
-            if (transitioning || activeAreaEventInstance == null) return;
+            if (transitioning || activeAreaEventInstance == null || IsDialoguePlaying()) return;
             AreaEventType? type = progress.PendingEvent;
             if (type != AreaEventType.Random && IsEventUIOpen()) return;
             if (type != AreaEventType.Shop && type != AreaEventType.Blacksmith && type != AreaEventType.Random) return;
-            if (type == AreaEventType.Random && CurrentRandomEvent.HasValue)
+            if (type == AreaEventType.Random)
             {
-                string eventID = CurrentRandomEvent.Value.ToString();
-                Jongmin.RunSaveService.MarkRandomEventExperienced(eventID);
-                GetEventDomain()?.RecordEventExperience(eventID);
+                if (randomEventBattleActive || (activeRandomUI != null && !activeRandomUI.CanLeave)) return;
+                MarkRandomEventExperienced();
             }
             CompleteAreaEvent(type.Value, true);
+        }
+
+        public void FailRandomEvent()
+        {
+            if (transitioning || progress.PendingEvent != AreaEventType.Random) return;
+            CompleteAreaEvent(AreaEventType.Random, false);
+        }
+
+        private void MarkRandomEventExperienced()
+        {
+            if (CurrentRandomEvent == null) return;
+            Jongmin.RunSaveService.MarkRandomEventExperienced(CurrentRandomEvent.Id);
+            GetEventDomain()?.RecordEventExperience(CurrentRandomEvent.Id);
+        }
+
+        public bool TryStartRandomEventBattle()
+        {
+            if (transitioning || randomEventBattleActive || activeAreaEventInstance == null
+                || progress.PendingEvent != AreaEventType.Random) return false;
+
+            BattleManagerInjector injector = GetBattleManagerInjector();
+            if (injector == null)
+            {
+                Debug.LogError("[AreaEventDomain] BattleManagerInjector가 없습니다.", this);
+                return false;
+            }
+
+            bool accepted = injector.TryStartAreaBattle(GetCurrentOrFirstData(), AreaEventType.Battle, success =>
+            {
+                if (success) return;
+                Debug.LogWarning("[AreaEventDomain] 랜덤 이벤트 전투를 시작하지 못해 이벤트로 돌아갑니다.", this);
+                CompleteRandomEventBattle(true);
+            });
+            if (!accepted) return false;
+
+            randomEventBattleActive = true;
+            activeAreaEventInstance.SetActive(false);
+            AreaSceneBootstrapper.EnableGameBattleObjects(this);
+            return true;
+        }
+
+        private void CompleteRandomEventBattle(bool isVictory)
+        {
+            randomEventBattleActive = false;
+            if (!isVictory)
+            {
+                CompleteAreaEvent(AreaEventType.Random, false);
+                return;
+            }
+
+            AreaSceneBootstrapper.DisableGameBattleObjects(this);
+            if (activeAreaEventInstance == null) return;
+            activeAreaEventInstance.SetActive(true);
+            if (activeRandomUI != null) activeRandomUI.HandleBattleWon();
         }
 
         private string GetNpcID(AreaEventType type)
@@ -448,15 +518,7 @@ namespace Kwangmin
             {
                 AreaEventType.Shop => "Krabian",
                 AreaEventType.Blacksmith => "Heca",
-                AreaEventType.Random => CurrentRandomEvent switch
-                {
-                    RandomAreaEventType.Vampire => "Lucien",
-                    RandomAreaEventType.Spirit => "Elemental",
-                    RandomAreaEventType.Cleric => "EventPriest",
-                    RandomAreaEventType.Jester => "Clown",
-                    RandomAreaEventType.TrainingDummy => "TrainingDoll",
-                    _ => null
-                },
+                AreaEventType.Random => activeRandomUI != null ? activeRandomUI.CurrentNpcID : null,
                 _ => null
             };
         }
@@ -477,6 +539,40 @@ namespace Kwangmin
             cachedEventDomain.RecordNpcEncounter(npcID);
             CurrentNpcID = npcID;
         }
+
+        private bool TryInteractNpc()
+        {
+            if (IsDialoguePlaying()) return true;
+
+            Jongmin.EventDomain cachedEventDomain = GetEventDomain();
+            return cachedEventDomain != null && cachedEventDomain.TryInteract(CurrentNpcID);
+        }
+
+        private bool IsDialoguePlaying()
+        {
+            Jongmin.EventDomain cachedEventDomain = GetEventDomain();
+            return cachedEventDomain != null && cachedEventDomain.IsDialoguePlaying;
+        }
+
+        bool IRandomAreaEventHost.IsDialoguePlaying => IsDialoguePlaying();
+
+        bool IRandomAreaEventHost.TryInteract(string npcID, Action specialAction)
+        {
+            Jongmin.EventDomain cachedEventDomain = GetEventDomain();
+            return cachedEventDomain != null && cachedEventDomain.TryInteract(npcID, specialAction);
+        }
+
+        bool IRandomAreaEventHost.HasRunnableEvent(string npcID)
+        {
+            Jongmin.EventDomain cachedEventDomain = GetEventDomain();
+            return cachedEventDomain != null && cachedEventDomain.TryGetEvent(npcID, out _);
+        }
+
+        bool IRandomAreaEventHost.TryStartBattle() => TryStartRandomEventBattle();
+
+        void IRandomAreaEventHost.Complete() => CompleteActiveEvent();
+
+        void IRandomAreaEventHost.Fail() => FailRandomEvent();
 
         private void EndNpcEncounter()
         {

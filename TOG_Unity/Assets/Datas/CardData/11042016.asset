@@ -21,9 +21,9 @@ MonoBehaviour:
   star: 2
   price: 40
   cardimage: {fileID: 21300000, guid: 71b3207b916b08f40af7f3de012c8e26, type: 3}
-  synergy1Icon: {fileID: 0}
+  synergy1Icon: {fileID: 21300000, guid: 699449a7872a4d644a7feff4111274cc, type: 3}
   synergy2Icon: {fileID: 21300000, guid: 127e00238a67eef4eab61cc20fc2d9a9, type: 3}
-  synergy3Icon: {fileID: 0}
+  synergy3Icon: {fileID: 21300000, guid: 6c099384401fd5e4da665922358454d7, type: 3}
   synergy1ID: 210008
   synergy2ID: 210006
   synergy3ID: 210011

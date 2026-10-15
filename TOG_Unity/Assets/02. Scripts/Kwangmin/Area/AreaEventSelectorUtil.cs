@@ -82,6 +82,7 @@ public static class AreaEventSelectorUtil
         int shopWeight = !forcedEvent && status.ShopCountInStage >= 1 ? 0 : data.MerchantEvent;
         int smithyWeight = !forcedEvent && status.SmithyCountInStage >= 2 ? 0 : data.SmithyEvent;
         int blessingWeight = !forcedEvent && status.BlessingCooldownTurns > 0 ? 0 : data.BlessingEvent;
+        int randomWeight = RandomAreaEventSelector.HasCandidate(data.Section) ? data.RandomEvent : 0;
 
         return new Dictionary<AreaEventType, int>
         {
@@ -90,7 +91,7 @@ public static class AreaEventSelectorUtil
             { AreaEventType.Battle, Mathf.Max(0, data.BattleEvent) },
             { AreaEventType.Blacksmith, Mathf.Max(0, smithyWeight) },
             { AreaEventType.Blessing, Mathf.Max(0, blessingWeight) },
-            { AreaEventType.Random, Mathf.Max(0, data.RandomEvent) }
+            { AreaEventType.Random, Mathf.Max(0, randomWeight) }
         };
     }
 }

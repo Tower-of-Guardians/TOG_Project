@@ -12,11 +12,11 @@ public sealed class RunProgressTests
     {
         RunRandom.Initialize(12345);
         RunRandom.Range(RunRandom.Reward, 0, 1000);
-        List<RandomStreamSaveData> snapshot = RunRandom.Capture();
-        int expectedNext = RunRandom.Range(RunRandom.Reward, 0, 1000);
+        var snapshot = RunRandom.Capture();
+        var expectedNext = RunRandom.Range(RunRandom.Reward, 0, 1000);
 
         RunRandom.Initialize(12345, snapshot);
-        int restoredNext = RunRandom.Range(RunRandom.Reward, 0, 1000);
+        var restoredNext = RunRandom.Range(RunRandom.Reward, 0, 1000);
 
         Assert.AreEqual(expectedNext, restoredNext);
     }
@@ -25,12 +25,12 @@ public sealed class RunProgressTests
     public void RunRandom_UsingOneStreamDoesNotChangeAnotherStream()
     {
         RunRandom.Initialize(777);
-        int expectedArea = RunRandom.Range(RunRandom.Area, 0, 1000);
+        var expectedArea = RunRandom.Range(RunRandom.Area, 0, 1000);
 
         RunRandom.Initialize(777);
         RunRandom.Range(RunRandom.EnemyAction, 0, 1000);
         RunRandom.Range(RunRandom.EnemyAction, 0, 1000);
-        int actualArea = RunRandom.Range(RunRandom.Area, 0, 1000);
+        var actualArea = RunRandom.Range(RunRandom.Area, 0, 1000);
 
         Assert.AreEqual(expectedArea, actualArea);
     }
@@ -51,11 +51,11 @@ public sealed class RunProgressTests
     }
 
     [Test]
-    public void TogSaveData_JsonRoundTripPreservesSlotPersistentAndRunData()
+    public void TogSaveData_JsonRoundTripPreservesSlotProgressAndRunData()
     {
         var source = new TogSaveData
         {
-            persistent = new PersistentProgressSaveData
+            slotProgress = new SlotProgressSaveData
             {
                 relicIDs = new List<string> { "RelicA" },
                 seenEventIDs = new List<string> { "EventA" }
@@ -76,12 +76,12 @@ public sealed class RunProgressTests
         };
         source.slotInfo.slot = 2;
 
-        string json = JsonUtility.ToJson(source);
-        TogSaveData restored = JsonUtility.FromJson<TogSaveData>(json);
+        var json = JsonUtility.ToJson(source);
+        var restored = JsonUtility.FromJson<TogSaveData>(json);
 
         Assert.AreEqual(2, restored.slotInfo.slot);
-        Assert.AreEqual("RelicA", restored.persistent.relicIDs[0]);
-        Assert.AreEqual("EventA", restored.persistent.seenEventIDs[0]);
+        Assert.AreEqual("RelicA", restored.slotProgress.relicIDs[0]);
+        Assert.AreEqual("EventA", restored.slotProgress.seenEventIDs[0]);
         Assert.AreEqual("run-1", restored.activeRun.runID);
         Assert.AreEqual(ERunCheckpointType.EventEntry, restored.activeRun.checkpointType);
         Assert.AreEqual(3, restored.activeRun.areaChoices.Count);
@@ -92,12 +92,64 @@ public sealed class RunProgressTests
     }
 
     [Test]
+    public void TogSaveData_SlotProgressJsonRestoresRecords()
+    {
+        const string json = "{\"version\":1,\"slotProgress\":{\"relicIDs\":[\"RelicA\"],\"seenEventIDs\":[\"EventA\"],\"experienceRecords\":[{\"type\":0,\"targetID\":\"Slime\",\"value\":3}]}}";
+        var saved = JsonUtility.FromJson<TogSaveData>(json);
+        var progress = new SlotEventProgress();
+        progress.Restore(saved.slotProgress);
+
+        Assert.IsTrue(progress.HasSeen("EventA"));
+        Assert.AreEqual(3, progress.Experience.Get(EExperienceRecordType.MonsterKill, "Slime"));
+        CollectionAssert.AreEqual(new[] { "RelicA" }, saved.slotProgress.relicIDs);
+        Assert.AreEqual(1, (int)EExperienceRecordScope.Slot);
+    }
+
+    [Test]
+    public void SlotProgress_RestoreReplacesPreviousSlotAndKeepsSnapshotsIndependent()
+    {
+        var progress = new SlotEventProgress();
+        progress.MarkSeen("EventA");
+        progress.AddExperience(EExperienceRecordType.MonsterKill, "Slime", amount: 3);
+        progress.RecordSingleAttackDamage(20);
+        var firstSlot = progress.Capture(new[] { "RelicA" });
+
+        progress.Restore(new SlotProgressSaveData());
+        Assert.IsFalse(progress.HasSeen("EventA"));
+        Assert.AreEqual(0, progress.Experience.Get(EExperienceRecordType.MonsterKill, "Slime"));
+        Assert.AreEqual(0, progress.MaxSingleAttackDamage);
+        progress.MarkSeen("EventB");
+
+        progress.Restore(firstSlot);
+        Assert.IsTrue(progress.HasSeen("EventA"));
+        Assert.IsFalse(progress.HasSeen("EventB"));
+        Assert.AreEqual(3, progress.Experience.Get(EExperienceRecordType.MonsterKill, "Slime"));
+        Assert.AreEqual(20, progress.MaxSingleAttackDamage);
+    }
+
+    [Test]
+    public void EventProgressCache_ResetRunKeepsSlotProgress()
+    {
+        var cache = new EventProgressCache();
+        cache.Slot.MarkSeen("EventA");
+        cache.Slot.AddExperience(EExperienceRecordType.MonsterKill, "Slime", amount: 3);
+        cache.Run.ExperienceRecordAdd(EExperienceRecordType.MonsterKill, "Slime");
+
+        cache.ResetRun();
+
+        Assert.AreEqual(0, cache.Run.Experience.Get(EExperienceRecordType.MonsterKill, "Slime"));
+        Assert.AreEqual(3, cache.Slot.Experience.Get(EExperienceRecordType.MonsterKill, "Slime"));
+        Assert.IsTrue(cache.Slot.HasSeen("EventA"));
+    }
+
+    [Test]
     public void RunCommands_RegisterCommandsAndSlotCompletionOptions()
     {
         var terminal = new JxTerminal();
         JxCommandAttributeRegistrar.RegisterCommands(terminal, new RunCommands(null));
 
         Assert.Contains("Save Status", terminal.GetCommandKeys().ToList());
+        Assert.Contains("Save Slot Progress", terminal.GetCommandKeys().ToList());
         Assert.Contains("Experience Get", terminal.GetCommandKeys().ToList());
         Assert.Contains("Experience List", terminal.GetCommandKeys().ToList());
         CollectionAssert.AreEquivalent(new[] { "1", "2", "3" }, terminal.Complete("Select Save Slot ").Candidates);
@@ -106,8 +158,8 @@ public sealed class RunProgressTests
     [Test]
     public void AreaEventProgress_InitializesAtSavedAreaID()
     {
-        AreaEventData first = ScriptableObject.CreateInstance<AreaEventData>();
-        AreaEventData saved = ScriptableObject.CreateInstance<AreaEventData>();
+        var first = ScriptableObject.CreateInstance<AreaEventData>();
+        var saved = ScriptableObject.CreateInstance<AreaEventData>();
         first.Id = "Area-1";
         first.Stage = 1;
         first.Area = 1;
@@ -118,7 +170,7 @@ public sealed class RunProgressTests
         try
         {
             var progress = new AreaEventProgress();
-            bool initialized = progress.TryInitialize(new[] { saved, first }, saved.Id);
+            var initialized = progress.TryInitialize(new[] { saved, first }, saved.Id);
 
             Assert.IsTrue(initialized);
             Assert.AreEqual(saved.Id, progress.Current.Id);
@@ -133,8 +185,8 @@ public sealed class RunProgressTests
     [Test]
     public void AreaEventProgress_InitialBattleCanCompleteAfterCheckpointInitialization()
     {
-        AreaEventData first = ScriptableObject.CreateInstance<AreaEventData>();
-        AreaEventData second = ScriptableObject.CreateInstance<AreaEventData>();
+        var first = ScriptableObject.CreateInstance<AreaEventData>();
+        var second = ScriptableObject.CreateInstance<AreaEventData>();
         first.Id = "Area-1";
         first.Stage = 1;
         first.Area = 1;

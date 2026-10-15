@@ -16,6 +16,15 @@ namespace JxDialogueBox
         private Coroutine _startCoroutine;
         private Coroutine _endCoroutine;
 
+        public event Action<string, int> OnChoiceSelected;
+
+        public bool IsRunning =>
+            _startCoroutine != null ||
+            _endCoroutine != null ||
+            (_dialogueEngine != null &&
+             (_dialogueEngine.State == DialogueEngine.EngineState.ShowingLine ||
+              _dialogueEngine.State == DialogueEngine.EngineState.AwaitingChoice));
+
         private void Awake()
         {
             if(dialogueView == null)
@@ -35,7 +44,17 @@ namespace JxDialogueBox
         private void Start()
         {
             dialogueView.Bind(onNextAction:   () => _dialogueEngine.Advance(),
-                              onChooseAction: (idx) => _dialogueEngine.Choose(idx));
+                              onChooseAction: HandleChoose);
+        }
+
+        private void HandleChoose(int index)
+        {
+            if (_dialogueEngine.State == DialogueEngine.EngineState.AwaitingChoice)
+            {
+                OnChoiceSelected?.Invoke(_dialogueEngine.CurrentNodeID, index);
+            }
+
+            _dialogueEngine.Choose(index);
         }
 
         public void StartDialogue(string dialogueID, Action onEnded = null)

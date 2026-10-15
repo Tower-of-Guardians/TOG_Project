@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: RandomEventData
+  m_EditorClassIdentifier: 
+  m_GroupName: RandomEventData
+  m_GUID: 2a57b6e85ce91e643bc849b8663db335
+  m_SerializeEntries:
+  - m_GUID: 05ff4790f23904445ba36e6c91b12591
+    m_Address: RandomEvent_04
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RandomEventData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 159897dc247e7234abf521a11b44f727
+    m_Address: RandomEvent_05
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RandomEventData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d55e75b68f243e4fab7a73c4280cd95
+    m_Address: RandomEvent_02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RandomEventData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 85bbdedfb53f9a74180f8dd1f580eaed
+    m_Address: RandomEvent_01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RandomEventData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: accd7312847c2ff43bcbf9997423e3b3
+    m_Address: RandomEvent_03
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RandomEventData
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 11547d97efbd680438c8d420c6672236, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ac01a0a3574d421448beeeeda8cc78f9, type: 2}
+    - {fileID: 11400000, guid: 7c55a7034cc462f4aaef41941bd60ae8, type: 2}

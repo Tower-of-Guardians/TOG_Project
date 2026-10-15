@@ -8,6 +8,8 @@ namespace Jongmin
     {
         private DialogueRunner _dialogueRunner;
 
+        public bool IsPlaying => _dialogueRunner != null && _dialogueRunner.IsRunning;
+
         public void Construct(DialogueRunner dialogueRunner)
         {
             _dialogueRunner = dialogueRunner;

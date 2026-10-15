@@ -5,9 +5,6 @@ using UnityEngine;
 
 namespace Jongmin
 {
-    /// <summary>
-    /// 게임별 저장 정책을 담당합니다. 파일 입출력과 3슬롯 관리는 JxModule의 SaveSlotSystem에 위임합니다.
-    /// </summary>
     public static class RunSaveService
     {
         private static TogSaveData _data;
@@ -15,6 +12,9 @@ namespace Jongmin
         private static RelicDomain _relicDomain;
         private static string _restoredRunID;
         private static string _restoredRandomRunID;
+        private static readonly SlotPlayClock PlayClock = new();
+        private static SlotSessionLifetime _sessionLifetime;
+        private static bool _selectedSlotCleared;
 
         public static int SelectedSlot { get; private set; }
         public static bool HasActiveRun => Data.activeRun != null;
@@ -38,6 +38,10 @@ namespace Jongmin
             _relicDomain = null;
             _restoredRunID = null;
             _restoredRandomRunID = null;
+            PlayClock.Stop();
+            _sessionLifetime = null;
+            SelectedSlot = 0;
+            _selectedSlotCleared = false;
             EnsureLoaded();
             RestoreRandomState();
         }
@@ -49,12 +53,23 @@ namespace Jongmin
                 throw new ArgumentOutOfRangeException(nameof(slot));
             }
 
+            EndSession();
             SelectedSlot = slot;
-            _data = SaveSlotSystem.TryLoad(slot, out TogSaveData loaded) ? loaded : new TogSaveData();
+            _data = SlotSaveDataReader.TryLoad(slot, out var loaded) ? loaded : new TogSaveData();
             Normalize();
             _restoredRunID = null;
             _restoredRandomRunID = null;
+            _eventDomain?.ResetRunProgress();
+            DataCenter.Instance?.ResetForNewRun();
+            RestoreRandomState();
             RestoreBoundDomains();
+            
+            if (DataCenter.IsCardDataLoaded && (_data.activeRun == null || !_data.activeRun.hasBattleDeckState))
+            {
+                GameData.Instance?.ResetBattleDeck();
+            }
+            
+            StartSession();
         }
 
         public static void Bind(EventDomain eventDomain, RelicDomain relicDomain)
@@ -64,21 +79,97 @@ namespace Jongmin
             RestoreBoundDomains();
         }
 
+        public static void ClearSlot(int slot)
+        {
+            if (slot < 0 || slot >= SaveSlotSystem.MaxSlotCount)
+            {
+                throw new ArgumentOutOfRangeException(nameof(slot));
+            }
+
+            SaveSlotSystem.Remove(slot);
+            if (SelectedSlot != slot)
+            {
+                return;
+            }
+
+            _selectedSlotCleared = true;
+            PlayClock.Stop();
+            _data = new TogSaveData();
+            _data.slotInfo.slot = slot;
+            _restoredRunID = null;
+            _restoredRandomRunID = null;
+            _eventDomain?.ResetRunProgress();
+            RestoreRandomState();
+            RestoreBoundDomains();
+            
+            if (Application.isPlaying)
+            {
+                DataCenter.Instance?.ResetForNewRun();
+                if (DataCenter.IsCardDataLoaded)
+                {
+                    GameData.Instance?.ResetBattleDeck();
+                }
+            }
+        }
+
+        public static void StartSession()
+        {
+            if (PlayClock.IsRunning)
+            {
+                return;
+            }
+            
+            EnsureLoaded();
+            PlayClock.Start(Time.realtimeSinceStartupAsDouble);
+            _selectedSlotCleared = false;
+            Save();
+            
+            if (Application.isPlaying && _sessionLifetime == null)
+            {
+                var owner = new GameObject("Slot Session");
+                UnityEngine.Object.DontDestroyOnLoad(owner);
+                _sessionLifetime = owner.AddComponent<SlotSessionLifetime>();
+            }
+        }
+
+        public static void SaveSession()
+        {
+            if (PlayClock.IsRunning)
+            {
+                Save();
+            }
+        }
+
+        public static void EndSession()
+        {
+            SaveSession();
+            PlayClock.Stop();
+        }
+
         public static void BeginRun(int? seed = null)
         {
             EnsureLoaded();
             DataCenter.Instance?.ResetForNewRun();
-            int runSeed = seed ?? unchecked((int)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            
+            var runSeed = seed ?? unchecked((int)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             _data.activeRun = new ActiveRunSaveData
             {
                 runID = Guid.NewGuid().ToString("N"),
                 seed = runSeed,
                 checkpointType = ERunCheckpointType.AreaEntry
             };
+            
             _eventDomain?.ResetRunProgress();
             RunRandom.Initialize(runSeed);
             _restoredRandomRunID = _data.activeRun.runID;
+            
+            if (DataCenter.IsCardDataLoaded)
+            {
+                GameData.Instance?.ResetBattleDeck();
+            }
+            
             CaptureRuntime(_data.activeRun);
+            _data.runCount++;
             Save();
             _restoredRunID = _data.activeRun.runID;
         }
@@ -86,10 +177,12 @@ namespace Jongmin
         public static void SaveAreaEntry(string areaID, PlayerEventStatus status)
         {
             EnsureRun();
+            
             _data.activeRun.checkpointType = ERunCheckpointType.AreaEntry;
             _data.activeRun.areaID = areaID;
             _data.activeRun.eventStatus = status;
             _data.activeRun.areaChoices.Clear();
+            
             CaptureRuntime(_data.activeRun);
             Save();
         }
@@ -97,17 +190,20 @@ namespace Jongmin
         public static void SaveAreaSelection(string areaID, PlayerEventStatus status, IEnumerable<AreaEventType> choices)
         {
             EnsureRun();
+            
             _data.activeRun.checkpointType = ERunCheckpointType.AreaSelection;
             _data.activeRun.areaID = areaID;
             _data.activeRun.eventStatus = status;
             _data.activeRun.areaChoices.Clear();
+            
             if (choices != null)
             {
-                foreach (AreaEventType choice in choices)
+                foreach (var choice in choices)
                 {
                     _data.activeRun.areaChoices.Add((int)choice);
                 }
             }
+            
             CaptureRuntime(_data.activeRun);
             Save();
         }
@@ -115,18 +211,21 @@ namespace Jongmin
         public static void SaveEventEntry(string areaID, PlayerEventStatus status, IEnumerable<AreaEventType> choices, AreaEventType eventType)
         {
             EnsureRun();
+            
             _data.activeRun.checkpointType = ERunCheckpointType.EventEntry;
             _data.activeRun.areaID = areaID;
             _data.activeRun.eventStatus = status;
             _data.activeRun.eventType = (int)eventType;
             _data.activeRun.areaChoices.Clear();
+            
             if (choices != null)
             {
-                foreach (AreaEventType choice in choices)
+                foreach (var choice in choices)
                 {
                     _data.activeRun.areaChoices.Add((int)choice);
                 }
             }
+            
             CaptureRuntime(_data.activeRun);
             Save();
         }
@@ -134,6 +233,7 @@ namespace Jongmin
         public static bool TryGetAreaResume(out string areaID, out PlayerEventStatus status, out ERunCheckpointType checkpointType, out List<AreaEventType> choices, out AreaEventType? eventType)
         {
             RestoreBoundDomains();
+            
             var run = Data.activeRun;
             if (run == null || string.IsNullOrWhiteSpace(run.areaID))
             {
@@ -149,14 +249,17 @@ namespace Jongmin
             status = run.eventStatus;
             checkpointType = run.checkpointType;
             choices = new List<AreaEventType>();
+            
             if (run.areaChoices != null)
             {
-                foreach (int choice in run.areaChoices)
+                foreach (var choice in run.areaChoices)
                 {
                     choices.Add((AreaEventType)choice);
                 }
             }
+            
             eventType = run.checkpointType == ERunCheckpointType.EventEntry ? (AreaEventType)run.eventType : null;
+            
             return true;
         }
 
@@ -166,8 +269,9 @@ namespace Jongmin
             {
                 return;
             }
+            
             _eventDomain?.RecordRunResult(reason);
-            _data.persistent = CapturePersistent();
+            _data.slotProgress = CaptureSlotProgress();
             _data.activeRun = null;
             _restoredRunID = null;
             _restoredRandomRunID = null;
@@ -179,6 +283,7 @@ namespace Jongmin
         public static void AbandonRunAndReturnToLobby()
         {
             EndRun(ERunEndReason.Abandon);
+            
             if (LoadingManager.Instance != null)
             {
                 LoadingManager.Instance.LoadScene("Lobby");
@@ -191,7 +296,9 @@ namespace Jongmin
             {
                 return;
             }
+            
             EnsureRun();
+            
             if (!_data.activeRun.experiencedRandomEventIDs.Contains(eventID))
             {
                 _data.activeRun.experiencedRandomEventIDs.Add(eventID);
@@ -199,12 +306,14 @@ namespace Jongmin
         }
 
         public static bool HasExperiencedRandomEvent(string eventID)
-            => HasActiveRun && Data.activeRun.experiencedRandomEventIDs.Contains(eventID);
+        {
+            return HasActiveRun && Data.activeRun.experiencedRandomEventIDs.Contains(eventID);
+        }
 
-        public static void SavePersistentProgress()
+        public static void SaveSlotProgress()
         {
             EnsureLoaded();
-            _data.persistent = CapturePersistent();
+            _data.slotProgress = CaptureSlotProgress();
             Save();
         }
 
@@ -215,13 +324,13 @@ namespace Jongmin
 
         public static bool TryRestoreBattleDeckState()
         {
-            ActiveRunSaveData run = Data.activeRun;
+            var run = Data.activeRun;
             if (run == null || !run.hasBattleDeckState || GameData.Instance == null)
             {
                 return false;
             }
 
-            GameData gameData = GameData.Instance;
+            var gameData = GameData.Instance;
             gameData.notuseDeck.Clear();
             gameData.notuseDeck.AddRange(run.drawDeck);
             gameData.handDeck.Clear();
@@ -247,7 +356,8 @@ namespace Jongmin
             {
                 return;
             }
-            _data.persistent = CapturePersistent();
+            
+            _data.slotProgress = CaptureSlotProgress();
             run.experienceRecords = _eventDomain?.CaptureRunProgress() ?? new List<ExperienceRecordData>();
             run.randomStreams = RunRandom.Capture();
             run.deck = CaptureDeck();
@@ -257,7 +367,7 @@ namespace Jongmin
 
         private static void CaptureBattleDeckState(ActiveRunSaveData run)
         {
-            GameData gameData = GameData.Instance;
+            var gameData = GameData.Instance;
             if (gameData == null || gameData.notuseDeck.Count + gameData.handDeck.Count + gameData.garbageDeck.Count == 0)
             {
                 run.hasBattleDeckState = false;
@@ -273,18 +383,20 @@ namespace Jongmin
             run.discardDeck = new List<string>(gameData.garbageDeck);
         }
 
-        private static PersistentProgressSaveData CapturePersistent()
+        private static SlotProgressSaveData CaptureSlotProgress()
         {
             if (_eventDomain != null)
             {
-                return _eventDomain.CapturePersistentProgress();
+                return _eventDomain.CaptureSlotProgress();
             }
-            var persistent = _data?.persistent ?? new PersistentProgressSaveData();
+            
+            var slotProgress = _data?.slotProgress ?? new SlotProgressSaveData();
             if (_relicDomain != null)
             {
-                persistent.relicIDs = new List<string>(_relicDomain.OwnedRelicIDs);
+                slotProgress.relicIDs = new List<string>(_relicDomain.OwnedRelicIDs);
             }
-            return persistent;
+            
+            return slotProgress;
         }
 
         private static List<CardRunSaveData> CaptureDeck()
@@ -294,12 +406,14 @@ namespace Jongmin
             {
                 return result;
             }
-            foreach (CardData card in DataCenter.Instance.userDeck)
+            
+            foreach (var card in DataCenter.Instance.userDeck)
             {
                 if (card == null || string.IsNullOrWhiteSpace(card.id))
                 {
                     continue;
                 }
+                
                 result.Add(new CardRunSaveData
                 {
                     cardID = card.id,
@@ -317,11 +431,12 @@ namespace Jongmin
 
         private static PlayerRunSaveData CapturePlayer()
         {
-            PlayerState state = DataCenter.Instance?.playerstate;
+            var state = DataCenter.Instance?.playerstate;
             if (state == null)
             {
                 return new PlayerRunSaveData();
             }
+            
             return new PlayerRunSaveData
             {
                 level = state.level,
@@ -338,15 +453,17 @@ namespace Jongmin
         private static void RestoreBoundDomains()
         {
             EnsureLoaded();
-            _eventDomain?.RestoreProgress(_data.persistent, _data.activeRun?.experienceRecords);
-            _relicDomain?.RestoreOwnedRelics(_data.persistent?.relicIDs);
+            _eventDomain?.RestoreProgress(_data.slotProgress, _data.activeRun?.experienceRecords);
+            _relicDomain?.RestoreOwnedRelics(_data.slotProgress?.relicIDs);
 
             if (_data.activeRun == null || _restoredRunID == _data.activeRun.runID)
             {
                 return;
             }
+            
             RestoreRandomState();
             RestorePlayer(_data.activeRun.player);
+            
             if (RestoreDeck(_data.activeRun.deck))
             {
                 TryRestoreBattleDeckState();
@@ -356,13 +473,14 @@ namespace Jongmin
 
         private static void RestoreRandomState()
         {
-            ActiveRunSaveData run = _data?.activeRun;
+            var run = _data?.activeRun;
             if (run == null)
             {
                 RunRandom.Initialize(0);
                 _restoredRandomRunID = null;
                 return;
             }
+            
             if (_restoredRandomRunID == run.runID)
             {
                 return;
@@ -378,7 +496,8 @@ namespace Jongmin
             {
                 return;
             }
-            PlayerState state = DataCenter.Instance.playerstate;
+            
+            var state = DataCenter.Instance.playerstate;
             state.level = saved.level;
             state.maxexperience = saved.maxExperience;
             state.experience = saved.experience;
@@ -396,14 +515,15 @@ namespace Jongmin
             {
                 return false;
             }
+            
             DataCenter.Instance.userDeck.Clear();
-            foreach (CardRunSaveData saved in savedDeck)
+            foreach (var saved in savedDeck)
             {
-                if (saved == null || !DataCenter.card_datas.TryGetValue(saved.cardID, out CardData source))
+                if (saved == null || !DataCenter.card_datas.TryGetValue(saved.cardID, out var source))
                 {
                     continue;
                 }
-                CardData card = UnityEngine.Object.Instantiate(source);
+                var card = UnityEngine.Object.Instantiate(source);
                 card.grade = saved.grade;
                 card.star = saved.star;
                 card.ATK = saved.attack;
@@ -413,11 +533,17 @@ namespace Jongmin
                 card.time = saved.acquiredAt;
                 DataCenter.Instance.userDeck.Add(card);
             }
+            
             return true;
         }
 
         private static void Save()
         {
+            if (_selectedSlotCleared)
+            {
+                return;
+            }
+            _data.slotInfo.playTime += PlayClock.CollectSeconds(Time.realtimeSinceStartupAsDouble);
             SaveSlotSystem.Save(SelectedSlot, _data, true);
         }
 
@@ -427,7 +553,8 @@ namespace Jongmin
             {
                 return;
             }
-            _data = SaveSlotSystem.TryLoad(SelectedSlot, out TogSaveData loaded) ? loaded : new TogSaveData();
+            
+            _data = SlotSaveDataReader.TryLoad(SelectedSlot, out var loaded) ? loaded : new TogSaveData();
             Normalize();
         }
 
@@ -435,7 +562,8 @@ namespace Jongmin
         {
             _data ??= new TogSaveData();
             _data.slotInfo ??= new SaveSlotInfo();
-            _data.persistent ??= new PersistentProgressSaveData();
+            _data.slotProgress ??= new SlotProgressSaveData();
+            
             if (_data.activeRun != null)
             {
                 _data.activeRun.deck ??= new List<CardRunSaveData>();

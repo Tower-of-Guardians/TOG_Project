@@ -94,7 +94,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -129,10 +129,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -174,7 +174,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 558
+        y: 560
         width: 640
         height: 560
       alignment: 0
@@ -283,7 +283,7 @@ TextureImporter:
       name: door_shop_5
       rect:
         serializedVersion: 2
-        x: 644
+        x: 640
         y: 0
         width: 640
         height: 560
@@ -305,8 +305,8 @@ TextureImporter:
       name: door_shop_6
       rect:
         serializedVersion: 2
-        x: 1282
-        y: 2
+        x: 1280
+        y: 0
         width: 640
         height: 560
       alignment: 0
