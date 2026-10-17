@@ -71,6 +71,22 @@ namespace JxDialogueBox
             }
         }
 
+        public void PrepareDialogue(string characterID)
+        {
+            if (playerSlot)
+            {
+                playerSlot.SetPortraitByKey("default");
+            }
+
+            if (npcSlot)
+            {
+                npcSlot.ClearPortrait();
+                npcSlot.SetCharacter(characterID);
+            }
+
+            SetActiveColor();
+        }
+
         public void PrepareSpeaker(SpeakerRef speaker, string portraitKey)
         {
             if (speaker.Speaker == Speaker.Player)

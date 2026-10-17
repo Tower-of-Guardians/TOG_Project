@@ -63,6 +63,17 @@ namespace JxDialogueBox
             SetPortraitVisible(sprite != null);
         }
 
+        public void ClearPortrait()
+        {
+            _characterID = string.Empty;
+
+            if (Image)
+            {
+                Image.sprite = null;
+                SetPortraitVisible(false);
+            }
+        }
+
         public bool IsPortraitEmpty()
         {
             return Image == null || Image.sprite == null;

@@ -142,6 +142,14 @@ namespace JxDialogueBox
             }
         }
 
+        public void PrepareDialogue(string characterID)
+        {
+            if (portraits)
+            {
+                portraits.PrepareDialogue(characterID);
+            }
+        }
+
         public void PrepareSpeaker(SpeakerRef speaker, string portraitKey)
         {
             if (portraits)

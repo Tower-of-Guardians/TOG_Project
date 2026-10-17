@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8175012590677773267
+--- !u!114 &-7112930393970549765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
-  m_Name: LobbyPriest_Third
+  m_Name: Lucien_Regular
   m_EditorClassIdentifier: 
-  rowID: LobbyPriest_Third
+  rowID: Lucien_Regular
   isEnable: 1
-  dialogueID: LobbyPriest_Third
-  entryNodeID: LobbyPriest_Third_1
+  dialogueID: Lucien_Regular
+  entryNodeID: Lucien_Regular_1
+  characterID: Lucien
 --- !u!114 &-7085909826581040745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,6 +33,24 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Heca_Fourth
   entryNodeID: Heca_Fourth_1
+  characterID: Heca
+--- !u!114 &-6772179622105308706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: LobbyPriest_PowerOfWitch
+  m_EditorClassIdentifier: 
+  rowID: LobbyPriest_PowerOfWitch
+  isEnable: 1
+  dialogueID: LobbyPriest_PowerOfWitch
+  entryNodeID: LobbyPriest_PowerOfWitch_1
+  characterID: LobbyPriest
 --- !u!114 &-6438184362668803176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,6 +67,24 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Lucien_First
   entryNodeID: Lucien_First_1
+  characterID: Lucien
+--- !u!114 &-6149850883710958018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: LobbyPriest_PowerOfProtector
+  m_EditorClassIdentifier: 
+  rowID: LobbyPriest_PowerOfProtector
+  isEnable: 1
+  dialogueID: LobbyPriest_PowerOfProtector
+  entryNodeID: LobbyPriest_PowerOfProtector_1
+  characterID: LobbyPriest
 --- !u!114 &-5553619285390444496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +101,7 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: LobbyPriest_Fourth
   entryNodeID: LobbyPriest_Fourth_1
+  characterID: LobbyPriest
 --- !u!114 &-3959505211792137803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +118,7 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: LobbyPriest_Priest'sOrb
   entryNodeID: LobbyPriest_Priest'sOrb_1
+  characterID: LobbyPriest
 --- !u!114 &-3716723538553780627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +135,24 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Elemental_First
   entryNodeID: Elemental_First_1
+  characterID: Elemental
+--- !u!114 &-3619527964921212301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: TrainingDoll_Regular
+  m_EditorClassIdentifier: 
+  rowID: TrainingDoll_Regular
+  isEnable: 1
+  dialogueID: TrainingDoll_Regular
+  entryNodeID: TrainingDoll_Regular_1
+  characterID: TrainingDoll
 --- !u!114 &-3357968914452217847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +169,41 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Krabian_First
   entryNodeID: Krabian_First_1
+  characterID: Krabian
+--- !u!114 &-2294483760502057292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: LobbyPriest_PowerOfElemental
+  m_EditorClassIdentifier: 
+  rowID: LobbyPriest_PowerOfElemental
+  isEnable: 1
+  dialogueID: LobbyPriest_PowerOfElemental
+  entryNodeID: LobbyPriest_PowerOfElemental_1
+  characterID: LobbyPriest
+--- !u!114 &-2115894498150929676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: LobbyPriest_PowerOfPlunderer
+  m_EditorClassIdentifier: 
+  rowID: LobbyPriest_PowerOfPlunderer
+  isEnable: 1
+  dialogueID: LobbyPriest_PowerOfPlunderer
+  entryNodeID: LobbyPriest_PowerOfPlunderer_1
+  characterID: LobbyPriest
 --- !u!114 &-2004669725900455740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +220,41 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Elemental_Second
   entryNodeID: Elemental_Second_1
+  characterID: Elemental
+--- !u!114 &-1452630413666932622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: TrainingDoll_First
+  m_EditorClassIdentifier: 
+  rowID: TrainingDoll_First
+  isEnable: 1
+  dialogueID: TrainingDoll_First
+  entryNodeID: TrainingDoll_First_1
+  characterID: TrainingDoll
+--- !u!114 &-1085278475202987997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: BrokenTrainingDoll_UnknownDevice
+  m_EditorClassIdentifier: 
+  rowID: BrokenTrainingDoll_UnknownDevice
+  isEnable: 1
+  dialogueID: BrokenTrainingDoll_UnknownDevice
+  entryNodeID: BrokenTrainingDoll_UnknownDevice_1
+  characterID: BrokenTrainingDoll
 --- !u!114 &-876891578545703743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,22 +271,7 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Clown_First
   entryNodeID: Clown_First_1
---- !u!114 &-656376749470772658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
-  m_Name: Heca_Third
-  m_EditorClassIdentifier: 
-  rowID: Heca_Third
-  isEnable: 1
-  dialogueID: Heca_Third
-  entryNodeID: Heca_Third_1
+  characterID: Clown
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,16 +290,24 @@ MonoBehaviour:
   remoteCsvUrl: https://docs.google.com/spreadsheets/d/1o0lGMXJqSwGANG4f5_zON-Eduirn0UwsyCn2YHiVOSo/export?format=csv&gid=425005800
   dataTableRows:
   - {fileID: 8111292248485054466}
+  - {fileID: 2862277288496034808}
   - {fileID: 4916067748575661540}
   - {fileID: 7763372123822938137}
-  - {fileID: -8175012590677773267}
   - {fileID: -5553619285390444496}
+  - {fileID: 4236079412404956597}
   - {fileID: 1175320177225060165}
+  - {fileID: 1163465068163711489}
+  - {fileID: -6149850883710958018}
+  - {fileID: 6649050148331885376}
+  - {fileID: -2115894498150929676}
+  - {fileID: -6772179622105308706}
+  - {fileID: -2294483760502057292}
+  - {fileID: 6790198591024624539}
   - {fileID: -3959505211792137803}
   - {fileID: 6425469944947118858}
   - {fileID: 1430323942581820689}
-  - {fileID: -656376749470772658}
   - {fileID: -7085909826581040745}
+  - {fileID: 4576895582473117597}
   - {fileID: 2973382366081689017}
   - {fileID: 108575688927416430}
   - {fileID: -3357968914452217847}
@@ -195,9 +315,13 @@ MonoBehaviour:
   - {fileID: 526707228419460603}
   - {fileID: -6438184362668803176}
   - {fileID: 5732269477118131773}
+  - {fileID: -7112930393970549765}
   - {fileID: -3716723538553780627}
   - {fileID: -2004669725900455740}
   - {fileID: -876891578545703743}
+  - {fileID: -1452630413666932622}
+  - {fileID: -3619527964921212301}
+  - {fileID: -1085278475202987997}
   dataTableRowScript: {fileID: 0}
 --- !u!114 &108575688927416430
 MonoBehaviour:
@@ -215,6 +339,7 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Heca_Heca'sGemstone
   entryNodeID: Heca_Heca'sGemstone_1
+  characterID: Heca
 --- !u!114 &526707228419460603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +356,24 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Krabian_Krabian'sCanine
   entryNodeID: Krabian_Krabian'sCanine_1
+  characterID: Krabian
+--- !u!114 &1163465068163711489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: LobbyPriest_PowerOfKnight
+  m_EditorClassIdentifier: 
+  rowID: LobbyPriest_PowerOfKnight
+  isEnable: 1
+  dialogueID: LobbyPriest_PowerOfKnight
+  entryNodeID: LobbyPriest_PowerOfKnight_1
+  characterID: LobbyPriest
 --- !u!114 &1175320177225060165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +390,7 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: LobbyPriest_AboutElemental
   entryNodeID: LobbyPriest_AboutElemental_1
+  characterID: LobbyPriest
 --- !u!114 &1430323942581820689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +407,24 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Heca_Second
   entryNodeID: Heca_Second_1
+  characterID: Heca
+--- !u!114 &2862277288496034808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: EventPriest_Regular
+  m_EditorClassIdentifier: 
+  rowID: EventPriest_Regular
+  isEnable: 1
+  dialogueID: EventPriest_Regular
+  entryNodeID: EventPriest_Regular_1
+  characterID: EventPriest
 --- !u!114 &2973382366081689017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +441,41 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Heca_RelicHint
   entryNodeID: Heca_RelicHint_1
+  characterID: Heca
+--- !u!114 &4236079412404956597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: LobbyPriest_Seventh
+  m_EditorClassIdentifier: 
+  rowID: LobbyPriest_Seventh
+  isEnable: 1
+  dialogueID: LobbyPriest_Seventh
+  entryNodeID: LobbyPriest_Seventh_1
+  characterID: LobbyPriest
+--- !u!114 &4576895582473117597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: Heca_Fifth
+  m_EditorClassIdentifier: 
+  rowID: Heca_Fifth
+  isEnable: 1
+  dialogueID: Heca_Fifth
+  entryNodeID: Heca_Fifth_1
+  characterID: Heca
 --- !u!114 &4916067748575661540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +492,7 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: LobbyPriest_First
   entryNodeID: LobbyPriest_First_1
+  characterID: LobbyPriest
 --- !u!114 &5732269477118131773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +509,7 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Lucien_Second
   entryNodeID: Lucien_Second_1
+  characterID: Lucien
 --- !u!114 &6425469944947118858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +526,41 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Heca_First
   entryNodeID: Heca_First_1
+  characterID: Heca
+--- !u!114 &6649050148331885376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: LobbyPriest_PowerOfVampire
+  m_EditorClassIdentifier: 
+  rowID: LobbyPriest_PowerOfVampire
+  isEnable: 1
+  dialogueID: LobbyPriest_PowerOfVampire
+  entryNodeID: LobbyPriest_PowerOfVampire_1
+  characterID: LobbyPriest
+--- !u!114 &6790198591024624539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f650c759ed44cc8fd2637e0e870a3a, type: 3}
+  m_Name: LobbyPriest_PowerOfKing
+  m_EditorClassIdentifier: 
+  rowID: LobbyPriest_PowerOfKing
+  isEnable: 1
+  dialogueID: LobbyPriest_PowerOfKing
+  entryNodeID: LobbyPriest_PowerOfKing_1
+  characterID: LobbyPriest
 --- !u!114 &6886482621974371124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +577,7 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: Krabian_Second
   entryNodeID: Krabian_Second_1
+  characterID: Krabian
 --- !u!114 &7763372123822938137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +594,7 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: LobbyPriest_Second
   entryNodeID: LobbyPriest_Second_1
+  characterID: LobbyPriest
 --- !u!114 &8111292248485054466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,3 +611,4 @@ MonoBehaviour:
   isEnable: 1
   dialogueID: EventPriest_First
   entryNodeID: EventPriest_First_1
+  characterID: EventPriest

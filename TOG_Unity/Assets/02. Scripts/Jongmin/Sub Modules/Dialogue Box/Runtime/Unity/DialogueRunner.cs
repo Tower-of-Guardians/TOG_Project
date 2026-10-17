@@ -12,6 +12,7 @@ namespace JxDialogueBox
         [SerializeField, Required] private DialogueView dialogueView;
 
         private DialogueEngine _dialogueEngine;
+        private DialogueTableDataSource _dataSource;
         private Action _onDialogueEnded;
         private Coroutine _startCoroutine;
         private Coroutine _endCoroutine;
@@ -33,8 +34,8 @@ namespace JxDialogueBox
                 return;
             }
 
-            var dataSource = new DialogueTableDataSource();
-            _dialogueEngine = new DialogueEngine(dataSource);
+            _dataSource = new DialogueTableDataSource();
+            _dialogueEngine = new DialogueEngine(_dataSource);
             
             _dialogueEngine.OnLine += HandleLine;
             _dialogueEngine.OnChoice += HandleChoice;
@@ -77,6 +78,8 @@ namespace JxDialogueBox
 
         private IEnumerator CoStartDialogue(string dialogueID)
         {
+            dialogueView.PrepareDialogue(_dataSource.GetEntryCharacterID(dialogueID));
+
             if (_dialogueEngine.TryGetFirstLine(dialogueID, out var firstLine))
             {
                 dialogueView.PrepareSpeaker(firstLine.Speaker, firstLine.PortraitKey);
