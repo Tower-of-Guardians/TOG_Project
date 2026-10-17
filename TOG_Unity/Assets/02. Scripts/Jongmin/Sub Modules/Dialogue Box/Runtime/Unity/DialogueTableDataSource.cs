@@ -12,6 +12,7 @@ namespace JxDialogueBox
         
         private readonly Dictionary<string, DialogueNode> _nodeDict = new(StringComparer.Ordinal);
         private readonly Dictionary<string, string> _entryDict = new(StringComparer.Ordinal);
+        private readonly Dictionary<string, string> _entryCharacterDict = new(StringComparer.Ordinal);
 
         public DialogueTableDataSource()
         {
@@ -30,6 +31,11 @@ namespace JxDialogueBox
         public string GetEntryNodeID(string dialogueID)
         {
             return _entryDict.TryGetValue(dialogueID, out var entryNodeID) ?  entryNodeID : string.Empty;
+        }
+
+        public string GetEntryCharacterID(string dialogueID)
+        {
+            return _entryCharacterDict.TryGetValue(dialogueID, out var characterID) ? characterID : string.Empty;
         }
 
         private void BuildCache()
@@ -53,6 +59,7 @@ namespace JxDialogueBox
                 }
                 
                 _entryDict[row.dialogueID] = row.entryNodeID;
+                _entryCharacterDict[row.dialogueID] = row.characterID ?? string.Empty;
             }
         }
 
