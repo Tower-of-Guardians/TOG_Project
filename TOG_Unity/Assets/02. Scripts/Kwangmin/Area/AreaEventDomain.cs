@@ -540,12 +540,12 @@ namespace Kwangmin
             CurrentNpcID = npcID;
         }
 
-        private bool TryInteractNpc()
+        private bool TryInteractNpc(Action specialAction)
         {
             if (IsDialoguePlaying()) return true;
 
             Jongmin.EventDomain cachedEventDomain = GetEventDomain();
-            return cachedEventDomain != null && cachedEventDomain.TryInteract(CurrentNpcID);
+            return cachedEventDomain != null && cachedEventDomain.TryInteract(CurrentNpcID, specialAction);
         }
 
         private bool IsDialoguePlaying()
