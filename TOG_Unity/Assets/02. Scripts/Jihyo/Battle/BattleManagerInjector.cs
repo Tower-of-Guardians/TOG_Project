@@ -137,9 +137,17 @@ public class BattleManagerInjector : MonoBehaviour, IInjector
 
     private MonsterEncounterData SelectEncounter(int section, AreaEventType type)
     {
-        List<MonsterEncounterData> candidates = BattleEncounterSelector.GetCandidates(
-            DataCenter.monster_encounter_datas.Values, DataCenter.monster_datas, section, type);
-        candidates.RemoveAll(encounter => !BattleEncounterSpawner.CanSpawnEncounter(encounter, monsterPrefabRegistry));
+        List<MonsterEncounterData> candidates = GetSpawnableCandidates(section, type);
+        if (candidates.Count == 0 && type == AreaEventType.Boss)
+        {
+            int fallbackSection = FindNearestBossSection(section);
+            if (fallbackSection != section)
+            {
+                Debug.LogWarning($"BattleManagerInjector: Section {section}의 보스 전투 데이터가 없어 Section {fallbackSection}의 보스로 대체합니다.", this);
+                candidates = GetSpawnableCandidates(fallbackSection, type);
+            }
+        }
+
         if (candidates.Count == 0)
         {
             Debug.LogWarning($"BattleManagerInjector: Section {section}의 {type} 전투 데이터 또는 몬스터 프리팹이 없습니다.", this);
@@ -147,6 +155,33 @@ public class BattleManagerInjector : MonoBehaviour, IInjector
         }
 
         return candidates[Jongmin.RunRandom.Range(Jongmin.RunRandom.EnemyAction, 0, candidates.Count)];
+    }
+
+    private List<MonsterEncounterData> GetSpawnableCandidates(int section, AreaEventType type)
+    {
+        List<MonsterEncounterData> candidates = BattleEncounterSelector.GetCandidates(
+            DataCenter.monster_encounter_datas.Values, DataCenter.monster_datas, section, type);
+        candidates.RemoveAll(encounter => !BattleEncounterSpawner.CanSpawnEncounter(encounter, monsterPrefabRegistry));
+        return candidates;
+    }
+
+    private int FindNearestBossSection(int section)
+    {
+        int nearestSection = section;
+        int nearestDistance = int.MaxValue;
+        foreach (MonsterEncounterData encounter in DataCenter.monster_encounter_datas.Values)
+        {
+            if (encounter == null) continue;
+
+            int distance = Mathf.Abs(encounter.Section - section);
+            if (distance > nearestDistance || (distance == nearestDistance && encounter.Section >= nearestSection)) continue;
+            if (GetSpawnableCandidates(encounter.Section, AreaEventType.Boss).Count == 0) continue;
+
+            nearestSection = encounter.Section;
+            nearestDistance = distance;
+        }
+
+        return nearestSection;
     }
 
     private bool ValidateReferences()

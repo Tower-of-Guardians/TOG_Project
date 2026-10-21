@@ -3141,8 +3141,6 @@ MonoBehaviour:
   - {fileID: 1928632933}
   - {fileID: 353037373}
   - {fileID: 19027351}
-  previousActiveStates: 
-  hasSnapshot: 0
 --- !u!4 &1702779624
 Transform:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class MainFlow : MonoBehaviour
         Loading,
         Title,
         SlotSelect,
+        DeleteConfirm,
         Settings,
         Entering
     }
@@ -40,6 +41,7 @@ public class MainFlow : MonoBehaviour
     [SerializeField] private BootLoadingView _loadingView;
     [SerializeField] private TitleView _titleView;
     [SerializeField] private SlotSelectView _slotSelectView;
+    [SerializeField] private ConfirmPopupView _deleteConfirmView;
     [SerializeField] private SettingsView _settingsView;
     [SerializeField] private LobbySceneView _lobbySceneView;
     [SerializeField] private InputActionReference _cancelAction;
@@ -50,6 +52,7 @@ public class MainFlow : MonoBehaviour
 
     private CanvasGroup _rootGroup;
     private EMainState _state;
+    private int _pendingDeleteSlot = -1;
 
     public static bool TryReturnToLobby()
     {
@@ -87,7 +90,8 @@ public class MainFlow : MonoBehaviour
         }
 
         _titleView.Bind(OpenSlotSelect, HandleContinue, OpenSettings, QuitGame);
-        _slotSelectView.Bind(EnterGame, DeleteSlot, CloseSlotSelect);
+        _slotSelectView.Bind(EnterGame, RequestDeleteSlot, CloseSlotSelect);
+        _deleteConfirmView.Bind(ConfirmDeleteSlot, CancelDeleteSlot);
         _settingsView.Bind(CloseSettings);
         _loadingView.Bind(QuitGame);
 
@@ -95,6 +99,7 @@ public class MainFlow : MonoBehaviour
         _loadingView.HideImmediately();
         _titleView.HideImmediately();
         _slotSelectView.HideImmediately();
+        _deleteConfirmView.HideImmediately();
         _settingsView.HideImmediately();
         _bootBackdrop.gameObject.SetActive(true);
         _bootBackdrop.alpha = 1f;
@@ -236,15 +241,46 @@ public class MainFlow : MonoBehaviour
         OpenTitle();
     }
 
-    private void DeleteSlot(int slot)
+    private void RequestDeleteSlot(int slot)
     {
         if (_state != EMainState.SlotSelect)
         {
             return;
         }
 
-        Jongmin.RunSaveService.ClearSlot(slot);
+        _state = EMainState.DeleteConfirm;
+        _pendingDeleteSlot = slot;
+        _deleteConfirmView.SetMessage($"슬롯 {slot + 1}의 저장 데이터를 삭제하시겠습니까?\n삭제한 데이터는 복구할 수 없습니다.");
+        _deleteConfirmView.Show();
+    }
+
+    private void ConfirmDeleteSlot()
+    {
+        if (_state != EMainState.DeleteConfirm)
+        {
+            return;
+        }
+
+        Jongmin.RunSaveService.ClearSlot(_pendingDeleteSlot);
         _slotSelectView.Refresh(SlotPreviewSource.GetSlots());
+        CloseDeleteConfirm();
+    }
+
+    private void CancelDeleteSlot()
+    {
+        if (_state != EMainState.DeleteConfirm)
+        {
+            return;
+        }
+
+        CloseDeleteConfirm();
+    }
+
+    private void CloseDeleteConfirm()
+    {
+        _pendingDeleteSlot = -1;
+        _deleteConfirmView.Hide();
+        _state = EMainState.SlotSelect;
     }
 
     private void OpenSettings()
@@ -284,6 +320,9 @@ public class MainFlow : MonoBehaviour
         {
             case EMainState.SlotSelect:
                 CloseSlotSelect();
+                break;
+            case EMainState.DeleteConfirm:
+                CancelDeleteSlot();
                 break;
             case EMainState.Settings:
                 CloseSettings();
