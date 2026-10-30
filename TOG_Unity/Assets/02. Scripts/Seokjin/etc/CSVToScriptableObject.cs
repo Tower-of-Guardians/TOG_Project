@@ -603,31 +603,63 @@ public class CSVToScriptableObject
     }
     private static void AreaEventDataCreate(string[] allLines)
     {
+        if (allLines == null || allLines.Length <= 1)
+        {
+            return;
+        }
+
+        string[] headers = allLines[0].Split(',');
+        Dictionary<string, int> columnMap = new Dictionary<string, int>();
+        for (int i = 0; i < headers.Length; i++)
+        {
+            string header = headers[i].Trim().Trim('"').TrimStart('﻿');
+            if (!string.IsNullOrEmpty(header) && !columnMap.ContainsKey(header))
+            {
+                columnMap.Add(header, i);
+            }
+        }
+
+        HashSet<string> csvIds = new HashSet<string>();
         foreach (string line in allLines.Skip(1))
         {
             if (string.IsNullOrWhiteSpace(line)) continue;
 
             string[] values = line.Split(',');
+            string id = GetCsvString(columnMap, values, "ID");
+            if (string.IsNullOrEmpty(id)) continue;
+            csvIds.Add(id);
 
-            AreaEventData newItem = ScriptableObject.CreateInstance<AreaEventData>();
-            int n = 0;
+            string assetPath = soFolderPath + "/" + id + ".asset";
+            AreaEventData item = AssetDatabase.LoadAssetAtPath<AreaEventData>(assetPath);
+            if (item == null)
+            {
+                item = ScriptableObject.CreateInstance<AreaEventData>();
+                AssetDatabase.CreateAsset(item, assetPath);
+            }
 
-            newItem.Id = values[n++].Trim();
-            newItem.Name = values[n++].Trim();
+            item.Id = id;
+            item.Name = GetCsvString(columnMap, values, "Name");
+            item.Stage = GetCsvInt(columnMap, values, "Stage");
+            item.Area = GetCsvInt(columnMap, values, "Area");
+            item.Section = GetCsvInt(columnMap, values, "Section");
+            item.BossEvent = GetCsvInt(columnMap, values, "BossEvent");
+            item.MerchantEvent = GetCsvInt(columnMap, values, "MerchantEvent");
+            item.SmithyEvent = GetCsvInt(columnMap, values, "SmithyEvent");
+            item.BlessingEvent = GetCsvInt(columnMap, values, "BlessingEvent");
+            item.RandomEvent = GetCsvInt(columnMap, values, "RandomEvent");
+            item.BattleEvent = GetCsvInt(columnMap, values, "BattleEvent");
 
-            if (int.TryParse(values[n++].Trim(), out int stage)) newItem.Stage = stage;
-            if (int.TryParse(values[n++].Trim(), out int area)) newItem.Area = area;
-            if (int.TryParse(values[n++].Trim(), out int section)) newItem.Section = section;
-            if (int.TryParse(values[n++].Trim(), out int choice)) newItem.BossEvent = choice;
-            if (int.TryParse(values[n++].Trim(), out int merchant)) newItem.MerchantEvent = merchant;
-            if (int.TryParse(values[n++].Trim(), out int smithy)) newItem.SmithyEvent = smithy;
-            if (int.TryParse(values[n++].Trim(), out int blessing)) newItem.BlessingEvent = blessing;
-            if (int.TryParse(values[n++].Trim(), out int battle)) newItem.BattleEvent = battle;
-            if (int.TryParse(values[n++].Trim(), out int random)) newItem.RandomEvent = random;
+            EditorUtility.SetDirty(item);
+        }
 
-            string fileName = newItem.Id + ".asset";
-
-            AssetDatabase.CreateAsset(newItem, soFolderPath + "/" + fileName);
+        foreach (string guid in AssetDatabase.FindAssets("t:AreaEventData", new[] { soFolderPath }))
+        {
+            string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+            AreaEventData item = AssetDatabase.LoadAssetAtPath<AreaEventData>(assetPath);
+            if (item != null && !csvIds.Contains(item.Id))
+            {
+                AssetDatabase.DeleteAsset(assetPath);
+            }
         }
     }
     private static void RandomEventDataCreate(string[] allLines)

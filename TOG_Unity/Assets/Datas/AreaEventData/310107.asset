@@ -16,10 +16,10 @@ MonoBehaviour:
   Name: Area1-7
   Stage: 1
   Area: 7
-  Section: 11
-  BossEvent: 0
-  MerchantEvent: 20
-  SmithyEvent: 9
+  Section: 14
+  BossEvent: 100
+  MerchantEvent: 0
+  SmithyEvent: 0
   BlessingEvent: 0
-  BattleEvent: 60
-  RandomEvent: 50
+  BattleEvent: 0
+  RandomEvent: 0

@@ -16,10 +16,10 @@ MonoBehaviour:
   Name: Area1-6
   Stage: 1
   Area: 6
-  Section: 13
-  BossEvent: 100
-  MerchantEvent: 0
-  SmithyEvent: 0
+  Section: 12
+  BossEvent: 0
+  MerchantEvent: 25
+  SmithyEvent: 10
   BlessingEvent: 0
-  BattleEvent: 0
-  RandomEvent: 0
+  BattleEvent: 55
+  RandomEvent: 50

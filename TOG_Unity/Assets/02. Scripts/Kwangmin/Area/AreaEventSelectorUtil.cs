@@ -3,95 +3,78 @@ using UnityEngine;
 
 public static class AreaEventSelectorUtil
 {
-    private const int MaxSafetyLoopCount = 100;
-    private const int TargetChoiceCount = 3;
+    private const int DrawCount = 3;
+    private const int MaxPassCount = 1000;
+    private const int MaxChance = 100;
 
     public static List<AreaEventType> GetNextRegionChoices(AreaEventData data, PlayerEventStatus status)
     {
+        var choices = new List<AreaEventType>();
         if (data == null)
         {
             Debug.LogError("[AreaEventSelectorUtil] AreaEventData가 null입니다.");
-            return new List<AreaEventType>();
+            return choices;
         }
 
-        var runtimeWeights = CalculateRuntimeWeights(data, status);
-        var selectedEvents = new List<AreaEventType>();
-
-        if (runtimeWeights[AreaEventType.Battle] > 0)
+        List<(AreaEventType type, int chance)> chances = CalculateRuntimeChances(data, status);
+        if (!chances.Exists(entry => entry.chance > 0))
         {
-            selectedEvents.Add(AreaEventType.Battle);
-            runtimeWeights[AreaEventType.Battle] = 0;
+            return choices;
         }
-        int safetyNet = 0;
 
-        while (selectedEvents.Count < TargetChoiceCount && safetyNet < MaxSafetyLoopCount)
+        for (int i = 0; i < DrawCount; i++)
         {
-            safetyNet++;
-
-            AreaEventType picked = GetWeightedRandomEvent(runtimeWeights);
-            if (picked == (AreaEventType)(-1))
+            if (TryDrawEvent(chances, out AreaEventType picked) && !choices.Contains(picked))
             {
-                break;
+                choices.Add(picked);
             }
-
-            selectedEvents.Add(picked);
-            runtimeWeights[picked] = 0;
         }
 
-        return selectedEvents;
+        return choices;
     }
 
-    private static AreaEventType GetWeightedRandomEvent(Dictionary<AreaEventType, int> weights)
+    private static bool TryDrawEvent(List<(AreaEventType type, int chance)> chances, out AreaEventType picked)
     {
-        int totalWeight = 0;
-        foreach (var weight in weights.Values)
+        for (int pass = 0; pass < MaxPassCount; pass++)
         {
-            totalWeight += weight;
-        }
-
-        if (totalWeight <= 0)
-        {
-            return (AreaEventType)(-1);
-        }
-
-        int roll = Jongmin.RunRandom.Range(Jongmin.RunRandom.Area, 1, totalWeight + 1);
-        int processedWeight = 0;
-
-        foreach (var kvp in weights)
-        {
-            processedWeight += kvp.Value;
-            if (roll <= processedWeight)
+            foreach (var (type, chance) in chances)
             {
-                return kvp.Key;
+                if (chance <= 0) continue;
+                if (Jongmin.RunRandom.Range(Jongmin.RunRandom.Area, 0, MaxChance) < chance)
+                {
+                    picked = type;
+                    return true;
+                }
             }
         }
 
-        return (AreaEventType)(-1);
+        picked = default;
+        return false;
     }
 
-    private static Dictionary<AreaEventType, int> CalculateRuntimeWeights(AreaEventData data, PlayerEventStatus status)
+    private static List<(AreaEventType type, int chance)> CalculateRuntimeChances(AreaEventData data, PlayerEventStatus status)
     {
         int configuredEvents = 0;
-        foreach (int weight in new[] { data.BossEvent, data.MerchantEvent, data.BattleEvent,
-            data.SmithyEvent, data.BlessingEvent, data.RandomEvent })
+        foreach (int chance in new[] { data.BossEvent, data.MerchantEvent, data.SmithyEvent,
+            data.BlessingEvent, data.RandomEvent, data.BattleEvent })
         {
-            if (weight > 0) configuredEvents++;
+            if (chance > 0) configuredEvents++;
         }
 
         bool forcedEvent = configuredEvents == 1;
-        int shopWeight = !forcedEvent && status.ShopCountInStage >= 1 ? 0 : data.MerchantEvent;
-        int smithyWeight = !forcedEvent && status.SmithyCountInStage >= 2 ? 0 : data.SmithyEvent;
-        int blessingWeight = !forcedEvent && status.BlessingCooldownTurns > 0 ? 0 : data.BlessingEvent;
-        int randomWeight = RandomAreaEventSelector.HasCandidate(data.Section) ? data.RandomEvent : 0;
+        int shopChance = !forcedEvent && status.ShopCountInStage >= 1 ? 0 : data.MerchantEvent;
+        int smithyChance = !forcedEvent && status.SmithyCountInStage >= 2 ? 0 : data.SmithyEvent;
+        int blessingChance = !forcedEvent && status.BlessingCooldownTurns > 0 ? 0 : data.BlessingEvent;
+        int randomChance = RandomAreaEventSelector.HasCandidate(data.Section) ? data.RandomEvent : 0;
 
-        return new Dictionary<AreaEventType, int>
+        return new List<(AreaEventType type, int chance)>
         {
-            { AreaEventType.Boss, Mathf.Max(0, data.BossEvent) },
-            { AreaEventType.Shop, Mathf.Max(0, shopWeight) },
-            { AreaEventType.Battle, Mathf.Max(0, data.BattleEvent) },
-            { AreaEventType.Blacksmith, Mathf.Max(0, smithyWeight) },
-            { AreaEventType.Blessing, Mathf.Max(0, blessingWeight) },
-            { AreaEventType.Random, Mathf.Max(0, randomWeight) }
+            (AreaEventType.Boss, Mathf.Max(0, data.BossEvent)),
+            (AreaEventType.Shop, Mathf.Max(0, shopChance)),
+            (AreaEventType.Blacksmith, Mathf.Max(0, smithyChance)),
+            (AreaEventType.Blessing, Mathf.Max(0, blessingChance)),
+            (AreaEventType.Random, Mathf.Max(0, randomChance)),
+            (AreaEventType.Battle, Mathf.Max(0, data.BattleEvent))
         };
     }
 }

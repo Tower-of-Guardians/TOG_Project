@@ -15,20 +15,8 @@ MonoBehaviour:
   m_GroupName: AreaEventData
   m_GUID: 23c5707101d2cd84d958123b9e830c44
   m_SerializeEntries:
-  - m_GUID: 0763675dcacfd954f926ca35cbcb728f
-    m_Address: 310110
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - AreaEventData
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 181425a1a990c9849846517f65628f47
     m_Address: 310107
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - AreaEventData
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2eed2a364d0cfb04485bd3451c33d544
-    m_Address: 310108
     m_ReadOnly: 0
     m_SerializedLabels:
     - AreaEventData
@@ -47,18 +35,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 52369142b6242044aa359f8f9af98a17
     m_Address: 310106
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - AreaEventData
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7fac06bcf27d45f4999b96205d6a7479
-    m_Address: 310111
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - AreaEventData
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 94a4703d59c2384439909cca85f70535
-    m_Address: 310109
     m_ReadOnly: 0
     m_SerializedLabels:
     - AreaEventData
