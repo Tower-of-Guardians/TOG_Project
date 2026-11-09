@@ -500,12 +500,7 @@ public class GameData : Singleton<GameData>
         foreach (string key in keysToProcess)
         {
             SynergyTotalData totalData = synergyIDList[key];
-            SynergyData sd = totalData.synergyData;
-            IList<int> effectTiers = sd != null ? sd.Effect1Synergys : null;
-            bool inRange = effectTiers != null
-                           && totalData.count >= 0
-                           && totalData.count < effectTiers.Count;
-            bool effectReady = inRange && effectTiers[totalData.count] > 0;
+            bool effectReady = IsSynergyActivated(totalData);
 
             if (effectReady)
             {
@@ -530,22 +525,7 @@ public class GameData : Singleton<GameData>
             return false;
         }
 
-        int count = totalData.count;
-        bool effect1Active = GetEffectValueAtCount(totalData.synergyData.Effect1Synergys, count) > 0;
-        bool effect2Active = GetEffectValueAtCount(totalData.synergyData.Effect2Synergys, count) > 0;
-        bool effect3Active = GetEffectValueAtCount(totalData.synergyData.Effect3Synergys, count) > 0;
-        return effect1Active || effect2Active || effect3Active;
-    }
-
-    private int GetEffectValueAtCount(List<int> effectValues, int count)
-    {
-        if (effectValues == null || effectValues.Count == 0 || count <= 0)
-        {
-            return 0;
-        }
-
-        int index = Mathf.Clamp(count - 1, 0, effectValues.Count - 1);
-        return effectValues[index];
+        return SynergyActivationSelector.IsActivated(totalData);
     }
 
     public bool IsCheckInventory(string cardid)

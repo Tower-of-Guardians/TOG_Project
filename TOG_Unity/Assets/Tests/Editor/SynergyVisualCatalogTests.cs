@@ -4,13 +4,22 @@ using UnityEngine;
 public class SynergyVisualCatalogTests
 {
     [Test]
-    public void TryGetEffectStateName_BasicAndBloodSucking_HaveEffectClips()
+    public void TryGetEffectStateName_MappedSynergies_HaveEffectClips()
     {
         Assert.IsTrue(SynergyVisualCatalog.TryGetEffectStateName(SynergyVisualCatalog.BasicId, out string basicState));
         Assert.AreEqual(SynergyVisualCatalog.BasicEffectStateName, basicState);
 
         Assert.IsTrue(SynergyVisualCatalog.TryGetEffectStateName(SynergyVisualCatalog.BloodSuckingId, out string bloodState));
         Assert.AreEqual(SynergyVisualCatalog.BloodSuckingEffectStateName, bloodState);
+
+        Assert.IsTrue(SynergyVisualCatalog.TryGetEffectStateName(SynergyVisualCatalog.ShieldAttackId, out string shieldState));
+        Assert.AreEqual(SynergyVisualCatalog.ShieldAttackEffectStateName, shieldState);
+
+        Assert.IsTrue(SynergyVisualCatalog.TryGetEffectStateName(SynergyVisualCatalog.PlunderId, out string plunderState));
+        Assert.AreEqual(SynergyVisualCatalog.PlunderEffectStateName, plunderState);
+
+        Assert.IsTrue(SynergyVisualCatalog.TryGetEffectStateName(SynergyVisualCatalog.MysteryId, out string mysteryState));
+        Assert.AreEqual(SynergyVisualCatalog.MysteryEffectStateName, mysteryState);
     }
 
     [Test]

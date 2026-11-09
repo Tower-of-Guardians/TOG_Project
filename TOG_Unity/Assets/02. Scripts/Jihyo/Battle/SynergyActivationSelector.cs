@@ -44,16 +44,25 @@ public static class SynergyActivationSelector
                || GetEffectValueAtCount(entry.synergyData.Effect3Synergys, count) > 0;
     }
 
-    public static int GetEffectValueAtCount(IList<int> effectValues, int count)
+    public static int GetEffectValueAtCount(IReadOnlyList<int> effectValues, int count)
     {
         if (effectValues == null || effectValues.Count == 0 || count <= 0)
         {
             return 0;
         }
 
-        int index = Mathf.Clamp(count - 1, 0, effectValues.Count - 1);
-        int effectValue = effectValues[index];
-        return effectValue > 0 ? effectValue : 0;
+        int lastPositive = 0;
+        int limit = Mathf.Min(count, effectValues.Count);
+        for (int i = 0; i < limit; i++)
+        {
+            int effectValue = effectValues[i];
+            if (effectValue > 0)
+            {
+                lastPositive = effectValue;
+            }
+        }
+
+        return lastPositive;
     }
 
     public static int GetMinimumActivationCount(SynergyData synergyData)
@@ -77,5 +86,38 @@ public static class SynergyActivationSelector
         }
 
         return 0;
+    }
+
+    public static int GetMaximumActivationCount(SynergyData synergyData)
+    {
+        if (synergyData == null)
+        {
+            return 0;
+        }
+
+        int maximum = 0;
+        maximum = Mathf.Max(maximum, GetLastPositiveCount(synergyData.Effect1Synergys));
+        maximum = Mathf.Max(maximum, GetLastPositiveCount(synergyData.Effect2Synergys));
+        maximum = Mathf.Max(maximum, GetLastPositiveCount(synergyData.Effect3Synergys));
+        return maximum;
+    }
+
+    private static int GetLastPositiveCount(IReadOnlyList<int> effectValues)
+    {
+        if (effectValues == null)
+        {
+            return 0;
+        }
+
+        int lastCount = 0;
+        for (int i = 0; i < effectValues.Count; i++)
+        {
+            if (effectValues[i] > 0)
+            {
+                lastCount = i + 1;
+            }
+        }
+
+        return lastCount;
     }
 }

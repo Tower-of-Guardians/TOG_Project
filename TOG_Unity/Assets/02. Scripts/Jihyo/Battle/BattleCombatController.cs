@@ -380,7 +380,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
 
         string synergyId = entry.synergyData.ID;
-        int effectValue = GetActiveEffectValue(GetEffect1Values(entry), entry.count);
+        int effectValue = SynergyActivationSelector.GetEffectValueAtCount(GetEffect1Values(entry), entry.count);
         if (effectValue <= 0)
         {
             return;
@@ -584,18 +584,6 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
 
         return enemies;
-    }
-
-    private int GetActiveEffectValue(List<int> effectValues, int synergyCount)
-    {
-        if (effectValues == null || effectValues.Count == 0 || synergyCount <= 0)
-        {
-            return 0;
-        }
-
-        int index = Mathf.Clamp(synergyCount - 1, 0, effectValues.Count - 1);
-        int effectValue = effectValues[index];
-        return effectValue > 0 ? effectValue : 0;
     }
 
     private List<int> GetEffect1Values(SynergyTotalData synergyData)

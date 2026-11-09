@@ -13,6 +13,9 @@ public static class SynergyVisualCatalog
 
     public const string BasicEffectStateName = "Effect_Synergy_Basic";
     public const string BloodSuckingEffectStateName = "Effect_Synergy_BloodSucking";
+    public const string ShieldAttackEffectStateName = "Effect_Synergy_ShieldAttack";
+    public const string PlunderEffectStateName = "Effect_Synergy_Plunder";
+    public const string MysteryEffectStateName = "Effect_Synergy_Mystery";
     public const string IdleEffectStateName = "Effect_Synergy_Idle";
 
     public static bool TryGetEffectStateName(string synergyId, out string stateName)
@@ -24,6 +27,15 @@ public static class SynergyVisualCatalog
                 return true;
             case BloodSuckingId:
                 stateName = BloodSuckingEffectStateName;
+                return true;
+            case ShieldAttackId:
+                stateName = ShieldAttackEffectStateName;
+                return true;
+            case PlunderId:
+                stateName = PlunderEffectStateName;
+                return true;
+            case MysteryId:
+                stateName = MysteryEffectStateName;
                 return true;
             default:
                 stateName = null;

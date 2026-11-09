@@ -225,8 +225,7 @@ namespace Jongmin
                 return 0;
             }
 
-            var index = Mathf.Clamp(currentCount - 1, 0, effectValues.Count - 1);
-            return effectValues[index];
+            return SynergyActivationSelector.GetEffectValueAtCount(effectValues, currentCount);
         }
 
         private int GetEffectCount(IReadOnlyCollection<int> effectValues)

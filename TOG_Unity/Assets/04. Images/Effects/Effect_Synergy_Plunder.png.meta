@@ -1,0 +1,454 @@
+fileFormatVersion: 2
+guid: 8a174f70449cf0d4199182842a7560b7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8359742778945619572
+    second: Effect_Synergy_Plunder_0
+  - first:
+      213: -8753662202468672621
+    second: Effect_Synergy_Plunder_1
+  - first:
+      213: 2864354684063497950
+    second: Effect_Synergy_Plunder_2
+  - first:
+      213: -1734684145709339576
+    second: Effect_Synergy_Plunder_3
+  - first:
+      213: -3356005961286467684
+    second: Effect_Synergy_Plunder_4
+  - first:
+      213: 1019493768832348677
+    second: Effect_Synergy_Plunder_5
+  - first:
+      213: -1355642987501092821
+    second: Effect_Synergy_Plunder_6
+  - first:
+      213: -7020221865005947704
+    second: Effect_Synergy_Plunder_7
+  - first:
+      213: -5337166807357875849
+    second: Effect_Synergy_Plunder_8
+  - first:
+      213: 1812856528261437618
+    second: Effect_Synergy_Plunder_9
+  - first:
+      213: -4831523615246492970
+    second: Effect_Synergy_Plunder_10
+  - first:
+      213: 2425312814299193981
+    second: Effect_Synergy_Plunder_11
+  - first:
+      213: 3429677512696742242
+    second: Effect_Synergy_Plunder_12
+  - first:
+      213: 6353883971839168630
+    second: Effect_Synergy_Plunder_13
+  - first:
+      213: -4631884022246416169
+    second: Effect_Synergy_Plunder_14
+  - first:
+      213: -2814023990366727300
+    second: Effect_Synergy_Plunder_15
+  - first:
+      213: -3595341158570276334
+    second: Effect_Synergy_Plunder_16
+  - first:
+      213: -7837285603266857471
+    second: Effect_Synergy_Plunder_17
+  - first:
+      213: 4013984428224692167
+    second: Effect_Synergy_Plunder_18
+  - first:
+      213: -5839292824140760976
+    second: Effect_Synergy_Plunder_19
+  - first:
+      213: -225572356247941996
+    second: Effect_Synergy_Plunder_20
+  - first:
+      213: -8860926417806607968
+    second: Effect_Synergy_Plunder_21
+  - first:
+      213: -1669347720685698923
+    second: Effect_Synergy_Plunder_22
+  - first:
+      213: 2698939163971888851
+    second: Effect_Synergy_Plunder_23
+  - first:
+      213: 7782474646052716264
+    second: Effect_Synergy_Plunder_24
+  - first:
+      213: -8456571265536629285
+    second: Effect_Synergy_Plunder_25
+  - first:
+      213: 1689732376805701546
+    second: Effect_Synergy_Plunder_26
+  - first:
+      213: 8316314474504135698
+    second: Effect_Synergy_Plunder_27
+  - first:
+      213: -8044462157425233346
+    second: Effect_Synergy_Plunder_28
+  - first:
+      213: -3235799997514518637
+    second: Effect_Synergy_Plunder_29
+  - first:
+      213: -1991950490276472222
+    second: Effect_Synergy_Plunder_30
+  - first:
+      213: 6815720486763681825
+    second: Effect_Synergy_Plunder_31
+  - first:
+      213: -3016540206276735711
+    second: Effect_Synergy_Plunder_32
+  - first:
+      213: 7004124834390978097
+    second: Effect_Synergy_Plunder_33
+  - first:
+      213: 2648321618899306255
+    second: Effect_Synergy_Plunder_34
+  - first:
+      213: 517277730907459632
+    second: Effect_Synergy_Plunder_35
+  - first:
+      213: -742736727299064270
+    second: Effect_Synergy_Plunder_36
+  - first:
+      213: -3257383533278907488
+    second: Effect_Synergy_Plunder_37
+  - first:
+      213: -2353308735123676966
+    second: Effect_Synergy_Plunder_38
+  - first:
+      213: -6676378450202220848
+    second: Effect_Synergy_Plunder_39
+  - first:
+      213: -473492823037660537
+    second: Effect_Synergy_Plunder_40
+  - first:
+      213: -8747731847217631984
+    second: Effect_Synergy_Plunder_41
+  - first:
+      213: -5461702990018632723
+    second: Effect_Synergy_Plunder_42
+  - first:
+      213: -1475970379411867917
+    second: Effect_Synergy_Plunder_43
+  - first:
+      213: -958701873761537649
+    second: Effect_Synergy_Plunder_44
+  - first:
+      213: 5992112711064935326
+    second: Effect_Synergy_Plunder_45
+  - first:
+      213: -7813762193649650947
+    second: Effect_Synergy_Plunder_46
+  - first:
+      213: -7818776729045564044
+    second: Effect_Synergy_Plunder_47
+  - first:
+      213: 3071706053280826119
+    second: Effect_Synergy_Plunder_48
+  - first:
+      213: -5639822448830677875
+    second: Effect_Synergy_Plunder_49
+  - first:
+      213: -2047118745811827808
+    second: Effect_Synergy_Plunder_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_Synergy_Plunder_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 476c0b004c5c30470800000000000000
+      internalID: 8359742778945619572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_Plunder_1
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39b57121b9eb48680800000000000000
+      internalID: -8753662202468672621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_Plunder_2
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edeb45eb86b30c720800000000000000
+      internalID: 2864354684063497950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_Plunder_3
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84c2e71d5f92de7e0800000000000000
+      internalID: -1734684145709339576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_Plunder_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9f3d6deb521d61d0800000000000000
+      internalID: -3356005961286467684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_Plunder_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 502f9f56e28f52e00800000000000000
+      internalID: 1019493768832348677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_Plunder_6
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b208fb7a2e9cf2de0800000000000000
+      internalID: -1355642987501092821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_Plunder_7
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c4e3e39869239e90800000000000000
+      internalID: -7020221865005947704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8ff16c9117a5586489c9a464a858a480
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Effect_Synergy_Plunder_0: 8359742778945619572
+      Effect_Synergy_Plunder_1: -8753662202468672621
+      Effect_Synergy_Plunder_2: 2864354684063497950
+      Effect_Synergy_Plunder_3: -1734684145709339576
+      Effect_Synergy_Plunder_4: -3356005961286467684
+      Effect_Synergy_Plunder_5: 1019493768832348677
+      Effect_Synergy_Plunder_6: -1355642987501092821
+      Effect_Synergy_Plunder_7: -7020221865005947704
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

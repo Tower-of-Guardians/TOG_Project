@@ -109,6 +109,41 @@ public class SynergyActivationSelectorTests
     }
 
     [Test]
+    public void GetEffectValueAtCount_CountPastEmptySlot_KeepsLastPositiveTier()
+    {
+        Assert.AreEqual(0, SynergyActivationSelector.GetEffectValueAtCount(new[] { 0, 1, 2, 3, 0 }, 1));
+        Assert.AreEqual(3, SynergyActivationSelector.GetEffectValueAtCount(new[] { 0, 1, 2, 3, 0 }, 5));
+        Assert.AreEqual(10, SynergyActivationSelector.GetEffectValueAtCount(new[] { 0, 2, 5, 10, 0 }, 5));
+        Assert.AreEqual(4, SynergyActivationSelector.GetEffectValueAtCount(new[] { 0, 1, 2, 3, 4 }, 5));
+    }
+
+    [Test]
+    public void Select_CountFiveWithTrailingEmptySlot_KeepsShieldPlunderAndMystery()
+    {
+        List<SynergyTotalData> selected = SynergyActivationSelector.Select(new[]
+        {
+            CreateEntry("210002", tier: 2, count: 5, effects: new[] { 0, 1, 2, 3, 0 }),
+            CreateEntry("210005", tier: 3, count: 5, effects: new[] { 0, 2, 5, 10, 0 }),
+            CreateEntry("210006", tier: 7, count: 5, effects: new[] { 0, 1, 2, 3, 4 })
+        });
+
+        Assert.AreEqual(3, selected.Count);
+        Assert.AreEqual("210002", selected[0].synergyData.ID);
+        Assert.AreEqual("210005", selected[1].synergyData.ID);
+        Assert.AreEqual("210006", selected[2].synergyData.ID);
+    }
+
+    [Test]
+    public void GetMaximumActivationCount_UsesLastPositiveSlot()
+    {
+        Assert.AreEqual(4, SynergyActivationSelector.GetMaximumActivationCount(CreateData(new[] { 0, 1, 2, 3, 0 })));
+        Assert.AreEqual(5, SynergyActivationSelector.GetMaximumActivationCount(CreateData(new[] { 0, 1, 2, 3, 4 })));
+        Assert.AreEqual(3, SynergyActivationSelector.GetMaximumActivationCount(CreateData(new[] { 0, 0, 1, 0, 0 })));
+        Assert.AreEqual(1, SynergyActivationSelector.GetMaximumActivationCount(CreateData(new[] { 1, 0, 0, 0, 0 })));
+        Assert.AreEqual(0, SynergyActivationSelector.GetMaximumActivationCount(null));
+    }
+
+    [Test]
     public void GetMinimumActivationCount_ReturnsFirstCountWithEffect()
     {
         SynergyData data = ScriptableObject.CreateInstance<SynergyData>();
@@ -117,12 +152,33 @@ public class SynergyActivationSelectorTests
         Assert.AreEqual(3, SynergyActivationSelector.GetMinimumActivationCount(data));
     }
 
+    private static SynergyData CreateData(int[] effects)
+    {
+        SynergyData data = ScriptableObject.CreateInstance<SynergyData>();
+        data.Effect1Synergys = new List<int>(effects);
+        return data;
+    }
+
     private static SynergyTotalData CreateEntry(string id, int tier, int count, int effectValue)
     {
         SynergyData data = ScriptableObject.CreateInstance<SynergyData>();
         data.ID = id;
         data.Tier = tier;
         data.Effect1Synergys = new List<int> { effectValue };
+
+        return new SynergyTotalData
+        {
+            synergyData = data,
+            count = count
+        };
+    }
+
+    private static SynergyTotalData CreateEntry(string id, int tier, int count, int[] effects)
+    {
+        SynergyData data = ScriptableObject.CreateInstance<SynergyData>();
+        data.ID = id;
+        data.Tier = tier;
+        data.Effect1Synergys = new List<int>(effects);
 
         return new SynergyTotalData
         {

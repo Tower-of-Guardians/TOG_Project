@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,12 +9,13 @@ public class BattleWindowEditor : EditorWindow
 {
     private const string GameScenePath = "Assets/01. Scenes/Game.unity";
     private const string GameSceneName = "Game";
+    private const string MainScenePath = "Assets/01. Scenes/Main.unity";
+    private const string MainSceneName = "Main";
+    private const string PlayModeOnlyMessage = "Main 또는 Game 씬을 플레이 모드로 실행한 뒤에 사용할 수 있습니다.";
     private const string EncounterDataFolder = "Assets/Datas/MonsterEncounterData";
     private const string MonsterDataFolder = "Assets/Datas/MonsterData";
     private const string SynergyDataFolder = "Assets/Datas/SynergyData";
     private const string DefaultRegistryPath = "Assets/02. Scripts/Jihyo/Battle/MonsterPrefabRegistry.asset";
-    private const int DebugSynergyMaxCount = 5;
-
     private readonly List<MonsterEncounterData> encounterDatas = new List<MonsterEncounterData>();
     private readonly Dictionary<string, MonsterData> monsterDataCache = new Dictionary<string, MonsterData>();
     private readonly List<SynergyData> synergyDatas = new List<SynergyData>();
@@ -35,10 +35,25 @@ public class BattleWindowEditor : EditorWindow
         window.Show();
     }
 
-    private static bool IsGameSceneActive()
+    private static bool IsBattleHostScene()
     {
-        Scene activeScene = EditorSceneManager.GetActiveScene();
-        return activeScene.path == GameScenePath || activeScene.name == GameSceneName;
+        int sceneCount = SceneManager.sceneCount;
+        for (int i = 0; i < sceneCount; i++)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+            if (!scene.isLoaded)
+            {
+                continue;
+            }
+
+            if (scene.path == GameScenePath || scene.name == GameSceneName
+                || scene.path == MainScenePath || scene.name == MainSceneName)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void OnEnable()
@@ -78,7 +93,7 @@ public class BattleWindowEditor : EditorWindow
 
     private static bool CanUseBattleTools()
     {
-        return IsGameSceneActive() && Application.isPlaying;
+        return IsBattleHostScene() && Application.isPlaying;
     }
 
     private void OnGUI()
@@ -87,15 +102,15 @@ public class BattleWindowEditor : EditorWindow
 
         DrawHeader();
 
-        if (!IsGameSceneActive())
+        if (!IsBattleHostScene())
         {
             EditorGUILayout.HelpBox(
-                "Encounter 미리보기는 어디서든 볼 수 있습니다.\n몬스터 세팅/체력 조절은 Game 씬(Assets/01. Scenes/Game.unity) 플레이 모드에서만 사용할 수 있습니다.",
+                "Encounter 미리보기는 어디서든 볼 수 있습니다.\n" + PlayModeOnlyMessage,
                 MessageType.Info);
             EditorGUILayout.Space(8f);
         }
 
-        if (IsGameSceneActive())
+        if (IsBattleHostScene())
         {
             DrawSceneStatusSection();
             EditorGUILayout.Space(8f);
@@ -124,7 +139,7 @@ public class BattleWindowEditor : EditorWindow
     {
         EditorGUILayout.LabelField("IngameSetTools - Battle", EditorStyles.boldLabel);
         EditorGUILayout.HelpBox(
-            "Game 씬 플레이 모드에서 Encounter 세팅, 시너지 발동 연출 확인, 플레이어/몬스터 체력 조절을 합니다.",
+            "Main 또는 Game 씬 플레이 모드에서 Encounter 세팅, 시너지 발동 연출 확인, 플레이어/몬스터 체력 조절을 합니다.",
             MessageType.Info);
     }
 
@@ -144,7 +159,7 @@ public class BattleWindowEditor : EditorWindow
         if (!spawnReady)
         {
             EditorGUILayout.HelpBox(
-                "몬스터 스폰 준비가 되지 않았습니다. Game 씬의 BattleManagerInjector와 [Global] 오브젝트를 확인해주세요.",
+                "몬스터 스폰 준비가 되지 않았습니다. BattleManagerInjector와 [Global] 오브젝트를 확인해주세요.",
                 MessageType.Warning);
         }
     }
@@ -297,7 +312,7 @@ public class BattleWindowEditor : EditorWindow
 
         if (!CanUseBattleTools())
         {
-            EditorGUILayout.HelpBox("Game 씬 플레이 모드에서만 시너지를 적용/재생할 수 있습니다.", MessageType.None);
+            EditorGUILayout.HelpBox(PlayModeOnlyMessage, MessageType.None);
         }
     }
 
@@ -314,6 +329,8 @@ public class BattleWindowEditor : EditorWindow
         }
 
         int requiredCount = SynergyActivationSelector.GetMinimumActivationCount(synergyData);
+        int maximumCount = SynergyActivationSelector.GetMaximumActivationCount(synergyData);
+        count = Mathf.Clamp(count, 0, maximumCount);
         bool willActivate = SynergyActivationSelector.IsActivated(new SynergyTotalData
         {
             synergyData = synergyData,
@@ -325,7 +342,7 @@ public class BattleWindowEditor : EditorWindow
             string label = string.IsNullOrEmpty(synergyData.Name)
                 ? synergyData.ID
                 : $"{synergyData.Name} ({synergyData.ID})";
-            count = EditorGUILayout.IntSlider(label, count, 0, DebugSynergyMaxCount);
+            count = EditorGUILayout.IntSlider(label, count, 0, maximumCount);
             string stateLabel = willActivate ? "발동" : (requiredCount > 0 ? $"필요 {requiredCount}" : "불가");
             GUILayout.Label(stateLabel, GUILayout.Width(64f));
         }
@@ -387,7 +404,7 @@ public class BattleWindowEditor : EditorWindow
     {
         if (!CanUseBattleTools() || GameData.Instance == null)
         {
-            SetStatus("Game 씬 플레이 모드에서만 시너지를 적용할 수 있습니다.", MessageType.Warning);
+            SetStatus(PlayModeOnlyMessage, MessageType.Warning);
             return;
         }
 
@@ -408,7 +425,7 @@ public class BattleWindowEditor : EditorWindow
     {
         if (!CanUseBattleTools() || GameData.Instance == null)
         {
-            SetStatus("Game 씬 플레이 모드에서만 디버그 시너지를 지울 수 있습니다.", MessageType.Warning);
+            SetStatus(PlayModeOnlyMessage, MessageType.Warning);
             return;
         }
 
@@ -440,7 +457,7 @@ public class BattleWindowEditor : EditorWindow
 
         if (!CanUseBattleTools())
         {
-            EditorGUILayout.HelpBox("Game 씬 플레이 모드에서 체력을 조절할 수 있습니다.", MessageType.None);
+            EditorGUILayout.HelpBox(PlayModeOnlyMessage, MessageType.None);
             return;
         }
 
@@ -460,7 +477,7 @@ public class BattleWindowEditor : EditorWindow
 
         if (!CanUseBattleTools())
         {
-            EditorGUILayout.HelpBox("Game 씬 플레이 모드에서 Encounter 적용 후 몬스터 체력을 조절할 수 있습니다.", MessageType.None);
+            EditorGUILayout.HelpBox("플레이 모드에서 Encounter 적용 후 몬스터 체력을 조절할 수 있습니다.", MessageType.None);
             return;
         }
 
@@ -490,7 +507,7 @@ public class BattleWindowEditor : EditorWindow
 
         if (!CanUseBattleTools())
         {
-            EditorGUILayout.HelpBox("Game 씬 플레이 모드에서만 디버그 승리를 실행할 수 있습니다.", MessageType.None);
+            EditorGUILayout.HelpBox(PlayModeOnlyMessage, MessageType.None);
             return;
         }
 
@@ -572,9 +589,9 @@ public class BattleWindowEditor : EditorWindow
 
     private void ApplySelectedEncounter()
     {
-        if (!IsGameSceneActive())
+        if (!IsBattleHostScene())
         {
-            SetStatus("Game 씬에서만 Encounter를 적용할 수 있습니다.", MessageType.Warning);
+            SetStatus(PlayModeOnlyMessage, MessageType.Warning);
             return;
         }
 

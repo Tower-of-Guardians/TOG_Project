@@ -1,0 +1,493 @@
+fileFormatVersion: 2
+guid: 6ca47c4e67032ad4ab8b7fce3ba13a47
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5517682467735521252
+    second: Effect_Synergy_ShieldAttack_0
+  - first:
+      213: -1077728040283315993
+    second: Effect_Synergy_ShieldAttack_1
+  - first:
+      213: 7949747467016014502
+    second: Effect_Synergy_ShieldAttack_2
+  - first:
+      213: -475685510099911843
+    second: Effect_Synergy_ShieldAttack_3
+  - first:
+      213: 90726653966564191
+    second: Effect_Synergy_ShieldAttack_4
+  - first:
+      213: 688084161559111916
+    second: Effect_Synergy_ShieldAttack_5
+  - first:
+      213: 7340544143991470156
+    second: Effect_Synergy_ShieldAttack_6
+  - first:
+      213: 4114090257094676750
+    second: Effect_Synergy_ShieldAttack_7
+  - first:
+      213: 2172599678219263558
+    second: Effect_Synergy_ShieldAttack_8
+  - first:
+      213: -8351639073164605115
+    second: Effect_Synergy_ShieldAttack_9
+  - first:
+      213: -4594124417013568538
+    second: Effect_Synergy_ShieldAttack_10
+  - first:
+      213: -2817437393948111905
+    second: Effect_Synergy_ShieldAttack_11
+  - first:
+      213: 4946505498734188389
+    second: Effect_Synergy_ShieldAttack_12
+  - first:
+      213: -6883003471518034708
+    second: Effect_Synergy_ShieldAttack_13
+  - first:
+      213: 6544165660866515372
+    second: Effect_Synergy_ShieldAttack_14
+  - first:
+      213: 5823693907733926072
+    second: Effect_Synergy_ShieldAttack_15
+  - first:
+      213: 3369432687115190830
+    second: Effect_Synergy_ShieldAttack_16
+  - first:
+      213: 3277687337593674112
+    second: Effect_Synergy_ShieldAttack_17
+  - first:
+      213: 9073824220497085654
+    second: Effect_Synergy_ShieldAttack_18
+  - first:
+      213: -6846800228127296441
+    second: Effect_Synergy_ShieldAttack_19
+  - first:
+      213: -3473292817354236284
+    second: Effect_Synergy_ShieldAttack_20
+  - first:
+      213: -8129913750097433325
+    second: Effect_Synergy_ShieldAttack_21
+  - first:
+      213: -1813167481122331649
+    second: Effect_Synergy_ShieldAttack_22
+  - first:
+      213: -5564774789255258039
+    second: Effect_Synergy_ShieldAttack_23
+  - first:
+      213: 7860709165439646204
+    second: Effect_Synergy_ShieldAttack_24
+  - first:
+      213: 6977308099718718161
+    second: Effect_Synergy_ShieldAttack_25
+  - first:
+      213: -2754720522429951473
+    second: Effect_Synergy_ShieldAttack_26
+  - first:
+      213: 2120043055900899909
+    second: Effect_Synergy_ShieldAttack_27
+  - first:
+      213: -7539017987822285771
+    second: Effect_Synergy_ShieldAttack_28
+  - first:
+      213: 2418997089308544969
+    second: Effect_Synergy_ShieldAttack_29
+  - first:
+      213: 4502278990552932680
+    second: Effect_Synergy_ShieldAttack_30
+  - first:
+      213: -718605575433435710
+    second: Effect_Synergy_ShieldAttack_31
+  - first:
+      213: 7069208122352316763
+    second: Effect_Synergy_ShieldAttack_32
+  - first:
+      213: 3526549977363592184
+    second: Effect_Synergy_ShieldAttack_33
+  - first:
+      213: -3751878915110536600
+    second: Effect_Synergy_ShieldAttack_34
+  - first:
+      213: -793045867921473355
+    second: Effect_Synergy_ShieldAttack_35
+  - first:
+      213: 4034931888807893598
+    second: Effect_Synergy_ShieldAttack_36
+  - first:
+      213: 8615445828361216883
+    second: Effect_Synergy_ShieldAttack_37
+  - first:
+      213: -7770126695165123584
+    second: Effect_Synergy_ShieldAttack_38
+  - first:
+      213: 6919636087912339552
+    second: Effect_Synergy_ShieldAttack_39
+  - first:
+      213: 9217988443677521375
+    second: Effect_Synergy_ShieldAttack_40
+  - first:
+      213: 2296380824039811291
+    second: Effect_Synergy_ShieldAttack_41
+  - first:
+      213: -2507842678801002632
+    second: Effect_Synergy_ShieldAttack_42
+  - first:
+      213: -2293553897567299582
+    second: Effect_Synergy_ShieldAttack_43
+  - first:
+      213: -5960413173479362971
+    second: Effect_Synergy_ShieldAttack_44
+  - first:
+      213: -6490323853385889119
+    second: Effect_Synergy_ShieldAttack_45
+  - first:
+      213: -5741910248418910068
+    second: Effect_Synergy_ShieldAttack_46
+  - first:
+      213: 6833648282898854788
+    second: Effect_Synergy_ShieldAttack_47
+  - first:
+      213: -73766831243943809
+    second: Effect_Synergy_ShieldAttack_48
+  - first:
+      213: -7246191515038794248
+    second: Effect_Synergy_ShieldAttack_49
+  - first:
+      213: 6604167372565114576
+    second: Effect_Synergy_ShieldAttack_50
+  - first:
+      213: -1003003378186667614
+    second: Effect_Synergy_ShieldAttack_51
+  - first:
+      213: 993694097697560137
+    second: Effect_Synergy_ShieldAttack_52
+  - first:
+      213: -3547754137054064918
+    second: Effect_Synergy_ShieldAttack_53
+  - first:
+      213: -3842799696685122865
+    second: Effect_Synergy_ShieldAttack_54
+  - first:
+      213: 1776156095669083772
+    second: Effect_Synergy_ShieldAttack_55
+  - first:
+      213: -2205474060497848925
+    second: Effect_Synergy_ShieldAttack_56
+  - first:
+      213: -5953152859944394145
+    second: Effect_Synergy_ShieldAttack_57
+  - first:
+      213: -3898399754367756973
+    second: Effect_Synergy_ShieldAttack_58
+  - first:
+      213: 8750910582012141363
+    second: Effect_Synergy_ShieldAttack_59
+  - first:
+      213: -2759844189234705724
+    second: Effect_Synergy_ShieldAttack_60
+  - first:
+      213: -6488571640295127227
+    second: Effect_Synergy_ShieldAttack_61
+  - first:
+      213: 6560192369338203072
+    second: Effect_Synergy_ShieldAttack_62
+  - first:
+      213: -206235440087539033
+    second: Effect_Synergy_ShieldAttack_63
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_Synergy_ShieldAttack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c18393f87014d63b0800000000000000
+      internalID: -5517682467735521252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_ShieldAttack_1
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e06f62be042b01f0800000000000000
+      internalID: -1077728040283315993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_ShieldAttack_2
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aa0d81a33d235e60800000000000000
+      internalID: 7949747467016014502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_ShieldAttack_3
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 315
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5bb1b18c860669f0800000000000000
+      internalID: -475685510099911843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_ShieldAttack_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5b365d3963524100800000000000000
+      internalID: 90726653966564191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_ShieldAttack_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce8ad4936e09c8900800000000000000
+      internalID: 688084161559111916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_ShieldAttack_6
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c487fa0d10aded560800000000000000
+      internalID: 7340544143991470156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Synergy_ShieldAttack_7
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 0
+        width: 528
+        height: 315
+      alignment: 9
+      pivot: {x: 0.25, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e01160c9a4f281930800000000000000
+      internalID: 4114090257094676750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a6aa7c694e3f34b4baf83e8edc5406f6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Effect_Synergy_ShieldAttack_0: -5517682467735521252
+      Effect_Synergy_ShieldAttack_1: -1077728040283315993
+      Effect_Synergy_ShieldAttack_2: 7949747467016014502
+      Effect_Synergy_ShieldAttack_3: -475685510099911843
+      Effect_Synergy_ShieldAttack_4: 90726653966564191
+      Effect_Synergy_ShieldAttack_5: 688084161559111916
+      Effect_Synergy_ShieldAttack_6: 7340544143991470156
+      Effect_Synergy_ShieldAttack_7: 4114090257094676750
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
