@@ -13,8 +13,8 @@ public class DataCenter : Singleton<DataCenter>
 {
     private static readonly string[] StartDeckIDs =
     {
-        "11000001", "11000002", "11010003", "11010004", "11010005",
-        "11010006", "11010007", "11010008", "11010009", "11010025"
+        "11000001", "11000001", "11000002", "11000002",
+        "11010003", "11010005", "11010004"
     };
     private bool ownsData;
     private bool loadCancelled;
@@ -27,6 +27,7 @@ public class DataCenter : Singleton<DataCenter>
     public event Action<int> playerHpEvent;
     public event Action<int,int> playerLevelEvent;
     public event Action<bool> playerStateLoadEvent;
+    public event Action<PlayerState> resetForNewRunEvent;
     //////////////////////////
 
     ////// 카드 관련 //////
@@ -141,11 +142,12 @@ public class DataCenter : Singleton<DataCenter>
         playerstate.experience = 0;
         playerstate.maxexperience = 25 + 6 * (playerstate.level - 1); // 경험치 수식*/
         playerstate.hp = 70;
+        playerstate.maxhp = 70;
         playerstate.lhp = 5;
         playerstate.atk = 4;
         playerstate.latk = 0;
         playerstate.maxmagic = 2;
-        playerstate.money = 100;
+        playerstate.money = 0;
         playerStateLoadEvent?.Invoke(true);
     }
     IEnumerator SetStartDeck()
@@ -166,6 +168,7 @@ public class DataCenter : Singleton<DataCenter>
         {
             ApplyStartDeck();
         }
+        resetForNewRunEvent?.Invoke(playerstate);
     }
 
     private void ApplyStartDeck()
