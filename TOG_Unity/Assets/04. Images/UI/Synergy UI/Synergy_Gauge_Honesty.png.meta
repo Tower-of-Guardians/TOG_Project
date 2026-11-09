@@ -1,0 +1,292 @@
+fileFormatVersion: 2
+guid: 47a5a13b39f67984fa41704245d1d567
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 790285115826125101
+    second: Synergy_Gauge_Honesty_0
+  - first:
+      213: 7449513500331630063
+    second: Synergy_Gauge_Honesty_1
+  - first:
+      213: -1414332179667690846
+    second: Synergy_Gauge_Honesty_2
+  - first:
+      213: 4957733820806459500
+    second: Synergy_Gauge_Honesty_3
+  - first:
+      213: -1572169014670649629
+    second: Synergy_Gauge_Honesty_4
+  - first:
+      213: 6128682045983213758
+    second: Synergy_Gauge_Honesty_5
+  - first:
+      213: 7288240391912692329
+    second: Synergy_Gauge_Honesty_6
+  - first:
+      213: 8237177569426389306
+    second: Synergy_Gauge_Honesty_7
+  - first:
+      213: 8312924786071911027
+    second: Synergy_Gauge_Honesty_8
+  - first:
+      213: -1023254850045892600
+    second: Synergy_Gauge_Honesty_9
+  - first:
+      213: -5924469103945832123
+    second: Synergy_Gauge_Honesty_10
+  - first:
+      213: 999143364130753966
+    second: Synergy_Gauge_Honesty_11
+  - first:
+      213: -4724972562018410995
+    second: Synergy_Gauge_Honesty_12
+  - first:
+      213: -1183300052148843898
+    second: Synergy_Gauge_Honesty_13
+  - first:
+      213: 3899744785164804870
+    second: Synergy_Gauge_Honesty_14
+  - first:
+      213: -3798505913723156551
+    second: Synergy_Gauge_Honesty_15
+  - first:
+      213: -3704183175675367655
+    second: Synergy_Gauge_Honesty_16
+  - first:
+      213: -4636832173599876560
+    second: Synergy_Gauge_Honesty_17
+  - first:
+      213: -8044831614740657438
+    second: Synergy_Gauge_Honesty_18
+  - first:
+      213: 4240579481399864899
+    second: Synergy_Gauge_Honesty_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Synergy_Gauge_Honesty_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2938103028a7fa00800000000000000
+      internalID: 790285115826125101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Gauge_Honesty_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fed5eb03f0df16760800000000000000
+      internalID: 7449513500331630063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Gauge_Honesty_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aad08440684f5ce0800000000000000
+      internalID: -1414332179667690846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Gauge_Honesty_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 50
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c60fb1094a86dc440800000000000000
+      internalID: 4957733820806459500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Gauge_Honesty_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e61ea16c988e2ae0800000000000000
+      internalID: -1572169014670649629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ef0b721780bd1214096ebff4d0191725
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Synergy_Gauge_Honesty_0: 790285115826125101
+      Synergy_Gauge_Honesty_1: 7449513500331630063
+      Synergy_Gauge_Honesty_2: -1414332179667690846
+      Synergy_Gauge_Honesty_3: 4957733820806459500
+      Synergy_Gauge_Honesty_4: -1572169014670649629
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

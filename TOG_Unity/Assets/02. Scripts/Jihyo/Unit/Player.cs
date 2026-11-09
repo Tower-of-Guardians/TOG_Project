@@ -21,6 +21,10 @@ public class Player : BaseUnit, ITooltipProvider
 
     [Header("Effects")]
     [SerializeField] private GameObject effectShield;
+    private const string ShieldEffectStateName = "Effect_Shield";
+    private const float ShieldEffectDuration = 1f;
+    private Coroutine shieldEffectCoroutine;
+    private int shieldEffectVersion;
 
     [Header("Movement")]
     [SerializeField] private float singleTargetAttackOffset = 3.5f;
@@ -401,14 +405,57 @@ public class Player : BaseUnit, ITooltipProvider
         }
     }
 
+    public void GainProtectionWithEffect(float amount)
+    {
+        if (amount <= 0f)
+        {
+            return;
+        }
+
+        bool hadShield = protectionValue > 0f;
+        AnimateProtection(protectionValue, protectionValue + amount);
+        if (!hadShield)
+        {
+            PlayShieldEffect();
+        }
+    }
+
+    public void PlayShieldEffect()
+    {
+        if (shieldEffectCoroutine != null)
+        {
+            StopCoroutine(shieldEffectCoroutine);
+        }
+
+        shieldEffectCoroutine = StartCoroutine(ShowDefenseEffect());
+    }
+
     public IEnumerator ShowDefenseEffect()
     {
-        if (effectShield != null)
+        if (effectShield == null)
         {
-            effectShield.SetActive(true);
-            yield return new WaitForSeconds(1.0f);
-            effectShield.SetActive(false);
+            yield break;
         }
+
+        int version = ++shieldEffectVersion;
+        effectShield.SetActive(true);
+
+        Animator shieldAnimator = effectShield.GetComponent<Animator>();
+        if (shieldAnimator != null)
+        {
+            shieldAnimator.Play(ShieldEffectStateName, 0, 0f);
+            shieldAnimator.Update(0f);
+        }
+
+        yield return new WaitForSeconds(ShieldEffectDuration);
+
+        if (version != shieldEffectVersion || effectShield == null)
+        {
+            yield break;
+        }
+
+        effectShield.SetActive(false);
+        shieldEffectCoroutine = null;
     }
 
     public IEnumerator ApplyDefenseStatsWithEffect()
@@ -424,8 +471,12 @@ public class Player : BaseUnit, ITooltipProvider
             yield break;
         }
 
+        bool hadShield = protectionValue > 0f;
         ApplyDefenseStats();
-        yield return ShowDefenseEffect();
+        if (!hadShield)
+        {
+            yield return ShowDefenseEffect();
+        }
     }
 
     public bool HasDefenseCardsOnField()

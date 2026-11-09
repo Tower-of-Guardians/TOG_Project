@@ -790,6 +790,59 @@ MonoBehaviour:
     icon: {fileID: 6243808661161471300}
     gauge: {fileID: 7119217595720420377}
   _synergyVisuals:
+  - synergyId: 210013
+    icon: {fileID: -4342337807650527393, guid: 00dcd4e29dbc35f47bcb70120bb29aea, type: 3}
+    iconFrames:
+    - {fileID: -4342337807650527393, guid: 00dcd4e29dbc35f47bcb70120bb29aea, type: 3}
+    - {fileID: -801744617078910683, guid: 00dcd4e29dbc35f47bcb70120bb29aea, type: 3}
+    - {fileID: -7940290087808782391, guid: 00dcd4e29dbc35f47bcb70120bb29aea, type: 3}
+    - {fileID: 8370208308081560168, guid: 00dcd4e29dbc35f47bcb70120bb29aea, type: 3}
+    - {fileID: 3851019651446955826, guid: 00dcd4e29dbc35f47bcb70120bb29aea, type: 3}
+    - {fileID: 844809488202581900, guid: 00dcd4e29dbc35f47bcb70120bb29aea, type: 3}
+    - {fileID: -7878157923646909215, guid: 00dcd4e29dbc35f47bcb70120bb29aea, type: 3}
+    - {fileID: 325021594738856602, guid: 00dcd4e29dbc35f47bcb70120bb29aea, type: 3}
+    iconPlayDuration: 1
+    miniRequiredCount: 2
+    gaugeSprites:
+    - {fileID: -5811772928366853098, guid: 20ccda687f061f44197802010f7c7786, type: 3}
+    - {fileID: -5773378348657335098, guid: 20ccda687f061f44197802010f7c7786, type: 3}
+    - {fileID: 9147829630966722937, guid: 20ccda687f061f44197802010f7c7786, type: 3}
+    - {fileID: -8428715102094289057, guid: 20ccda687f061f44197802010f7c7786, type: 3}
+  - synergyId: 210010
+    icon: {fileID: 547039554, guid: e2fcda512bef5de4fa2e106336efc114, type: 3}
+    iconFrames:
+    - {fileID: 547039554, guid: e2fcda512bef5de4fa2e106336efc114, type: 3}
+    - {fileID: -334224398, guid: e2fcda512bef5de4fa2e106336efc114, type: 3}
+    - {fileID: -832105057, guid: e2fcda512bef5de4fa2e106336efc114, type: 3}
+    - {fileID: 1168998421, guid: e2fcda512bef5de4fa2e106336efc114, type: 3}
+    - {fileID: 805046112, guid: e2fcda512bef5de4fa2e106336efc114, type: 3}
+    - {fileID: -849226965, guid: e2fcda512bef5de4fa2e106336efc114, type: 3}
+    - {fileID: -1784684948, guid: e2fcda512bef5de4fa2e106336efc114, type: 3}
+    - {fileID: -1571917493, guid: e2fcda512bef5de4fa2e106336efc114, type: 3}
+    iconPlayDuration: 1
+    miniRequiredCount: 3
+    gaugeSprites:
+    - {fileID: -2197609251411201496, guid: 35e6aba94caf15a4badfcb6056366726, type: 3}
+    - {fileID: 5914899679662868146, guid: 35e6aba94caf15a4badfcb6056366726, type: 3}
+  - synergyId: 210008
+    icon: {fileID: -1085309213, guid: 2267bc0f919518c40a4148ce41d0801e, type: 3}
+    iconFrames:
+    - {fileID: -1085309213, guid: 2267bc0f919518c40a4148ce41d0801e, type: 3}
+    - {fileID: 382803277, guid: 2267bc0f919518c40a4148ce41d0801e, type: 3}
+    - {fileID: -1679088076, guid: 2267bc0f919518c40a4148ce41d0801e, type: 3}
+    - {fileID: -479180556, guid: 2267bc0f919518c40a4148ce41d0801e, type: 3}
+    - {fileID: 439463218, guid: 2267bc0f919518c40a4148ce41d0801e, type: 3}
+    - {fileID: 175381718, guid: 2267bc0f919518c40a4148ce41d0801e, type: 3}
+    - {fileID: 1798076500, guid: 2267bc0f919518c40a4148ce41d0801e, type: 3}
+    - {fileID: -1846298020, guid: 2267bc0f919518c40a4148ce41d0801e, type: 3}
+    iconPlayDuration: 1
+    miniRequiredCount: 1
+    gaugeSprites:
+    - {fileID: -27238311462224883, guid: 8c18686043ed7444b8df9bd4c1916ca6, type: 3}
+    - {fileID: -1942295107748744793, guid: 8c18686043ed7444b8df9bd4c1916ca6, type: 3}
+    - {fileID: 8531098748144932469, guid: 8c18686043ed7444b8df9bd4c1916ca6, type: 3}
+    - {fileID: -8149506781036782322, guid: 8c18686043ed7444b8df9bd4c1916ca6, type: 3}
+    - {fileID: -4590468728426266969, guid: 8c18686043ed7444b8df9bd4c1916ca6, type: 3}
   - synergyId: 210007
     icon: {fileID: -656581584617342807, guid: 6a6c972f98ab7c247907339692695bd7, type: 3}
     iconFrames:
@@ -804,8 +857,8 @@ MonoBehaviour:
     iconPlayDuration: 1
     miniRequiredCount: 3
     gaugeSprites:
-    - {fileID: -3709200626805416697, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: -5926314954331238616, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 1676677138920659404, guid: 618deb9974f4146489aae81c2a8f8c51, type: 3}
+    - {fileID: 2314962789436926900, guid: 618deb9974f4146489aae81c2a8f8c51, type: 3}
   - synergyId: 210006
     icon: {fileID: 3112015269792413093, guid: e63bb527985d6c74cb1f9a678749207e, type: 3}
     iconFrames:
@@ -820,11 +873,11 @@ MonoBehaviour:
     iconPlayDuration: 1
     miniRequiredCount: 2
     gaugeSprites:
-    - {fileID: 2698020258336607603, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 6892294267449397696, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 5392582951325938493, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 4823319019956579241, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: -6283212112102315690, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 7768112793315905253, guid: 0c93d1953c33a314d9500fbacb2ccbc6, type: 3}
+    - {fileID: -8184137230643728567, guid: 0c93d1953c33a314d9500fbacb2ccbc6, type: 3}
+    - {fileID: 6822325680238031784, guid: 0c93d1953c33a314d9500fbacb2ccbc6, type: 3}
+    - {fileID: 4779989550402974863, guid: 0c93d1953c33a314d9500fbacb2ccbc6, type: 3}
+    - {fileID: 7292941295044106820, guid: 0c93d1953c33a314d9500fbacb2ccbc6, type: 3}
   - synergyId: 210005
     icon: {fileID: 8337071044827517199, guid: 3b0c4bb1b79cf2d488a643bf4393d8dc, type: 3}
     iconFrames:
@@ -839,10 +892,10 @@ MonoBehaviour:
     iconPlayDuration: 1
     miniRequiredCount: 2
     gaugeSprites:
-    - {fileID: -1437114687, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 702061441085990469, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 918841534, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 8993040618395198030, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 1601609831848373346, guid: 4468c98ca1d4d4246b4fe11fdfe4d91f, type: 3}
+    - {fileID: 5759209645130284617, guid: 4468c98ca1d4d4246b4fe11fdfe4d91f, type: 3}
+    - {fileID: -6132050445198118288, guid: 4468c98ca1d4d4246b4fe11fdfe4d91f, type: 3}
+    - {fileID: -3285280074872268874, guid: 4468c98ca1d4d4246b4fe11fdfe4d91f, type: 3}
   - synergyId: 210004
     icon: {fileID: -6210480402900755327, guid: a3ef0c3615707a543b75136effca5178, type: 3}
     iconFrames:
@@ -857,10 +910,10 @@ MonoBehaviour:
     iconPlayDuration: 1
     miniRequiredCount: 2
     gaugeSprites:
-    - {fileID: -7028528696303545036, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 4592922712774325829, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: -9140759372250435105, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: -4483289518670674507, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 4953924940644255317, guid: 1b2621a35c588964f8b31eb3654af2f0, type: 3}
+    - {fileID: 1670344524710324804, guid: 1b2621a35c588964f8b31eb3654af2f0, type: 3}
+    - {fileID: 1183855306754262319, guid: 1b2621a35c588964f8b31eb3654af2f0, type: 3}
+    - {fileID: 6671084494990111138, guid: 1b2621a35c588964f8b31eb3654af2f0, type: 3}
   - synergyId: 210003
     icon: {fileID: 6673027515592355978, guid: 727bd49ad9b67e347aaf6768b383d163, type: 3}
     iconFrames:
@@ -875,11 +928,11 @@ MonoBehaviour:
     iconPlayDuration: 1
     miniRequiredCount: 1
     gaugeSprites:
-    - {fileID: -7505990783128124281, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: -6723992476585762262, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 1767517048266842855, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 4985962857601729590, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 2646837596771903875, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 2038744414095271409, guid: e77b8cce09742d74faad975b42c6ccfa, type: 3}
+    - {fileID: 6918781164330388952, guid: e77b8cce09742d74faad975b42c6ccfa, type: 3}
+    - {fileID: 5208608404533271753, guid: e77b8cce09742d74faad975b42c6ccfa, type: 3}
+    - {fileID: -7150538697260922925, guid: e77b8cce09742d74faad975b42c6ccfa, type: 3}
+    - {fileID: -354212833427449316, guid: e77b8cce09742d74faad975b42c6ccfa, type: 3}
   - synergyId: 210002
     icon: {fileID: 6065256781388032111, guid: 7dd4b70615cdeb0428e68d6090543fb0, type: 3}
     iconFrames:
@@ -894,10 +947,10 @@ MonoBehaviour:
     iconPlayDuration: 1
     miniRequiredCount: 2
     gaugeSprites:
-    - {fileID: -9166696622797639127, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 370825926, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 6199641292141098901, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: -1990259023061452045, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: -6119319282093312970, guid: 652a246449e51674195ce87dc193dbfc, type: 3}
+    - {fileID: -4965271473805347815, guid: 652a246449e51674195ce87dc193dbfc, type: 3}
+    - {fileID: 6962067564119543960, guid: 652a246449e51674195ce87dc193dbfc, type: 3}
+    - {fileID: 3378585724714473283, guid: 652a246449e51674195ce87dc193dbfc, type: 3}
   - synergyId: 210001
     icon: {fileID: 2036708957785280023, guid: 23a32b65af794324895df631a3a9d64c, type: 3}
     iconFrames:
@@ -912,11 +965,11 @@ MonoBehaviour:
     iconPlayDuration: 1
     miniRequiredCount: 2
     gaugeSprites:
-    - {fileID: 5023037166320791237, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: -1516028603, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: -5037970923630247017, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 5843267711492318805, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
-    - {fileID: 8507761385895616997, guid: f058645d99d22a34aaf0d1ae988c3083, type: 3}
+    - {fileID: 790285115826125101, guid: 47a5a13b39f67984fa41704245d1d567, type: 3}
+    - {fileID: 7449513500331630063, guid: 47a5a13b39f67984fa41704245d1d567, type: 3}
+    - {fileID: -1414332179667690846, guid: 47a5a13b39f67984fa41704245d1d567, type: 3}
+    - {fileID: 4957733820806459500, guid: 47a5a13b39f67984fa41704245d1d567, type: 3}
+    - {fileID: -1572169014670649629, guid: 47a5a13b39f67984fa41704245d1d567, type: 3}
   _overflowRoot: {fileID: 6835972385859792486}
   _fadeDuration: 0.35
   _synergyActivationInterval: 0.35

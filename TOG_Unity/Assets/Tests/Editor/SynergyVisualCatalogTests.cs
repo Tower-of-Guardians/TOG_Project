@@ -27,6 +27,9 @@ public class SynergyVisualCatalogTests
     {
         Assert.IsFalse(SynergyVisualCatalog.TryGetEffectStateName(SynergyVisualCatalog.HonestyId, out _));
         Assert.IsFalse(SynergyVisualCatalog.TryGetEffectStateName(SynergyVisualCatalog.OverwhelmingId, out _));
+        Assert.IsFalse(SynergyVisualCatalog.TryGetEffectStateName(SynergyVisualCatalog.DarknessId, out _));
+        Assert.IsFalse(SynergyVisualCatalog.TryGetEffectStateName(SynergyVisualCatalog.WeaponOfGuardianId, out _));
+        Assert.IsFalse(SynergyVisualCatalog.TryGetEffectStateName(SynergyVisualCatalog.UnfairId, out _));
     }
 
     [Test]
@@ -46,5 +49,16 @@ public class SynergyVisualCatalogTests
         Assert.AreNotEqual(basic, blood);
         Assert.AreNotEqual(basic, honesty);
         Assert.AreNotEqual(blood, honesty);
+    }
+
+    [Test]
+    public void GetAuraColor_NewSynergies_UseIconColors()
+    {
+        Assert.AreEqual(SynergyVisualCatalog.Hex("7B1FA2"), SynergyVisualCatalog.GetAuraColor(SynergyVisualCatalog.DarknessId));
+        Assert.AreEqual(SynergyVisualCatalog.Hex("E8C56A"), SynergyVisualCatalog.GetAuraColor(SynergyVisualCatalog.WeaponOfGuardianId));
+        Assert.AreEqual(SynergyVisualCatalog.Hex("6C5CFF"), SynergyVisualCatalog.GetAuraColor(SynergyVisualCatalog.UnfairId));
+        Assert.AreNotEqual(
+            SynergyVisualCatalog.GetAuraColor(SynergyVisualCatalog.DarknessId),
+            SynergyVisualCatalog.GetAuraColor(SynergyVisualCatalog.UnfairId));
     }
 }

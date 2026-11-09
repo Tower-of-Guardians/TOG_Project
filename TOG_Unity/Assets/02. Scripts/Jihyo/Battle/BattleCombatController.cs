@@ -14,6 +14,8 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     private const string SynergyMysteryId = "210006";
     private const string SynergyBasicId = "210007";
     private const string SynergyDarknessId = "210008";
+    private const string SynergyWeaponOfGuardianId = "210010";
+    private const string SynergyUnfairId = "210013";
 
     [SerializeField] private bool playerAttackHitsAll;
     [SerializeField] private float statAnimationWaitTime = 1.0f;
@@ -25,6 +27,7 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     private int pendingBloodSuckingPercent;
     private int preparedAttackValue;
     private int currentTurnAttackBonus;
+    private int pendingNextTurnExtraDraw;
     private bool playedSynergyMotion;
 
     public float GetStatAnimationWaitTime() => statAnimationWaitTime;
@@ -65,7 +68,38 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         battlePermanentAttackBonus = 0;
         preparedAttackValue = 0;
         currentTurnAttackBonus = 0;
+        pendingNextTurnExtraDraw = 0;
         ResetTurnScopedSynergyState();
+    }
+
+    public int ConsumePendingExtraDraw()
+    {
+        int bonus = pendingNextTurnExtraDraw;
+        pendingNextTurnExtraDraw = 0;
+        return bonus;
+    }
+
+    public static int CalculateGoldPercentDamage(int gold, int percent)
+    {
+        if (gold <= 0 || percent <= 0)
+        {
+            return 0;
+        }
+
+        return Mathf.RoundToInt(gold * (percent / 100f));
+    }
+
+    /// <summary>
+    /// 추가 드로우가 없으면 -1을 반환해 기존 최대 패 드로우를 유지합니다.
+    /// </summary>
+    public static int ResolveNextTurnDrawCount(int maxHandCount, int extraDraw)
+    {
+        if (extraDraw <= 0)
+        {
+            return -1;
+        }
+
+        return Mathf.Max(0, maxHandCount) + extraDraw;
     }
 
     public int GetPreparedAttackValue()
@@ -380,8 +414,10 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
 
         string synergyId = entry.synergyData.ID;
-        int effectValue = SynergyActivationSelector.GetEffectValueAtCount(GetEffect1Values(entry), entry.count);
-        if (effectValue <= 0)
+        int effect1Value = SynergyActivationSelector.GetEffectValueAtCount(entry.synergyData.Effect1Synergys, entry.count);
+        int effect2Value = SynergyActivationSelector.GetEffectValueAtCount(entry.synergyData.Effect2Synergys, entry.count);
+        int effect3Value = SynergyActivationSelector.GetEffectValueAtCount(entry.synergyData.Effect3Synergys, entry.count);
+        if (effect1Value <= 0 && effect2Value <= 0 && effect3Value <= 0)
         {
             return;
         }
@@ -389,15 +425,15 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         switch (synergyId)
         {
             case SynergyHonestyId:
-                if (effectValue > battlePermanentAttackBonus)
+                if (effect1Value > battlePermanentAttackBonus)
                 {
-                    battlePermanentAttackBonus = effectValue;
+                    battlePermanentAttackBonus = effect1Value;
                     player.SetBattleSynergyAttackBonus(battlePermanentAttackBonus);
                 }
                 break;
 
             case SynergyShieldAttackId:
-                int shieldBonus = Mathf.RoundToInt(player.ProtectionValue * (effectValue / 100f));
+                int shieldBonus = Mathf.RoundToInt(player.ProtectionValue * (effect1Value / 100f));
                 AddTurnAttackBonus(player, shieldBonus);
                 break;
 
@@ -407,17 +443,17 @@ public class BattleCombatController : MonoBehaviour, IBattleController
                 break;
 
             case SynergyOverwhelmingId:
-                pendingOverwhelmingDamage = effectValue;
+                pendingOverwhelmingDamage = effect1Value;
                 ApplyOverwhelmingDamage(player);
                 break;
 
             case SynergyBloodSuckingId:
-                pendingBloodSuckingPercent = effectValue;
+                pendingBloodSuckingPercent = effect1Value;
                 break;
 
             case SynergyPlunderId:
                 int plunderCardCount = CountAttackFieldSynergyCards(SynergyPlunderId);
-                int plunderGold = plunderCardCount * effectValue;
+                int plunderGold = plunderCardCount * effect1Value;
                 if (plunderGold > 0 && DataCenter.Instance != null)
                 {
                     DataCenter.Instance.SetMoney(plunderGold);
@@ -429,7 +465,25 @@ public class BattleCombatController : MonoBehaviour, IBattleController
                 break;
 
             case SynergyDarknessId:
-                ApplyDarknessCurse(effectValue);
+                ApplyDarknessCurse(effect1Value);
+                break;
+
+            case SynergyWeaponOfGuardianId:
+                if (effect1Value > 0)
+                {
+                    player.GainProtectionWithEffect(effect1Value);
+                }
+
+                AddTurnAttackBonus(player, effect2Value);
+                if (effect3Value > 0)
+                {
+                    pendingNextTurnExtraDraw = Mathf.Max(pendingNextTurnExtraDraw, effect3Value);
+                }
+                break;
+
+            case SynergyUnfairId:
+                int gold = DataCenter.Instance != null ? DataCenter.Instance.playerstate.money : 0;
+                AddTurnAttackBonus(player, CalculateGoldPercentDamage(gold, effect1Value));
                 break;
         }
     }
@@ -584,11 +638,6 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         }
 
         return enemies;
-    }
-
-    private List<int> GetEffect1Values(SynergyTotalData synergyData)
-    {
-        return synergyData?.synergyData != null ? synergyData.synergyData.Effect1Synergys : null;
     }
 
     private int GetTotalBattleCardStars()

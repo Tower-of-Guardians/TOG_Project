@@ -1,0 +1,292 @@
+fileFormatVersion: 2
+guid: 0c93d1953c33a314d9500fbacb2ccbc6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7768112793315905253
+    second: Synergy_Gauge_Mystery_0
+  - first:
+      213: -8184137230643728567
+    second: Synergy_Gauge_Mystery_1
+  - first:
+      213: 6822325680238031784
+    second: Synergy_Gauge_Mystery_2
+  - first:
+      213: 4779989550402974863
+    second: Synergy_Gauge_Mystery_3
+  - first:
+      213: 7292941295044106820
+    second: Synergy_Gauge_Mystery_4
+  - first:
+      213: -981661594689692389
+    second: Synergy_Gauge_Mystery_5
+  - first:
+      213: 6785202096772207000
+    second: Synergy_Gauge_Mystery_6
+  - first:
+      213: 5193506580905272386
+    second: Synergy_Gauge_Mystery_7
+  - first:
+      213: -7125355238778019950
+    second: Synergy_Gauge_Mystery_8
+  - first:
+      213: 4538139910286790949
+    second: Synergy_Gauge_Mystery_9
+  - first:
+      213: -4529864289475600271
+    second: Synergy_Gauge_Mystery_10
+  - first:
+      213: 3918149957971385042
+    second: Synergy_Gauge_Mystery_11
+  - first:
+      213: -6974560648536045074
+    second: Synergy_Gauge_Mystery_12
+  - first:
+      213: -9083111784378904575
+    second: Synergy_Gauge_Mystery_13
+  - first:
+      213: 7579107807034126986
+    second: Synergy_Gauge_Mystery_14
+  - first:
+      213: -2680692505252687454
+    second: Synergy_Gauge_Mystery_15
+  - first:
+      213: -3408782356558960528
+    second: Synergy_Gauge_Mystery_16
+  - first:
+      213: -8145685637862300904
+    second: Synergy_Gauge_Mystery_17
+  - first:
+      213: -8780053131350016896
+    second: Synergy_Gauge_Mystery_18
+  - first:
+      213: 3228751762535442450
+    second: Synergy_Gauge_Mystery_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Synergy_Gauge_Mystery_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ee03c4ad61edcb60800000000000000
+      internalID: 7768112793315905253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Gauge_Mystery_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94f6e66dc8a1c6e80800000000000000
+      internalID: -8184137230643728567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Gauge_Mystery_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a3fc985f05cdae50800000000000000
+      internalID: 6822325680238031784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Gauge_Mystery_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 50
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8439ddab2fe55240800000000000000
+      internalID: 4779989550402974863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Synergy_Gauge_Mystery_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44a91ead77bb53560800000000000000
+      internalID: 7292941295044106820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ea9f467eb54de3143b914afbebaf7398
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Synergy_Gauge_Mystery_0: 7768112793315905253
+      Synergy_Gauge_Mystery_1: -8184137230643728567
+      Synergy_Gauge_Mystery_2: 6822325680238031784
+      Synergy_Gauge_Mystery_3: 4779989550402974863
+      Synergy_Gauge_Mystery_4: 7292941295044106820
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -10,6 +10,8 @@ public static class SynergyVisualCatalog
     public const string MysteryId = "210006";
     public const string BasicId = "210007";
     public const string DarknessId = "210008";
+    public const string WeaponOfGuardianId = "210010";
+    public const string UnfairId = "210013";
 
     public const string BasicEffectStateName = "Effect_Synergy_Basic";
     public const string BloodSuckingEffectStateName = "Effect_Synergy_BloodSucking";
@@ -63,6 +65,10 @@ public static class SynergyVisualCatalog
                 return Hex("FFFBE6");
             case DarknessId:
                 return Hex("7B1FA2");
+            case WeaponOfGuardianId:
+                return Hex("E8C56A");
+            case UnfairId:
+                return Hex("6C5CFF");
             default:
                 return Color.white;
         }

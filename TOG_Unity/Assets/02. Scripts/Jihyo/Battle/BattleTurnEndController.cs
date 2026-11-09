@@ -59,8 +59,18 @@ public class BattleTurnEndController : MonoBehaviour, IBattleController
             CardEffectExecutor.RefreshVisibleCardAttackLabels();
         }
 
-        // 새 턴 시작 시 카드 드로우
-        DrawCards();
+        int extraDraw = battleManager != null ? battleManager.ConsumePendingExtraDraw() : 0;
+        int maxHandCount = 0;
+        if (DIContainer.IsRegistered<TurnManager>())
+        {
+            TurnManager turnManager = DIContainer.Resolve<TurnManager>();
+            if (turnManager != null)
+            {
+                maxHandCount = turnManager.MaxHandCount;
+            }
+        }
+
+        DrawCards(BattleCombatController.ResolveNextTurnDrawCount(maxHandCount, extraDraw));
 
         // 이전 턴 록온은 다음 턴이 되면 해제합니다.
         if (battleManager != null)

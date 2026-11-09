@@ -410,6 +410,11 @@ public class BattleManager : MonoBehaviour
         isProcessingAttack = false;
     }
 
+    public int ConsumePendingExtraDraw()
+    {
+        return combatController != null ? combatController.ConsumePendingExtraDraw() : 0;
+    }
+
     public void RequestDrawCards(int count = -1)
     {
         if (turnEndController == null)
