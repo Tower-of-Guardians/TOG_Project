@@ -49,6 +49,7 @@ public class MainFlow : MonoBehaviour
     [SerializeField] private float _exitFadeDuration = 0.5f;
 
     private static bool _startInLobby;
+    private static bool _startInTitle;
 
     private CanvasGroup _rootGroup;
     private EMainState _state;
@@ -56,13 +57,23 @@ public class MainFlow : MonoBehaviour
 
     public static bool TryReturnToLobby()
     {
+        return TryReloadMainScene(() => _startInLobby = true);
+    }
+
+    public static bool TryReturnToTitle()
+    {
+        return TryReloadMainScene(() => _startInTitle = true);
+    }
+
+    private static bool TryReloadMainScene(Action markStartPoint)
+    {
         var flow = FindFirstObjectByType<MainFlow>(FindObjectsInactive.Include);
         if (flow == null)
         {
             return false;
         }
 
-        _startInLobby = true;
+        markStartPoint();
         DIContainer.Clear();
         var scene = flow.gameObject.scene;
 #if UNITY_EDITOR
@@ -107,6 +118,8 @@ public class MainFlow : MonoBehaviour
 
     private void OnEnable()
     {
+        PauseMenu.AddBlocker(this);
+
         if (_cancelAction == null)
         {
             return;
@@ -121,6 +134,8 @@ public class MainFlow : MonoBehaviour
 
     private void OnDisable()
     {
+        PauseMenu.RemoveBlocker(this);
+
         if (_cancelAction != null)
         {
             _cancelAction.action.performed -= HandleCancel;
@@ -149,6 +164,15 @@ public class MainFlow : MonoBehaviour
             _startInLobby = false;
             _state = EMainState.Entering;
             yield return EnterLobbyRoutine();
+            yield break;
+        }
+
+        if (_startInTitle)
+        {
+            _startInTitle = false;
+            _bootBackdrop.blocksRaycasts = false;
+            _bootBackdrop.gameObject.SetActive(false);
+            OpenTitle();
             yield break;
         }
 
