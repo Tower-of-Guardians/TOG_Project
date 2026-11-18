@@ -195,7 +195,10 @@ public class DataCenter : Singleton<DataCenter>
                     if (!card_datas.ContainsKey(item.id))
                     {
                         card_datas[item.id] = item;
-                        random_card_datas.Add(item.id);
+                        if (item.star == 0)
+                        {
+                            random_card_datas.Add(item.id);
+                        }
                     }
                 }
             },

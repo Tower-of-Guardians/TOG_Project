@@ -10,7 +10,8 @@ namespace Jongmin
         [Header("Card")]
         [SerializeField] private Card card;
         [SerializeField] private ButtonView purchaseButton;
-        
+        [SerializeField] private GameObject mergeGlow;
+
         [Header("Disable Group")]
         [SerializeField] private Image soldOutImage;
 
@@ -73,6 +74,7 @@ namespace Jongmin
             Card.View.CanvasGroup.alpha = isSoldOut ? 0f : 1f;
             purchaseButton.CanvasGroup.alpha = isSoldOut ? 0f : 1f;
             soldOutImage.gameObject.SetActive(isSoldOut);
+            mergeGlow.SetActive(!isSoldOut && CardMergeUtil.WillMergeOnGain(Card.CardData));
         }
 
         private void OnDestroy()

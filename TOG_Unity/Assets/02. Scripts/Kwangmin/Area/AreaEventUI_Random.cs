@@ -259,9 +259,14 @@ public sealed class AreaEventUI_Random : MonoBehaviour
             card =>
             {
                 RandomEventCardUtil.RemoveFromDeck(card);
+                CardMergeUtil.MergeDeck();
                 Finish();
             },
-            StartBattle);
+            () =>
+            {
+                CardMergeUtil.MergeDeck();
+                StartBattle();
+            });
     }
 
     private void OpenCardReward()

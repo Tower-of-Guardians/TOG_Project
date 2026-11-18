@@ -139,6 +139,8 @@ namespace Jongmin
                 DIContainer.Resolve<EventDomain>().RecordGainedCard(cardData);
             }
 
+            CardMergeUtil.MergeDeck();
+            UpdateSlotsState(DataCenter.Instance.playerstate.money);
             RequestRefreshInventory?.Invoke();
         }
 

@@ -104,12 +104,13 @@ namespace Jongmin
             var totalPrice = selectedCards.Sum(selectedCard => selectedCard.price);
 
             DataCenter.Instance.SetMoney(totalPrice);
-            shopDispenser.RefreshPurchaseStates();
 
             foreach (var selectedCard in selectedCards)
             {
                 DataCenter.Instance.userDeck.Remove(selectedCard);
             }
+
+            shopDispenser.RefreshPurchaseStates();
 
             merchantInvenSystem.OnSelectionChanged -= HandleOnSelectedSlots;
             compactInvenDomain.CloseView();
@@ -208,6 +209,9 @@ namespace Jongmin
             {
                 DIContainer.Resolve<EventDomain>()?.RecordGainedCard(cardData);
             }
+
+            CardMergeUtil.MergeDeck();
+            shopDispenser.RefreshPurchaseStates();
         }
 
         private void HandleOnPurchasedHpPotion()

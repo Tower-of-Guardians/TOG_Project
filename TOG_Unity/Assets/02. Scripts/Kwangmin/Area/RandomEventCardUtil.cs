@@ -60,6 +60,8 @@ public static class RandomEventCardUtil
         {
             DIContainer.Resolve<Jongmin.EventDomain>().RecordGainedCard(card);
         }
+
+        CardMergeUtil.MergeDeck();
     }
 
     public static List<CardData> CreateRewardCards(int count)
