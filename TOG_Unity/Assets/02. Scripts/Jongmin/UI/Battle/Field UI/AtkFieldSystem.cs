@@ -17,6 +17,7 @@
             Container.Add(card);
             Layout.UpdateLayout(FieldPreviewMode.None, isAnime:false);
             GameData.Instance.attackField.Add(card.CardData);
+            CardEffectExecutor.ApplyPlacedCardStatuses(card.CardData, FieldType.Attack);
             PreviewPlacedCardAttackBonuses(battleCardData);
             UpdateFieldStatus();
             RequestUpdateActionCountEvent(1);
@@ -26,6 +27,7 @@
         {
             GameData.Instance.CommitNamedCardAttackBonus(card.CardData);
             GameData.Instance.attackField.Remove(card.CardData);
+            CardEffectExecutor.RemovePlacedCardStatuses(card.CardData, FieldType.Attack);
             UpdateFieldStatus();
             CardEffectExecutor.RefreshVisibleCardAttackLabels();
             base.RemoveCard(card, isUpdateLayout);

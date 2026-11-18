@@ -546,10 +546,31 @@ public class StatusEffectController : MonoBehaviour
     public const string ImmortalityStatusId = "51001006";
     public const string EvasionStatusId = "51001007";
     public const string SuperFrenzyStatusId = "51001033";
-    public const string ConfusionStatusId = "51001034";
+    public const string AreaAttackStatusId = "51002008";
+    public const string Chastisement1StatusId = "51002009";
+    public const string Chastisement2StatusId = "51002010";
+    public const string Chastisement3StatusId = "51002011";
+    public const string Slayer1StatusId = "51002012";
+    public const string Slayer2StatusId = "51002013";
+    public const string Slayer3StatusId = "51002014";
+    public const string ApprenticeStatusId = "51002015";
+    public const string TwinsStatusId = "51002016";
+    public const string BeggarStatusId = "51002017";
+    public const string NoHealStatusId = "51002018";
+    public const string UserStrengthStatusId = "51002019";
+    public const string ShieldAttack1StatusId = "51002020";
+    public const string ShieldAttack2StatusId = "51002021";
+    public const string ShieldAttack3StatusId = "51002022";
+    public const string LifeSteal1StatusId = "51002023";
+    public const string LifeSteal2StatusId = "51002024";
+    public const string LifeSteal3StatusId = "51002025";
+    public const string BonusDamageStatusId = "51002026";
+    public const string BonusDrawStatusId = "51002027";
     public const string StunStatusId = "51003028";
     public const string NextTurnWeaknessStatusId = "51003030";
     public const string EnemyStrengthStatusId = "51003029";
+    public const string KinRevengeStatusId = "51003031";
+    public const string HitStrengthStatusId = "51003032";
 
     [SerializeField] private bool enableDebugLog;
 
@@ -645,6 +666,7 @@ public class StatusEffectController : MonoBehaviour
 
         handler.OnApplied(this, runtime, created);
         CleanupExpiredStatuses();
+        StatusEffectQueries.RefreshRuleBindings(GetComponent<BaseUnit>());
         return true;
     }
 
@@ -665,6 +687,23 @@ public class StatusEffectController : MonoBehaviour
         return stack > 0;
     }
 
+    public bool TryGetRuntime(string statusEffectId, out StatusEffectRuntime runtime)
+    {
+        runtime = null;
+        if (string.IsNullOrEmpty(statusEffectId))
+        {
+            return false;
+        }
+
+        if (!activeStatusMap.TryGetValue(statusEffectId, out runtime) || runtime == null || runtime.IsExpired)
+        {
+            runtime = null;
+            return false;
+        }
+
+        return true;
+    }
+
     public void RemoveStatus(string statusEffectId)
     {
         if (string.IsNullOrEmpty(statusEffectId))
@@ -676,6 +715,7 @@ public class StatusEffectController : MonoBehaviour
         {
             activeStatusMap.Remove(statusEffectId);
             OnStatusRemoved?.Invoke(runtime);
+            StatusEffectQueries.RefreshRuleBindings(GetComponent<BaseUnit>());
         }
     }
 
@@ -840,9 +880,20 @@ public class StatusEffectController : MonoBehaviour
         RegisterHandler(new CurseHandler());
         RegisterHandler(new ImmortalityHandler());
         RegisterHandler(new EvasionHandler());
-        RegisterHandler(new NextTurnWeaknessApplyHandler(ConfusionStatusId));
         RegisterHandler(new NextTurnWeaknessApplyHandler(NextTurnWeaknessStatusId));
         RegisterHandler(new EnemyStrengthBuffHandler());
+        RegisterHandler(new StunHandler());
+        RegisterHandler(new SlayerHandler(Slayer1StatusId, 0.5f));
+        RegisterHandler(new SlayerHandler(Slayer2StatusId, 0.75f));
+        RegisterHandler(new SlayerHandler(Slayer3StatusId, 1f));
+        RegisterHandler(new ShieldAttackStatusHandler(ShieldAttack1StatusId, 0.15f));
+        RegisterHandler(new ShieldAttackStatusHandler(ShieldAttack2StatusId, 0.25f));
+        RegisterHandler(new ShieldAttackStatusHandler(ShieldAttack3StatusId, 0.6f));
+        RegisterHandler(new BonusDamageHandler());
+        RegisterHandler(new BonusDrawHandler());
+        RegisterHandler(new KinRevengeHandler());
+        RegisterHandler(new HitStrengthHandler());
+        RegisterHandler(new TwinsHandler());
         isDefaultHandlerRegistered = true;
     }
 

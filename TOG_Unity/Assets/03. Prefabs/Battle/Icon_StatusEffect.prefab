@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1214972518107741864}
   - component: {fileID: 2109876543210987654}
   m_Layer: 5
-  m_Name: Icon_BuffDebuff
+  m_Name: Icon_StatusEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3409644966883235842, guid: 62a349f432a25cb44bba532a28c90c78, type: 3}
+  m_Sprite: {fileID: 7624161881857802269, guid: b94ba90c8ffc06a439688031bcd0750d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,6 +93,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2109876543210987654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540952265996419494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cad5a8639a25b449afbba55dd85a61e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iconRenderer: {fileID: 1214972518107741864}
+  amountText: {fileID: 7769457754004062961}
+  fontSizeMin: 0.1
+  fontSizeMax: 0.2
 --- !u!1 &8421660015646135741
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +121,7 @@ GameObject:
   - component: {fileID: 4858648720049654185}
   - component: {fileID: 7769457754004062961}
   m_Layer: 5
-  m_Name: BuffDebuff_Text
+  m_Name: StatusEffect_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,19 +245,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2109876543210987654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540952265996419494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cad5a8639a25b449afbba55dd85a61e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iconRenderer: {fileID: 1214972518107741864}
-  amountText: {fileID: 7769457754004062961}
-  fontSizeMin: 0.1
-  fontSizeMax: 0.2

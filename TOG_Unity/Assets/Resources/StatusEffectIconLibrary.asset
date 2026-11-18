@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e8b27d6f4a54b9e0c3d5f7a8123401, type: 3}
+  m_Name: StatusEffectIconLibrary
+  m_EditorClassIdentifier: 
+  Entries:
+  - StatusEffectId: 51001001
+    Icon: {fileID: 7624161881857802269, guid: b94ba90c8ffc06a439688031bcd0750d, type: 3}
+  - StatusEffectId: 51001002
+    Icon: {fileID: 6043035013682620227, guid: 0988a4bda2aae664a9439ba347fcab00, type: 3}
+  - StatusEffectId: 51001003
+    Icon: {fileID: -1168177252795784188, guid: 58db6cb6d20d02b4e933af8274fcae7a, type: 3}
+  - StatusEffectId: 51001004
+    Icon: {fileID: 8837323371649533526, guid: 6ee9a9140070ea54598d46c8bda204fa, type: 3}
+  - StatusEffectId: 51001005
+    Icon: {fileID: -7833589874576777845, guid: 07ee877a7a01014479aa77e88902896d, type: 3}
+  - StatusEffectId: 51001006
+    Icon: {fileID: 4771044628620427250, guid: 2e3dca88b1d10d94fb35a7293a54750d, type: 3}
+  - StatusEffectId: 51001007
+    Icon: {fileID: -708663678701106119, guid: e8d62fd78b839b84aad2fca0e562d7ba, type: 3}
+  - StatusEffectId: 51001033
+    Icon: {fileID: 2419953734365493204, guid: 45795a8938f155246980b7c5c32f9eb1, type: 3}
+  - StatusEffectId: 51002008
+    Icon: {fileID: -1741602741822755409, guid: a9b2381fd6cba7f4896a56e3f10ff9cc, type: 3}
+  - StatusEffectId: 51002009
+    Icon: {fileID: 1278830143915163139, guid: cc9e2d73588a3db44a71fe9cc60c618b, type: 3}
+  - StatusEffectId: 51002010
+    Icon: {fileID: 1278830143915163139, guid: cc9e2d73588a3db44a71fe9cc60c618b, type: 3}
+  - StatusEffectId: 51002011
+    Icon: {fileID: 1278830143915163139, guid: cc9e2d73588a3db44a71fe9cc60c618b, type: 3}
+  - StatusEffectId: 51002012
+    Icon: {fileID: -5298986221074778123, guid: 397b66f32769cde49b1a40ea3f6e7481, type: 3}
+  - StatusEffectId: 51002013
+    Icon: {fileID: -5298986221074778123, guid: 397b66f32769cde49b1a40ea3f6e7481, type: 3}
+  - StatusEffectId: 51002014
+    Icon: {fileID: -5298986221074778123, guid: 397b66f32769cde49b1a40ea3f6e7481, type: 3}
+  - StatusEffectId: 51002015
+    Icon: {fileID: -129593459374150635, guid: 7a03fe6d5d5856a4caf3b6c4091dc9f5, type: 3}
+  - StatusEffectId: 51002016
+    Icon: {fileID: -5296821107434568357, guid: 7b2dd4d9eef197f45a8b4180febe3e11, type: 3}
+  - StatusEffectId: 51002017
+    Icon: {fileID: -3080724421162830094, guid: 140744a0c1739f2438d4033b6c384c1e, type: 3}
+  - StatusEffectId: 51002018
+    Icon: {fileID: 5369641423413539129, guid: 3649cdf727a4ea349a51eeb82f6cb3fe, type: 3}
+  - StatusEffectId: 51002019
+    Icon: {fileID: -7079827871204694679, guid: 281b2def5d8fb9d46aaf715429dbc881, type: 3}
+  - StatusEffectId: 51002020
+    Icon: {fileID: -52002917379492006, guid: 9e629bdc5cdc7614ab2ce73184681327, type: 3}
+  - StatusEffectId: 51002021
+    Icon: {fileID: -52002917379492006, guid: 9e629bdc5cdc7614ab2ce73184681327, type: 3}
+  - StatusEffectId: 51002022
+    Icon: {fileID: -52002917379492006, guid: 9e629bdc5cdc7614ab2ce73184681327, type: 3}
+  - StatusEffectId: 51002023
+    Icon: {fileID: -7794071950526083863, guid: f4ea72b0e18ac3445a00bcb7622fd417, type: 3}
+  - StatusEffectId: 51002024
+    Icon: {fileID: -7794071950526083863, guid: f4ea72b0e18ac3445a00bcb7622fd417, type: 3}
+  - StatusEffectId: 51002025
+    Icon: {fileID: -7794071950526083863, guid: f4ea72b0e18ac3445a00bcb7622fd417, type: 3}
+  - StatusEffectId: 51002026
+    Icon: {fileID: 2461826370787175635, guid: c476f03c69fb9f041875d53a32889b5f, type: 3}
+  - StatusEffectId: 51002027
+    Icon: {fileID: -3850325323456800633, guid: 24d0b96665a4fa4458a2ea9a8573ab34, type: 3}
+  - StatusEffectId: 51003028
+    Icon: {fileID: -8830873879422868274, guid: ec2f3d617fd2f34418da6acbaa0791ec, type: 3}
+  - StatusEffectId: 51003029
+    Icon: {fileID: -7079827871204694679, guid: 281b2def5d8fb9d46aaf715429dbc881, type: 3}
+  - StatusEffectId: 51003030
+    Icon: {fileID: -5304039567506110447, guid: cf314bed79eeeed4b974e8a3090adb34, type: 3}
+  - StatusEffectId: 51003031
+    Icon: {fileID: -1993884796882576421, guid: a6189f2fd469b7e4e9ff22e74a39fc3c, type: 3}
+  - StatusEffectId: 51003032
+    Icon: {fileID: -6243258869346106431, guid: c7ab898df52875444b649e6ea81e059c, type: 3}

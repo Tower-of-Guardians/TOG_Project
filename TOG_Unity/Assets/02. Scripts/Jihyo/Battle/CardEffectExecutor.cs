@@ -23,6 +23,7 @@ public sealed class CardEffectContext
     public bool HasKilled;
     public bool UsedMagicThisTurn;
     public bool AttackStatPreviewOnly;
+    public bool StatusEffectsOnly;
     public Func<string, EffectData> GetEffectData;
     public Func<BaseUnit, string, bool> HasStatus;
 }
@@ -42,6 +43,49 @@ public static class CardEffectExecutor
 {
     public const string ThisTurnThisCardAttackEffectId = "1110002";
     private static readonly BaseUnit[] EmptyTargets = Array.Empty<BaseUnit>();
+
+    public static void ApplyPlacedCardStatuses(CardData card, FieldType placeField)
+    {
+        if (!UsesBeforeAttackStatuses(card))
+        {
+            return;
+        }
+
+        Execute(card, BuildPlacedContext(card, placeField), SelfStatusEffectApplier.Instance);
+    }
+
+    public static void RemovePlacedCardStatuses(CardData card, FieldType placeField)
+    {
+        if (!UsesBeforeAttackStatuses(card) || GameData.Instance == null)
+        {
+            return;
+        }
+
+        List<string> grantedIds = CollectSelfStatusIds(card, placeField);
+        if (grantedIds.Count == 0)
+        {
+            return;
+        }
+
+        HashSet<string> remainingIds = new HashSet<string>();
+        CollectFieldStatusIds(GameData.Instance.attackField, FieldType.Attack, card, remainingIds);
+        CollectFieldStatusIds(GameData.Instance.defenseField, FieldType.Defense, card, remainingIds);
+
+        Player player = ResolveBattlePlayer();
+        StatusEffectController controller = player != null ? player.GetComponent<StatusEffectController>() : null;
+        if (controller == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < grantedIds.Count; i++)
+        {
+            if (!remainingIds.Contains(grantedIds[i]))
+            {
+                controller.RemoveStatus(grantedIds[i]);
+            }
+        }
+    }
 
     public static void PreviewAttackBonusesOnPlace(CardData card, FieldType placeField)
     {
@@ -210,6 +254,59 @@ public static class CardEffectExecutor
         }
     }
 
+    private static bool UsesBeforeAttackStatuses(CardData card)
+    {
+        if (card == null)
+        {
+            return false;
+        }
+
+        CardWhen when = (CardWhen)card.when;
+        return when == CardWhen.BeforeAttack || when == CardWhen.BeforeThenAfter;
+    }
+
+    private static CardEffectContext BuildPlacedContext(CardData card, FieldType placeField)
+    {
+        return new CardEffectContext
+        {
+            When = CardWhen.BeforeAttack,
+            PlaceField = placeField,
+            Source = ResolveBattlePlayer(),
+            SourceCard = card,
+            IsFirstTurn = IsBattleFirstTurn(),
+            StatusEffectsOnly = true
+        };
+    }
+
+    private static List<string> CollectSelfStatusIds(CardData card, FieldType placeField)
+    {
+        SelfStatusCollector collector = new SelfStatusCollector();
+        Execute(card, BuildPlacedContext(card, placeField), collector);
+        return collector.StatusEffectIds;
+    }
+
+    private static void CollectFieldStatusIds(IEnumerable<CardData> cards, FieldType fieldType, CardData excluded, HashSet<string> results)
+    {
+        if (cards == null)
+        {
+            return;
+        }
+
+        foreach (CardData card in cards)
+        {
+            if (card == null || card == excluded || !UsesBeforeAttackStatuses(card))
+            {
+                continue;
+            }
+
+            List<string> ids = CollectSelfStatusIds(card, fieldType);
+            for (int i = 0; i < ids.Count; i++)
+            {
+                results.Add(ids[i]);
+            }
+        }
+    }
+
     private static Player ResolveBattlePlayer()
     {
         if (!DIContainer.IsRegistered<BattleManager>())
@@ -293,6 +390,11 @@ public static class CardEffectExecutor
                 Stack = Mathf.Max(1, parsedValue),
                 Value = parsedValue
             }, context);
+            return;
+        }
+
+        if (context.StatusEffectsOnly)
+        {
             return;
         }
 
@@ -399,6 +501,47 @@ public static class CardEffectExecutor
         StatusEffectController controller = unit.GetComponent<StatusEffectController>();
         return controller != null && controller.TryGetStatusStack(statusEffectId, out int stack) && stack > 0;
     }
+}
+
+public sealed class SelfStatusEffectApplier : ICardEffectApplier
+{
+    public static readonly SelfStatusEffectApplier Instance = new SelfStatusEffectApplier();
+
+    public void ApplyStatus(CardEffectApplyRequest request, CardEffectContext context)
+    {
+        if (request == null || request.Target != CardEffectTarget.Self)
+        {
+            return;
+        }
+
+        StatusEffectCardEffectApplier.Instance.ApplyStatus(request, context);
+    }
+
+    public void QueueNamedCardAttackBonus(CardData sourceCard, int amount, CardEffectContext context) { }
+
+    public void AddThisTurnCardAttackBonus(CardData sourceCard, int amount, CardEffectContext context) { }
+}
+
+public sealed class SelfStatusCollector : ICardEffectApplier
+{
+    public readonly List<string> StatusEffectIds = new List<string>();
+
+    public void ApplyStatus(CardEffectApplyRequest request, CardEffectContext context)
+    {
+        if (request == null || request.Target != CardEffectTarget.Self || string.IsNullOrEmpty(request.StatusEffectId))
+        {
+            return;
+        }
+
+        if (!StatusEffectIds.Contains(request.StatusEffectId))
+        {
+            StatusEffectIds.Add(request.StatusEffectId);
+        }
+    }
+
+    public void QueueNamedCardAttackBonus(CardData sourceCard, int amount, CardEffectContext context) { }
+
+    public void AddThisTurnCardAttackBonus(CardData sourceCard, int amount, CardEffectContext context) { }
 }
 
 public sealed class StatusEffectCardEffectApplier : ICardEffectApplier

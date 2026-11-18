@@ -300,8 +300,12 @@ public class BattleManager : MonoBehaviour
             yield break;
         }
         
-        // 카드 버리기 및 전투 UI 비활성화
-        yield return effectDomain.DiscardHandCards();
+        // 거지가 있으면 공격 후 패를 버리지 않습니다.
+        Player attackingPlayer = setupController.GetPlayer();
+        if (!StatusEffectQueries.KeepsHandAfterAttack(attackingPlayer))
+        {
+            yield return effectDomain.DiscardHandCards();
+        }
 
         // 전투 초기화 및 타겟 선택
         var initResult = combatController.InitializeCombat(setupController);
@@ -413,6 +417,11 @@ public class BattleManager : MonoBehaviour
     public int ConsumePendingExtraDraw()
     {
         return combatController != null ? combatController.ConsumePendingExtraDraw() : 0;
+    }
+
+    public void AddPendingExtraDraw(int count)
+    {
+        combatController?.AddPendingExtraDraw(count);
     }
 
     public void RequestDrawCards(int count = -1)

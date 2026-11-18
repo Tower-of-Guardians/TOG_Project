@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 using Jongmin;
 
@@ -43,25 +41,21 @@ public class Player : BaseUnit, ITooltipProvider
     [SerializeField] private Sprite weaknessStatusSprite;
     [SerializeField] private Sprite curseStatusSprite;
     [SerializeField] private Transform statusBottomRoot;
-    [SerializeField] private GameObject buffDebuffIconPrefab;
+    [SerializeField] private GameObject statusEffectIconPrefab;
     
     private Tweener attackTextTweener;
     private Tweener protectionTweener;
     private readonly Queue<int> pendingAttackTweenTargets = new Queue<int>();
     private const int NormalSortingOrder = 5;
     private const int AttackSortingOrder = 7;
-    private const string WeaknessStatusNodeName = "Weakness";
-    private const string CurseStatusNodeName = "Curse";
-    
-    private StatusEffectController statusEffectController;
-    private GameObject weaknessStatusRoot;
-    private Image weaknessStatusImage;
-    private TMP_Text weaknessTurnText;
-    private GameObject curseStatusRoot;
-    private Image curseStatusImage;
-    private TMP_Text curseStackText;
 
-    public int AttackValue => Mathf.RoundToInt(baseAttack + cardAttackBonus) + battleSynergyAttackBonus + turnSynergyAttackBonus;
+    private StatusEffectController statusEffectController;
+
+    public int AttackValue => Mathf.RoundToInt(baseAttack + cardAttackBonus)
+        + battleSynergyAttackBonus
+        + turnSynergyAttackBonus
+        + StatusEffectQueries.GetUserStrengthBonus(this)
+        + StatusEffectQueries.GetChastisementBonus(this, baseAttack);
     public float DefenseValue => cardDefenseBonus;
     public float GetStatAnimationWaitTime() => statAnimationDuration;
     public bool CanShowTooltip => true;
@@ -157,7 +151,12 @@ public class Player : BaseUnit, ITooltipProvider
 
     public void Heal(int amount)
     {
-        currentHealth = Mathf.Clamp(currentHealth + Mathf.Max(0, amount), 0, maxHealth);
+        if (amount <= 0 || StatusEffectQueries.BlocksHealing(this))
+        {
+            return;
+        }
+
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         RefreshUI();
     }
 
@@ -354,9 +353,8 @@ public class Player : BaseUnit, ITooltipProvider
             // 기본 공격력에 카드 필드의 공격력을 더함
             float fieldAttackPower = GameData.Instance.AttackField();
             int currentAttack = AttackValue;
-            int targetAttack = Mathf.RoundToInt(baseAttack + fieldAttackPower) + battleSynergyAttackBonus + turnSynergyAttackBonus;
-            
             cardAttackBonus = fieldAttackPower;
+            int targetAttack = AttackValue;
             lastAttackBonus = cardAttackBonus;
             
             // 공격력 애니메이션
@@ -617,102 +615,8 @@ public class Player : BaseUnit, ITooltipProvider
 
     private void InitializeStatusEffectUI()
     {
-        if (statusBottomRoot == null)
-        {
-            return;
-        }
-
-        StatusEffectIcon.RegisterPrefab(buffDebuffIconPrefab);
-
-        if (weaknessStatusRoot == null)
-        {
-            weaknessStatusRoot = CreateStatusIconNode(statusBottomRoot, WeaknessStatusNodeName, weaknessStatusSprite);
-        }
-
-        BindStatusIcon(weaknessStatusRoot, weaknessStatusSprite, out weaknessStatusImage, out weaknessTurnText);
-
-        if (weaknessStatusImage != null && weaknessStatusSprite != null)
-        {
-            weaknessStatusImage.sprite = weaknessStatusSprite;
-        }
-
-        if (weaknessStatusRoot != null)
-        {
-            weaknessStatusRoot.SetActive(false);
-        }
-
-        if (curseStatusRoot == null)
-        {
-            curseStatusRoot = CreateStatusIconNode(statusBottomRoot, CurseStatusNodeName, curseStatusSprite);
-        }
-
-        BindStatusIcon(curseStatusRoot, curseStatusSprite, out curseStatusImage, out curseStackText);
-
-        if (curseStatusImage != null && curseStatusSprite != null)
-        {
-            curseStatusImage.sprite = curseStatusSprite;
-        }
-
-        if (curseStatusRoot != null)
-        {
-            curseStatusRoot.SetActive(false);
-        }
-    }
-
-    private GameObject CreateStatusIconNode(Transform parent, string nodeName, Sprite iconSprite)
-    {
-        GameObject root;
-        if (buffDebuffIconPrefab != null)
-        {
-            root = Instantiate(buffDebuffIconPrefab, parent);
-            root.name = nodeName;
-        }
-        else
-        {
-            root = new GameObject(nodeName, typeof(RectTransform), typeof(Image));
-            RectTransform rootRect = root.GetComponent<RectTransform>();
-            rootRect.SetParent(parent, false);
-            rootRect.sizeDelta = new Vector2(0.5f, 0.5f);
-            rootRect.localScale = Vector3.one;
-
-            GameObject textObject = new GameObject(StatusEffectIcon.AmountTextName, typeof(RectTransform), typeof(TextMeshProUGUI));
-            RectTransform textRect = textObject.GetComponent<RectTransform>();
-            textRect.SetParent(rootRect, false);
-            textRect.anchorMin = new Vector2(1f, 0f);
-            textRect.anchorMax = new Vector2(1f, 0f);
-            textRect.pivot = new Vector2(1f, 0f);
-            textRect.sizeDelta = new Vector2(0.5f, 0.5f);
-            textRect.anchoredPosition = Vector2.zero;
-
-            StatusEffectIcon fallbackIcon = root.AddComponent<StatusEffectIcon>();
-            fallbackIcon.AssignAmountText(textObject.GetComponent<TMP_Text>());
-        }
-
-        BindStatusIcon(root, iconSprite, out _, out _);
-        return root;
-    }
-
-    private static void BindStatusIcon(GameObject root, Sprite iconSprite, out Image iconImage, out TMP_Text amountText)
-    {
-        iconImage = null;
-        amountText = null;
-        if (root == null)
-        {
-            return;
-        }
-
-        StatusEffectIcon icon = StatusEffectIcon.Resolve(root);
-        icon.SetIcon(iconSprite);
-        icon.SetAmount(string.Empty);
-
-        iconImage = root.GetComponent<Image>();
-        if (iconImage != null && iconSprite != null)
-        {
-            iconImage.sprite = iconSprite;
-            iconImage.preserveAspect = true;
-        }
-
-        amountText = icon.AmountText;
+        StatusEffectIcon.RegisterPrefab(statusEffectIconPrefab);
+        RefreshStatusIcons();
     }
 
     private void SubscribeStatusEffectEvents()
@@ -726,8 +630,7 @@ public class Player : BaseUnit, ITooltipProvider
         statusEffectController.OnStatusAdded += OnPlayerStatusUpdated;
         statusEffectController.OnStatusRemoved += OnPlayerStatusUpdated;
         statusEffectController.OnStatusChanged += OnPlayerStatusUpdated;
-        RefreshWeaknessStatusUI();
-        RefreshCurseStatusUI();
+        RefreshStatusIcons();
     }
 
     private void UnsubscribeStatusEffectEvents()
@@ -745,75 +648,41 @@ public class Player : BaseUnit, ITooltipProvider
 
     private void OnPlayerStatusUpdated(StatusEffectRuntime runtime)
     {
-        RefreshWeaknessStatusUI();
-        RefreshCurseStatusUI();
+        RefreshStatusIcons();
     }
 
-    private void RefreshWeaknessStatusUI()
+    private void RefreshStatusIcons()
     {
-        if (weaknessStatusRoot == null || weaknessTurnText == null || statusEffectController == null)
+        if (statusBottomRoot == null || statusEffectController == null)
         {
             return;
         }
 
-        StatusEffectRuntime weaknessRuntime = null;
-        foreach (StatusEffectRuntime runtime in statusEffectController.ActiveStatuses)
-        {
-            if (runtime == null)
-            {
-                continue;
-            }
-
-            if (runtime.StatusEffectId == StatusEffectController.WeaknessExposureStatusId)
-            {
-                weaknessRuntime = runtime;
-                break;
-            }
-        }
-
-        bool shouldShow = weaknessRuntime != null && !weaknessRuntime.IsExpired;
-        weaknessStatusRoot.SetActive(shouldShow);
-        if (!shouldShow)
-        {
-            StatusEffectIcon.Resolve(weaknessStatusRoot).SetAmount(string.Empty);
-            return;
-        }
-
-        StatusEffectIcon.Resolve(weaknessStatusRoot).SetAmount(
-            StatusEffectDurationUtility.ResolveDisplayAmount(weaknessRuntime));
+        StatusEffectIconStrip.Refresh(
+            statusBottomRoot,
+            statusEffectController.ActiveStatuses,
+            statusEffectIconPrefab,
+            ResolveStatusIcon);
     }
 
-    private void RefreshCurseStatusUI()
+    private Sprite ResolveStatusIcon(string statusEffectId)
     {
-        if (curseStatusRoot == null || curseStackText == null || statusEffectController == null)
+        if (StatusEffectIconCatalog.TryGetIcon(statusEffectId, out Sprite sprite))
         {
-            return;
+            return sprite;
         }
 
-        StatusEffectRuntime curseRuntime = null;
-        foreach (StatusEffectRuntime runtime in statusEffectController.ActiveStatuses)
+        if (statusEffectId == StatusEffectController.WeaknessExposureStatusId)
         {
-            if (runtime == null)
-            {
-                continue;
-            }
-
-            if (runtime.StatusEffectId == StatusEffectController.CurseStatusId)
-            {
-                curseRuntime = runtime;
-                break;
-            }
+            return weaknessStatusSprite;
         }
 
-        bool shouldShow = curseRuntime != null && !curseRuntime.IsExpired;
-        curseStatusRoot.SetActive(shouldShow);
-        if (!shouldShow)
+        if (statusEffectId == StatusEffectController.CurseStatusId)
         {
-            StatusEffectIcon.Resolve(curseStatusRoot).SetAmount(string.Empty);
-            return;
+            return curseStatusSprite;
         }
 
-        StatusEffectIcon.Resolve(curseStatusRoot).SetAmount(Mathf.Max(0, curseRuntime.Stack).ToString());
+        return null;
     }
 
     public TooltipContent GetTooltipContent()

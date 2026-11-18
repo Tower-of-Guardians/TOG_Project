@@ -22,7 +22,7 @@ public class TurnManager : MonoBehaviour
     public int CurrentThrowCount { get; private set; }
     public int CurrentTurnNumber { get; private set; }
 
-    public int MaxActionCount => _turnRuleService.GetRule(_cardCount).MaxActionCount;
+    public int MaxActionCount => _turnRuleService.GetRule(_cardCount).MaxActionCount + StatusEffectQueries.GetExtraCardPlays();
     public int MaxHandCount => _turnRuleService.GetRule(_cardCount).MaxHandCount;
     public int MaxThrowCount => MaxActionCount;
 
@@ -50,6 +50,12 @@ public class TurnManager : MonoBehaviour
     /// <summary>
     /// 0과 최대 행동 수 사이에서 액션 횟수를 제한하여 갱신합니다.
     /// </summary>
+    public void RefreshActionLimit()
+    {
+        CurrentActionCount = Mathf.Clamp(CurrentActionCount, 0, MaxActionCount);
+        AlertToUpdateActionCount();
+    }
+
     public void UpdateActionCount(int amount)
     {
         CurrentActionCount += amount;

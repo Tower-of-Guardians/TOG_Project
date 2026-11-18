@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Icon_BuffDebuff의 스택/턴 텍스트에 Auto Size를 유지한 채 값을 적용합니다.
+/// Icon_StatusEffect의 스택/턴 텍스트에 Auto Size를 유지한 채 값을 적용합니다.
 /// TMP는 fontSize를 직접 넣으면 enableAutoSizing이 풀립니다.
 /// </summary>
 public class StatusEffectIcon : MonoBehaviour
 {
-    public const string AmountTextName = "BuffDebuff_Text";
-    public const string IconBuffDebuffPrefabPath = "Assets/03. Prefabs/Battle/Icon_BuffDebuff.prefab";
+    public const string AmountTextName = "StatusEffect_Text";
+    public const string IconStatusEffectPrefabPath = "Assets/03. Prefabs/Battle/Icon_StatusEffect.prefab";
 
     [SerializeField] private SpriteRenderer iconRenderer;
     [SerializeField] private TMP_Text amountText;
@@ -54,7 +54,7 @@ public class StatusEffectIcon : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        sharedPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(IconBuffDebuffPrefabPath);
+        sharedPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(IconStatusEffectPrefabPath);
 #endif
         return sharedPrefab;
     }
@@ -76,11 +76,6 @@ public class StatusEffectIcon : MonoBehaviour
     public void SetIcon(Sprite sprite)
     {
         CacheReferences();
-        if (sprite == null)
-        {
-            return;
-        }
-
         if (iconRenderer != null)
         {
             iconRenderer.sprite = sprite;
@@ -90,6 +85,7 @@ public class StatusEffectIcon : MonoBehaviour
         if (image != null)
         {
             image.sprite = sprite;
+            image.enabled = sprite != null;
         }
     }
 

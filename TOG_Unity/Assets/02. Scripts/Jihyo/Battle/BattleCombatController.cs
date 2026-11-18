@@ -31,7 +31,16 @@ public class BattleCombatController : MonoBehaviour, IBattleController
     private bool playedSynergyMotion;
 
     public float GetStatAnimationWaitTime() => statAnimationWaitTime;
-    public bool GetPlayerAttackHitsAll() => playerAttackHitsAll;
+    public bool GetPlayerAttackHitsAll()
+    {
+        if (playerAttackHitsAll)
+        {
+            return true;
+        }
+
+        Player player = battleManager != null ? battleManager.GetSetupController()?.GetPlayer() : null;
+        return StatusEffectQueries.AttacksAllEnemies(player);
+    }
     public bool PlayedSynergyMotion => playedSynergyMotion;
     public bool IsInitialized => isInitialized;
 
@@ -77,6 +86,16 @@ public class BattleCombatController : MonoBehaviour, IBattleController
         int bonus = pendingNextTurnExtraDraw;
         pendingNextTurnExtraDraw = 0;
         return bonus;
+    }
+
+    public void AddPendingExtraDraw(int count)
+    {
+        if (count <= 0)
+        {
+            return;
+        }
+
+        pendingNextTurnExtraDraw += count;
     }
 
     public static int CalculateGoldPercentDamage(int gold, int percent)
@@ -382,6 +401,14 @@ public class BattleCombatController : MonoBehaviour, IBattleController
             {
                 target.TakeDamage(finalDamage);
             }
+
+            int lifeStealPercent = StatusEffectQueries.GetLifeStealPercent(player);
+            int lifeSteal = BloodSuckingEffectSpawner.CalculateHeal(finalDamage, lifeStealPercent);
+            if (BloodSuckingEffectSpawner.CanApplyHeal(player.CurrentHealth, player.MaxHealth, lifeSteal))
+            {
+                player.Heal(lifeSteal);
+            }
+
             damagedTargets.Add(target);
 
             if (targetUnit != null)

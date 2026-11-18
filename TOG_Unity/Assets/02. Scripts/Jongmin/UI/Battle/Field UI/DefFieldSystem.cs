@@ -17,6 +17,7 @@
             Container.Add(card);
             Layout.UpdateLayout(FieldPreviewMode.None, isAnime:false);
             GameData.Instance.defenseField.Add(card.CardData);
+            CardEffectExecutor.ApplyPlacedCardStatuses(card.CardData, FieldType.Defense);
             PreviewPlacedCardAttackBonuses(battleCardData);
             UpdateFieldStatus();
             RequestUpdateActionCountEvent(1);
@@ -25,6 +26,7 @@
         public override void RemoveCard(Card card, bool isUpdateLayout = true)
         {
             GameData.Instance.defenseField.Remove(card.CardData);
+            CardEffectExecutor.RemovePlacedCardStatuses(card.CardData, FieldType.Defense);
             UpdateFieldStatus();
             base.RemoveCard(card, isUpdateLayout);
         }

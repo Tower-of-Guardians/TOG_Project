@@ -56,7 +56,7 @@ public class Monster : BaseUnit
 
     [Header("Status UI")]
     [SerializeField] private Transform statusBottomRoot;
-    [SerializeField] private GameObject buffDebuffIconPrefab;
+    [SerializeField] private GameObject statusEffectIconPrefab;
     [SerializeField] private Sprite weaknessStatusSprite;
     [SerializeField] private Transform attackAnchor;
     [SerializeField] private GameObject targetIndicator;
@@ -80,6 +80,8 @@ public class Monster : BaseUnit
     private const int NormalSortingOrder = 5;
     private const int AttackSortingOrder = 8;
 
+    public bool IsBoss => loadedMonsterData != null && loadedMonsterData.Kind == (int)MonsterType.Boss;
+
     public event Action<Monster> Clicked;
     private BattleManager battleManager;
     private Coroutine registrationRoutine;
@@ -95,7 +97,6 @@ public class Monster : BaseUnit
     private GameObject attackStatusRoot;
     private Coroutine monsterDataRoutine;
     private StatusEffectController appliedStatusController;
-    private GameObject appliedWeaknessRoot;
 
     protected override void Awake()
     {
@@ -275,13 +276,43 @@ public class Monster : BaseUnit
         }
     }
 
+    public void ApplyStunToPreparedAction()
+    {
+        if (!hasPreparedAction)
+        {
+            return;
+        }
+
+        preparedAction = CreateStunAction();
+        preparedActionValue = 0;
+        RefreshUI();
+    }
+
     private void ResolveActionForExecution(out MonsterActionDefinition selectedAction, out int actionValue)
     {
+        if (HasStunStatus())
+        {
+            selectedAction = CreateStunAction();
+            actionValue = 0;
+            hasPreparedAction = false;
+            RefreshUI();
+            return;
+        }
+
         if (!TryConsumePreparedAction(out selectedAction, out actionValue))
         {
             selectedAction = SelectNextAction();
             actionValue = selectedAction != null ? ResolveActionValue(selectedAction.MinValue, selectedAction.MaxValue) : defaultAttack;
         }
+    }
+
+    private static MonsterActionDefinition CreateStunAction()
+    {
+        return new MonsterActionDefinition
+        {
+            ActionType = MonsterActionType.Stun,
+            TargetType = MonsterActionTargetType.None
+        };
     }
 
     private void PlayActionAnimation(MonsterActionDefinition selectedAction)
@@ -310,6 +341,8 @@ public class Monster : BaseUnit
             case MonsterActionType.Summon:
                 monsterAnimation.PlaySummonAnimation();
                 break;
+            case MonsterActionType.Stun:
+                break;
             default:
                 monsterAnimation.PlayAttackAnimation();
                 break;
@@ -321,11 +354,7 @@ public class Monster : BaseUnit
         preparedAction = AdjustPreparedAction(SelectNextAction());
         if (HasStunStatus())
         {
-            preparedAction = new MonsterActionDefinition
-            {
-                ActionType = MonsterActionType.Stun,
-                TargetType = MonsterActionTargetType.None
-            };
+            preparedAction = CreateStunAction();
         }
 
         preparedActionValue = preparedAction != null ? ResolveActionValue(preparedAction.MinValue, preparedAction.MaxValue) : defaultAttack;
@@ -1052,6 +1081,7 @@ public class Monster : BaseUnit
         if (!IsAlive && !isMarkedForDeath)
         {
             HandleDeath();
+            StatusEffectQueries.NotifyMonsterKilled(this);
         }
     }
 
@@ -1152,7 +1182,7 @@ public class Monster : BaseUnit
         appliedStatusController.OnStatusAdded += OnAppliedStatusChanged;
         appliedStatusController.OnStatusRemoved += OnAppliedStatusChanged;
         appliedStatusController.OnStatusChanged += OnAppliedStatusChanged;
-        RefreshAppliedWeaknessUi();
+        RefreshAppliedStatusUi();
     }
 
     private void UnsubscribeAppliedStatusUi()
@@ -1170,42 +1200,12 @@ public class Monster : BaseUnit
 
     private void OnAppliedStatusChanged(StatusEffectRuntime runtime)
     {
-        RefreshAppliedWeaknessUi();
+        RefreshAppliedStatusUi();
     }
 
-    private void RefreshAppliedWeaknessUi()
+    private void RefreshAppliedStatusUi()
     {
-        EnsureAppliedWeaknessUi();
-        if (appliedWeaknessRoot == null || appliedStatusController == null)
-        {
-            return;
-        }
-
-        StatusEffectRuntime weaknessRuntime = null;
-        foreach (StatusEffectRuntime runtime in appliedStatusController.ActiveStatuses)
-        {
-            if (runtime != null && runtime.StatusEffectId == StatusEffectController.WeaknessExposureStatusId && !runtime.IsExpired)
-            {
-                weaknessRuntime = runtime;
-                break;
-            }
-        }
-
-        bool shouldShow = weaknessRuntime != null;
-        appliedWeaknessRoot.SetActive(shouldShow);
-        if (!shouldShow)
-        {
-            StatusEffectIcon.Resolve(appliedWeaknessRoot).SetAmount(string.Empty);
-            return;
-        }
-
-        StatusEffectIcon.Resolve(appliedWeaknessRoot).SetAmount(
-            StatusEffectDurationUtility.ResolveDisplayAmount(weaknessRuntime));
-    }
-
-    private void EnsureAppliedWeaknessUi()
-    {
-        if (appliedWeaknessRoot != null)
+        if (appliedStatusController == null)
         {
             return;
         }
@@ -1216,10 +1216,32 @@ public class Monster : BaseUnit
             return;
         }
 
-        Sprite iconSprite = weaknessStatusSprite != null ? weaknessStatusSprite : actionDebuffSprite;
-        StatusEffectIcon icon = StatusEffectIcon.Create(parent, "Weakness", iconSprite, buffDebuffIconPrefab);
-        appliedWeaknessRoot = icon.gameObject;
-        appliedWeaknessRoot.SetActive(false);
+        StatusEffectIcon.RegisterPrefab(statusEffectIconPrefab);
+        StatusEffectIconStrip.Refresh(
+            parent,
+            appliedStatusController.ActiveStatuses,
+            statusEffectIconPrefab,
+            ResolveAppliedStatusIcon);
+    }
+
+    private Sprite ResolveAppliedStatusIcon(string statusEffectId)
+    {
+        if (StatusEffectIconCatalog.TryGetIcon(statusEffectId, out Sprite sprite))
+        {
+            return sprite;
+        }
+
+        if (statusEffectId == StatusEffectController.WeaknessExposureStatusId && weaknessStatusSprite != null)
+        {
+            return weaknessStatusSprite;
+        }
+
+        if (statusEffectId == StatusEffectController.CurseStatusId && actionCurseSprite != null)
+        {
+            return actionCurseSprite;
+        }
+
+        return null;
     }
 
     private static Transform FindChildByName(Transform root, string childName)
@@ -1285,6 +1307,8 @@ public class Monster : BaseUnit
         {
             case MonsterActionType.Attack:
                 return actionAttackSprite;
+            case MonsterActionType.Stun:
+                return null;
             case MonsterActionType.Guard:
                 return actionShieldSprite;
             case MonsterActionType.ApplyStatus:
