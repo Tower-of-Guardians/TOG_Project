@@ -263,6 +263,41 @@ namespace Jongmin
             return true;
         }
 
+        public static void RecordAreaVisit(string areaID, AreaEventType eventType)
+        {
+            if (string.IsNullOrWhiteSpace(areaID))
+            {
+                return;
+            }
+
+            EnsureRun();
+
+            var visit = _data.activeRun.areaVisits.Find(saved => saved.areaID == areaID);
+            if (visit != null)
+            {
+                visit.eventType = (int)eventType;
+                return;
+            }
+
+            _data.activeRun.areaVisits.Add(new AreaVisitSaveData { areaID = areaID, eventType = (int)eventType });
+        }
+
+        public static Dictionary<string, AreaEventType> GetAreaVisits()
+        {
+            var visits = new Dictionary<string, AreaEventType>();
+            if (!HasActiveRun)
+            {
+                return visits;
+            }
+
+            foreach (var visit in Data.activeRun.areaVisits)
+            {
+                visits[visit.areaID] = (AreaEventType)visit.eventType;
+            }
+
+            return visits;
+        }
+
         public static void EndRun(ERunEndReason reason)
         {
             if (!HasActiveRun)
@@ -573,6 +608,7 @@ namespace Jongmin
                 _data.activeRun.player ??= new PlayerRunSaveData();
                 _data.activeRun.experienceRecords ??= new List<ExperienceRecordData>();
                 _data.activeRun.areaChoices ??= new List<int>();
+                _data.activeRun.areaVisits ??= new List<AreaVisitSaveData>();
                 _data.activeRun.randomStreams ??= new List<RandomStreamSaveData>();
                 _data.activeRun.experiencedRandomEventIDs ??= new List<string>();
             }

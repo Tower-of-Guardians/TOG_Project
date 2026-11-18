@@ -3,15 +3,17 @@ using System.Collections.Generic;
 
 public sealed class AreaEventProgress
 {
+    private readonly Dictionary<string, AreaEventType> visits = new();
     private List<AreaEventData> areas = new();
     private int currentIndex = -1;
+    private int enteredIndex = -1;
 
     public bool IsInitialized => currentIndex >= 0;
     public bool IsCompleted { get; private set; }
     public AreaEventType? PendingEvent { get; private set; }
     public AreaEventData Current => IsInitialized ? areas[currentIndex] : null;
 
-    public bool TryInitialize(IEnumerable<AreaEventData> source, string areaId = null)
+    public bool TryInitialize(IEnumerable<AreaEventData> source, string areaId = null, IReadOnlyDictionary<string, AreaEventType> savedVisits = null)
     {
         if (source == null) return false;
 
@@ -36,6 +38,7 @@ public sealed class AreaEventProgress
         currentIndex = index;
         IsCompleted = false;
         PendingEvent = null;
+        RestoreVisits(savedVisits);
         return true;
     }
 
@@ -43,6 +46,8 @@ public sealed class AreaEventProgress
     {
         if (!IsInitialized || IsCompleted || PendingEvent.HasValue) return false;
         PendingEvent = type;
+        enteredIndex = currentIndex;
+        visits[Current.Id] = type;
         return true;
     }
 
@@ -55,5 +60,41 @@ public sealed class AreaEventProgress
         if (currentIndex + 1 < areas.Count) currentIndex++;
         else IsCompleted = true;
         return true;
+    }
+
+    public List<StageProgressNode> GetStageNodes()
+    {
+        var nodes = new List<StageProgressNode>();
+        if (!IsInitialized) return nodes;
+
+        int stage = areas[enteredIndex >= 0 ? enteredIndex : currentIndex].Stage;
+        for (int i = 0; i < areas.Count; i++)
+        {
+            AreaEventData area = areas[i];
+            if (area.Stage != stage) continue;
+
+            EStageNodeState state = i < enteredIndex ? EStageNodeState.Visited
+                : i == enteredIndex ? EStageNodeState.Current
+                : EStageNodeState.Locked;
+            AreaEventType? eventType = state != EStageNodeState.Locked && visits.TryGetValue(area.Id, out AreaEventType visited)
+                ? visited
+                : (AreaEventType?)null;
+            nodes.Add(new StageProgressNode(area.Area, state, eventType, area.BossEvent > 0, i < enteredIndex));
+        }
+        return nodes;
+    }
+
+    private void RestoreVisits(IReadOnlyDictionary<string, AreaEventType> savedVisits)
+    {
+        visits.Clear();
+        enteredIndex = currentIndex - 1;
+        if (savedVisits == null) return;
+
+        for (int i = 0; i < areas.Count; i++)
+        {
+            if (!savedVisits.TryGetValue(areas[i].Id, out AreaEventType type)) continue;
+            visits[areas[i].Id] = type;
+            enteredIndex = Math.Max(enteredIndex, i);
+        }
     }
 }

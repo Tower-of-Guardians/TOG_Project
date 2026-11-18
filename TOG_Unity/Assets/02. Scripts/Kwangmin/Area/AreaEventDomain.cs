@@ -22,6 +22,7 @@ namespace Kwangmin
 
         public event Action<AreaEventType> OnAreaEventSelected;
         public event Action<RandomEventData> OnRandomAreaEventSelected;
+        public event Action OnStageProgressChanged;
 
         private GameObject activeAreaEventInstance;
         private Jongmin.EventDomain eventDomain;
@@ -42,6 +43,8 @@ namespace Kwangmin
         public string CurrentAreaEventId => currentAreaEventId;
         public RandomEventData CurrentRandomEvent { get; private set; }
         public string CurrentNpcID { get; private set; }
+
+        public List<StageProgressNode> GetStageProgressNodes() => progress.GetStageNodes();
 
         public bool IsUIOpen()
         {
@@ -112,7 +115,7 @@ namespace Kwangmin
                 return true;
             }
 
-            if (!progress.TryBeginEvent(AreaEventType.Battle))
+            if (!TryBeginAreaEvent(AreaEventType.Battle))
             {
                 return false;
             }
@@ -127,7 +130,7 @@ namespace Kwangmin
             if (!progress.IsInitialized)
             {
                 if (!EnsureProgress(true)) return;
-                progress.TryBeginEvent(AreaEventType.Battle);
+                TryBeginAreaEvent(AreaEventType.Battle);
             }
 
             AreaEventType? type = progress.PendingEvent;
@@ -158,7 +161,7 @@ namespace Kwangmin
                 restoredEventType = savedEventType;
                 restoredCheckpoint = true;
             }
-            if (!progress.TryInitialize(DataCenter.areaevent_datas?.Values, initialId))
+            if (!progress.TryInitialize(DataCenter.areaevent_datas?.Values, initialId, Jongmin.RunSaveService.GetAreaVisits()))
             {
                 Debug.LogError($"[AreaEventDomain] 지역 진행 데이터를 찾을 수 없습니다: {initialId}", this);
                 return false;
@@ -171,6 +174,16 @@ namespace Kwangmin
             {
                 Jongmin.RunSaveService.SaveAreaEntry(currentAreaEventId, playerStatus);
             }
+            OnStageProgressChanged?.Invoke();
+            return true;
+        }
+
+        private bool TryBeginAreaEvent(AreaEventType type)
+        {
+            if (!progress.TryBeginEvent(type)) return false;
+
+            Jongmin.RunSaveService.RecordAreaVisit(progress.Current.Id, type);
+            OnStageProgressChanged?.Invoke();
             return true;
         }
 
@@ -426,7 +439,7 @@ namespace Kwangmin
 
                 UpdateStatusOnEventSelected(type);
                 visitedEvents.Add(type);
-                progress.TryBeginEvent(type);
+                TryBeginAreaEvent(type);
                 if (type == AreaEventType.Random)
                 {
                     AreaEventData areaData = GetCurrentOrFirstData();
@@ -607,7 +620,7 @@ namespace Kwangmin
                     transitioning = false;
                     if (success)
                     {
-                        progress.TryBeginEvent(type);
+                        TryBeginAreaEvent(type);
                         OnAreaEventSelected?.Invoke(type);
                     }
                     else

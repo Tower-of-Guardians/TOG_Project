@@ -162,6 +162,8 @@ MonoBehaviour:
   - {fileID: -4497981705717921518}
   - {fileID: -9156543633736687718}
   - {fileID: 8456176856692278869}
+  - {fileID: 7092073512376816449}
+  - {fileID: 5818995382157430108}
   dataTableRowScript: {fileID: 0}
 --- !u!114 &8456176856692278869
 MonoBehaviour:
@@ -183,3 +185,41 @@ MonoBehaviour:
   bodyText:
   - "\uD604\uC7AC <color=red>{attackPower}</color>\uC758 \uACF5\uACA9\uB825\uC744
     \uAC00\uC9C0\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
+--- !u!114 &7092073512376816449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0957fceaffe4543a4ca5a2046bfd5fe, type: 3}
+  m_Name: UI_StageAreaVisited
+  m_EditorClassIdentifier: 
+  rowID: UI_StageAreaVisited
+  isEnable: 1
+  layout: 1
+  headerText:
+  - "<color=#99CCFF>{area}\uc9c0\uc5ed</color> \u00b7 {eventName}"
+  tagText: []
+  bodyText: []
+--- !u!114 &5818995382157430108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0957fceaffe4543a4ca5a2046bfd5fe, type: 3}
+  m_Name: UI_StageAreaLocked
+  m_EditorClassIdentifier: 
+  rowID: UI_StageAreaLocked
+  isEnable: 1
+  layout: 1
+  headerText:
+  - "<color=#99CCFF>{area}\uc9c0\uc5ed</color>"
+  tagText: []
+  bodyText: []

@@ -89,6 +89,13 @@ namespace Jongmin
     }
 
     [Serializable]
+    public sealed class AreaVisitSaveData
+    {
+        public string areaID;
+        public int eventType;
+    }
+
+    [Serializable]
     public sealed class ActiveRunSaveData
     {
         public string runID;
@@ -97,6 +104,7 @@ namespace Jongmin
         public string areaID;
         public PlayerEventStatus eventStatus;
         public List<int> areaChoices = new();
+        public List<AreaVisitSaveData> areaVisits = new();
         public int eventType;
         public List<CardRunSaveData> deck = new();
         public bool hasBattleDeckState;

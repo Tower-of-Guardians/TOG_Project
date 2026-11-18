@@ -7,3 +7,5 @@ UI_DiscardManual,RightUI,<color=#99CCFF>버리기 제한</color>,,최대 <color=
 UI_Synergy,Synergy,{synergyName}|+,일반|레어|유니크|에픽|별,{synergyDescription}|<color=#FFFFFF>({requiredCount}) : {gradeName} 등급</color>|<color=#6E6E6E>({requiredCount}) : {gradeName} 등급</color>|{synergyName}({activatedCount}),TRUE
 ,,,,,
 Player,Player,,,현재 <color=red>{attackPower}</color>의 공격력을 가지고 있습니다.,TRUE
+UI_StageAreaVisited,LeftUI,<color=#99CCFF>{area}지역</color> · {eventName},,,TRUE
+UI_StageAreaLocked,LeftUI,<color=#99CCFF>{area}지역</color>,,,TRUE
