@@ -6,9 +6,9 @@ RelicEffect_004,TRUE,IncreaseBaseAtk,Passive,Value,,4
 RelicEffect_005,TRUE,IncreaseBaseAtk,Passive,Value,,6
 RelicEffect_006,TRUE,Heal,OnCombineCard,Value,,3
 RelicEffect_007,TRUE,IncreaseBaseAtk,OnLevelUp,Value,,1
-RelicEffect_008,TRUE,Magic,OnRunStart,None,부모 마법 ID,0
+RelicEffect_008,TRUE,Magic,OnRunStart,None,1200002,0
 RelicEffect_009,TRUE,IncreaseMaxHp,Passive,Value,,10
 RelicEffect_010,TRUE,GainGold,Passive,Percent,,10
 RelicEffect_011,TRUE,IncreaseHealRegeneration,OnRegeneration,Value,,10
-RelicEffect_012,TRUE,Magic,OnRunStart,None,소년 마법 ID,0
+RelicEffect_012,TRUE,Magic,OnRunStart,None,1200001,0
 RelicEffect_013,TRUE,Reroll,OnReward,Value,,1

@@ -1,14 +1,15 @@
-rowID,isEnable,displayName,displayImage,relicType,description,condition,effectIDs
-Relic_001,TRUE,크라비안의 송곳니,,Private,"탑의 상인인 마족 크라비안이 고마움의 표시로 준 선물입니다. \""마족의 이빨을 전리품으로 얻은 게 아니라 마족한테 선물 받은거라고 말하고 다니면 정신나간 놈 취급을 받겠지.\""",상점에 있는 모든 품목을 구매한 후 크리비안과의 대화를 통해 획득,RelicEffect_001
-Relic_002,TRUE,성직자의 보주,,Private,태어나서 처음 느껴보는 신비한 마력의 보주입니다. 도대체 그녀는 정체가 뭘까요?,{0}스테이지에 최초 진입한 이후 성직자와의 대화를 통해 획득,RelicEffect_002
-Relic_003,TRUE,가디언의 정신 1,,Public,가디언이 당신의 힘을 눈여겨 보고 있습니다. 그에게 인정받기 위해 더 노력해보세요.,1회의 공격으로 {0} 이상의 데미지를 입힌 후 가디언의 동상과의 대화를 통해 획득,RelicEffect_003
-Relic_004,TRUE,가디언의 정신 2,,Private,가디언이 당신의 힘을 눈여겨 보고 있습니다. 그에게 인정받기 위해 더 노력해보세요.,,RelicEffect_004
-Relic_005,TRUE,가디언의 정신 3,,Private,당신은 가디언의 의지를 이어받았습니다.,,RelicEffect_005
-Relic_006,TRUE,헤카의 보석,,Public,카드를 합치는 재미를 알게된 당신을 위한 헤카의 선물입니다.,,RelicEffect_006
-Relic_007,TRUE,전사의 힘,,Public,(비어있음),,RelicEffect_007
-Relic_008,TRUE,보호자의 힘,,Public,(비어있음),,RelicEffect_008
-Relic_009,TRUE,흡혈귀의 힘,,Public,(비어있음),,RelicEffect_009
-Relic_010,TRUE,약탈꾼의 힘,,Public,(비어있음),,RelicEffect_010
-Relic_011,TRUE,마녀의 힘,,Public,(비어있음),,RelicEffect_011
-Relic_012,TRUE,정령의 힘,,Public,(비어있음),,RelicEffect_012
-Relic_013,TRUE,왕의 힘,,Public,(비어있음),,RelicEffect_013
+rowID,isEnable,displayName,displayImage,relicType,description,condition,effectIDs,effectText,hintText
+Relic_Krabian'sCanine,TRUE,크라비안의 송곳니,,Private,"탑의 상인인 마족 크라비안이 고마움의 표시로 준 선물입니다. ""마족의 이빨을 전리품으로 얻은 게 아니라 마족한테 선물 받은 거라고 말하고 다니면 정신나간 놈 취급을 받겠지.""",상점에 있는 모든 품목을 구매한 후 크라비안과의 대화를 통해 획득,RelicEffect_001,상인 상점의 모든 품목 가격이 <color=#99CCFF>{value}</color>% 할인됩니다.,
+Relic_Priest_Priest'sOrb,TRUE,성직자의 보주,,Private,태어나서 처음 느껴보는 신비한 마력의 보주입니다. 도대체 그녀는 정체가 뭘까요?,{0}스테이지에 최초 진입한 이후 성직자와의 대화를 통해 획득,RelicEffect_002,"런마다 1회, 사망 시 최대 체력의 <color=#99CCFF>{value}</color>%로 부활합니다.",
+Relic_UnknownDevice,TRUE,정체 모를 장치,,Private,쓰러진 훈련용 인형에게서 떨어진 장치입니다. 어디에 쓰는 물건인지는 알 수 없습니다.,랜덤 이벤트 훈련용 인형에서 승리한 후 부서진 훈련용 인형과의 대화를 통해 획득,,,
+Relic_SoulOfGuardian1,TRUE,가디언의 정신 1,,Private,가디언이 당신의 힘을 눈여겨 보고 있습니다. 그에게 인정받기 위해 더 노력해보세요.,1회의 공격으로 {0} 이상의 데미지를 입힌 후 가디언의 동상과의 대화를 통해 획득,RelicEffect_003,기본 공격력이 <color=#99CCFF>{value}</color> 증가합니다.,
+Relic_SoulOfGuardian2,TRUE,가디언의 정신 2,,Private,가디언이 당신의 힘을 눈여겨 보고 있습니다. 그에게 인정받기 위해 더 노력해보세요.,,RelicEffect_004,기본 공격력이 <color=#99CCFF>{value}</color> 증가합니다.,
+Relic_SoulOfGuardian3,TRUE,가디언의 정신 3,,Private,당신은 가디언의 의지를 이어받았습니다.,,RelicEffect_005,기본 공격력이 <color=#99CCFF>{value}</color> 증가합니다.,
+Relic_Heca'sGemstone,TRUE,헤카의 보석,,Public,카드를 합치는 재미를 알게된 당신을 위한 헤카의 선물입니다.,,RelicEffect_006,카드가 합쳐질 때마다 체력을 <color=#99CCFF>{value}</color> 회복합니다.,
+Relic_PowerOfKnight,TRUE,기사의 힘,,Public,,,RelicEffect_007,레벨업할 때마다 기본 공격력이 <color=#99CCFF>{value}</color> 증가합니다.,
+Relic_PowerOfProtector,TRUE,보호자의 힘,,Public,,,RelicEffect_008,부모 마법을 보유한 채로 런을 시작합니다.,
+Relic_PowerOfVampire,TRUE,흡혈귀의 힘,,Public,,,RelicEffect_009,최대 체력이 <color=#99CCFF>{value}</color> 증가합니다.,
+Relic_PowerOfPlunderer,TRUE,약탈꾼의 힘,,Public,,,RelicEffect_010,전투 보상으로 얻는 골드가 <color=#99CCFF>{value}</color>% 증가합니다.,
+Relic_PowerOfWitch,TRUE,마녀의 힘,,Public,,,RelicEffect_011,보스 전투 후 성직자에게 받는 회복량이 <color=#99CCFF>{value}</color> 증가합니다.,
+Relic_PowerOfElemental,TRUE,정령의 힘,,Public,,,RelicEffect_012,소년 마법을 보유한 채로 런을 시작합니다.,
+Relic_PowerOfKing,TRUE,왕의 힘,,Public,,,RelicEffect_013,카드 보상을 무료로 <color=#99CCFF>{value}</color>회 새로고침할 수 있습니다.,

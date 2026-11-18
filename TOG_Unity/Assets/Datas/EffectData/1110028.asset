@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1110028
   Name: "\uC2E0\uBE44"
-  Effect: "{0}\uB4F1\uAE09\uC758 \uBB34\uC791\uC704 \uB9C8\uBC95 \uC0DD\uC131"
+  Effect: "\uC2E0\uBE44 \uCE74\uB4DC \uC218\uC5D0 \uB530\uB77C \uC77C\uBC18~\uC5D0\uD53D
+    \uB4F1\uAE09\uC758 \uBB34\uC791\uC704 \uB9C8\uBC95 \uC0DD\uC131"
   Target: 12
   Choice: 0
   CreateMagic: 

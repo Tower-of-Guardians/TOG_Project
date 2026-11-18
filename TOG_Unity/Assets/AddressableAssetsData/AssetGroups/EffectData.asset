@@ -297,6 +297,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - EffectData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d72dd17e63486ce4aac634ae5a91524e
+    m_Address: 1110058
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EffectData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: daab2ae9bab121541a389e569275c285
     m_Address: 1110018
     m_ReadOnly: 0

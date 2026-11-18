@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739d0c35b56d1b5419805acd0d39377a, type: 3}
+  m_Name: 41001007
+  m_EditorClassIdentifier: 
+  Id: 41001007
+  Name: "\uD6C8\uB828\uC6A9 \uC778\uD615"
+  Image: {fileID: 0}
+  HP: 0
+  ATKMin: 0
+  ATKMax: 0
+  DEFMin: 0
+  DEFMax: 0
+  Kind: 1
+  PatternType: 0
+  Passive1ID: 
+  Passive1Value: 0
+  Passive2ID: 
+  Passive2Value: 0
+  Passive3ID: 
+  Passive3Value: 0
+  StatusEffect1ID: 
+  Target1: 0
+  Value1: 0
+  StatusEffect2ID: 
+  Target2: 0
+  Value2: 0
+  StatusEffect3ID: 
+  Target3: 0
+  Value3: 0
+  Action1ID: 
+  Action1Min: 0
+  Action1Max: 0
+  Action2ID: 
+  Action2Min: 0
+  Action2Max: 0
+  Action3ID: 
+  Action3Min: 0
+  Action3Max: 0
+  Action4ID: 
+  Action4Min: 0
+  Action4Max: 0
+  Action5ID: 
+  Action5Min: 0
+  Action5Max: 0
+  Action6ID: 
+  Action6Min: 0
+  Action6Max: 0
+  Action7ID: 
+  Action7Min: 0
+  Action7Max: 0

@@ -28,15 +28,14 @@ MonoBehaviour:
   synergy2ID: 210011
   synergy3ID: 
   effectDescription: "\uBB34\uC791\uC704 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C 1
-    \uC785\uD788\uB294 \uB9C8\uBC95 \uD654\uC0B4\uC744 1\uBC88 \uB0A0\uB9BD\uB2C8\uB2E4.\\n\uACF5\uACA9
-    \uBC30\uCE58 \uC2DC\\n\uC601\uAD6C\uC801\uC73C\uB85C \uC2DC\uC804 \uD69F\uC218\uAC00
-    1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    \uC785\uD788\uB294 \uB9C8\uBC95 \uD654\uC0B4\uC744 1\uBC88 \uB0A0\uB9BD\uB2C8\uB2E4.\\n\uC601\uAD6C\uC801\uC73C\uB85C
+    \uC2DC\uC804 \uD69F\uC218\uAC00 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   ATK: 3
   DEF: 3
   when: 1
   trigger: 0
-  effect1ID: 
-  effect2ID: 
-  effect1Value: 
-  effect2Value: 
+  effect1ID: 1110021
+  effect2ID: 1110022
+  effect1Value: 1
+  effect2Value: 1
   time: 0

@@ -75,7 +75,7 @@ MonoBehaviour:
   triggerType: 1
   valueType: 0
   targetIDs:
-  - "\uBD80\uBAA8 \uB9C8\uBC95 ID"
+  - 1200002
   value: 0
 --- !u!114 &-2943507404864699427
 MonoBehaviour:
@@ -259,7 +259,7 @@ MonoBehaviour:
   triggerType: 1
   valueType: 0
   targetIDs:
-  - "\uC18C\uB144 \uB9C8\uBC95 ID"
+  - 1200001
   value: 0
 --- !u!114 &6463640004632351815
 MonoBehaviour:

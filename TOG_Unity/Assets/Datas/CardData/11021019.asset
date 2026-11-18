@@ -25,16 +25,16 @@ MonoBehaviour:
   synergy2Icon: {fileID: 21300000, guid: 4fe2cda9a9165df4a8b2d0aface8a758, type: 3}
   synergy3Icon: {fileID: 0}
   synergy1ID: 210003
-  synergy2ID: 210004
+  synergy2ID: 210005
   synergy3ID: 
   effectDescription: "\uC774\uBC88 \uACF5\uACA9\uC5D0 \uC801 \uCC98\uCE58 \uC2DC\\n\uACE8\uB4DC
-    20 \uD68D\uB4DD/n(\uC911\uCCA9\uBD88\uAC00)"
+    20 \uD68D\uB4DD\\n(\uC911\uCCA9\uBD88\uAC00)"
   ATK: 17
   DEF: 0
   when: 2
   trigger: 4
-  effect1ID: 
+  effect1ID: 1110058
   effect2ID: 
-  effect1Value: 
+  effect1Value: 20
   effect2Value: 
   time: 0
